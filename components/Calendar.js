@@ -1,85 +1,83 @@
 import DOM from "./util/DOM.js";
 import DateTime from "./util/DateTime.js";
-class Calendar extends HTMLElement{
-	stylesheet(){
-		DOM.create("style", {prps:{textContent:`
-			.calendar{}
-			.calendar>.month{
-				display:flex;
-				width:100%;margin:20px 0px;
-			}
-			.calendar>.month>.previous{
-				flex:none;width:100px;text-align:left;cursor:pointer;
-			}
-			.calendar>.month>.current{
-				flex:auto;text-align:center;font-weight:bold;
-			}
-			.calendar>.month>.next{
-				flex:none;width:100px;text-align:right;cursor:pointer;
-			}
-			.calendar>.dates{
-				display:flex;flex-wrap:wrap;
-				justify-content:center;
-				border-right:1px solid #cccccc;
-				border-bottom:1px solid #cccccc;
-			}
-			.calendar>.dates>.date{
-				box-sizing:border-box;padding:5px;
-				flex:auto;width:14%;height:150px;text-align:left;
-				display:flex;flex-direction:column;
-				font-size:0.8rem;
-				border:1px solid #cccccc;border-right-width:0px;border-bottom-width:0px;
-			}
-			.calendar>.dates>.day{
-				height:auto;font-weight:bold;
-			}
-			.calendar>.dates>.fade{
-				opacity:0.5;
-			}
-			.calendar>.dates>.date>.number{
-				flex:none;width:100%;height:25px;line-height:25px;
-				font-weight:bold;
-			}
-			.calendar>.dates>.date>.today{
-				border-radius:50%;width:25px;height:25px;
-				background-color:#000000;color:#eeeeee;text-align:center;
-			}
-			.calendar>.dates>.date>.entries{
-				flex:auto;width:100%;overflow-y:auto;
-			}
-			.calendar>.dates>.date>.entries>.entry{
-				display:flex;
-				color:#eeeeee;padding:5px;margin:5px;margin-left:0px;
-				cursor:pointer;
-			}
-			.calendar>.dates>.date>.entries>.entry:nth-child(5n+1){
-				background-color:#0099e0;
-			}
-			.calendar>.dates>.date>.entries>.entry:nth-child(5n+2){
-				background-color:#7788cc;
-			}
-			.calendar>.dates>.date>.entries>.entry:nth-child(5n+3){
-				background-color:#3855B8;
-			}
-			.calendar>.dates>.date>.entries>.entry:nth-child(5n+4){
-				background-color:#A89990;
-			}
-			.calendar>.dates>.date>.entries>.entry:nth-child(5n){
-				background-color:#223344;
-			}
-			.calendar>.dates>.date>.entries>.entry>.name{
-				flex:auto;
-			}
-			.calendar>.dates>.date>.entries>.entry>.hour{
-				flex:none;width:40px;text-align:right;
-			}
-		`}}, this.shadowRoot);
+const stylesheet=`
+	.calendar{}
+	.calendar>.month{
+		display:flex;
+		width:100%;margin:20px 0px;
 	}
+	.calendar>.month>.previous{
+		flex:none;width:100px;text-align:left;cursor:pointer;
+	}
+	.calendar>.month>.current{
+		flex:auto;text-align:center;font-weight:bold;
+	}
+	.calendar>.month>.next{
+		flex:none;width:100px;text-align:right;cursor:pointer;
+	}
+	.calendar>.dates{
+		display:flex;flex-wrap:wrap;
+		justify-content:center;
+		border-right:1px solid #cccccc;
+		border-bottom:1px solid #cccccc;
+	}
+	.calendar>.dates>.date{
+		box-sizing:border-box;padding:5px;
+		flex:auto;width:14%;height:150px;text-align:left;
+		display:flex;flex-direction:column;
+		font-size:0.8rem;
+		border:1px solid #cccccc;border-right-width:0px;border-bottom-width:0px;
+	}
+	.calendar>.dates>.day{
+		height:auto;font-weight:bold;
+	}
+	.calendar>.dates>.fade{
+		opacity:0.5;
+	}
+	.calendar>.dates>.date>.number{
+		flex:none;width:100%;height:25px;line-height:25px;
+		font-weight:bold;
+	}
+	.calendar>.dates>.date>.today{
+		border-radius:50%;width:25px;height:25px;
+		background-color:#000000;color:#eeeeee;text-align:center;
+	}
+	.calendar>.dates>.date>.entries{
+		flex:auto;width:100%;overflow-y:auto;
+	}
+	.calendar>.dates>.date>.entries>.entry{
+		display:flex;
+		color:#eeeeee;padding:5px;margin:5px;margin-left:0px;
+		cursor:pointer;
+	}
+	.calendar>.dates>.date>.entries>.entry:nth-child(5n+1){
+		background-color:#0099e0;
+	}
+	.calendar>.dates>.date>.entries>.entry:nth-child(5n+2){
+		background-color:#7788cc;
+	}
+	.calendar>.dates>.date>.entries>.entry:nth-child(5n+3){
+		background-color:#3855B8;
+	}
+	.calendar>.dates>.date>.entries>.entry:nth-child(5n+4){
+		background-color:#A89990;
+	}
+	.calendar>.dates>.date>.entries>.entry:nth-child(5n){
+		background-color:#223344;
+	}
+	.calendar>.dates>.date>.entries>.entry>.name{
+		flex:auto;
+	}
+	.calendar>.dates>.date>.entries>.entry>.hour{
+		flex:none;width:40px;text-align:right;
+	}
+`;
+class Calendar extends HTMLElement{
 	static NUMBER_NAMES=["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"];
 	constructor(){
 		super();
 		this.attachShadow({mode:"open"});
-		this.stylesheet();
+		DOM.create("style", {prps:{textContent:stylesheet}}, this.shadowRoot);
 		this.calendar=null;
 		this.calendarDate=new Date();
 		this.entries={};
