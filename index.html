@@ -6,18 +6,24 @@
 <script type="module">
 	import wc from "./wc.js";
 	wc.init();
+	// manipulate calendar
+	const calendar=document.querySelector("wc-calendar");
+	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
+	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
+	calendar.addEntry({date:"2021-05-20", content:"測試看看"});
 </script>
 </head>
 <body>
 	<!-- Web Component Dialog -->
-	<wc-dialog open="true">
+	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'false');">Close</wc-button>
+	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'true');">Open</wc-button>
+	<wc-dialog open="false">
 		<div slot="head" class="head">這是標題</div>
 		<div slot="main" class="main">
 			大家好，我是彭彭。
 		</div>
 	</wc-dialog>
-	<button onclick="document.querySelector('wc-dialog').setAttribute('open', 'false');">Close</button>
-	<button onclick="document.querySelector('wc-dialog').setAttribute('open', 'true');">Open</button>
-	<div class="dialog"></div>
+	<!-- Web Component Calendar -->
+	<wc-calendar></wc-calendar>
 </body>
 </html>

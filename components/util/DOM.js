@@ -23,6 +23,12 @@ const DOM={
 		}
 		return element;
 	},
+	replace:function(element, parentElement){
+		if(parentElement instanceof Element || parentElement instanceof DocumentFragment){
+			parentElement.appendChild(element);
+		}
+		return element;
+	},
 	setProperties:function(element, properties){
 		for(const name in properties){
 			element[name]=properties[name];

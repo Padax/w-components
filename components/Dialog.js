@@ -11,14 +11,15 @@ class Dialog extends HTMLElement{
 		this.main=DOM.create("slot", {prps:{name:"main"}}, this.dialog);
 		this.stylesheet=DOM.create("style", {prps:{textContent:`
 			.dialog{
-				width:300px;box-shadow:0px 0px 3px #888888;
+				width:300px;
 				position:fixed;left:calc(50% - 150px);top:100px;
+				z-index:10;
 			}
 			.dialog>::slotted(.head){
 				background-color:#333333;color:#ffffff;padding:10px;
 			}
 			.dialog>::slotted(.main){
-				padding:10px;
+				padding:10px;background-color:#dddddd;
 			}
 		`}}, this.shadowRoot);
 	}
@@ -28,7 +29,7 @@ class Dialog extends HTMLElement{
 			if(newValue==="true"){
 				this.shadowRoot.appendChild(this.dialog);
 			}else{
-				this.shadowRoot.removeChild(this.dialog);
+				this.dialog.remove();
 			}
 		}
 	}
