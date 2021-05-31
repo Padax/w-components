@@ -3,6 +3,26 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<style>
+body{
+	margin:0px;font-size:16px;font-family:Arial, Helvetica, sans-serif;
+}
+wc-nav{
+	display:flex;
+}
+wc-nav>.title{
+	flex:none;width:200px;
+}
+wc-nav>.menu{
+	flex:auto;
+}
+wc-nav>.menu>.items{
+	display:flex;justify-content:flex-end;
+}
+wc-nav>.menu>.items>.item{
+	margin:0px 10px;
+}
+</style>
 <script type="module">
 	import wc from "./wc.js";
 	wc.init();
@@ -14,6 +34,15 @@
 </script>
 </head>
 <body>
+	<wc-nav>
+		<div slot="left" class="title">W-Components</div>
+		<div slot="right" class="menu">
+			<div class="items">
+				<div class="item">GitHub</div>
+				<div class="item">Donate</div>
+			</div>
+		</div>
+	</wc-nav>
 	<!-- Web Component Dialog -->
 	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'false');">Close</wc-button>
 	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'true');">Open</wc-button>
