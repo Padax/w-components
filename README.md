@@ -2,7 +2,7 @@
 Styled and Easy-to-Use Web Components  
 Demo: https://padax.github.io/w-components/
 
-### Get Started
+## Get Started
 Add a module script in your HTML file.
 ```
 <script type="module">
@@ -11,11 +11,23 @@ Add a module script in your HTML file.
 </script>
 ```
 
+## Basic
+
+### HyperLink
+
 ### Button
 Add a button.
 ```
 <wc-button>Open</wc-button>
 ```
+
+### List
+
+### Code
+
+## Form Inputs
+
+## Integrated
 
 ### Dialog
 Add a dialog. Try to set attribute 'open' to true or false.
