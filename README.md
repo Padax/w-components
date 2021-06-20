@@ -29,7 +29,7 @@ Add a button.
 
 ### Code
 
-## Form Inputs
+## Form
 
 ## Integrated
 
