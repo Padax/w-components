@@ -38,12 +38,12 @@ wc-nav>.menu>.items>.item{
 		<div slot="left" class="title">W-Components</div>
 		<div slot="right" class="menu">
 			<div class="items">
-				<div class="item">GitHub</div>
-				<div class="item">Donate</div>
+				<div class="item"><wc-link href="https://github.com/Padax/w-components">GitHub</wc-link></div>
+				<div class="item"><wc-link href="https://github.com/Padax/w-components">Donate</wc-link></div>
 			</div>
 		</div>
 	</wc-nav>
-	<!-- Web Component Dialog -->
+	<!-- Dialog -->
 	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'false');">Close</wc-button>
 	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'true');">Open</wc-button>
 	<wc-dialog open="false">
@@ -52,7 +52,7 @@ wc-nav>.menu>.items>.item{
 			大家好，我是彭彭。
 		</div>
 	</wc-dialog>
-	<!-- Web Component Calendar -->
+	<!-- Calendar -->
 	<wc-calendar></wc-calendar>
 </body>
 </html>

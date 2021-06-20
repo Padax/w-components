@@ -14,6 +14,10 @@ Add a module script in your HTML file.
 ## Basic
 
 ### HyperLink
+Add a hyperlink.
+```
+<wc-link href="https://github.com/Padax/w-components">Link</wc-link>
+```
 
 ### Button
 Add a button.
