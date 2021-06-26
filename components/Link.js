@@ -13,13 +13,18 @@ class Link extends HTMLElement{
 		const shadowRoot=this.attachShadow({mode:"closed"});
 		DOM.create("style", {prps:{textContent:stylesheet}}, shadowRoot);
 		const prps={
-			href:this.getAttribute("href"),
-			textContent:this.textContent
+			href:this.getAttribute("href")
 		};
+		if(this.firstChild instanceof Text){
+			prps.textContent=this.textContent;
+		}
 		if(this.getAttribute("target")!==null){
 			prps.target=this.getAttribute("target");
 		}
-		DOM.create("a", {prps:prps}, shadowRoot);
+		const anchor=DOM.create("a", {prps:prps}, shadowRoot);
+		if(this.firstChild instanceof Element){
+			anchor.appendChild(this.firstChild);
+		}
 	}
 }
 export default Link;
