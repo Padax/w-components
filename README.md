@@ -17,6 +17,9 @@ Add a module script in your HTML file.
 Add a hyperlink.
 ```
 <wc-link href="https://github.com/Padax/w-components">Link</wc-link>
+<wc-link target="_blank" href="https://github.com/Padax/w-components">
+  <img src="https://training.pada-x.com/images/ntu.png" width="30" height="30" />
+</wc-link>
 ```
 
 ### Button
