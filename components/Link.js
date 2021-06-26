@@ -12,16 +12,15 @@ class Link extends HTMLElement{
 		super();
 		const shadowRoot=this.attachShadow({mode:"closed"});
 		DOM.create("style", {prps:{textContent:stylesheet}}, shadowRoot);
-		const prps={
-			href:this.getAttribute("href")
-		};
+		const atrs={};
+		for(let i=0;i<this.attributes.length;i++){
+			atrs[this.attributes[i].name]=this.attributes[i].value;
+		}
+		const prps={};
 		if(this.firstChild instanceof Text){
 			prps.textContent=this.textContent;
 		}
-		if(this.getAttribute("target")!==null){
-			prps.target=this.getAttribute("target");
-		}
-		const anchor=DOM.create("a", {prps:prps}, shadowRoot);
+		const anchor=DOM.create("a", {prps:prps, atrs:atrs}, shadowRoot);
 		if(this.firstChild instanceof Element){
 			anchor.appendChild(this.firstChild);
 		}
