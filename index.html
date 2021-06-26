@@ -11,7 +11,11 @@ wc-nav{
 	display:flex;
 }
 wc-nav>.title{
+	display:flex;align-items:center;
 	flex:none;width:200px;
+}
+wc-nav>.title>wc-link{
+	margin-right:10px;
 }
 wc-nav>.menu{
 	flex:auto;
@@ -35,7 +39,10 @@ wc-nav>.menu>.items>.item{
 </head>
 <body>
 	<wc-nav>
-		<div slot="left" class="title">W-Components</div>
+		<div slot="left" class="title">
+			<wc-link href="https://github.com/Padax/w-components"><img src="https://training.pada-x.com/images/ntu.png" width="30" height="30" /></wc-link>
+			W-Components
+		</div>
 		<div slot="right" class="menu">
 			<div class="items">
 				<div class="item"><wc-link href="https://github.com/Padax/w-components">GitHub</wc-link></div>
@@ -43,6 +50,13 @@ wc-nav>.menu>.items>.item{
 			</div>
 		</div>
 	</wc-nav>
+	<wc-list>
+		<div slot="list">
+			<div>Item 1</div>
+			<div>Item 2</div>
+			<div>Item 3</div>
+		</div>
+	</wc-list>
 	<!-- Dialog -->
 	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'false');">Close</wc-button>
 	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'true');">Open</wc-button>
