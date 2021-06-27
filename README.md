@@ -14,7 +14,7 @@ Add a module script in your HTML file.
 ## Basic
 
 ### HyperLink
-Add a hyperlink.
+Add hyperlinks.
 ```
 <wc-link href="https://github.com/Padax/w-components">Link</wc-link>
 <wc-link target="_blank" href="https://github.com/Padax/w-components">
