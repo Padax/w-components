@@ -13,6 +13,12 @@ Add a module script in your HTML file.
 
 ## Basic
 
+### Heading
+Add a heading.
+```
+<wc-heading level="1" underlined="true>This is a heading.</wc-heading>
+```
+
 ### HyperLink
 Add hyperlinks.
 ```
