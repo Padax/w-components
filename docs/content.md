@@ -7,7 +7,8 @@
 * Accessibility Guidelines: https://www.w3.org/TR/WCAG21/
 * Color Universal Design (CUD): https://jfly.uni-koeln.de/color/
 
-### Colors (**WIP**)
+### Colors (WIP)
+Current design file: https://www.figma.com/file/5mAH9laNFI4q3oJeTN0sgq/W-Components-team-library?node-id=0%3A1
 
 - Color (& Customization)
     - Light & Dark Theme
