@@ -8,15 +8,15 @@ class List extends HTMLElement{
 	constructor(){
 		super();
 		const shadowRoot=this.attachShadow({mode:"closed"});
-		DOM.create("style", {prps:{textContent:stylesheet}}, shadowRoot);
-		const prps={
+		DOM.create("style", {props:{textContent:stylesheet}}, shadowRoot);
+		const props={
 			href:this.getAttribute("href"),
 			textContent:this.textContent
 		};
 		if(this.getAttribute("target")!==null){
-			prps.target=this.getAttribute("target");
+			props.target=this.getAttribute("target");
 		}
-		DOM.create("a", {prps:prps}, shadowRoot);
+		DOM.create("a", {props:props}, shadowRoot);
 	}
 }
 export default Link;

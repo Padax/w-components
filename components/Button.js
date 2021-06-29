@@ -14,8 +14,8 @@ class Button extends HTMLElement{
 	constructor(){
 		super();
 		this.attachShadow({mode:"open"});
-		DOM.create("style", {prps:{textContent:stylesheet}}, this.shadowRoot);
-		DOM.create("div", {prps:{className:"btn", textContent:this.textContent}}, this.shadowRoot);
+		DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
+		DOM.create("div", {props:{className:"btn", textContent:this.textContent}}, this.shadowRoot);
 	}
 }
 export default Button;

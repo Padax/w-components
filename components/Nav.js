@@ -10,14 +10,14 @@ class Nav extends HTMLElement{
 	constructor(){
 		super();
 		this.attachShadow({mode:"open"});
-		DOM.create("style", {prps:{textContent:stylesheet}}, this.shadowRoot);
-		DOM.create("slot", {prps:{
+		DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
+		DOM.create("slot", {props:{
 			name:"left"
 		}}, this.shadowRoot);
-		DOM.create("slot", {prps:{
+		DOM.create("slot", {props:{
 			name:"center"
 		}}, this.shadowRoot);
-		DOM.create("slot", {prps:{
+		DOM.create("slot", {props:{
 			name:"right"
 		}}, this.shadowRoot);
 	}

@@ -9,17 +9,17 @@ const DOM={
 	},
 	modify:function(selectorOrElement, settings){
 		const element=(typeof selectorOrElement==="string"?this.get(selectorOrElement):selectorOrElement);
-		if(settings.prps){
-			this.setProperties(element, settings.prps);
+		if(settings.props){
+			this.setProperties(element, settings.props);
 		}
-		if(settings.atrs){
-			this.setAttributes(element, settings.atrs);
+		if(settings.attrs){
+			this.setAttributes(element, settings.attrs);
 		}
-		if(settings.stys){
-			this.setStyles(element, settings.stys);
+		if(settings.styles){
+			this.setStyles(element, settings.styles);
 		}
-		if(settings.evts){
-			this.addListeners(element, settings.evts);
+		if(settings.events){
+			this.addListeners(element, settings.events);
 		}
 		return element;
 	},
