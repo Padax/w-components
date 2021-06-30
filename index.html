@@ -60,9 +60,25 @@ wc-nav>.menu>.items>.item{
 		</div>
 	</wc-list>
   <wc-heading level="5" underlined="true">Dialog</wc-heading>
-	<!-- Dialog -->
+	<!-- Button -->
+	<wc-heading level="3" underlined="true">Button</wc-heading>
+	<wc-heading level="5">Primary</wc-heading>
 	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'false');">Close</wc-button>
 	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'true');">Open</wc-button>
+	<wc-button disabled onclick="console.log('disabled');">Disabled</wc-button>
+	<wc-button class="outline-primary">Outline</wc-button>
+	<wc-button class="large">Large</wc-button>
+	<wc-button class="block">Block</wc-button>
+	<wc-button class="block outline-primary">Outline Block</wc-button>
+	<wc-heading level="5">Success</wc-heading>
+	<wc-button class="success">Close</wc-button>
+	<wc-button class="success">Open</wc-button>
+	<wc-button class="success" disabled onclick="console.log('disabled');">Disabled</wc-button>
+	<wc-button class="outline-success">Outline</wc-button>
+	<wc-button class="success large">Large</wc-button>
+	<wc-button class="success block">Block</wc-button>
+	<wc-button class="success block outline-success">Outline Block</wc-button>
+	<!-- Dialog -->
 	<wc-dialog open="false">
 		<div slot="head" class="head">這是標題</div>
 		<div slot="main" class="main">
