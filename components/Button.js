@@ -1,10 +1,11 @@
 import DOM from "./util/DOM.js";
 const stylesheet=`
 	button{
+		font-size:1rem;
 		display:inline-block;
 		border-width:0px;border-color:#002ef7;border-style:solid;
 		background-color:#002ef7;color:#eeeeee;
-		padding:6px 10px;
+		padding:8px 10px;
 		cursor:pointer;transition:background-color 0.5s;
 	}
 	button:hover, button:active{
@@ -51,7 +52,7 @@ const stylesheet=`
 	/* size */
 	button.large{
 		font-size:1.5rem;
-		padding:8px 15px;
+		padding:10px 15px;
 	}
 	/* block */
 	button.block{
