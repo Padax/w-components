@@ -16,14 +16,11 @@ class Link extends HTMLElement{
 		for(let i=0;i<this.attributes.length;i++){
 			attrs[this.attributes[i].name]=this.attributes[i].value;
 		}
-		const props={};
-		if(this.firstChild instanceof Text){
-			props.textContent=this.textContent;
-		}
-		const anchor=DOM.create("a", {props:props, attrs:attrs}, shadowRoot);
-		if(this.firstChild instanceof Element){
-			anchor.appendChild(this.firstChild);
-		}
+		const anchor=DOM.create("a", {attrs:attrs}, shadowRoot);
+		// append all child nodes to basic components
+		this.childNodes.forEach((node)=>{
+			anchor.appendChild(node);
+		});
 	}
 }
 export default Link;
