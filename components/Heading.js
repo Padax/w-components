@@ -58,14 +58,14 @@ class Heading extends HTMLElement{
   }
 
   render() {
-		DOM.create('style', { prps: { textContent: stylesheet } }, this.shadowRoot);
+		DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
     
     const level = this.parseLevel();
-    const prps = {
+    const props = {
       className: `heading ${this.parseUnderlined() ? 'underlined' : ''}`,
       textContent: this.textContent
     };
-    DOM.create(`h${level}`, { prps }, this.shadowRoot);
+    DOM.create(`h${level}`, { props }, this.shadowRoot);
   }
 }
 export default Heading;

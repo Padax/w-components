@@ -11,19 +11,16 @@ class Link extends HTMLElement{
 	constructor(){
 		super();
 		const shadowRoot=this.attachShadow({mode:"closed"});
-		DOM.create("style", {prps:{textContent:stylesheet}}, shadowRoot);
-		const atrs={};
+		DOM.create("style", {props:{textContent:stylesheet}}, shadowRoot);
+		const attrs={};
 		for(let i=0;i<this.attributes.length;i++){
-			atrs[this.attributes[i].name]=this.attributes[i].value;
+			attrs[this.attributes[i].name]=this.attributes[i].value;
 		}
-		const prps={};
-		if(this.firstChild instanceof Text){
-			prps.textContent=this.textContent;
-		}
-		const anchor=DOM.create("a", {prps:prps, atrs:atrs}, shadowRoot);
-		if(this.firstChild instanceof Element){
-			anchor.appendChild(this.firstChild);
-		}
+		const anchor=DOM.create("a", {attrs:attrs}, shadowRoot);
+		// append all child nodes to basic components
+		this.childNodes.forEach((node)=>{
+			anchor.appendChild(node);
+		});
 	}
 }
 export default Link;

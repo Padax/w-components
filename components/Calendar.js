@@ -77,7 +77,7 @@ class Calendar extends HTMLElement{
 	constructor(){
 		super();
 		this.attachShadow({mode:"open"});
-		DOM.create("style", {prps:{textContent:stylesheet}}, this.shadowRoot);
+		DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
 		this.calendar=null;
 		this.calendarDate=new Date();
 		this.entries={};
@@ -100,37 +100,37 @@ class Calendar extends HTMLElement{
 			this.calendar.remove();
 		}
 		// create calendar
-		const calendar=DOM.create("div", {prps:{
+		const calendar=DOM.create("div", {props:{
 			className:"calendar"
 		}});
 		// create month bar
-		const monthBar=DOM.create("div", {prps:{
+		const monthBar=DOM.create("div", {props:{
 			className:"month"
 		}}, calendar);
-		DOM.create("div", {prps:{
+		DOM.create("div", {props:{
 			className:"previous", textContent:"< 上個月"
-		}, evts:{
+		}, events:{
 			click:()=>{
 				this.changeMonth(-1)
 			}
 		}}, monthBar);
-		DOM.create("div", {prps:{
+		DOM.create("div", {props:{
 			className:"current", textContent:Calendar.NUMBER_NAMES[this.calendarDate.getMonth()]+"月 "+this.calendarDate.getFullYear()
 		}}, monthBar);
-		DOM.create("div", {prps:{
+		DOM.create("div", {props:{
 			className:"next", textContent:"下個月 >"
-		}, evts:{
+		}, events:{
 			click:()=>{
 				this.changeMonth(1)
 			}
 		}}, monthBar);
 		// create date cells
-		const dateCells=DOM.create("div", {prps:{
+		const dateCells=DOM.create("div", {props:{
 			className:"dates"
 		}}, calendar);
 		// create day names
 		for(let i=0;i<7;i++){
-			DOM.create("div", {prps:{
+			DOM.create("div", {props:{
 				className:"date day", textContent:"週"+Calendar.NUMBER_NAMES[i]
 			}}, dateCells);
 		}
@@ -169,19 +169,19 @@ class Calendar extends HTMLElement{
 			date.getMonth()===now.getMonth() &&
 			date.getDate()===now.getDate()
 		);
-		const element=DOM.create("div", {prps:{
+		const element=DOM.create("div", {props:{
 			className:"date"+(fade?" fade":"")
 		}}, container);
-		DOM.create("div", {prps:{
+		DOM.create("div", {props:{
 			className:"number"+(today?" today":""), textContent:date.getDate()
 		}}, element);
-		const entriesContainer=DOM.create("div", {prps:{
+		const entriesContainer=DOM.create("div", {props:{
 			className:"entries"
 		}}, element);
 		if(this.entries[DateTime.format(date)]){
 			const entries=this.entries[DateTime.format(date)];
 			entries.forEach((entry)=>{
-				DOM.create("div", {prps:{
+				DOM.create("div", {props:{
 					className:"entry", textContent:entry.content
 				}}, entriesContainer);
 			});

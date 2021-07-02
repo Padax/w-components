@@ -19,10 +19,10 @@ class Dialog extends HTMLElement{
 	constructor(){
 		super();
 		this.attachShadow({mode:"open"});
-		DOM.create("style", {prps:{textContent:stylesheet}}, this.shadowRoot);
-		this.dialog=DOM.create("div", {prps:{className:"dialog"}});
-		this.head=DOM.create("slot", {prps:{name:"head"}}, this.dialog);
-		this.main=DOM.create("slot", {prps:{name:"main"}}, this.dialog);
+		DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
+		this.dialog=DOM.create("div", {props:{className:"dialog"}});
+		this.head=DOM.create("slot", {props:{name:"head"}}, this.dialog);
+		this.main=DOM.create("slot", {props:{name:"main"}}, this.dialog);
 	}
 	connectedCallback(){}
 	attributeChangedCallback(name, oldValue, newValue){
