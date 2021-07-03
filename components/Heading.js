@@ -1,11 +1,11 @@
 import DOM from "./util/DOM.js";
 const stylesheet = `
-	h1 { font-size: 2.5rem; }
-	h2 { font-size: 2rem; }
-	h3 { font-size: 1.75rem; }
-	h4 { font-size: 1.5rem; }
-	h5 { font-size: 1.25rem; }
-	h6 { font-size: 1rem; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.75rem; }
+  h4 { font-size: 1.5rem; }
+  h5 { font-size: 1.25rem; }
+  h6 { font-size: 1rem; }
   .heading {
     margin-top: .5rem;
     margin-bottom: .5rem;
@@ -17,11 +17,11 @@ const stylesheet = `
   }
 `;
 class Heading extends HTMLElement{
-	constructor(){
-		super();
-		this.attachShadow({ mode:'open' });
+  constructor(){
+    super();
+    this.attachShadow({ mode:'open' });
     this.render();
-	}
+  }
   static defaultValues = {
     level: 6,
     underlined: false
@@ -58,7 +58,7 @@ class Heading extends HTMLElement{
   }
 
   render() {
-		DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
+    DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
     
     const level = this.parseLevel();
     const props = {
