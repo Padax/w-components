@@ -3,8 +3,8 @@ const stylesheet=`
 	button{
 		font-size:1rem;
 		display:inline-block;
-		border-width:0px;border-color:#002ef7;border-style:solid;
-		background-color:#002ef7;color:#eeeeee;
+		border-width:0px;border-color:var(--primary-color);border-style:solid;
+		background-color:var(--primary-color);color:#eeeeee;
 		padding:8px 10px;
 		cursor:pointer;transition:background-color 0.5s;
 	}
@@ -23,7 +23,7 @@ const stylesheet=`
 		opacity:0.5;
 	}
 	button:disabled:hover, button:disabled:active{
-		background-color:#002ef7;
+		background-color:var(--primary-color);
 	}
 	button.success:disabled:hover, button.success:disabled:active{
 		background-color:#11ae11;
@@ -31,9 +31,9 @@ const stylesheet=`
 	/* outline */
 	button.outline-primary{
 		background-color:transparent;
-		border-color:#002ef7;
+		border-color:var(--primary-color);
 		border-width:1px;
-		color:#002ef7;
+		color:var(--primary-color);
 	}
 	button.outline-primary:hover, button.outline-primary:active{
 		background-color:#140096;
@@ -63,6 +63,7 @@ class Button extends HTMLElement{
 	constructor(){
 		super();
 		const shadowRoot=this.attachShadow({mode:"closed"});
+		DOM.create("style", {props:{textContent:document.querySelector("#global-for-local").textContent}}, shadowRoot);
 		DOM.create("style", {props:{textContent:stylesheet}}, shadowRoot);
 		// prepare all attributes
 		const attrs={};
