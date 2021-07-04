@@ -19,7 +19,7 @@ const stylesheet = `
 class Heading extends HTMLElement{
   constructor(){
     super();
-    this.attachShadow({ mode:'open' });
+    this.attachShadow({ mode:'closed' });
     this.render();
   }
   static defaultValues = {
