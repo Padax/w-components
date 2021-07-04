@@ -13,9 +13,9 @@ const stylesheet=`
   }
 `;
 class Dialog extends HTMLElement{
-    static get observedAttributes(){
-        return ["open"];
-    }
+  static get observedAttributes(){
+      return ["open"];
+  }
   constructor(){
     super();
     this.attachShadow({mode:"open"});

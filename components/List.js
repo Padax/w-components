@@ -19,4 +19,4 @@ class List extends HTMLElement{
     DOM.create("a", {props:props}, shadowRoot);
   }
 }
-export default Link;
+export default List;
