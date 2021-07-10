@@ -1,58 +1,73 @@
 import DOM from "./util/DOM.js";
 const stylesheet=`
   button{
-    font-size:1rem;
-    display:inline-block;
-    border-width:0px;border-color:var(--primary-color-60);border-style:solid;
-    background-color:var(--primary-color-60);color:#eeeeee;
-    padding:8px 10px;
+    display:inline-block;box-sizing:border-box;
+    font-size:var(--font-size-button);line-height:var(--line-height-button);
+    border-width:1px;border-color:var(--color-primary-60);border-style:solid;
+    background-color:var(--color-primary-60);color:var(--color-gray-0);
+    padding:8px 20px;
     cursor:pointer;transition:background-color 0.5s;
   }
-  button:hover, button:active{
-    background-color:var(--primary-color-40);
+  button:hover{
+    background-color:var(--color-primary-40);
+  }
+  button:active{
+    background-color:var(--color-primary-70);
   }
   button.critical{
-    background-color:var(--critical-color-60);;
-    border-color:var(--critical-color-60);;
+    background-color:var(--color-critical-60);
+    border-color:var(--color-critical-60);
   }
-  button.critical:hover, button.critical:active{
-    background-color:var(--critical-color-40);;
+  button.critical:hover{
+    background-color:var(--color-critical-40);
   }
-  /* disabled */
-  button:disabled{
-    opacity:0.5;
-  }
-  button:disabled:hover, button:disabled:active{
-    background-color:var(--primary-color-60);
-  }
-  button.critical:disabled:hover, button.critical:disabled:active{
-    background-color:var(--critical-color-60);;
+  button.critical:active{
+    background-color:var(--color-critical-70);
   }
   /* outline */
   button.outline-primary{
     background-color:transparent;
-    border-color:var(--primary-color-60);
+    border-color:var(--color-primary-70);
     border-width:1px;
-    color:var(--primary-color-60);
+    color:var(--color-primary-70);
   }
-  button.outline-primary:hover, button.outline-primary:active{
-    background-color:var(--primary-color-40);
-    color:#eeeeee;
+  button.outline-primary:hover{
+    background-color:var(--color-primary-10);
+  }
+  button.outline-primary:active{
+    background-color:var(--color-primary-20);
   }
   button.outline-critical{
     background-color:transparent;
-    border-color:var(--critical-color-40);;
+    border-color:var(--color-critical-70);
     border-width:1px;
-    color:var(--critical-color-60);;
+    color:var(--color-critical-70);
   }
-  button.outline-critical:hover, button.outline-critical:active{
-    background-color:var(--critical-color-40);;
-    color:#eeeeee;
+  button.outline-critical:hover{
+    background-color:var(--color-critical-10);
+  }
+  button.outline-critical:active{
+    background-color:var(--color-critical-20);
+  }
+  /* disabled */
+  button:disabled{
+    color:var(--color-gray-30);background-color:var(--color-gray-10);
+    border-color:var(--color-gray-10);
+  }
+  button:disabled:hover, button:disabled:active{
+    color:var(--color-gray-30);background-color:var(--color-gray-10);
+    border-color:var(--color-gray-10);
   }
   /* size */
   button.large{
-    font-size:1.5rem;
-    padding:10px 15px;
+    font-size:calc(var(--font-size-button) * 1.2);
+    line-height:calc(var(--line-height-button) * 1.2);
+    padding:12px 30px;
+  }
+  button.small{
+    font-size:var(--font-size-button);
+    line-height:var(--line-height-button);
+    padding:4px 16px;
   }
   /* block */
   button.block{

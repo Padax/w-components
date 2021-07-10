@@ -4,9 +4,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <style>
-body{
-	margin:0px;font-size:16px;font-family:Arial, Helvetica, sans-serif;
-}
 wc-nav{
 	display:flex;
 }
@@ -51,7 +48,7 @@ wc-nav>.menu>.items>.item{
 		</div>
 	</wc-nav>
   <wc-heading level="1">Main Content</wc-heading>
-  <wc-heading level="5" underlined="true">List</wc-heading>
+  <wc-heading level="3" underlined="true">List</wc-heading>
 	<wc-list>
 		<div slot="list">
 			<div>Item 1</div>
@@ -59,34 +56,46 @@ wc-nav>.menu>.items>.item{
 			<div>Item 3</div>
 		</div>
 	</wc-list>
-  <wc-heading level="5" underlined="true">Dialog</wc-heading>
-	<!-- Button -->
+	<!-- Buttons -->
+	<!-- Primary -->
 	<wc-heading level="3" underlined="true">Button</wc-heading>
 	<wc-heading level="5">Primary</wc-heading>
-	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'false');">Close</wc-button>
-	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'true');">Open</wc-button>
-	<wc-button disabled onclick="console.log('disabled');">Disabled</wc-button>
+	<wc-button class="small">Small</wc-button>
+	<wc-button class="small outline-primary">Small Outline</wc-button>
+	<wc-button>Normal</wc-button>
+	<wc-button disabled>Normal</wc-button>
 	<wc-button class="outline-primary">Outline</wc-button>
+	<wc-button disabled class="outline-primary">Outline</wc-button>
 	<wc-button class="large">Large</wc-button>
+	<wc-button class="large outline-primary">Large Outline</wc-button>
 	<wc-button class="block">Block</wc-button>
 	<wc-button class="block outline-primary">Outline Block</wc-button>
+	<wc-button class="block large">Large Block</wc-button>
+	<!-- Critical -->
 	<wc-heading level="5">Critical</wc-heading>
-	<wc-button class="critical">Close</wc-button>
-	<wc-button class="critical">Open</wc-button>
-	<wc-button class="critical" disabled onclick="console.log('disabled');">Disabled</wc-button>
+	<wc-button class="small critical">Small</wc-button>
+	<wc-button class="small outline-critical">Small Outline</wc-button>
+	<wc-button class="critical">Normal</wc-button>
+	<wc-button disabled class="critical">Normal</wc-button>
 	<wc-button class="outline-critical">Outline</wc-button>
-	<wc-button class="critical large">Large</wc-button>
-	<wc-button class="critical block">Block</wc-button>
-	<wc-button class="critical block outline-critical">Outline Block</wc-button>
+	<wc-button disabled class="outline-critical">Outline</wc-button>
+	<wc-button class="large critical">Large</wc-button>
+	<wc-button class="large outline-critical">Large Outline</wc-button>
+	<wc-button class="block critical">Block</wc-button>
+	<wc-button class="block outline-critical">Outline Block</wc-button>
+	<wc-button class="block large critical">Large Block</wc-button>
 	<!-- Dialog -->
+	<wc-heading level="3" underlined="true">Dialog</wc-heading>
+	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'true');">Open Dialog</wc-button>
+	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'false');">Close Dialog</wc-button>
 	<wc-dialog open="false">
 		<div slot="head" class="head">這是標題</div>
 		<div slot="main" class="main">
 			大家好，我是彭彭。
 		</div>
 	</wc-dialog>
-  <wc-heading level="5" underlined="true">Calendar</wc-heading>
 	<!-- Calendar -->
+	<wc-heading level="3" underlined="true">Calendar</wc-heading>
 	<wc-calendar></wc-calendar>
 </body>
 </html>
