@@ -6,6 +6,7 @@ import Dialog from "./components/Dialog.js";
 import Calendar from "./components/Calendar.js";
 import Heading from "./components/Heading.js";
 import DisplayHeading from "./components/DisplayHeading.js";
+import Quote from "./components/Quote.js";
 const wc={
   init:function(prefix="wc"){
     this.initTheme();
@@ -16,6 +17,7 @@ const wc={
     window.customElements.define(prefix+"-calendar", Calendar);
     window.customElements.define(prefix+"-heading", Heading);
     window.customElements.define(prefix+"-display-heading", DisplayHeading);
+    window.customElements.define(prefix+"-quote", Quote);
   },
   initTheme:function(){
     DOM.create("link", {props:{

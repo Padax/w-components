@@ -85,6 +85,23 @@ wc-nav>.menu>.items>.item{
 	<wc-button class="block critical">Block</wc-button>
 	<wc-button class="block outline-critical">Outline Block</wc-button>
 	<wc-button class="block large critical">Large Block</wc-button>
+  <!-- Quote -->
+  <wc-heading level="3" underlined>Quote</wc-heading>
+  <wc-quote>
+    <span slot="quote">This is a quote without source.</span>
+  </wc-quote>
+  <wc-quote>
+    <span slot="quote">This is a quote aligned to the left.</span>
+    <span slot="source">Someone famous in Source Title</span>
+  </wc-quote>
+  <wc-quote align="center">
+    <span slot="quote">This is a quote aligned to the center.</span>
+    <span slot="source">Someone famous in Source Title</span>
+  </wc-quote>
+  <wc-quote align="right">
+    <span slot="quote">This is a quote aligned to the right.</span>
+    <span slot="source">Someone famous in Source Title</span>
+  </wc-quote>
 	<!-- Dialog -->
 	<wc-heading level="3" underlined="true">Dialog</wc-heading>
 	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'true');">Open Dialog</wc-button>

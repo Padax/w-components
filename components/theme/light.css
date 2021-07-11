@@ -34,6 +34,7 @@
   color: var(--color-gray-100);
 
   /* Font Size */
+  --font-size-small: 14px;
   --font-size-normal:16px;
   --font-size-button:20px;
   
