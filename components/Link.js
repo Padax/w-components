@@ -10,13 +10,13 @@ const stylesheet=`
 class Link extends HTMLElement{
   constructor(){
     super();
-    const shadowRoot=this.attachShadow({mode:"closed"});
-    DOM.create("style", {props:{textContent:stylesheet}}, shadowRoot);
+    this.attachShadow({mode:"open"});
+    DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
     const attrs={};
     for(let i=0;i<this.attributes.length;i++){
       attrs[this.attributes[i].name]=this.attributes[i].value;
     }
-    const anchor=DOM.create("a", {attrs:attrs}, shadowRoot);
+    const anchor=DOM.create("a", {attrs:attrs}, this.shadowRoot);
     // append all child nodes to basic components
     this.childNodes.forEach((node)=>{
       anchor.appendChild(node);

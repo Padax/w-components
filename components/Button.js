@@ -77,14 +77,14 @@ const stylesheet=`
 class Button extends HTMLElement{
   constructor(){
     super();
-    const shadowRoot=this.attachShadow({mode:"closed"});
-    DOM.create("style", {props:{textContent:stylesheet}}, shadowRoot);
+    this.attachShadow({mode:"open"});
+    DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
     // prepare all attributes
     const attrs={};
     for(let i=0;i<this.attributes.length;i++){
       attrs[this.attributes[i].name]=this.attributes[i].value;
     }
-    DOM.create("button", {props:{textContent:this.textContent}, attrs:attrs}, shadowRoot);
+    DOM.create("button", {props:{textContent:this.textContent}, attrs:attrs}, this.shadowRoot);
   }
 }
 export default Button;

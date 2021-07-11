@@ -7,8 +7,8 @@ const stylesheet=`
 class List extends HTMLElement{
   constructor(){
     super();
-    const shadowRoot=this.attachShadow({mode:"closed"});
-    DOM.create("style", {props:{textContent:stylesheet}}, shadowRoot);
+    this.attachShadow({mode:"open"});
+    DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
     const props={
       href:this.getAttribute("href"),
       textContent:this.textContent
@@ -16,7 +16,7 @@ class List extends HTMLElement{
     if(this.getAttribute("target")!==null){
       props.target=this.getAttribute("target");
     }
-    DOM.create("a", {props:props}, shadowRoot);
+    DOM.create("a", {props:props}, this.shadowRoot);
   }
 }
 export default List;
