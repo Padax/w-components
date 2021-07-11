@@ -1,19 +1,39 @@
 import DOM from "./util/DOM.js";
 const stylesheet = `
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 2rem; }
-  h3 { font-size: 1.75rem; }
-  h4 { font-size: 1.5rem; }
-  h5 { font-size: 1.25rem; }
-  h6 { font-size: 1rem; }
-  .heading {
-    margin-top: .5rem;
-    margin-bottom: .5rem;
-    font-weight: 500;
-    line-height: 1.2;
+  h1 { 
+    font-size: 2.5rem; 
+    font-weight: var(--font-weight-bold);
+    line-height: calc(2.5rem * var(--line-height-normal-ratio)); 
   }
-  .heading.underlined {
-    border-bottom: 1px solid #DDD;
+  h2 { 
+    font-size: 2rem; 
+    font-weight: var(--font-weight-bold);
+    line-height: calc(2rem * var(--line-height-normal-ratio));  
+  }
+  h3 { 
+    font-size: 1.5rem; 
+    font-weight: var(--font-weight-normal);
+    line-height: calc(1.5rem * var(--line-height-normal-ratio)); 
+  }
+  h4 { 
+    font-size: 1.25rem; 
+    font-weight: var(--font-weight-normal);
+    line-height: calc(1.25rem * var(--line-height-normal-ratio)); 
+  }
+  h5 { 
+    font-size: 1rem; 
+    font-weight: var(--font-weight-normal);
+    line-height: calc(1rem * var(--line-height-normal-ratio)); 
+  }
+  h6 { 
+    font-size: .875rem; 
+    font-weight: var(--font-weight-normal);
+    line-height: calc(.875rem * var(--line-height-normal-ratio)); 
+  }
+  .heading { margin: 0; }
+  .underlined { 
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
   }
 `;
 class Heading extends HTMLElement{
@@ -23,7 +43,7 @@ class Heading extends HTMLElement{
     this.render();
   }
   static defaultValues = {
-    level: 6,
+    level: 5,
     underlined: false
   };
 
@@ -62,7 +82,7 @@ class Heading extends HTMLElement{
     
     const level = this.parseLevel();
     const props = {
-      className: `heading ${this.parseUnderlined() ? 'underlined' : ''}`,
+      className: `heading${this.parseUnderlined() ? ' underlined' : ''}`,
       textContent: this.textContent
     };
     DOM.create(`h${level}`, { props }, this.shadowRoot);

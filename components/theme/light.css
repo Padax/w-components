@@ -1,4 +1,4 @@
-:root{
+:root {
   /* Colors */
   --color-gray-0:#FFFFFF;
   --color-gray-10:#E3E4E6;
@@ -31,11 +31,24 @@
   --color-critical-90:#691500;
   --color-critical-100:#4D0F00;
 
-  /* Font Size & Line Height */
+  color: var(--color-gray-100);
+
+  /* Font Size */
   --font-size-normal:16px;
   --font-size-button:20px;
+  
+  font-size: var(--font-size-normal);
+
+  /* Font Weight */
+  --font-weight-normal: 400;
+  --font-weight-bold: 500;
+  
+  font-weight: var(--font-weight-normal);
 
   /* Line Height */
-  --line-height-normal:24px;
-  --line-height-button:30px;
+  --line-height-normal-ratio: 1.5;
+  --line-height-normal: calc(1rem * var(--line-height-normal-ratio));
+  --line-height-button: 30px;
+  
+  line-height: var(--line-height-normal);
 }
