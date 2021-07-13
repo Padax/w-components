@@ -34,6 +34,7 @@ const stylesheet = `
   .underlined { 
     border-bottom-width: 1px;
     border-bottom-style: solid;
+    border-bottom-color: var(--color-gray-20);
   }
 `;
 class Heading extends HTMLElement{
