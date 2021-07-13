@@ -11,7 +11,7 @@ wc-nav>.title{
 	display:flex;align-items:center;
 	flex:none;width:200px;
 }
-wc-nav>.title>wc-link{
+wc-nav>.title>a{
 	margin-right:10px;
 }
 wc-nav>.menu{
@@ -37,13 +37,13 @@ wc-nav>.menu>.items>.item{
 <body>
 	<wc-nav>
 		<div slot="left" class="title">
-			<wc-link href="https://github.com/Padax/w-components"><img src="https://training.pada-x.com/images/ntu.png" width="30" height="30" /></wc-link>
+			<a href="https://github.com/Padax/w-components"><img src="https://training.pada-x.com/images/ntu.png" width="30" height="30" /></a>
 			W-Components
 		</div>
 		<div slot="right" class="menu">
 			<div class="items">
-				<div class="item"><wc-link target="_blank" href="https://github.com/Padax/w-components">GitHub</wc-link></div>
-				<div class="item"><wc-link target="_blank" href="https://github.com/Padax/w-components">Donate</wc-link></div>
+				<div class="item"><a target="_blank" href="https://github.com/Padax/w-components">GitHub</a></div>
+				<div class="item"><a target="_blank" href="https://github.com/Padax/w-components">Donate</a></div>
 			</div>
 		</div>
 	</wc-nav>
