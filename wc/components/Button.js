@@ -1,4 +1,4 @@
-import DOM from "./util/DOM.js";
+import DOM from "../util/DOM.js";
 const stylesheet=`
   button{
     display:inline-block;box-sizing:border-box;

@@ -1,4 +1,4 @@
-import DOM from "./components/util/DOM.js";
+import DOM from "./util/DOM.js";
 import Nav from "./components/Nav.js";
 import Button from "./components/Button.js";
 import Dialog from "./components/Dialog.js";
@@ -19,7 +19,7 @@ const wc={
   },
   initTheme:function(){
     DOM.create("link", {props:{
-      rel:"stylesheet", type:"text/css", href:"./components/theme/light.css"
+      rel:"stylesheet", type:"text/css", href:"/wc/theme/light.css"
     }}, document.querySelector("head"));
   }
 };

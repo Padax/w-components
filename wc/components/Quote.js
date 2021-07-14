@@ -1,4 +1,4 @@
-import DOM from "./util/DOM.js";
+import DOM from "../util/DOM.js";
 const stylesheet = `
   .left { text-align: left; }
   .center { text-align: center; }

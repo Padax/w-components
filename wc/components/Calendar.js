@@ -1,5 +1,5 @@
-import DOM from "./util/DOM.js";
-import DateTime from "./util/DateTime.js";
+import DOM from "../util/DOM.js";
+import DateTime from "../util/DateTime.js";
 const stylesheet=`
   .calendar{}
   .calendar>.month{
