@@ -1,6 +1,7 @@
 import DOM from "../util/DOM.js";
 const stylesheet=`
   button{
+    font-family:var(--font-family);
     display:inline-block;box-sizing:border-box;
     font-size:var(--font-size-button);line-height:var(--line-height-button);
     border-width:1px;border-color:var(--color-primary-60);border-style:solid;
