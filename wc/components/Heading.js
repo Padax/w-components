@@ -1,4 +1,4 @@
-import DOM from "../util/DOM.js";
+import WCComponent, { DOM } from "../WCComponent.js";
 const stylesheet = `
   h1 { 
     font-size: 2.5rem; 
@@ -37,20 +37,15 @@ const stylesheet = `
     border-bottom-color: var(--color-gray-20);
   }
 `;
-class Heading extends HTMLElement{
-  constructor(){
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.render();
+class Heading extends WCComponent{
+  constructor(extendStylesheet){
+    super(typeof extendStylesheet === 'string' ? extendStylesheet : stylesheet);
   }
   static defaultValues = {
     level: 5,
     underlined: false
   };
 
-  getDefaultValueByName(name) {
-    return this.constructor.defaultValues[name];
-  }
   /**
    * Parse level attribute to a valid value
    * @param {string | number} level 
@@ -79,8 +74,6 @@ class Heading extends HTMLElement{
   }
 
   render() {
-    DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
-    
     const level = this.parseLevel();
     const props = {
       className: `heading${this.parseUnderlined() ? ' underlined' : ''}`,
