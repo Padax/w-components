@@ -33,14 +33,14 @@ class List extends WCComponent{
       /none|circle|number/
     );
     const items=this.querySelectorAll(".item");
-    items.forEach((item)=>{
+    items.forEach((item, index)=>{
       let markChar="";
       switch(mark){
         case "circle":
-          markChar=this.getCircleChar(mark);
+          markChar=this.getCircleChar();
           break;
         case "number":
-          markChar=this.getNumberChar(mark);
+          markChar=this.getNumberChar(index);
           break;
       }
       item.textContent=markChar+" "+item.textContent;
@@ -50,11 +50,8 @@ class List extends WCComponent{
   getCircleChar(){
     return "●";
   }
-  getNumberChar(){
-    if(!this.counter){
-      this.counter=1;
-    }
-    return (this.counter++)+".";
+  getNumberChar(index){
+    return (index+1)+".";
   }
 }
 export default List;
