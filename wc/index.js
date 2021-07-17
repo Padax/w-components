@@ -7,6 +7,7 @@ import Heading from "./components/Heading.js";
 import DisplayHeading from "./components/DisplayHeading.js";
 import Quote from "./components/Quote.js";
 import List from "./components/List.js";
+import Code from "./components/Code.js";
 const wc={
   init:function(prefix="wc"){
     this.initTheme();
@@ -18,6 +19,7 @@ const wc={
     window.customElements.define(prefix+"-display-heading", DisplayHeading);
     window.customElements.define(prefix+"-quote", Quote);
     window.customElements.define(prefix+"-list", List);
+    window.customElements.define(prefix+"-code", Code);
   },
   initTheme:function(){
     DOM.create("link", {props:{
