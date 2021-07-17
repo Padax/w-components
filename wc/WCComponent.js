@@ -11,8 +11,8 @@ class WCComponent extends HTMLElement{
   getDefaultValueByName(name) {
     return this.constructor.defaultValues[name];
   }
-
 }
 
 export default WCComponent;
 export { DOM };
+export * as PropParser from './util/PropParser.js';

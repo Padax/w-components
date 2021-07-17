@@ -1,4 +1,4 @@
-import WCComponent, { DOM } from "../WCComponent.js";
+import WCComponent, { DOM, PropParser } from "../WCComponent.js";
 const stylesheet = `
   h1 { 
     font-size: 2.5rem; 
@@ -46,37 +46,15 @@ class Heading extends WCComponent{
     underlined: false
   };
 
-  /**
-   * Parse level attribute to a valid value
-   * @param {string | number} level 
-   * @returns {int}
-   */
-  parseLevel(level = this.getAttribute('level')) {
-    level = parseInt(level);
-    if(isNaN(level) || level > 6 || level < 1) {
-      return this.getDefaultValueByName('level');
-    }
-    return level;
-  }
-  /**
-   * Parse underlined attribute to a valid value
-   * @param {string} underlined 
-   * @returns {boolean}
-   */
-  parseUnderlined(underlined = this.getAttribute('underlined')) {
-    if(underlined === 'true' || underlined === '') {
-      return true;
-    }
-    if(underlined === 'false') {
-      return false;
-    }
-    return this.getDefaultValueByName('underlined');
-  }
-
   render() {
-    const level = this.parseLevel();
+    const level = PropParser.parseIntProp(
+      this.getAttribute('level'), this.getDefaultValueByName('level'), 1, 6);
+    const underlined = PropParser.parseBoolProp(
+      this.getAttribute('underlined'), this.getDefaultValueByName('underlined')
+    );
+    
     const props = {
-      className: `heading${this.parseUnderlined() ? ' underlined' : ''}`,
+      className: `heading${underlined ? ' underlined' : ''}`,
       textContent: this.textContent
     };
     DOM.create(`h${level}`, { props }, this.shadowRoot);
