@@ -5,7 +5,9 @@ class WCComponent extends HTMLElement{
     super();
     this.attachShadow({ mode: 'open' });
     DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
+    this.componentWillRender();
     this.render();
+    this.componentDidRender();
   }
 
   getDefaultValueByName(name) {
@@ -14,6 +16,9 @@ class WCComponent extends HTMLElement{
     }
     return this.constructor.defaultValues[name];
   }
+
+  componentWillRender() {}
+  componentDidRender() {}
 }
 
 export default WCComponent;

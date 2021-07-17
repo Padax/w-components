@@ -1,12 +1,14 @@
 import WCComponent, { DOM, PropParser } from "../WCComponent.js";
+//import hljs from '../../modules/highlight/highlight.min.js';
+
 const stylesheet = `
 `;
 class Code extends WCComponent{
-  constructor(extendStylesheet){
-    super(typeof extendStylesheet === 'string' ? extendStylesheet : stylesheet);
+  constructor(){
+    super(stylesheet);
   }
   static defaultValues = {
-    block: false
+    lang: 'javascript'
   };
 
   render() {
@@ -22,6 +24,9 @@ class Code extends WCComponent{
       container = DOM.create('pre', {}, this.shadowRoot);
     }
     DOM.create('code', { props }, container);
+  }
+  componentDidRender() {
+    //hljs.highlightElement(document.querySelector('code'));
   }
 }
 export default Code;
