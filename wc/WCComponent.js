@@ -9,6 +9,9 @@ class WCComponent extends HTMLElement{
   }
 
   getDefaultValueByName(name) {
+    if(typeof name !== 'string') {
+      return undefined;
+    }
     return this.constructor.defaultValues[name];
   }
 }
