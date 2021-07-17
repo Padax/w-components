@@ -37,3 +37,22 @@ export function parseBoolProp(value, defaultValue) {
   }
   return !!defaultValue;
 }
+
+/**
+ * Parse property to a valid string value
+ * @param {string} value - Property value to be parsed 
+ * @param {boolean} defaultValue - Default value to be returned if value is invalid. 
+ * @param {RegExp} regExp - Regular expression
+ *  Will be casted to string before return.
+ * @returns {string}
+ */
+export function parseStringProp(value, defaultValue, regExp) {
+  if(typeof value !== "string"){
+    return defaultValue;
+  }
+  if(value.match(regExp)){
+    return value;
+  }else{
+    return defaultValue;
+  }
+}
