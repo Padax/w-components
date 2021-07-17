@@ -1,22 +1,60 @@
-import DOM from "../util/DOM.js";
+import WCComponent, { DOM, PropParser } from "../WCComponent.js";
 const stylesheet=`
-  :host{
-    
+  :host>div.list{
+    border:1px solid var(--color-gray-20);
+    border-radius:4px;
+    margin:1rem 0px;
+  }
+  :host>div.list>.item{
+    padding:0.5rem;
+    border-bottom:1px solid var(--color-gray-20);
+  }
+  :host>div.list>.item:last-child{
+    border-bottom-width:0px;
   }
 `;
-class List extends HTMLElement{
+class List extends WCComponent{
+  static defaultValues={
+    mark:"none"
+  };
   constructor(){
-    super();
-    this.attachShadow({mode:"open"});
-    DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
-    const props={
-      href:this.getAttribute("href"),
-      textContent:this.textContent
-    };
-    if(this.getAttribute("target")!==null){
-      props.target=this.getAttribute("target");
+    super(stylesheet);
+  }
+  render(){
+    const attrs={};
+    for(let i=0;i<this.attributes.length;i++){
+      attrs[this.attributes[i].name]=this.attributes[i].value;
     }
-    DOM.create("a", {props:props}, this.shadowRoot);
+    const list=DOM.create("div", {props:{className:"list"}, attrs:attrs}, this.shadowRoot);
+    // append all child nodes to basic components
+    const mark=PropParser.parseStringProp(
+      this.getAttribute("mark"),
+      this.getDefaultValueByName("mark"),
+      /none|circle|number/
+    );
+    const items=this.querySelectorAll(".item");
+    items.forEach((item)=>{
+      let markChar="";
+      switch(mark){
+        case "circle":
+          markChar=this.getCircleChar(mark);
+          break;
+        case "number":
+          markChar=this.getNumberChar(mark);
+          break;
+      }
+      item.textContent=markChar+" "+item.textContent;
+      list.appendChild(item);
+    });
+  }
+  getCircleChar(){
+    return "●";
+  }
+  getNumberChar(){
+    if(!this.counter){
+      this.counter=1;
+    }
+    return (this.counter++)+".";
   }
 }
 export default List;
