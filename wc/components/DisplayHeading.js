@@ -1,11 +1,33 @@
 import DOM from "../util/DOM.js";
 const stylesheet = `
   h1 { 
+    font-size: 5.5rem;
+    line-height: calc(5.5rem * var(--line-height-normal-ratio)); 
+  }
+  h2 { 
+    font-size: 5rem;
+    line-height: calc(5rem * var(--line-height-normal-ratio)); 
+  }
+  h3 { 
+    font-size: 4.5rem;
+    line-height: calc(4.5rem * var(--line-height-normal-ratio)); 
+  }
+  h4 { 
+    font-size: 4rem;
+    line-height: calc(4rem * var(--line-height-normal-ratio)); 
+  }
+  h5 { 
+    font-size: 3.5rem; 
+    line-height: calc(3.5rem * var(--line-height-normal-ratio)); 
+  }
+  h6 { 
     font-size: 3rem; 
-    font-weight: var(--font-weight-bold);
     line-height: calc(3rem * var(--line-height-normal-ratio)); 
   }
-  .heading { margin: 0; }
+  .heading { 
+    font-weight: var(--font-weight-light);
+    margin: 0; 
+  }
   .underlined { 
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -19,7 +41,7 @@ class DisplayHeading extends HTMLElement{
     this.render();
   }
   static defaultValues = {
-    level: 1,
+    level: 5,
     underlined: false
   };
 
@@ -33,7 +55,7 @@ class DisplayHeading extends HTMLElement{
    */
   parseLevel(level = this.getAttribute('level')) {
     level = parseInt(level);
-    if(isNaN(level) || level > 1 || level < 1) {
+    if(isNaN(level) || level > 6 || level < 1) {
       return this.getDefaultValueByName('level');
     }
     return level;
