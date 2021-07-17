@@ -39,7 +39,6 @@
   /* Font Size */
   --font-size-small: 14px;
   --font-size-normal:16px;
-  --font-size-button:20px;
   
   font-size: var(--font-size-normal);
 
@@ -56,7 +55,6 @@
   /* Line Height */
   --line-height-normal-ratio: 1.5;
   --line-height-normal: calc(1rem * var(--line-height-normal-ratio));
-  --line-height-button: 30px;
   
   line-height: var(--line-height-normal);
 }
