@@ -34,6 +34,28 @@
   --color-critical-90:#691500;
   --color-critical-100:#4D0F00;
 
+  --color-warning-10:#FFF2CC;
+  --color-warning-20:#FFDC73;
+  --color-warning-30:#FFBF00;
+  --color-warning-40:#F0B400;
+  --color-warning-50:#E0A800;
+  --color-warning-60:#B38600;
+  --color-warning-70:#8C6900;
+  --color-warning-80:#735600;
+  --color-warning-90:#594300;
+  --color-warning-100:#4D3900;
+
+  --color-success-10:#DDFFCC;
+  --color-success-20:#A9EF86;
+  --color-success-30:#79DE47;
+  --color-success-40:#52CC15;
+  --color-success-50:#40BF00;
+  --color-success-60:#439919;
+  --color-success-70:#3B8019;
+  --color-success-80:#267300;
+  --color-success-90:#226600;
+  --color-success-100:#194D00;
+
   color: var(--color-gray-100);
 
   /* Font Size */
