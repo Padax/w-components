@@ -2,14 +2,19 @@
   /* Font Family */
   --font-family:-apple-system, "Segoe UI", "Roboto", "San Francisco", "Helvetica", sans-serif;
 
+  font-family:var(--font-family);
+
   /* Colors */
   --color-gray-0:#FFFFFF;
   --color-gray-10:#E3E4E6;
   --color-gray-20:#C8CACC;
   --color-gray-30:#AFB1B3;
   --color-gray-40:#939699;
+  --color-gray-50:#7A7D80;
   --color-gray-60:#606366;
+  --color-gray-70:#484A4D;
   --color-gray-80:#2F3133;
+  --color-gray-90:#232526;
   --color-gray-100:#17181A;
 
   --color-primary-10:#E6F2FF;
@@ -79,9 +84,6 @@
   --line-height-normal: calc(1rem * var(--line-height-normal-ratio));
   
   line-height: var(--line-height-normal);
-}
-body{
-  font-family:var(--font-family);
 }
 a{
   color:var(--color-primary-60);
