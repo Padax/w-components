@@ -69,7 +69,7 @@ const stylesheet=`
   button.xlarge{
     font-size:calc(var(--font-size-normal) * 1.5);
     line-height:calc(var(--line-height-normal) * 1.5);
-    padding:8px 32px;
+    padding:6px 32px;
   }
   button.large{
     font-size:calc(var(--font-size-normal) * 1.25);
@@ -79,7 +79,7 @@ const stylesheet=`
   button.small{
     font-size:calc(var(--font-size-normal) * 0.875);
     line-height:calc(var(--line-height-normal) * 0.875);
-    padding:2px 12px;
+    padding:4px 12px;
   }
   /* block */
   button.block{
