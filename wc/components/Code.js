@@ -1,9 +1,9 @@
-import WCComponent, { DOM, PropParser } from "../WCComponent.js";
+import WComponent, { DOM, PropParser } from "../WComponent.js";
 //import hljs from '../../modules/highlight/highlight.min.js';
 
 const stylesheet = `
 `;
-class Code extends WCComponent{
+class Code extends WComponent{
   constructor(){
     super(stylesheet);
   }

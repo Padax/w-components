@@ -1,4 +1,4 @@
-import WCComponent, { DOM, PropParser } from "../WCComponent.js";
+import WComponent, { DOM, PropParser } from "../WComponent.js";
 const stylesheet=`
   :host>div.list{
     border:1px solid var(--color-gray-20);
@@ -13,7 +13,7 @@ const stylesheet=`
     border-bottom-width:0px;
   }
 `;
-class List extends WCComponent{
+class List extends WComponent{
   static defaultValues={
     mark:"none"
   };

@@ -1,6 +1,6 @@
 import DOM from "./util/DOM.js";
 
-class WCComponent extends HTMLElement{
+class WComponent extends HTMLElement{
   constructor(stylesheet){
     super();
     this.attachShadow({ mode: 'open' });
@@ -21,6 +21,6 @@ class WCComponent extends HTMLElement{
   componentDidRender() {}
 }
 
-export default WCComponent;
+export default WComponent;
 export { DOM };
 export * as PropParser from './util/PropParser.js';

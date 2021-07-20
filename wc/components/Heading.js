@@ -1,4 +1,4 @@
-import WCComponent, { DOM, PropParser } from "../WCComponent.js";
+import WComponent, { DOM, PropParser } from "../WComponent.js";
 const stylesheet = `
   h1 { 
     font-size: 2.5rem; 
@@ -37,7 +37,7 @@ const stylesheet = `
     border-bottom-color: var(--color-gray-20);
   }
 `;
-class Heading extends WCComponent{
+class Heading extends WComponent{
   constructor(extendStylesheet){
     super(typeof extendStylesheet === 'string' ? extendStylesheet : stylesheet);
   }
