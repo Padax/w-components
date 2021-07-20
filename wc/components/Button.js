@@ -8,7 +8,7 @@ const stylesheet=`
     background-color:var(--color-primary-60);color:var(--color-gray-0);
     padding:4px 20px;
     cursor:pointer;
-    cursor:pointer;transition:background-color 0.1s, border-color 0.1s;
+    cursor:pointer;transition:background-color 0.2s, border-color 0.2s;
   }
   button:hover{
     background-color:var(--color-primary-40);
