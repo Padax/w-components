@@ -1,4 +1,4 @@
-import DOM from "../util/DOM.js";
+import WComponent, { DOM, PropParser } from "../WComponent.js";
 const stylesheet=`
   button{
     display:inline-block;vertical-align:middle;box-sizing:border-box;
@@ -86,17 +86,48 @@ const stylesheet=`
     display:block;width:100%;
   }
 `;
-class Button extends HTMLElement{
+class Button extends WComponent{
+  static defaultValues={
+    disabled:false,
+    color:"primary",
+    outlined:false,
+    size:"normal",
+    display:"inline-block"
+  };
   constructor(){
-    super();
-    this.attachShadow({mode:"open"});
-    DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
-    // prepare all attributes
+    super(stylesheet);
+  }
+  render(){
+    const classList=[];
+    const display=PropParser.parseStringProp(
+      this.getAttribute("display"),
+      this.getDefaultValueByName("display"),
+      /inline-block|block/
+    );
+    const size=PropParser.parseStringProp(
+      this.getAttribute("size"),
+      this.getDefaultValueByName("size"),
+      /small|normal|large|xlarge/
+    );
+    const outlined=PropParser.parseBoolProp(
+      this.getAttribute("outlined"),
+      this.getDefaultValueByName("outlined")
+    );
+    const color=PropParser.parseStringProp(
+      this.getAttribute("color"),
+      this.getDefaultValueByName("color"),
+      /primary|critical/
+    );
+    classList.push(display, size, outlined?"outline-"+color:color);
+    const disabled=PropParser.parseBoolProp(
+      this.getAttribute("disabled"),
+      this.getDefaultValueByName("disabled")
+    );
     const attrs={};
-    for(let i=0;i<this.attributes.length;i++){
-      attrs[this.attributes[i].name]=this.attributes[i].value;
+    if(disabled){
+      attrs["disabled"]=true;
     }
-    DOM.create("button", {props:{textContent:this.textContent}, attrs:attrs}, this.shadowRoot);
+    DOM.create("button", {props:{textContent:this.textContent, className:classList.join(" ")}, attrs:attrs}, this.shadowRoot);
   }
 }
 export default Button;
