@@ -33,9 +33,9 @@ const stylesheet=`
   /* outline */
   button.outline-primary{
     background-color:transparent;
-    border-color:var(--color-primary-70);
+    border-color:var(--color-primary-60);
     border-width:1px;
-    color:var(--color-primary-70);
+    color:var(--color-primary-60);
   }
   button.outline-primary:hover{
     background-color:var(--color-primary-10);
@@ -45,9 +45,9 @@ const stylesheet=`
   }
   button.outline-critical{
     background-color:transparent;
-    border-color:var(--color-critical-70);
+    border-color:var(--color-critical-60);
     border-width:1px;
-    color:var(--color-critical-70);
+    color:var(--color-critical-60);
   }
   button.outline-critical:hover{
     background-color:var(--color-critical-10);
