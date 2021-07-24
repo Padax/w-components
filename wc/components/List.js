@@ -1,15 +1,15 @@
 import WComponent, { DOM, PropParser } from "../WComponent.js";
 const stylesheet=`
-  :host>div.list{
+  div.list{
     border:1px solid var(--color-gray-20);
     border-radius:4px;
     margin:1rem 0px;
   }
-  :host>div.list>.item{
+  div.list>::slotted([slot='item']){
     padding:0.5rem;
     border-bottom:1px solid var(--color-gray-20);
   }
-  :host>div.list>.item:last-child{
+  div.list>::slotted([slot='item']:last-child){
     border-bottom-width:0px;
   }
 `;
@@ -21,18 +21,18 @@ class List extends WComponent{
     super(stylesheet);
   }
   render(){
-    const attrs={};
-    for(let i=0;i<this.attributes.length;i++){
-      attrs[this.attributes[i].name]=this.attributes[i].value;
-    }
-    const list=DOM.create("div", {props:{className:"list"}, attrs:attrs}, this.shadowRoot);
-    // append all child nodes to basic components
     const mark=PropParser.parseStringProp(
       this.getAttribute("mark"),
       this.getDefaultValueByName("mark"),
       /none|circle|number/
     );
-    const items=this.querySelectorAll(".item");
+    const attrs={};
+    for(let i=0;i<this.attributes.length;i++){
+      attrs[this.attributes[i].name]=this.attributes[i].value;
+    }
+    const list=DOM.create("div", {props:{className:"list"}, attrs:attrs}, this.shadowRoot);
+    DOM.create("slot", {props:{name:"item"}}, list);
+    const items=this.querySelectorAll("[slot='item']");
     items.forEach((item, index)=>{
       let markChar="";
       switch(mark){
@@ -43,15 +43,14 @@ class List extends WComponent{
           markChar=this.getNumberChar(index);
           break;
       }
-      item.textContent=markChar+" "+item.textContent;
-      list.appendChild(item);
+      item.textContent=markChar+item.textContent;
     });
   }
   getCircleChar(){
-    return "●";
+    return "● ";
   }
   getNumberChar(index){
-    return (index+1)+".";
+    return (index+1)+". ";
   }
 }
 export default List;
