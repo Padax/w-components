@@ -1,4 +1,4 @@
-import WComponent, { DOM, PropParser } from "../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 const stylesheet = `
   h1 { 
     font-size: 2.5rem; 
@@ -47,9 +47,9 @@ class Heading extends WComponent{
   };
 
   render() {
-    const level = PropParser.parseIntProp(
+    const level = AttributeParser.parseIntAttr(
       this.getAttribute('level'), this.getDefaultValueByName('level'), 1, 6);
-    const underlined = PropParser.parseBoolProp(
+    const underlined = AttributeParser.parseBoolAttr(
       this.getAttribute('underlined'), this.getDefaultValueByName('underlined')
     );
     

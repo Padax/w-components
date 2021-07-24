@@ -1,4 +1,4 @@
-import WComponent, { DOM, PropParser } from "../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 const stylesheet=`
   div.list{
     border:1px solid var(--color-gray-20);
@@ -21,7 +21,7 @@ class List extends WComponent{
     super(stylesheet);
   }
   render(){
-    const mark=PropParser.parseStringProp(
+    const mark=AttributeParser.parseStringAttr(
       this.getAttribute("mark"),
       this.getDefaultValueByName("mark"),
       /none|circle|number/

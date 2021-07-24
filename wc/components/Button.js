@@ -1,4 +1,4 @@
-import WComponent, { DOM, PropParser } from "../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 const stylesheet=`
   button{
     display:inline-block;vertical-align:middle;box-sizing:border-box;
@@ -99,27 +99,27 @@ class Button extends WComponent{
   }
   render(){
     const classList=[];
-    const display=PropParser.parseStringProp(
+    const display=AttributeParser.parseStringAttr(
       this.getAttribute("display"),
       this.getDefaultValueByName("display"),
       /inline-block|block/
     );
-    const size=PropParser.parseStringProp(
+    const size=AttributeParser.parseStringAttr(
       this.getAttribute("size"),
       this.getDefaultValueByName("size"),
       /small|normal|large|xlarge/
     );
-    const outlined=PropParser.parseBoolProp(
+    const outlined=AttributeParser.parseBoolAttr(
       this.getAttribute("outlined"),
       this.getDefaultValueByName("outlined")
     );
-    const color=PropParser.parseStringProp(
+    const color=AttributeParser.parseStringAttr(
       this.getAttribute("color"),
       this.getDefaultValueByName("color"),
       /primary|critical/
     );
     classList.push(display, size, outlined?"outline-"+color:color);
-    const disabled=PropParser.parseBoolProp(
+    const disabled=AttributeParser.parseBoolAttr(
       this.getAttribute("disabled"),
       this.getDefaultValueByName("disabled")
     );

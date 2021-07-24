@@ -23,4 +23,4 @@ class WComponent extends HTMLElement{
 
 export default WComponent;
 export { DOM };
-export * as PropParser from './util/PropParser.js';
+export * as AttributeParser from './util/AttributeParser.js';

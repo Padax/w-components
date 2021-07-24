@@ -1,4 +1,4 @@
-import WComponent, { DOM, PropParser } from "../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 //import hljs from '../../modules/highlight/highlight.min.js';
 
 const stylesheet = `
@@ -12,7 +12,7 @@ class Code extends WComponent{
   };
 
   render() {
-    const block = PropParser.parseBoolProp(
+    const block = AttributeParser.parseBoolAttr(
       this.getAttribute('block'), this.getDefaultValueByName('block')
     );
     const props = {
