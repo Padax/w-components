@@ -1,5 +1,5 @@
 import WComponent, { DOM, PropParser } from "../WComponent.js";
-//import hljs from '../../modules/highlight/highlight.min.js';
+import hljs from 'highlight.js';
 
 const stylesheet = `
 `;
@@ -26,7 +26,7 @@ class Code extends WComponent{
     DOM.create('code', { props }, container);
   }
   componentDidRender() {
-    //hljs.highlightElement(document.querySelector('code'));
+    hljs.highlightElement(document.querySelector('code'));
   }
 }
 export default Code;

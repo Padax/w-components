@@ -23,7 +23,7 @@ const wc={
   },
   initTheme:function(){
     DOM.create("link", {props:{
-      rel:"stylesheet", type:"text/css", href:"wc/theme/light.css"
+      rel:"stylesheet", type:"text/css", href:"src/theme/light.css"
     }}, document.querySelector("head"));
   }
 };
