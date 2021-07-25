@@ -24,15 +24,15 @@ wc-nav>.menu>.items>.item{
 	margin:0px 10px;
 }
 </style>
-<script type="module">
-	import wc from "./dist/index.js";
+<!-- <script type="module">
+	import wc from "./dist/index.bundle.js";
 	wc.init();
 	// manipulate calendar
 	const calendar=document.querySelector("wc-calendar");
 	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
 	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
 	calendar.addEntry({date:"2021-05-20", content:"測試看看"});
-</script>
+</script> -->
 </head>
 <body>
 	<wc-nav>
@@ -71,10 +71,12 @@ wc-nav>.menu>.items>.item{
 		<div class="item">Item 3</div>
 	</wc-list>
   <wc-heading level="3" underlined>Code</wc-heading>
-  <wc-code>This is a line of code.</wc-code>
+  <wc-code>let code = 'This is a line of code.'</wc-code>
   <wc-code block>
+  let code = `
     This is a block of code.
     2nd line.
+  `
   </wc-code>
 	<!-- Buttons -->
 	<!-- Primary -->
@@ -138,5 +140,6 @@ wc-nav>.menu>.items>.item{
 	<!-- Calendar -->
 	<wc-heading level="3" underlined="true">Calendar</wc-heading>
 	<wc-calendar></wc-calendar>
+  <script src="./dist/index.bundle.js"></script>
 </body>
 </html>

@@ -7,28 +7,21 @@ const __dirname = path.dirname(__filename);
 export default {
     mode: 'development',
     entry: {
-      index: './src/index.js'
+      index: './index.js'
     },
     output: {
       path: `${__dirname}/dist/`,
       publicPath: '/',
-      filename: '[name].bundle.js',
-      library: {
-        type: 'module'
-      },
-      module: true
-    },
-    experiments: {
-      outputModule: true
+      filename: '[name].bundle.js'
     },
     //devtool: 'eval-source-map',
     devtool: false,
-    optimization: {
-      splitChunks: {
-        chunks: 'all', 
-        name: 'shared'
-      }
-    },
+    // optimization: {
+    //   splitChunks: {
+    //     chunks: 'all', 
+    //     name: 'shared'
+    //   }
+    // },
     module: {
       rules: [
         {
