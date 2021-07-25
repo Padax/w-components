@@ -1,7 +1,7 @@
 import WComponent, { DOM, PropParser } from "../WComponent.js";
-import hljs from 'highlight.js/lib/core';
-import javascript from 'highlight.js/lib/languages/javascript';
-import 'highlight.js/styles/github.css';
+import hljs from '../../node_modules/highlight.js/lib/core.js';
+import javascript from '../../node_modules/highlight.js/lib/languages/javascript.js';
+//import 'highlight.js/styles/github.css';
 
 const stylesheet = `
 `;
