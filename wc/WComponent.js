@@ -4,10 +4,10 @@ class WComponent extends HTMLElement{
   constructor(stylesheet){
     super();
     this.attachShadow({ mode: 'open' });
-    DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
     this.componentWillRender();
     this.render();
     this.componentDidRender();
+    DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
   }
 
   getDefaultValueByName(name) {

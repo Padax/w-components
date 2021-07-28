@@ -7,7 +7,7 @@ const DOM={
     }
     return element;
   },
-  modify:function(selectorOrElement, settings){
+  modify:function(selectorOrElement, settings = {}){
     const element=(typeof selectorOrElement==="string"?this.get(selectorOrElement):selectorOrElement);
     if(settings.props){
       this.setProperties(element, settings.props);

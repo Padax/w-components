@@ -1,0 +1,27 @@
+{
+  "name": "w-component",
+  "version": "1.0.0",
+  "description": "Web Component Library",
+  "main": "index.js",
+  "dependencies": {
+    "css-loader": "^6.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Padax/w-components.git"
+  },
+  "keywords": [
+    "js",
+    "web-component"
+  ],
+  "author": "WC Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Padax/w-components/issues"
+  },
+  "homepage": "https://github.com/Padax/w-components#readme"
+}
