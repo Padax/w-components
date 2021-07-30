@@ -65,6 +65,12 @@ const stylesheet=`
     color:var(--color-gray-30);background-color:var(--color-gray-10);
     border-color:var(--color-gray-10);
   }
+  button[class*="outline-"]:disabled{
+    border-color:var(--color-gray-40);
+  }
+  button[class*="outline-"]:disabled:hover{
+    border-color:var(--color-gray-40);
+  }
   /* size */
   button.xlarge{
     font-size:calc(var(--font-size-normal) * 1.5);
