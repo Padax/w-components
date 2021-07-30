@@ -36,7 +36,8 @@ const stylesheet = `
 `;
 class DisplayHeading extends Heading{
   constructor(){
-    super(stylesheet);
+    super();
   }
 }
+DisplayHeading.prototype.stylesheet=stylesheet;
 export default DisplayHeading;

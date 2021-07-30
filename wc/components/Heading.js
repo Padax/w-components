@@ -38,8 +38,8 @@ const stylesheet = `
   }
 `;
 class Heading extends WComponent{
-  constructor(extendStylesheet){
-    super(typeof extendStylesheet === 'string' ? extendStylesheet : stylesheet);
+  constructor(){
+    super();
   }
   static defaultValues = {
     level: 5,
@@ -60,4 +60,5 @@ class Heading extends WComponent{
     DOM.create(`h${level}`, { props }, this.shadowRoot);
   }
 }
+Heading.prototype.stylesheet=stylesheet;
 export default Heading;

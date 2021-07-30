@@ -18,7 +18,7 @@ class List extends WComponent{
     mark:"none"
   };
   constructor(){
-    super(stylesheet);
+    super();
   }
   render(){
     const mark=AttributeParser.parseStringAttr(
@@ -53,4 +53,5 @@ class List extends WComponent{
     return (index+1)+". ";
   }
 }
+List.prototype.stylesheet=stylesheet;
 export default List;

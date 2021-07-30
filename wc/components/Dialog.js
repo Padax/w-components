@@ -1,4 +1,4 @@
-import DOM from "../util/DOM.js";
+import WComponent, { DOM } from "../WComponent.js";
 const stylesheet=`
   .dialog{
     width:300px;
@@ -12,14 +12,14 @@ const stylesheet=`
     padding:10px;background-color:#dddddd;
   }
 `;
-class Dialog extends HTMLElement{
+class Dialog extends WComponent{
   static get observedAttributes(){
       return ["open"];
   }
   constructor(){
     super();
-    this.attachShadow({mode:"open"});
-    DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
+  }
+  render(){
     this.dialog=DOM.create("div", {props:{className:"dialog"}});
     this.head=DOM.create("slot", {props:{name:"head"}}, this.dialog);
     this.main=DOM.create("slot", {props:{name:"main"}}, this.dialog);
@@ -35,4 +35,5 @@ class Dialog extends HTMLElement{
     }
   }
 }
+Dialog.prototype.stylesheet=stylesheet;
 export default Dialog;

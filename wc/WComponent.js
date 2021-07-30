@@ -1,13 +1,13 @@
 import DOM from "./util/DOM.js";
 
 class WComponent extends HTMLElement{
-  constructor(stylesheet){
+  constructor(){
     super();
     this.attachShadow({ mode: 'open' });
     this.componentWillRender();
     this.render();
     this.componentDidRender();
-    DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
+    DOM.create('style', { props: { textContent: this.stylesheet } }, this.shadowRoot);
   }
 
   getDefaultValueByName(name) {

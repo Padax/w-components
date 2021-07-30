@@ -1,4 +1,4 @@
-import DOM from "../util/DOM.js";
+import WComponent, { DOM } from "../WComponent.js";
 const stylesheet = `
   .left { text-align: left; }
   .center { text-align: center; }
@@ -12,11 +12,9 @@ const stylesheet = `
     content: '— '
   }
 `;
-class Quote extends HTMLElement{
+class Quote extends WComponent{
   constructor(){
     super();
-    this.attachShadow({ mode: 'open' });
-    this.render();
   }
   static defaultValues = {
     align: 'left'
@@ -51,4 +49,5 @@ class Quote extends HTMLElement{
     }
   }
 }
+Quote.prototype.stylesheet=stylesheet;
 export default Quote;

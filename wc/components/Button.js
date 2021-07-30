@@ -101,7 +101,7 @@ class Button extends WComponent{
     display:"inline-block"
   };
   constructor(){
-    super(stylesheet);
+    super();
   }
   render(){
     const classList=[];
@@ -136,4 +136,5 @@ class Button extends WComponent{
     DOM.create("button", {props:{textContent:this.textContent, className:classList.join(" ")}, attrs:attrs}, this.shadowRoot);
   }
 }
+Button.prototype.stylesheet=stylesheet;
 export default Button;

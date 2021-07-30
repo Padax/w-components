@@ -1,4 +1,4 @@
-import DOM from "../util/DOM.js";
+import WComponent, { DOM } from "../WComponent.js";
 const stylesheet=`
   :host{
     padding:15px;
@@ -6,10 +6,11 @@ const stylesheet=`
     background-color:#ffffff;
   }
 `;
-class Nav extends HTMLElement{
+class Nav extends WComponent{
   constructor(){
     super();
-    this.attachShadow({mode:"open"});
+  }
+  render(){
     DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
     DOM.create("slot", {props:{
       name:"left"
@@ -22,4 +23,5 @@ class Nav extends HTMLElement{
     }}, this.shadowRoot);
   }
 }
+Nav.prototype.stylesheet=stylesheet;
 export default Nav;

@@ -137,7 +137,7 @@ const stylesheet = `
 `;
 class Code extends WComponent{
   constructor(){
-    super(stylesheet);
+    super();
   }
   static defaultValues = {
 
@@ -151,4 +151,5 @@ class Code extends WComponent{
     code.innerHTML = hljs.highlightAuto(this.innerHTML).value;
   }
 }
+Code.prototype.stylesheet=stylesheet;
 export default Code;

@@ -1,5 +1,5 @@
-import DOM from "../util/DOM.js";
 import DateTime from "../util/DateTime.js";
+import WComponent, { DOM } from "../WComponent.js";
 const stylesheet=`
   .calendar{}
   .calendar>.month{
@@ -72,16 +72,15 @@ const stylesheet=`
     flex:none;width:40px;text-align:right;
   }
 `;
-class Calendar extends HTMLElement{
+class Calendar extends WComponent{
   static NUMBER_NAMES=["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"];
   constructor(){
     super();
-    this.attachShadow({mode:"open"});
-    DOM.create("style", {props:{textContent:stylesheet}}, this.shadowRoot);
+  }
+  componentWillRender(){
     this.calendar=null;
     this.calendarDate=new Date();
     this.entries={};
-    this.render();
   }
   changeMonth(offset){
     this.calendarDate.setMonth(this.calendarDate.getMonth()+offset);
@@ -189,4 +188,5 @@ class Calendar extends HTMLElement{
     return element;
   }
 }
+Calendar.prototype.stylesheet=stylesheet;
 export default Calendar;

@@ -42,7 +42,7 @@ class CheckBox extends WComponent{
     disabled:false
   };
   constructor(){
-    super(stylesheet);
+    super();
   }
   componentWillRender(){
     this.checked=AttributeParser.parseBoolAttr(
@@ -91,4 +91,5 @@ class CheckBox extends WComponent{
     DOM.create("slot", {}, this.checkbox);
   }
 }
+CheckBox.prototype.stylesheet=stylesheet;
 export default CheckBox;
