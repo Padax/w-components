@@ -73,7 +73,7 @@
 
   /* Font Size */
   --font-size-small: 14px;
-  --font-size-normal:16px;
+  --font-size-normal: 16px;
   
   font-size: var(--font-size-normal);
 
@@ -92,7 +92,13 @@
   --line-height-normal: calc(1rem * var(--line-height-normal-ratio));
   
   line-height: var(--line-height-normal);
+
+  /* Icon Font*/
+  --icon-font-regular: 'Icons';
+  --icon-font-filled: 'Icons-Filled';
+  --icon-font-size: 1.5rem;
 }
+
 a{
   color:var(--color-primary-60);
   text-decoration:none;

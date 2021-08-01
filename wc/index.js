@@ -9,6 +9,7 @@ import Quote from "./components/Quote.js";
 import List from "./components/List.js";
 import Code from "./components/Code.js";
 import CheckBox from "./components/CheckBox.js";
+import Radio from "./components/Radio.js";
 const wc={
   init:function(prefix="wc"){
     this.initTheme();
@@ -22,6 +23,7 @@ const wc={
     window.customElements.define(prefix+"-list", List);
     window.customElements.define(prefix+"-code", Code);
     window.customElements.define(prefix+"-checkbox", CheckBox);
+    window.customElements.define(prefix+"-radio", Radio);
   },
   initTheme:function(){
     DOM.create("link", {props:{
