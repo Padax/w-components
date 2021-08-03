@@ -1,3 +1,4 @@
+/*
 import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 const stylesheet=`
   .checkbox{
@@ -54,7 +55,6 @@ class CheckBox extends WComponent{
       this.getDefaultValueByName("disabled")
     );
   }
-  /*
   attributeChangedCallback(name, oldValue, newValue){
     console.log(name, oldValue, newValue);
     if(name==="checked"){
@@ -65,7 +65,6 @@ class CheckBox extends WComponent{
       this.render();
     }
   }
-  */
   toggle(){
     if(this.disabled){
       return;
@@ -89,6 +88,94 @@ class CheckBox extends WComponent{
       innerHTML:(this.checked?"&#xf28e;":"&#xf292;")
     }}, this.checkbox);
     DOM.create("slot", {}, this.checkbox);
+  }
+}
+CheckBox.prototype.stylesheet=stylesheet;
+export default CheckBox;
+*/
+import WComponent, { DOM, AttributeParser } from "../WComponent.js";
+const stylesheet=`
+  label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+  }
+  input {
+    width: 0; hieght: 0;
+  }
+  .icon {
+    color: var(--color-gray-30);
+    margin-right: 5px;
+  }
+  .icon:before {
+    content: '\\f292';
+    font-family: var(--icon-font-regular);
+    font-size: var(--icon-font-size);
+    vertical-align: middle;
+  }
+  .icon:hover {
+    color: var(--color-primary-60);
+  }
+
+  input:checked + .icon:before {
+    content: '\\f28e';
+    font-family: var(--icon-font-filled)
+  }
+  input:checked + .icon, 
+  input:checked:active + .icon {
+    color: var(--color-primary-60);
+  }
+  input:checked + .icon:hover {
+    color: var(--color-primary-40);
+  }
+
+  input:disabled:checked + .icon:before {
+    content: '\\f28e';
+    font-family: var(--icon-font-regular)
+  }
+  input:disabled + .icon,
+  input:disabled:active + .icon {
+    color: var(--color-gray-10);
+  }
+  input:disabled + .icon:hover {
+    color: var(--color-gray-10);
+  }
+  input:disabled + .icon + slot {
+    color: var(--color-gray-30);
+  }
+`;
+class CheckBox extends WComponent{
+  static defaultValues = {
+    checked: false,
+    disabled: false
+  };
+
+  constructor() {
+    super();
+  }
+
+  render(){
+    const checked = AttributeParser.parseBoolAttr(
+      this.getAttribute('checked'),
+      this.getDefaultValueByName('checked')
+    );
+    const disabled = AttributeParser.parseBoolAttr(
+      this.getAttribute('disabled'),
+      this.getDefaultValueByName('disabled')
+    );
+
+    const ctn = DOM.create('label', null, this.shadowRoot);
+    
+    const checkboxProps = { type: 'checkbox' };
+    const checkboxAttrs = {};
+    if(checked) { checkboxAttrs.checked = true; }
+    if(disabled) { checkboxAttrs.disabled = true; }
+    DOM.create('input', { props: checkboxProps, attrs: checkboxAttrs }, ctn);
+
+    const iconProps = { className: 'icon' };
+    DOM.create('span', { props: iconProps }, ctn);
+
+    DOM.create('slot', {}, ctn);
   }
 }
 CheckBox.prototype.stylesheet=stylesheet;
