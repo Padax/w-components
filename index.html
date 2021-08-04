@@ -4,23 +4,23 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <style>
-wc-nav{
+w-nav{
 	display:flex;
 }
-wc-nav>.title{
+w-nav>.title{
 	display:flex;align-items:center;
 	flex:none;width:200px;
 }
-wc-nav>.title>a{
+w-nav>.title>a{
 	margin-right:10px;
 }
-wc-nav>.menu{
+w-nav>.menu{
 	flex:auto;
 }
-wc-nav>.menu>.items{
+w-nav>.menu>.items{
 	display:flex;justify-content:flex-end;
 }
-wc-nav>.menu>.items>.item{
+w-nav>.menu>.items>.item{
 	margin:0px 10px;
 }
 </style>
@@ -28,14 +28,14 @@ wc-nav>.menu>.items>.item{
 	import wc from "./wc/index.js";
 	wc.init();
 	// manipulate calendar
-	const calendar=document.querySelector("wc-calendar");
+	const calendar=document.querySelector("w-calendar");
 	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
 	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
 	calendar.addEntry({date:"2021-05-20", content:"測試看看"});
 </script>
 </head>
 <body>
-	<wc-nav>
+	<w-nav>
 		<div slot="left" class="title">
 			<a href="https://github.com/Padax/w-components"><img src="https://training.pada-x.com/images/ntu.png" width="30" height="30" /></a>
 			W-Components
@@ -46,124 +46,124 @@ wc-nav>.menu>.items>.item{
 				<div class="item"><a target="_blank" href="https://github.com/Padax/w-components">Donate</a></div>
 			</div>
 		</div>
-	</wc-nav>
-  <wc-display-heading level="1" underlined>LONG LIVE W-COMPONENTS!</wc-display-heading>
-  <wc-display-heading level="2">LONG LIVE W-COMPONENTS!</wc-display-heading>
-  <wc-display-heading level="3">LONG LIVE W-COMPONENTS!</wc-display-heading>
-  <wc-display-heading level="4">LONG LIVE W-COMPONENTS!</wc-display-heading>
-  <wc-display-heading>LONG LIVE W-COMPONENTS!</wc-display-heading>
-  <wc-display-heading level="6">LONG LIVE W-COMPONENTS!</wc-display-heading>
-  <wc-heading level="1" underlined>Main Content</wc-heading>
-  <wc-heading level="3" underlined="true">List</wc-heading>
-	<wc-list>
+	</w-nav>
+  <w-display-heading level="1" underlined>LONG LIVE W-COMPONENTS!</w-display-heading>
+  <w-display-heading level="2">LONG LIVE W-COMPONENTS!</w-display-heading>
+  <w-display-heading level="3">LONG LIVE W-COMPONENTS!</w-display-heading>
+  <w-display-heading level="4">LONG LIVE W-COMPONENTS!</w-display-heading>
+  <w-display-heading>LONG LIVE W-COMPONENTS!</w-display-heading>
+  <w-display-heading level="6">LONG LIVE W-COMPONENTS!</w-display-heading>
+  <w-heading level="1" underlined>Main Content</w-heading>
+  <w-heading level="3" underlined="true">List</w-heading>
+	<w-list>
 		<div slot="item">Item 1</div>
 		<div slot="item">Item 2</div>
 		<div slot="item">Item 3</div>
-	</wc-list>
-	<wc-list mark="number">
+	</w-list>
+	<w-list mark="number">
 		<div slot="item">Item 1</div>
 		<div slot="item">Item 2</div>
 		<div slot="item">Item 3</div>
-	</wc-list>
-	<wc-list appearance="panel">
+	</w-list>
+	<w-list appearance="panel">
 		<div slot="item">Item 1</div>
 		<div slot="item">Item 2</div>
 		<div slot="item">Item 3</div>
-	</wc-list>
-	<wc-list mark="circle" appearance="divided-panel">
+	</w-list>
+	<w-list mark="circle" appearance="divided-panel">
 		<div slot="item">Item 1</div>
 		<div slot="item">Item 2</div>
 		<div slot="item">Item 3</div>
-	</wc-list>
-	<wc-list mark="outline-circle" appearance="divided-panel">
+	</w-list>
+	<w-list mark="outline-circle" appearance="divided-panel">
 		<div slot="item">Item 1</div>
 		<div slot="item">Item 2</div>
 		<div slot="item">Item 3</div>
-	</wc-list>
-  <wc-heading level="3" underlined>Code</wc-heading>
-  <wc-code>
+	</w-list>
+  <w-heading level="3" underlined>Code</w-heading>
+  <w-code>
     //Javascript Example
     const sample = 'This is a block of code.';
     console.log('2nd line.');
-  </wc-code>
-  <wc-code style="margin: 10px;">
+  </w-code>
+  <w-code style="margin: 10px;">
     <!--HTML Example-->
     <h1>This is a block of code.</h1>
     <p>2nd Line.</p>
-  </wc-code>
+  </w-code>
 	<!-- Buttons -->
 	<!-- Primary -->
-	<wc-heading level="3" underlined="true">Button</wc-heading>
-	<wc-heading>Primary</wc-heading>
-	<wc-button size="small">Small</wc-button>
-	<wc-button size="small" outlined color="primary">Small Outline</wc-button>
-	<wc-button size="normal">Normal</wc-button>
-	<wc-button disabled>Normal</wc-button>
-	<wc-button outlined color="primary">Outline</wc-button>
-	<wc-button disabled outlined color="primary">Outline</wc-button>
-	<wc-button size="large">Large</wc-button>
-	<wc-button size="large" outlined color="primary">Large Outline</wc-button>
-	<wc-button size="xlarge">X Large</wc-button>
-	<wc-button size="xlarge" outlined color="primary">X Large Outline</wc-button>
-	<wc-button display="block">Block</wc-button>
-	<wc-button display="block" outlined color="primary">Outline Block</wc-button>
-	<wc-button display="block" size="large">Large Block</wc-button>
+	<w-heading level="3" underlined="true">Button</w-heading>
+	<w-heading>Primary</w-heading>
+	<w-button size="small">Small</w-button>
+	<w-button size="small" outlined color="primary">Small Outline</w-button>
+	<w-button size="normal">Normal</w-button>
+	<w-button disabled>Normal</w-button>
+	<w-button outlined color="primary">Outline</w-button>
+	<w-button disabled outlined color="primary">Outline</w-button>
+	<w-button size="large">Large</w-button>
+	<w-button size="large" outlined color="primary">Large Outline</w-button>
+	<w-button size="xlarge">X Large</w-button>
+	<w-button size="xlarge" outlined color="primary">X Large Outline</w-button>
+	<w-button display="block">Block</w-button>
+	<w-button display="block" outlined color="primary">Outline Block</w-button>
+	<w-button display="block" size="large">Large Block</w-button>
 	<!-- Critical -->
-	<wc-heading>Critical</wc-heading>
-	<wc-button size="small" color="critical">Small</wc-button>
-	<wc-button size="small" outlined color="critical">Small Outline</wc-button>
-	<wc-button size="normal" color="critical">Normal</wc-button>
-	<wc-button disabled color="critical">Normal</wc-button>
-	<wc-button outlined color="critical">Outline</wc-button>
-	<wc-button disabled outlined color="critical">Outline</wc-button>
-	<wc-button size="large" color="critical">Large</wc-button>
-	<wc-button size="large" outlined color="critical">Large Outline</wc-button>
-	<wc-button size="xlarge" color="critical">X Large</wc-button>
-	<wc-button size="xlarge" outlined color="critical">X Large Outline</wc-button>
-	<wc-button display="block" color="critical">Block</wc-button>
-	<wc-button display="block" outlined color="critical">Outline Block</wc-button>
-	<wc-button display="block" size="large" color="critical">Large Block</wc-button>
+	<w-heading>Critical</w-heading>
+	<w-button size="small" color="critical">Small</w-button>
+	<w-button size="small" outlined color="critical">Small Outline</w-button>
+	<w-button size="normal" color="critical">Normal</w-button>
+	<w-button disabled color="critical">Normal</w-button>
+	<w-button outlined color="critical">Outline</w-button>
+	<w-button disabled outlined color="critical">Outline</w-button>
+	<w-button size="large" color="critical">Large</w-button>
+	<w-button size="large" outlined color="critical">Large Outline</w-button>
+	<w-button size="xlarge" color="critical">X Large</w-button>
+	<w-button size="xlarge" outlined color="critical">X Large Outline</w-button>
+	<w-button display="block" color="critical">Block</w-button>
+	<w-button display="block" outlined color="critical">Outline Block</w-button>
+	<w-button display="block" size="large" color="critical">Large Block</w-button>
   <!-- Quote -->
-  <wc-heading level="3" underlined>Quote</wc-heading>
-  <wc-quote>
+  <w-heading level="3" underlined>Quote</w-heading>
+  <w-quote>
     <span slot="quote">This is a quote without source.</span>
-  </wc-quote>
-  <wc-quote>
+  </w-quote>
+  <w-quote>
     <span slot="quote">This is a quote aligned to the left.</span>
     <span slot="source">Someone famous in Source Title</span>
-  </wc-quote>
-  <wc-quote align="center">
+  </w-quote>
+  <w-quote align="center">
     <span slot="quote">This is a quote aligned to the center.</span>
     <span slot="source">Someone famous in Source Title</span>
-  </wc-quote>
-  <wc-quote align="right">
+  </w-quote>
+  <w-quote align="right">
     <span slot="quote">This is a quote aligned to the right.</span>
     <span slot="source">Someone famous in Source Title</span>
-  </wc-quote>
+  </w-quote>
 	<!-- CheckBox -->
-	<wc-heading level="3" underlined="true">CheckBox</wc-heading>
-	<wc-checkbox>Un-Checked</wc-checkbox>
-	<wc-checkbox checked>Checked</wc-checkbox>
-	<wc-checkbox disabled>Un-Checked Disabled</wc-checkbox>
-	<wc-checkbox checked disabled>Checked Disabled</wc-checkbox>
+	<w-heading level="3" underlined="true">CheckBox</w-heading>
+	<w-checkbox>Un-Checked</w-checkbox>
+	<w-checkbox checked>Checked</w-checkbox>
+	<w-checkbox disabled>Un-Checked Disabled</w-checkbox>
+	<w-checkbox checked disabled>Checked Disabled</w-checkbox>
 	<!-- Radio -->
-	<wc-heading level="3" underlined="true">Radio</wc-heading>
-	<wc-radio>Un-Checked</wc-radio>
-	<wc-radio checked>Checked</wc-radio>
-	<wc-radio disabled>Un-Checked Disabled</wc-radio>
-	<wc-radio checked disabled>Checked Disabled</wc-radio>
+	<w-heading level="3" underlined="true">Radio</w-heading>
+	<w-radio>Un-Checked</w-radio>
+	<w-radio checked>Checked</w-radio>
+	<w-radio disabled>Un-Checked Disabled</w-radio>
+	<w-radio checked disabled>Checked Disabled</w-radio>
 	<!-- Dialog -->
-	<wc-heading level="3" underlined="true">Dialog</wc-heading>
-	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'true');">Open Dialog</wc-button>
-	<wc-button onclick="document.querySelector('wc-dialog').setAttribute('open', 'false');">Close Dialog</wc-button>
-	<wc-dialog open="false">
+	<w-heading level="3" underlined="true">Dialog</w-heading>
+	<w-button onclick="document.querySelector('w-dialog').setAttribute('open', 'true');">Open Dialog</w-button>
+	<w-button onclick="document.querySelector('w-dialog').setAttribute('open', 'false');">Close Dialog</w-button>
+	<w-dialog open="false">
 		<div slot="head" class="head">這是標題</div>
 		<div slot="main" class="main">
 			大家好，我是彭彭。
 		</div>
-	</wc-dialog>
+	</w-dialog>
 	<!-- Calendar -->
-	<wc-heading level="3" underlined="true">Calendar</wc-heading>
-	<wc-calendar></wc-calendar>
+	<w-heading level="3" underlined="true">Calendar</w-heading>
+	<w-calendar></w-calendar>
 </body>
 </html>
