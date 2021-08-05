@@ -1,7 +1,7 @@
-import WComponent, { DOM, AttributeParser } from "../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
+
 const stylesheet=`
   label {
-    cursor: pointer;
     display: inline-flex;
     align-items: center;
   }
@@ -9,6 +9,7 @@ const stylesheet=`
     width: 0; hieght: 0;
   }
   .icon {
+    cursor: pointer;
     color: var(--color-gray-30);
   }
   .icon:before {
@@ -20,8 +21,9 @@ const stylesheet=`
   .icon:hover {
     color: var(--color-primary-60);
   }
-  .label {
-    margin-left: 5px;
+  slot {
+    cursor: pointer;
+    margin-left: 8px;
   }
 
   input:checked + .icon:before {
@@ -39,15 +41,18 @@ const stylesheet=`
   input:disabled + .icon,
   input:disabled:active + .icon {
     color: var(--color-gray-10);
+    cursor: default;
   }
   input:disabled + .icon:hover {
     color: var(--color-gray-10);
   }
-  input:disabled + .icon + .label {
+  input:disabled + .icon + slot {
     color: var(--color-gray-30);
+    cursor: default;
   }
 `;
-class Radio extends WComponent{
+
+class Checkable extends WComponent{
   static defaultValues = {
     checked: false,
     disabled: false
@@ -69,7 +74,7 @@ class Radio extends WComponent{
 
     const ctn = DOM.create('label', null, this.shadowRoot);
     
-    const radioProps = { type: 'radio' };
+    const radioProps = { type: this.type };
     const radioAttrs = {};
     if(checked) { radioAttrs.checked = true; }
     if(disabled) { radioAttrs.disabled = true; }
@@ -78,9 +83,9 @@ class Radio extends WComponent{
     const iconProps = { className: 'icon' };
     DOM.create('span', { props: iconProps }, ctn);
 
-    const labelProps = { className: 'label', textContent: this.textContent };
-    DOM.create('span', { props: labelProps }, ctn);
+    DOM.create('slot', {}, ctn);
   }
 }
-Radio.prototype.stylesheet=stylesheet;
-export default Radio;
+Checkable.prototype.stylesheet=stylesheet;
+Checkable.prototype.type = 'radio';
+export default Checkable;

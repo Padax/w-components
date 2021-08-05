@@ -8,8 +8,8 @@ import DisplayHeading from "./components/DisplayHeading.js";
 import Quote from "./components/Quote.js";
 import List from "./components/List.js";
 import Code from "./components/Code.js";
-import CheckBox from "./components/CheckBox.js";
-import Radio from "./components/Radio.js";
+import CheckBox from "./components/Checkable/Checkbox.js";
+import Radio from "./components/Checkable/Radio.js";
 const wc={
   init:function(prefix="wc"){
     this.initTheme();
