@@ -11,6 +11,7 @@ const stylesheet=`
   .icon {
     cursor: pointer;
     color: var(--color-gray-30);
+    margin-right: 8px;
   }
   .icon:before {
     content: '\\f644';
@@ -23,7 +24,6 @@ const stylesheet=`
   }
   slot {
     cursor: pointer;
-    margin-left: 8px;
   }
 
   input:checked + .icon:before {
