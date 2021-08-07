@@ -10,20 +10,22 @@ import List from "./components/List.js";
 import Code from "./components/Code.js";
 import CheckBox from "./components/Checkable/Checkbox.js";
 import Radio from "./components/Checkable/Radio.js";
+
 const wc={
   init:function(prefix="w"){
     this.initTheme();
-    window.customElements.define(prefix+"-nav", Nav);
-    window.customElements.define(prefix+"-button", Button);
-    window.customElements.define(prefix+"-dialog", Dialog);
-    window.customElements.define(prefix+"-calendar", Calendar);
-    window.customElements.define(prefix+"-heading", Heading);
-    window.customElements.define(prefix+"-display-heading", DisplayHeading);
-    window.customElements.define(prefix+"-quote", Quote);
-    window.customElements.define(prefix+"-list", List);
-    window.customElements.define(prefix+"-code", Code);
-    window.customElements.define(prefix+"-checkbox", CheckBox);
-    window.customElements.define(prefix+"-radio", Radio);
+
+    defineCustomElement(prefix, 'nav', Nav);
+    defineCustomElement(prefix, 'button', Button);
+    defineCustomElement(prefix, 'dialog', Dialog);
+    defineCustomElement(prefix, 'calendar', Calendar);
+    defineCustomElement(prefix, 'heading', Heading);
+    defineCustomElement(prefix, 'display-heading', DisplayHeading);
+    defineCustomElement(prefix, 'quote', Quote);
+    defineCustomElement(prefix, 'list', List);
+    defineCustomElement(prefix, 'code', Code);
+    defineCustomElement(prefix, 'checkbox', CheckBox);
+    defineCustomElement(prefix, 'radio', Radio);
   },
   initTheme:function(){
     DOM.create("link", {props:{
@@ -31,4 +33,14 @@ const wc={
     }}, document.querySelector("head"));
   }
 };
+
+function defineCustomElement(prefix, name, element) {
+  const tag = `${prefix}-${name}`;
+  if(customElements.get(tag)) {
+    console.error(`Custom Element ${tag} has been defined.`);
+  } else {
+    customElements.define(tag, element);
+  }
+}
+
 export default wc;
