@@ -7,12 +7,14 @@ import Heading from "./components/Heading.js";
 import DisplayHeading from "./components/DisplayHeading.js";
 import Quote from "./components/Quote.js";
 import List from "./components/List.js";
+import ListItem from "./components/ListItem.js";
 import Code from "./components/Code.js";
 import CheckBox from "./components/Checkable/Checkbox.js";
 import Radio from "./components/Checkable/Radio.js";
 
 const wc={
   init:function(prefix="w"){
+    window.prefix=prefix;
     this.initTheme();
 
     defineCustomElement(prefix, 'nav', Nav);
@@ -23,6 +25,7 @@ const wc={
     defineCustomElement(prefix, 'display-heading', DisplayHeading);
     defineCustomElement(prefix, 'quote', Quote);
     defineCustomElement(prefix, 'list', List);
+    defineCustomElement(prefix, 'li', ListItem);
     defineCustomElement(prefix, 'code', Code);
     defineCustomElement(prefix, 'checkbox', CheckBox);
     defineCustomElement(prefix, 'radio', Radio);
