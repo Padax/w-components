@@ -108,12 +108,12 @@ class Button extends WComponent{
     const display=AttributeParser.parseStringAttr(
       this.getAttribute("display"),
       this.getDefaultValueByName("display"),
-      /inline-block|block/
+      /^inline-block$|^block$/
     );
     const size=AttributeParser.parseStringAttr(
       this.getAttribute("size"),
       this.getDefaultValueByName("size"),
-      /small|normal|large|xlarge/
+      /^small$|^normal$|^large$|^xlarge$/
     );
     const outlined=AttributeParser.parseBoolAttr(
       this.getAttribute("outlined"),
@@ -122,7 +122,7 @@ class Button extends WComponent{
     const color=AttributeParser.parseStringAttr(
       this.getAttribute("color"),
       this.getDefaultValueByName("color"),
-      /primary|critical/
+      /^primary$|^critical$/
     );
     classList.push(display, size, outlined?"outline-"+color:color);
     const disabled=AttributeParser.parseBoolAttr(
