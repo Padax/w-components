@@ -3,27 +3,6 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<style>
-w-nav{
-	display:flex;
-}
-w-nav>.title{
-	display:flex;align-items:center;
-	flex:none;width:200px;
-}
-w-nav>.title>a{
-	margin-right:10px;
-}
-w-nav>.menu{
-	flex:auto;
-}
-w-nav>.menu>.items{
-	display:flex;justify-content:flex-end;
-}
-w-nav>.menu>.items>.item{
-	margin:0px 10px;
-}
-</style>
 <script type="module">
 	import wc from "./wc/index.js";
 	wc.init();
@@ -36,16 +15,14 @@ w-nav>.menu>.items>.item{
 </head>
 <body>
 	<w-nav>
-		<div slot="left" class="title">
+		<w-nav-part>
 			<a href="https://github.com/Padax/w-components"><img src="https://training.pada-x.com/images/ntu.png" width="30" height="30" /></a>
-			W-Components
-		</div>
-		<div slot="right" class="menu">
-			<div class="items">
-				<div class="item"><a target="_blank" href="https://github.com/Padax/w-components">GitHub</a></div>
-				<div class="item"><a target="_blank" href="https://github.com/Padax/w-components">Donate</a></div>
-			</div>
-		</div>
+			<div>W-Components</div>
+		</w-nav-part>
+		<w-nav-part arrange="right" rwd="iconify">
+			<div><a target="_blank" href="https://github.com/Padax/w-components">GitHub</a></div>
+			<div><a target="_blank" href="https://github.com/Padax/w-components">Donate</a></div>
+		</w-nav-part>
 	</w-nav>
   <w-display-heading level="1" underlined>LONG LIVE W-COMPONENTS!</w-display-heading>
   <w-display-heading level="2">LONG LIVE W-COMPONENTS!</w-display-heading>

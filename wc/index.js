@@ -1,5 +1,6 @@
 import DOM from "./util/DOM.js";
 import Nav from "./components/Nav.js";
+import NavPart from "./components/NavPart.js";
 import Button from "./components/Button.js";
 import Dialog from "./components/Dialog.js";
 import Calendar from "./components/Calendar.js";
@@ -18,6 +19,7 @@ const wc={
     this.initTheme();
 
     defineCustomElement(prefix, 'nav', Nav);
+    defineCustomElement(prefix, 'nav-part', NavPart);
     defineCustomElement(prefix, 'button', Button);
     defineCustomElement(prefix, 'dialog', Dialog);
     defineCustomElement(prefix, 'calendar', Calendar);
