@@ -7,7 +7,11 @@ class WComponent extends HTMLElement{
     this.componentWillRender();
     this.render();
     this.componentDidRender();
-    DOM.create('style', { props: { textContent: this.stylesheet } }, this.shadowRoot);
+    this.setStylesheet(this.stylesheet);
+  }
+
+  setStylesheet(stylesheet){
+    DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
   }
 
   getDefaultValueByName(name) {

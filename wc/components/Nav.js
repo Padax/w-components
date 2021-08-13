@@ -1,4 +1,5 @@
 import WComponent, { DOM } from "../WComponent.js";
+import sharedStylesheet from "../theme/light.js";
 const stylesheet=`
   :host{
     display:flex;align-items:center;
@@ -55,6 +56,7 @@ const stylesheet=`
 class Nav extends WComponent{
   constructor(){
     super();
+    this.setStylesheet(sharedStylesheet);
   }
   render(){
     const parts=this.querySelectorAll(window.prefix+"-nav-part");

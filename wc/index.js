@@ -13,6 +13,8 @@ import Code from "./components/Code.js";
 import CheckBox from "./components/Checkable/Checkbox.js";
 import Radio from "./components/Checkable/Radio.js";
 
+import sharedStylesheet from "./theme/light.js";
+
 const wc={
   init:function(prefix="w"){
     window.prefix=prefix;
@@ -33,9 +35,11 @@ const wc={
     defineCustomElement(prefix, 'radio', Radio);
   },
   initTheme:function(){
+    const head=document.querySelector("head");
     DOM.create("link", {props:{
       rel:"stylesheet", type:"text/css", href:"wc/theme/light.css"
-    }}, document.querySelector("head"));
+    }}, head);
+    DOM.create('style', { props: { textContent: sharedStylesheet } }, head);
   }
 };
 

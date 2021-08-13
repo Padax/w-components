@@ -98,11 +98,3 @@
   --icon-font-filled: 'Icons-Filled';
   --icon-font-size: 1.5rem;
 }
-
-a{
-  color:var(--color-primary-60);
-  text-decoration:none;
-}
-a:hover, a:active{
-  text-decoration:underline;
-}
