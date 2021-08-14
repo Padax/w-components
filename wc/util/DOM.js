@@ -7,8 +7,7 @@ const DOM={
     }
     return element;
   },
-  modify:function(selectorOrElement, settings){
-    const element=(typeof selectorOrElement==="string"?this.get(selectorOrElement):selectorOrElement);
+  modify:function(element, settings){
     if(!settings) { return element; }
     
     if(settings.props){
@@ -49,8 +48,7 @@ const DOM={
     }
     return element;
   },
-  addListeners:function(selectorOrElement, listeners, useCapture){
-    const element=(typeof selectorOrElement==="string"?this.get(selectorOrElement):selectorOrElement);
+  addListeners:function(element, listeners, useCapture){
     for(const name in listeners){
       if(listeners[name] instanceof Array){
         listeners[name].forEach((handler)=>{
