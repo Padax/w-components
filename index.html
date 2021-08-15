@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<style>
+w-nav-part>div{
+	margin-right:15px;
+}
+</style>
 <script type="module">
 	import wc from "./wc/index.js";
 	wc.init();
@@ -16,7 +21,11 @@
 <body>
 	<w-nav>
 		<w-nav-part>
-			<a href="https://github.com/Padax/w-components"><img src="https://training.pada-x.com/images/ntu.png" width="30" height="30" /></a>
+			<div>
+				<a href="https://github.com/Padax/w-components">
+					<img src="https://training.pada-x.com/images/ntu.png" width="30" height="30" />
+				</a>
+			</div>
 			<div><w-spa-link href="/heading">Heading</w-spa-link></div>
 			<div><w-spa-link href="/main">Main</w-spa-link></div>
 		</w-nav-part>

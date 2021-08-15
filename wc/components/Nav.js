@@ -1,5 +1,6 @@
 import WComponent, { DOM } from "../WComponent.js";
 import sharedStylesheet from "../theme/light.js";
+/*
 const stylesheet=`
   :host{
     display:flex;align-items:center;
@@ -53,12 +54,39 @@ const stylesheet=`
     }
   }
 `;
+*/
+const stylesheet=`
+  :host{
+    display:flex;align-items:center;
+    padding:15px;
+    position:sticky;top:0px;left:0px;
+    background-color:#ffffff;
+  }
+  ::slotted(*){
+    flex:auto;
+  }
+`;
 class Nav extends WComponent{
   constructor(){
     super();
     this.setStylesheet(sharedStylesheet);
   }
   render(){
+    const navPartTagName=window.prefix+"-nav-part";
+    const root=DOM.create("slot", {events:{
+      slotchange:(e)=>{
+        // accept only w-nav-part tags as children
+        /*
+        const nodes=root.assignedNodes();
+        nodes.forEach((node)=>{
+          if(typeof node.tagName!=="string" || node.tagName.toLowerCase()!==navPartTagName){
+            node.remove();
+          }
+        });
+        */
+      }
+    }}, this.shadowRoot);
+    /*
     const parts=this.querySelectorAll(window.prefix+"-nav-part");
     parts.forEach((part)=>{
       const wrapper=DOM.create("div", {props:{className:"wrapper"}}, this.shadowRoot);
@@ -80,6 +108,7 @@ class Nav extends WComponent{
         }
       }}, wrapper);
     });
+    */
   }
 }
 Nav.prototype.stylesheet=stylesheet;
