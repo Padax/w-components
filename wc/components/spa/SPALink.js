@@ -24,8 +24,7 @@ class SPALink extends WComponent{
     window.history.pushState({}, this.href, this.href);
     const pages=document.querySelectorAll("w-spa-page");
     pages.forEach((page)=>{
-      const match=page.getAttribute("path").startsWith(this.href);
-      page.setCurrent(match);
+      page.setCurrent(page.match(this.href));
     });
   }
 }

@@ -15,8 +15,7 @@ class SPAPage extends WComponent{
   constructor(){
     super();
     window.addEventListener("popstate", (e)=>{
-      const match=e.path[0].location.pathname.startsWith(this.path);
-      this.setCurrent(match);
+      this.setCurrent(this.match(window.location.pathname));
     });
   }
   componentWillRender(){
@@ -25,7 +24,10 @@ class SPAPage extends WComponent{
       this.getDefaultValueByName("path"),
       /.*/
     );
-    this.current=this.getDefaultValueByName("current");
+    this.current=this.match(window.location.pathname);
+  }
+  match(path){
+    return path.startsWith(this.path);
   }
   setCurrent(current){
     this.current=current;
