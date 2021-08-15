@@ -132,6 +132,7 @@ const stylesheet = `
     background-color: var(--color-gray-10);
     border-radius: 4px;
     white-space: pre;
+    padding: 10px;
   }
 `;
 class Code extends WComponent{
