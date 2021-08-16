@@ -19,7 +19,7 @@ const stylesheet=`
     font-size: var(--icon-font-size);
     vertical-align: middle;
   }
-  .icon:hover {
+  label:hover .icon {
     color: var(--color-primary-60);
   }
   slot {
@@ -34,7 +34,7 @@ const stylesheet=`
   input:checked:active + .icon {
     color: var(--color-primary-60);
   }
-  input:checked + .icon:hover {
+  label:hover input:checked + .icon {
     color: var(--color-primary-40);
   }
 
@@ -43,12 +43,12 @@ const stylesheet=`
     color: var(--color-gray-10);
     cursor: default;
   }
-  input:disabled + .icon:hover {
-    color: var(--color-gray-10);
-  }
   input:disabled + .icon + slot {
     color: var(--color-gray-30);
     cursor: default;
+  }
+  label:hover input:disabled + .icon {
+    color: var(--color-gray-10);
   }
 `;
 
