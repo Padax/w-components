@@ -1,5 +1,5 @@
 import WComponent, { DOM } from "../WComponent.js";
-import sharedStylesheet from "../theme/light.js";
+// import sharedStylesheet from "../theme/light.js";
 /*
 const stylesheet=`
   :host{
@@ -69,7 +69,7 @@ const stylesheet=`
 class Nav extends WComponent{
   constructor(){
     super();
-    this.setStylesheet(sharedStylesheet);
+    // this.setStylesheet(sharedStylesheet);
   }
   render(){
     const navPartTagName=window.prefix+"-nav-part";
