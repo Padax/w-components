@@ -1,9 +1,23 @@
 const DOM={
-  create:function(tagName, settings, parentElement){
+  create:function(tagName, settings, element, mode = this.CREATE_MODE.APPEND){
+    const createdElement=document.createElement(tagName);
+    this.modify(createdElement, settings);
+    if(element instanceof Element || element instanceof DocumentFragment){
+      if(mode === this.CREATE_MODE.APPEND) {
+        element.appendChild(createdElement);
+      } else if(mode === this.CREATE_MODE.BEFORE) {
+        element.before(createdElement);
+      } else if(mode === this.CREATE_MODE.AFTER) {
+        element.after(createdElement);
+      }
+    }
+    return createdElement;
+  },
+  createAfter:function(tagName, settings, siblingElement){
     const element=document.createElement(tagName);
     this.modify(element, settings);
-    if(parentElement instanceof Element || parentElement instanceof DocumentFragment){
-      parentElement.appendChild(element);
+    if(siblingElement instanceof Element || siblingElement instanceof DocumentFragment){
+      siblingElement.after(element);
     }
     return element;
   },
@@ -60,5 +74,10 @@ const DOM={
     }
     return element;
   }
+};
+DOM.CREATE_MODE = {
+  APPEND: 'APPEND',
+  BEFORE: 'BEFORE',
+  AFTER: 'AFTER'
 };
 export default DOM;

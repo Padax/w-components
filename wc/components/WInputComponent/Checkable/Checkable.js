@@ -1,12 +1,18 @@
-import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
+import { DOM, AttributeParser } from "../../../WComponent.js";
+import WInputComponent from "../WInputComponent.js";
+
 
 const stylesheet=`
+  :host {
+    display: inline-block;
+  }
   label {
     display: inline-flex;
     align-items: center;
   }
   input {
     width: 0; hieght: 0;
+    margin: 0;
   }
   .icon {
     cursor: pointer;
@@ -14,7 +20,7 @@ const stylesheet=`
     margin-right: 8px;
   }
   .icon:before {
-    content: '\\f644';
+    content: '\\f292';
     font-family: var(--icon-font-regular);
     font-size: var(--icon-font-size);
     vertical-align: middle;
@@ -22,12 +28,12 @@ const stylesheet=`
   label:hover .icon {
     color: var(--color-primary-60);
   }
-  slot {
+  .text {
     cursor: pointer;
   }
 
   input:checked + .icon:before {
-    content: '\\f64e';
+    content: '\\f28e';
     font-family: var(--icon-font-filled)
   }
   input:checked + .icon, 
@@ -52,16 +58,22 @@ const stylesheet=`
   }
 `;
 
-class Checkable extends WComponent{
+class Checkable extends WInputComponent{
   static defaultValues = {
     checked: false,
-    disabled: false
+    disabled: false,
+    label: ''
   };
 
-  constructor() {
+  constructor(type = 'checkbox') {
     super();
+    this.type = type;
   }
 
+  attachShadowDOM() {
+    const shadowRoot = DOM.create('div', null, this, DOM.CREATE_MODE.AFTER);
+    this.createCustomShadowRoot(shadowRoot);
+  }
   render(){
     const checked = AttributeParser.parseBoolAttr(
       this.getAttribute('checked'),
@@ -71,21 +83,29 @@ class Checkable extends WComponent{
       this.getAttribute('disabled'),
       this.getDefaultValueByName('disabled')
     );
+    const text = AttributeParser.parseStringAttr(
+      this.getAttribute('label'),
+      this.getDefaultValueByName('label'),
+      /[^]*/  // Match every string
+    );
 
-    const ctn = DOM.create('label', null, this.shadowRoot);
-    
-    const radioProps = { type: this.type };
-    const radioAttrs = {};
-    if(checked) { radioAttrs.checked = true; }
-    if(disabled) { radioAttrs.disabled = true; }
-    DOM.create('input', { props: radioProps, attrs: radioAttrs }, ctn);
+    const ctn = DOM.create('label', {}, this.customShadowRoot.shadowRoot);
+
+    const inputProps = { type: this.type };
+    const inputAttrs = {};
+    if(checked) { inputAttrs.checked = true; }
+    if(disabled) { inputAttrs.disabled = true; }
+    DOM.create('input', { props: inputProps, attrs: inputAttrs }, ctn);
 
     const iconProps = { className: 'icon' };
     DOM.create('span', { props: iconProps }, ctn);
 
-    DOM.create('slot', {}, ctn);
+    const textProps = { className: 'label', textContent: text };
+    DOM.create('span', { props: textProps }, ctn);
+  }
+  setStylesheet(){
+    DOM.create('style', { props: { textContent: this.stylesheet } }, this.customShadowRoot.shadowRoot);
   }
 }
 Checkable.prototype.stylesheet=stylesheet;
-Checkable.prototype.type = 'radio';
 export default Checkable;

@@ -10,8 +10,8 @@ import Quote from "./components/Quote.js";
 import List from "./components/List.js";
 import ListItem from "./components/ListItem.js";
 import Code from "./components/Code.js";
-import CheckBox from "./components/Checkable/Checkbox.js";
-import Radio from "./components/Checkable/Radio.js";
+import Checkbox from "./components/WInputComponent/Checkable/Checkbox.js";
+import Radio from "./components/WInputComponent/Checkable/Radio.js";
 import SPALink from "./components/spa/SPALink.js";
 import SPAPage from "./components/spa/SPAPage.js";
 
@@ -33,8 +33,8 @@ const wc={
     defineCustomElement(prefix, 'list', List);
     defineCustomElement(prefix, 'li', ListItem);
     defineCustomElement(prefix, 'code', Code);
-    defineCustomElement(prefix, 'checkbox', CheckBox);
-    defineCustomElement(prefix, 'radio', Radio);
+    defineCustomElement(prefix, 'checkbox', Checkbox, 'input');
+    defineCustomElement(prefix, 'radio', Radio, 'input');
     defineCustomElement(prefix, 'spa-link', SPALink);
     defineCustomElement(prefix, 'spa-page', SPAPage);
   },
@@ -47,12 +47,13 @@ const wc={
   }
 };
 
-function defineCustomElement(prefix, name, element) {
+function defineCustomElement(prefix, name, element, extendElement) {
   const tag = `${prefix}-${name}`;
   if(customElements.get(tag)) {
     console.error(`Custom Element ${tag} has been defined.`);
   } else {
-    customElements.define(tag, element);
+    const options = typeof extendElement === 'string' ? { extends: extendElement } : undefined;
+    customElements.define(tag, element, options);
   }
 }
 

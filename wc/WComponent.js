@@ -1,30 +1,39 @@
 import DOM from "./util/DOM.js";
 
-class WComponent extends HTMLElement{
-  constructor(){
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.componentWillRender();
-    this.render();
-    this.componentDidRender();
-    this.setStylesheet(this.stylesheet);
-  }
-
-  setStylesheet(stylesheet){
-    DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
-  }
-
-  getDefaultValueByName(name) {
-    if(typeof name !== 'string') {
-      return undefined;
+function createWBaseComponent(baseElement = HTMLElement) {
+  return class WComponent extends baseElement {
+    constructor(){
+      super();
+      this.attachShadowDOM();
+      this.componentWillRender();
+      this.render();
+      this.componentDidRender();
+      this.setStylesheet(this.stylesheet);
     }
-    return this.constructor.defaultValues[name];
-  }
-
-  componentWillRender() {}
-  componentDidRender() {}
+    
+    createCustomShadowRoot(shadowRoot) {
+      this.customShadowRoot = shadowRoot;
+      shadowRoot.attachShadow({ mode: 'open' });
+    }
+    getDefaultValueByName(name) {
+      if(typeof name !== 'string') {
+        return undefined;
+      }
+      return this.constructor.defaultValues[name];
+    }
+  
+    attachShadowDOM() {
+      this.attachShadow({ mode: 'open' });
+    }
+    componentWillRender() {}
+    render() {}
+    componentDidRender() {}
+    setStylesheet(stylesheet){
+      DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
+    }
+  };
 }
 
-export default WComponent;
-export { DOM };
+export default createWBaseComponent();
+export { DOM, createWBaseComponent };
 export * as AttributeParser from './util/AttributeParser.js';
