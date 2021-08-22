@@ -29,7 +29,6 @@ export function parseIntAttr(value, defaultValue, min, max) {
  * @returns {boolean}
  */
 export function parseBoolAttr(value, defaultValue) {
-  value = `${value}`;
   if(value === 'true' || value === '') {
     return true;
   }

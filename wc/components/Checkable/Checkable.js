@@ -53,12 +53,22 @@ const stylesheet=`
 `;
 
 class Checkable extends WComponent{
-  static defaultValues = {
-    checked: false,
-    disabled: false
+  static attributes = {
+    checked: {
+      name: 'checked', observed: true, defaultValue: false, 
+      parser: value => AttributeParser.parseBoolAttr(
+        value, this.defaultValue
+      )
+    },
+    disabled: {
+      name: 'disabled', observed: true, defaultValue: false, 
+      parser: value => AttributeParser.parseBoolAttr(
+        value, this.defaultValue
+      )
+    }
   };
   static get observedAttributes() {
-    return [ 'checked', 'disabled' ];
+    return this.getObservedAttributes(this.attributes);
   }
 
   constructor() {
@@ -100,24 +110,6 @@ class Checkable extends WComponent{
         input.removeAttribute('disabled');
       }
     }
-  }
-  
-  get checked() {
-    return this.getAttribute('checked') === 'true';
-  }
-  set checked(value) {
-    this.setAttribute('checked', AttributeParser.parseBoolAttr(
-      value, this.getDefaultValueByName('checked')
-    ));
-  }
-
-  get disabled() {
-    return this.getAttribute('disabled') === 'true';
-  }
-  set disabled(value) {
-    this.setAttribute('disabled', AttributeParser.parseBoolAttr(
-      value, this.getDefaultValueByName('disabled')
-    ));
   }
 
 }
