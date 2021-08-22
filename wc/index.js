@@ -15,8 +15,6 @@ import Radio from "./components/Checkable/Radio.js";
 import SPALink from "./components/spa/SPALink.js";
 import SPAPage from "./components/spa/SPAPage.js";
 
-import sharedStylesheet from "./theme/light.js";
-
 const wc={
   init:function(prefix="w"){
     window.prefix=prefix;
@@ -43,7 +41,6 @@ const wc={
     DOM.create("link", {props:{
       rel:"stylesheet", type:"text/css", href:"wc/theme/light.css"
     }}, head);
-    DOM.create('style', { props: { textContent: sharedStylesheet } }, head);
   }
 };
 
