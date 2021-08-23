@@ -7,6 +7,9 @@
 w-nav-part>div{
 	margin-right:15px;
 }
+w-list>w-li>a.link{
+	color:#880000;
+}
 </style>
 <script type="module">
 	import wc from "./wc/index.js";
@@ -58,9 +61,9 @@ w-nav-part>div{
 		<w-heading level="1" underlined>Main Content</w-heading>
 		<w-heading level="3" underlined="true">List</w-heading>
 		<w-list>
-			<w-li>Item 1</w-li>
-			<w-li>Item 2</w-li>
-			<w-li>Item 3</w-li>
+			<w-li><a href="https://www.google.com/" class="link">Google</a></w-li>
+			<w-li><a href="https://www.facebook.com/">Facebook</a></w-li>
+			<w-li>Twitter</w-li>
 		</w-list>
 		<w-list mark="number">
 			<w-li>Item 1</w-li>
