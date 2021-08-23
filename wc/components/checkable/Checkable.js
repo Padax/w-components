@@ -73,9 +73,7 @@ class Checkable extends WComponent{
 
   constructor() {
     super();
-    this.shadowRoot.querySelector('input').addEventListener('change', e => {
-      this.checked = e.target.checked;
-    });
+    this.shadowRoot.querySelector('input').addEventListener('change', this.inputChangeHandler);
   }
 
   render(){
@@ -111,6 +109,13 @@ class Checkable extends WComponent{
       }
     }
   }
+
+  inputChangeHandler = e => {
+    this.checked = e.target.checked;
+    if(typeof this.onchange === 'function') {
+      this.onchange.bind(e.target)(e);
+    }
+  };
 
 }
 Checkable.prototype.stylesheet=stylesheet;
