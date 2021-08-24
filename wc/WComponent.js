@@ -1,6 +1,11 @@
 import DOM from "./util/DOM.js";
 
 class WComponent extends HTMLElement{
+  /**
+   * Get observed attributes array by parsing attribute object
+   * @param {Object} attrs - Class field attributes
+   * @returns {Array<String>} Array of observed attribute names
+   */
   static getObservedAttributes(attrs) {
     return Object.keys(attrs)
       .filter(key => attrs[key].observed === true)
@@ -20,15 +25,31 @@ class WComponent extends HTMLElement{
   componentWillRender() {}
   componentDidRender() {}
 
+  /**
+   * Dynamically create getters & setters for property-attribute sync 
+   *  by parsing class field attribute object
+   */
   createGettersAndSetters() {
     this.constructor.observedAttributes.forEach(attr => {
       Object.defineProperty(this, attr, {
         get: () => {
-          return this.constructor.attributes[attr].parser(this.getAttribute(attr));
+          const parser = this.constructor.attributes[attr].parser;
+          if(typeof parser === 'function') {
+            // Use defined parser function to parse value
+            return parser(this.getAttribute(attr));
+          } else {
+            return this.getAttribute(attr);
+          }          
         },
         set: value => {
           value = `${value}`;
-          this.setAttribute(attr, this.constructor.attributes[attr].parser(value));
+          const parser = this.constructor.attributes[attr].parser;
+          if(typeof parser === 'function') {
+            // Use defined parser function to parse value
+            this.setAttribute(attr, parser(value));
+          } else {
+            this.setAttribute(attr, value);
+          }
         }
       });
     });
