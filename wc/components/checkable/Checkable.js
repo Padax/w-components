@@ -94,18 +94,13 @@ class Checkable extends WComponent{
     DOM.create('slot', {}, ctn);
   }
 
-  attributeChangedCallback() {
+  attributeChangedCallback(name, oldValue, newValue) {
     const input = this.shadowRoot.querySelector('input');
+    const value = this.getAttributeParserByName(name)(newValue);
     if(input) {
-      if(this.checked) { 
-        input.checked = true; 
-      } else {
-        input.removeAttribute('checked');
-      }
-      if(this.disabled) { 
-        input.disabled = true; 
-      } else {
-        input.removeAttribute('disabled');
+      input[name] = value;
+      if(!value) {
+        input.removeAttribute(name);
       }
     }
   }

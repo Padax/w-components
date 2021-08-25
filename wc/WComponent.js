@@ -33,7 +33,7 @@ class WComponent extends HTMLElement{
     this.constructor.observedAttributes.forEach(attr => {
       Object.defineProperty(this, attr, {
         get: () => {
-          const parser = this.constructor.attributes[attr].parser;
+          const parser = this.getAttributeParserByName(attr);
           if(typeof parser === 'function') {
             // Use defined parser function to parse value
             return parser(this.getAttribute(attr));
@@ -43,7 +43,7 @@ class WComponent extends HTMLElement{
         },
         set: value => {
           value = `${value}`;
-          const parser = this.constructor.attributes[attr].parser;
+          const parser = this.getAttributeParserByName(attr);
           if(typeof parser === 'function') {
             // Use defined parser function to parse value
             this.setAttribute(attr, parser(value));
@@ -53,6 +53,16 @@ class WComponent extends HTMLElement{
         }
       });
     });
+  }
+  getAttributeParserByName(name) {
+    if(typeof name !== 'string') {
+      return undefined;
+    }
+    if(typeof this.constructor.attributes[name].parser !== 'function') {
+      // Default parser: return value as is.
+      return value => value;
+    }
+    return this.constructor.attributes[name].parser;
   }
   getDefaultValueByName(name) {
     if(typeof name !== 'string') {
