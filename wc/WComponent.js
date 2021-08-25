@@ -34,22 +34,12 @@ class WComponent extends HTMLElement{
       Object.defineProperty(this, attr, {
         get: () => {
           const parser = this.getAttributeParserByName(attr);
-          if(typeof parser === 'function') {
-            // Use defined parser function to parse value
-            return parser(this.getAttribute(attr));
-          } else {
-            return this.getAttribute(attr);
-          }          
+          return parser(this.getAttribute(attr));
         },
         set: value => {
           value = `${value}`;
           const parser = this.getAttributeParserByName(attr);
-          if(typeof parser === 'function') {
-            // Use defined parser function to parse value
-            this.setAttribute(attr, parser(value));
-          } else {
-            this.setAttribute(attr, value);
-          }
+          this.setAttribute(attr, parser(value));
         }
       });
     });
