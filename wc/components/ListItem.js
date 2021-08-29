@@ -3,13 +3,54 @@ const stylesheet=`
   :host{
     display:block;
   }
+  div.item>.mark{
+    display:inline-flex;align-items:center;
+  }
+  div.item[mark='circle']>.mark:before{
+    content:'\\fd2c';
+    font-family:var(--icon-font-filled);
+    margin-right:8px;
+  }
+  div.item[mark='outline-circle']>.mark:before{
+    content:'\\fd23';
+    font-family:var(--icon-font-regular);
+    margin-right:8px;
+  }
+  div.item[mark='number']>.mark{
+    margin-left:4px;
+    margin-right:8px;
+  }
 `;
 class ListItem extends WComponent{
+  static defaultValues={
+    disabled:false
+  };
   constructor(){
     super();
   }
   render(){
-    DOM.create("slot", {}, this.shadowRoot);
+    // render
+    const mark=this.parentElement.mark?this.parentElement.mark:"";
+    const disabled=AttributeParser.parseBoolAttr(
+      this.getAttribute("disabled"),
+      this.getDefaultValueByName("disabled")
+    );
+    const markedItem=DOM.create("div", {props:{className:"item"}, attrs:{mark, disabled}}, this.shadowRoot);
+    if(mark==="number"){
+      // calculate index
+      const itemTagName=window.prefix+"-li";
+      let element=this;
+      let index=0;
+      while((element=element.previousSibling)!=null){
+        if(typeof element.tagName==="string" && element.tagName.toLowerCase()===itemTagName){
+          index++;
+        }
+      }
+      DOM.create("div", {props:{className:"mark", textContent:(index+1)+"."}}, markedItem);
+    }else{
+      DOM.create("div", {props:{className:"mark"}}, markedItem);
+    }
+    DOM.create("slot", {}, markedItem);
   }
 }
 ListItem.prototype.stylesheet=stylesheet;

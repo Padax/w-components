@@ -10,12 +10,10 @@ import Quote from "./components/Quote.js";
 import List from "./components/List.js";
 import ListItem from "./components/ListItem.js";
 import Code from "./components/Code.js";
-import CheckBox from "./components/Checkable/Checkbox.js";
-import Radio from "./components/Checkable/Radio.js";
+import CheckBox from "./components/checkable/Checkbox.js";
+import Radio from "./components/checkable/Radio.js";
 import SPALink from "./components/spa/SPALink.js";
 import SPAPage from "./components/spa/SPAPage.js";
-
-import sharedStylesheet from "./theme/light.js";
 
 const wc={
   init:function(prefix="w"){
@@ -43,7 +41,6 @@ const wc={
     DOM.create("link", {props:{
       rel:"stylesheet", type:"text/css", href:"wc/theme/light.css"
     }}, head);
-    DOM.create('style', { props: { textContent: sharedStylesheet } }, head);
   }
 };
 
