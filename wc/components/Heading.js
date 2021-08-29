@@ -62,10 +62,10 @@ class Heading extends WComponent{
 
   render() {
     const props = {
-      className: `heading${this.underlined ? ' underlined' : ''}`,
-      textContent: this.textContent
+      className: `heading${this.underlined ? ' underlined' : ''}`
     };
-    DOM.create(`h${this.level}`, { props }, this.shadowRoot);
+    const head=DOM.create(`h${this.level}`, { props }, this.shadowRoot);
+    DOM.create("slot", {}, head);
   }
 }
 Heading.prototype.stylesheet=stylesheet;
