@@ -22,20 +22,25 @@ const stylesheet=`
   }
 `;
 class ListItem extends WComponent{
-  static defaultValues={
-    disabled:false
+  static attributes = {
+    disabled: {
+      name: 'disabled', defaultValue: false,
+      parser: (value, attr) => AttributeParser.parseBoolAttr(
+        value, attr.defaultValue
+      )
+    }
   };
+  static get observedAttributes() {
+    return this.getObservedAttributes(this.attributes);
+  }
+  
   constructor(){
     super();
   }
   render(){
     // render
     const mark=this.parentElement.mark?this.parentElement.mark:"";
-    const disabled=AttributeParser.parseBoolAttr(
-      this.getAttribute("disabled"),
-      this.getDefaultValueByName("disabled")
-    );
-    const markedItem=DOM.create("div", {props:{className:"item"}, attrs:{mark, disabled}}, this.shadowRoot);
+    const markedItem=DOM.create("div", {props:{className:"item"}, attrs:{mark, disabled: this.disabled}}, this.shadowRoot);
     if(mark==="number"){
       // calculate index
       const itemTagName=window.prefix+"-li";

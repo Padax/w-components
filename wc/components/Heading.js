@@ -38,26 +38,34 @@ const stylesheet = `
   }
 `;
 class Heading extends WComponent{
+  static attributes = {
+    level: {
+      name: 'level', defaultValue: 5, min: 1, max: 6,
+      parser: (value, attr) => AttributeParser.parseIntAttr(
+        value, attr.defaultValue, attr.min, attr.max
+      )
+    },
+    underlined: {
+      name: 'underlined', defaultValue: false,
+      parser: (value, attr) => AttributeParser.parseBoolAttr(
+        value, attr.defaultValue
+      )
+    }
+  };
+  static get observedAttributes() {
+    return this.getObservedAttributes(this.attributes);
+  }
+
   constructor(){
     super();
   }
-  static defaultValues = {
-    level: 5,
-    underlined: false
-  };
 
   render() {
-    const level = AttributeParser.parseIntAttr(
-      this.getAttribute('level'), this.getDefaultValueByName('level'), 1, 6);
-    const underlined = AttributeParser.parseBoolAttr(
-      this.getAttribute('underlined'), this.getDefaultValueByName('underlined')
-    );
-    
     const props = {
-      className: `heading${underlined ? ' underlined' : ''}`,
+      className: `heading${this.underlined ? ' underlined' : ''}`,
       textContent: this.textContent
     };
-    DOM.create(`h${level}`, { props }, this.shadowRoot);
+    DOM.create(`h${this.level}`, { props }, this.shadowRoot);
   }
 }
 Heading.prototype.stylesheet=stylesheet;

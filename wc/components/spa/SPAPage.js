@@ -8,10 +8,24 @@ const stylesheet=`
   }
 `;
 class SPAPage extends WComponent{
-  static defaultValues={
-    path:"",
-    current:false
+  static attributes = {
+    path: {
+      name: 'path', defaultValue: '',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /.*/
+      )
+    },
+    current: {
+      name: 'current', defaultValue: false,
+      parser: (value, attr) => AttributeParser.parseBoolAttr(
+        value, attr.defaultValue
+      )
+    }
   };
+  static get observedAttributes() {
+    return this.getObservedAttributes(this.attributes);
+  }
+
   constructor(){
     super();
     window.addEventListener("popstate", (e)=>{
@@ -19,11 +33,6 @@ class SPAPage extends WComponent{
     });
   }
   componentWillRender(){
-    this.path=AttributeParser.parseStringAttr(
-      this.getAttribute("path"),
-      this.getDefaultValueByName("path"),
-      /.*/
-    );
     this.current=this.match(window.location.pathname);
   }
   match(path){
