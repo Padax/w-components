@@ -1,17 +1,19 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 class SPALink extends WComponent{
-  static defaultValues={
-    href:""
+  static attributes = {
+    href: {
+      name: 'href', defaultValue: '',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /.*/
+      )
+    }
   };
+  static get observedAttributes() {
+    return this.getObservedAttributes(this.attributes);
+  }
+
   constructor(){
     super();
-  }
-  componentWillRender(){
-    this.href=AttributeParser.parseStringAttr(
-      this.getAttribute("href"),
-      this.getDefaultValueByName("href"),
-      /.*/
-    );
   }
   render(){
     DOM.create("slot", {events:{

@@ -35,11 +35,30 @@ const stylesheet=`
   }
 `;
 class NavPart extends WComponent{
-  static defaultValues={
-    "arrange":"left",
-    "rwd-effect":"none",
-    "rwd-size":"none"
+  static attributes = {
+    arrange: {
+      name: 'arrange', defaultValue: 'left', 
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^left$|^center$|^right$/
+      )
+    },
+    'rwd-effect': {
+      name: 'rwd-effect', defaultValue: 'none', 
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^none$|^iconify$|^slide$|^hide$/
+      )
+    },
+    'rwd-size': {
+      name: 'rwd-size', defaultValue: 'none', 
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^none$|^mobile$|^tablet$|^[0-9]*$/
+      )
+    }
   };
+  static get observedAttributes() {
+    return this.getObservedAttributes(this.attributes);
+  }
+
   constructor(){
     super();
   }
@@ -69,34 +88,20 @@ class NavPart extends WComponent{
     `);
   }
   render(){
-    const arrange=AttributeParser.parseStringAttr(
-      this.getAttribute("arrange"),
-      this.getDefaultValueByName("arrange"),
-      /^left$|^center$|^right$/
-    );
-    const rwdEffect=AttributeParser.parseStringAttr(
-      this.getAttribute("rwd-effect"),
-      this.getDefaultValueByName("rwd-effect"),
-      /^none$|^iconify$|^slide$|^hide$/
-    );
-    let rwdSize=AttributeParser.parseStringAttr(
-      this.getAttribute("rwd-size"),
-      this.getDefaultValueByName("rwd-size"),
-      /^none$|^mobile$|^tablet$|^[0-9]*$/
-    );
-    if(rwdSize!=="none"){
-      if(rwdSize==="mobile"){
-        rwdSize=500;
-      }else if(rwdSize==="tablet"){
-        rwdSize=1024;
-      }else if(!isNaN(parseInt(rwdSize))){
-        rwdSize=parseInt(rwdSize);
+    let rwdPixel = this.rwdSize;
+    if(rwdPixel!=="none"){
+      if(rwdPixel==="mobile"){
+        rwdPixel=500;
+      }else if(rwdPixel==="tablet"){
+        rwdPixel=1024;
+      }else if(!isNaN(parseInt(rwdPixel))){
+        rwdPixel=parseInt(rwdPixel);
       }
-      this.setMediaStylesheet(rwdSize);
+      this.setMediaStylesheet(rwdPixel);
     }
     const wrapper=DOM.create("div", {props:{className:"wrapper"}}, this.shadowRoot);
     const root=DOM.create("slot", {attrs:{
-      arrange, rwd:rwdEffect+"-"+rwdSize
+      arrange: this.arrange, rwd:this.rwdEffect+"-"+this.rwdPixel
     }}, wrapper);
     const toggle=()=>{
       root.classList.toggle("show");

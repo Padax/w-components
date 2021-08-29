@@ -32,27 +32,29 @@ const stylesheet=`
   }
 `;
 class List extends WComponent{
-  static defaultValues={
-    mark:"none",
-    appearance:"normal"
+  static attributes = {
+    mark: { 
+      name: 'mark', defaultValue: 'none',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^none$|^circle$|^outline-circle$|^number$/
+      )
+    },
+    appearance: {
+      name: 'appearance', defaultValue: 'normal',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^normal$|^panel$|^divided-panel$/
+      )
+    }
   };
+  static get observedAttributes() {
+    return this.getObservedAttributes(this.attributes);
+  }
+  
   constructor(){
     super();
   }
-  componentWillRender(){
-    this.mark=AttributeParser.parseStringAttr(
-      this.getAttribute("mark"),
-      this.getDefaultValueByName("mark"),
-      /^none$|^circle$|^outline-circle$|^number$/
-    );
-  }
   render(){
-    const appearance=AttributeParser.parseStringAttr(
-      this.getAttribute("appearance"),
-      this.getDefaultValueByName("appearance"),
-      /^normal$|^panel$|^divided-panel$/
-    );
-    const list=DOM.create("div", {props:{className:"list"}, attrs:{appearance}}, this.shadowRoot);
+    const list=DOM.create("div", {props:{className:"list"}, attrs:{appearance: this.appearance}}, this.shadowRoot);
     DOM.create("slot", {}, list);
     /*
     const items=this.querySelectorAll(window.prefix+"-li");

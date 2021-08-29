@@ -93,44 +93,50 @@ const stylesheet=`
   }
 `;
 class Button extends WComponent{
-  static defaultValues={
-    disabled:false,
-    color:"primary",
-    outlined:false,
-    size:"normal",
-    display:"inline-block"
+  static attributes = {
+    disabled: {
+      name: 'disabled', defaultValue: false, 
+      parser: (value, attr) => AttributeParser.parseBoolAttr(
+        value, attr.defaultValue
+      )
+    },
+    color: {
+      name: 'color', defaultValue: 'primary', 
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^primary$|^critical$/
+      )
+    },
+    outlined: {
+      name: 'outlined', defaultValue: false, 
+      parser: (value, attr) => AttributeParser.parseBoolAttr(
+        value, attr.defaultValue
+      )
+    },
+    size: {
+      name: 'size', defaultValue: 'normal', 
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^small$|^normal$|^large$|^xlarge$/
+      )
+    },
+    display: {
+      name: 'display', defaultValue: 'inline-block', 
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^inline-block$|^block$/
+      )
+    },
   };
+  static get observedAttributes() {
+    return this.getObservedAttributes(this.attributes);
+  }
+  
   constructor(){
     super();
   }
   render(){
     const classList=[];
-    const display=AttributeParser.parseStringAttr(
-      this.getAttribute("display"),
-      this.getDefaultValueByName("display"),
-      /^inline-block$|^block$/
-    );
-    const size=AttributeParser.parseStringAttr(
-      this.getAttribute("size"),
-      this.getDefaultValueByName("size"),
-      /^small$|^normal$|^large$|^xlarge$/
-    );
-    const outlined=AttributeParser.parseBoolAttr(
-      this.getAttribute("outlined"),
-      this.getDefaultValueByName("outlined")
-    );
-    const color=AttributeParser.parseStringAttr(
-      this.getAttribute("color"),
-      this.getDefaultValueByName("color"),
-      /^primary$|^critical$/
-    );
-    classList.push(display, size, outlined?"outline-"+color:color);
-    const disabled=AttributeParser.parseBoolAttr(
-      this.getAttribute("disabled"),
-      this.getDefaultValueByName("disabled")
-    );
+    classList.push(this.display, this.size, this.outlined?"outline-"+this.color:this.color);
     const attrs={};
-    if(disabled){
+    if(this.disabled){
       attrs["disabled"]=true;
     }
     DOM.create("button", {props:{textContent:this.textContent, className:classList.join(" ")}, attrs:attrs}, this.shadowRoot);
