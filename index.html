@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <style>
 w-nav-part>div{
+	display:flex;
 	margin-right:15px;
+}
+w-nav-part>div>a{
+	display:inline-flex;align-items:center;
 }
 w-list>w-li>a.link{
 	color:#880000;
@@ -23,7 +27,7 @@ w-list>w-li>a.link{
 </head>
 <body>
 	<w-nav>
-		<w-nav-part rwd-effect="hide" rwd-size="mobile">
+		<w-nav-part width="fit" rwd-effect="hide" rwd-size="mobile">
 			<div>
 				<a href="https://github.com/Padax/w-components">
 					<img src="https://training.pada-x.com/images/ntu.png" width="30" height="30" />
@@ -36,7 +40,7 @@ w-list>w-li>a.link{
 			<div><a href="https://www.google.com/">Google</a></div>
 			<div><a href="https://www.twitter.com/">Twitter</a></div>
 		</w-nav-part>
-		<w-nav-part arrange="right" rwd-effect="iconify" rwd-size="mobile">
+		<w-nav-part width="fit" arrange="right" rwd-effect="iconify" rwd-size="mobile">
 			<div><a target="_blank" href="https://github.com/Padax/w-components">GitHub</a></div>
 			<div><a target="_blank" href="https://github.com/Padax/w-components">Donate</a></div>
 		</w-nav-part>

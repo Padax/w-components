@@ -6,9 +6,6 @@ const stylesheet=`
     position:sticky;top:0px;left:0px;
     background-color:#ffffff;
   }
-  ::slotted(*){
-    flex:auto;
-  }
 `;
 class Nav extends WComponent{
   constructor(){

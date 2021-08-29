@@ -1,7 +1,13 @@
 import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 const stylesheet=`
+  :host{
+    display:contents;
+  }
   .wrapper{
-    display:flex;align-items:center;
+    flex:none;display:flex;align-items:center;
+  }
+  .wrapper[width='auto']{
+    flex:auto;
   }
   .wrapper>slot{
     flex:auto;display:flex;align-items:center;
@@ -36,6 +42,12 @@ const stylesheet=`
 `;
 class NavPart extends WComponent{
   static attributes = {
+    width: {
+      name: 'width', defaultValue: 'auto',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^auto$|^fit$/
+      )
+    },
     arrange: {
       name: 'arrange', defaultValue: 'left', 
       parser: (value, attr) => AttributeParser.parseStringAttr(
@@ -65,7 +77,7 @@ class NavPart extends WComponent{
   setMediaStylesheet(rwdSize){
     this.setStylesheet(`
       @media (max-width:${rwdSize}px){
-        :host{
+        .wrapper{
           overflow-x:auto;
         }
         .wrapper>slot[rwd='iconify-${rwdSize}']{
@@ -88,20 +100,23 @@ class NavPart extends WComponent{
     `);
   }
   render(){
-    let rwdPixel = this.rwdSize;
-    if(rwdPixel!=="none"){
-      if(rwdPixel==="mobile"){
-        rwdPixel=500;
-      }else if(rwdPixel==="tablet"){
-        rwdPixel=1024;
-      }else if(!isNaN(parseInt(rwdPixel))){
-        rwdPixel=parseInt(rwdPixel);
+    let rwdSize = this["rwd-size"];
+    if(this["rwd-effect"]!=="none" && rwdSize!=="none"){
+      if(rwdSize==="mobile"){
+        rwdSize=500;
+      }else if(rwdSize==="tablet"){
+        rwdSize=1024;
+      }else if(!isNaN(parseInt(rwdSize))){
+        rwdSize=parseInt(rwdSize);
       }
-      this.setMediaStylesheet(rwdPixel);
+      this.setMediaStylesheet(rwdSize);
     }
-    const wrapper=DOM.create("div", {props:{className:"wrapper"}}, this.shadowRoot);
+    const wrapper=DOM.create("div", {
+      attrs:{width: this.width},
+      props:{className:"wrapper"}
+    }, this.shadowRoot);
     const root=DOM.create("slot", {attrs:{
-      arrange: this.arrange, rwd:this.rwdEffect+"-"+this.rwdPixel
+      arrange: this.arrange, rwd:this["rwd-effect"]+"-"+rwdSize
     }}, wrapper);
     const toggle=()=>{
       root.classList.toggle("show");
