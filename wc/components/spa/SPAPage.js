@@ -47,6 +47,11 @@ class SPAPage extends WComponent{
       className:this.current?"show":"hide"
     };
     if(this.root){
+      const template=this.querySelector("template");
+      if(template!==null){
+        this.appendChild(template.content.cloneNode(true));
+        template.remove();
+      }
       DOM.modify(this.root, {props: props});
     }else{
       this.root=DOM.create("slot", {props: props}, this.shadowRoot);
