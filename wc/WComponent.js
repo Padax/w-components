@@ -7,14 +7,16 @@ class WComponent extends HTMLElement{
    * @returns {Array<String>} Array of observed attribute names
    */
   static getObservedAttributes(attrs) {
-    return Object.keys(attrs)
-      .filter(key => attrs[key].observed === true)
+    const observedAttrs = Object.keys(attrs)
+      .filter(key => attrs[key].observed !== false) // Default observed
       .map(key => attrs[key].name);
+    return Array.isArray(observedAttrs) ? observedAttrs : [];
   }
 
   constructor(){
     super();
     this.createGettersAndSetters();
+    this.bindProps();
     this.attachShadow({ mode: 'open' });
     this.setStylesheet(this.stylesheet);
     this.componentWillRender();
@@ -25,21 +27,36 @@ class WComponent extends HTMLElement{
   componentWillRender() {}
   componentDidRender() {}
 
+
+  /**
+   * Set all properties from all observed attributes.
+   */
+  bindProps() {
+    if(!Array.isArray(this.constructor.observedAttributes)) {
+      return;
+    }
+    this.constructor.observedAttributes.forEach(attr => {
+      this[attr.name] = this.getAttribute(attr.name);
+    });
+  }
   /**
    * Dynamically create getters & setters for property-attribute sync 
-   *  by parsing class field attribute object
+   *  by parsing class field attribute object.
    */
   createGettersAndSetters() {
-    this.constructor.observedAttributes.forEach(attr => {
-      Object.defineProperty(this, attr, {
+    if(!Array.isArray(this.constructor.observedAttributes)) {
+      return;
+    }
+    this.constructor.observedAttributes.forEach(attrName => {
+      Object.defineProperty(this, attrName, {
         get: () => {
-          const parser = this.getAttributeParserByName(attr);
-          return parser(this.getAttribute(attr));
+          const parser = this.getAttributeParserByName(attrName);
+          return parser(this.getAttribute(attrName), this.constructor.attributes[attrName]);
         },
         set: value => {
           value = `${value}`;
-          const parser = this.getAttributeParserByName(attr);
-          this.setAttribute(attr, parser(value));
+          const parser = this.getAttributeParserByName(attrName);
+          this.setAttribute(attrName, parser(value, this.constructor.attributes[attrName]));
         }
       });
     });
