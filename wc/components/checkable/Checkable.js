@@ -65,7 +65,9 @@ class Checkable extends WComponent{
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
-    }
+    },
+    value: { name: 'value' },
+    name: { name: 'name' }
   };
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
@@ -83,6 +85,8 @@ class Checkable extends WComponent{
     const inputAttrs = {};
     if(this.checked) { inputAttrs.checked = true; }
     if(this.disabled) { inputAttrs.disabled = true; }
+    if(this.value) { inputAttrs.value = this.value; }
+    if(this.name) { inputAttrs.name = this.name; }
     DOM.create('input', { props: inputProps, attrs: inputAttrs }, ctn);
 
     const iconProps = { className: 'icon' };
