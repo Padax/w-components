@@ -34,6 +34,10 @@ class SPAPage extends WComponent{
   }
   componentWillRender(){
     this.current=this.match(window.location.pathname);
+    this.events={
+      init:new Event("init"),
+      dispose:new Event("dispose")
+    };
   }
   match(path){
     return path.startsWith(this.path);
@@ -55,6 +59,11 @@ class SPAPage extends WComponent{
       DOM.modify(this.root, {props: props});
     }else{
       this.root=DOM.create("slot", {props: props}, this.shadowRoot);
+    }
+    if(this.current){
+      this.dispatchEvent(this.events.init);
+    }else{
+      this.dispatchEvent(this.events.dispose);
     }
   }
 }

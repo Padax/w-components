@@ -23,6 +23,14 @@ w-list>w-li>a.link{
 	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
 	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
 	calendar.addEntry({date:"2021-05-20", content:"測試看看"});
+	// manipulate spa-page
+	const page=document.querySelector("#heading-page");
+	page.addEventListener("init", ()=>{
+		console.log("Init");
+	});
+	page.addEventListener("dispose", ()=>{
+		console.log("Dispose");
+	});
 </script>
 </head>
 <body>
@@ -57,7 +65,7 @@ w-list>w-li>a.link{
   <w-radio checked>Checked</w-radio>
   <w-radio disabled>Un-Checked Disabled</w-radio>
   <w-radio checked disabled>Checked Disabled</w-radio>
-	<w-spa-page path="/heading">
+	<w-spa-page path="/heading" id="heading-page">
 		<template>
 			<w-display-heading level="1" underlined>LONG LIVE W-COMPONENTS!</w-display-heading>
 			<w-display-heading level="2">LONG LIVE W-COMPONENTS!</w-display-heading>
