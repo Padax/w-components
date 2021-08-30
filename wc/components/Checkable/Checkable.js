@@ -78,23 +78,6 @@ class Checkable extends WComponent{
     this.shadowRoot.querySelector('input').addEventListener('change', this.inputChangeHandler);
   }
 
-  render(){
-    const ctn = DOM.create('label', null, this.shadowRoot);
-    
-    const inputProps = { type: this.type };
-    const inputAttrs = {};
-    if(this.checked) { inputAttrs.checked = true; }
-    if(this.disabled) { inputAttrs.disabled = true; }
-    if(this.value) { inputAttrs.value = this.value; }
-    if(this.name) { inputAttrs.name = this.name; }
-    DOM.create('input', { props: inputProps, attrs: inputAttrs }, ctn);
-
-    const iconProps = { className: 'icon' };
-    DOM.create('span', { props: iconProps }, ctn);
-
-    DOM.create('slot', {}, ctn);
-  }
-
   attributeChangedCallback(name, oldValue, newValue) {
     const input = this.shadowRoot.querySelector('input');
     const parser = this.getAttributeParserByName(name);
@@ -105,6 +88,21 @@ class Checkable extends WComponent{
         input.removeAttribute(name);
       }
     }
+  }
+  render(){
+    const ctn = DOM.create('label', null, this.shadowRoot);
+    
+    const inputAttrs = { type: this.type };
+    if(this.checked) { inputAttrs.checked = true; }
+    if(this.disabled) { inputAttrs.disabled = true; }
+    if(this.value) { inputAttrs.value = this.value; }
+    if(this.name) { inputAttrs.name = this.name; }
+    DOM.create('input', { attrs: inputAttrs }, ctn);
+
+    const iconProps = { className: 'icon' };
+    DOM.create('span', { props: iconProps }, ctn);
+
+    DOM.create('slot', {}, ctn);
   }
 
   inputChangeHandler = e => {
