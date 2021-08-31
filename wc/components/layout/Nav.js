@@ -12,7 +12,6 @@ class Nav extends WComponent{
     super();
   }
   render(){
-    const navPartTagName=window.prefix+"-nav-part";
     const root=DOM.create("slot", {}, this.shadowRoot);
   }
 }
