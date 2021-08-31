@@ -1,4 +1,4 @@
-import WComponent, { DOM, AttributeParser } from "../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 const stylesheet=`
   :host{
     display:contents;
