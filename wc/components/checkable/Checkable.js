@@ -1,7 +1,7 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 
 const stylesheet=`
-  label {
+  div {
     display: inline-flex;
     align-items: center;
   }
@@ -19,7 +19,7 @@ const stylesheet=`
     font-size: var(--icon-font-size);
     vertical-align: middle;
   }
-  label:hover .icon {
+  div:hover .icon {
     color: var(--color-primary-60);
   }
   slot {
@@ -34,7 +34,7 @@ const stylesheet=`
   input:checked:active + .icon {
     color: var(--color-primary-60);
   }
-  label:hover input:checked + .icon {
+  div:hover input:checked + .icon {
     color: var(--color-primary-40);
   }
 
@@ -47,7 +47,7 @@ const stylesheet=`
     color: var(--color-gray-30);
     cursor: default;
   }
-  label:hover input:disabled + .icon {
+  div:hover input:disabled + .icon {
     color: var(--color-gray-10);
   }
 `;
@@ -75,7 +75,7 @@ class Checkable extends WComponent{
 
   constructor() {
     super();
-    this.shadowRoot.querySelector('input').addEventListener('change', this.inputChangeHandler);
+    this.bindEvents();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -89,8 +89,14 @@ class Checkable extends WComponent{
       }
     }
   }
-  render(){
-    const ctn = DOM.create('label', null, this.shadowRoot);
+  bindEvents() {
+    this.events = {
+      change: new Event('change')
+    };
+    this.shadowRoot.addEventListener('click', this.clickHandler);
+  }
+  render() {
+    const ctn = DOM.create('div', null, this.shadowRoot);
     
     const inputAttrs = { type: this.type };
     if(this.checked) { inputAttrs.checked = true; }
@@ -105,10 +111,10 @@ class Checkable extends WComponent{
     DOM.create('slot', {}, ctn);
   }
 
-  inputChangeHandler = e => {
-    this.checked = e.target.checked;
-    if(typeof this.onchange === 'function') {
-      this.onchange.bind(e.target)(e);
+  clickHandler = e => {
+    if(!this.disabled) {  // Trigger checked change
+      this.checked = !this.checked;
+      this.dispatchEvent(this.events.change);
     }
   };
 
