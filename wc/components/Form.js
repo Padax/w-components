@@ -12,6 +12,32 @@ class Form extends WComponent{
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }
+  
+  /**
+   * Get form data.
+   * @returns {FormData}
+   */
+   get data() { 
+    const formData = new FormData();
+    const elements = Array.from(this.querySelectorAll(FORM_ELEMENT_TYPES));
+    elements.forEach(elem => {
+      if(typeof elem.name === 'string' && elem.value !== null && elem.value !== undefined) {
+        if((elem.type === 'checkbox' || elem.type === 'radio') && !elem.checked) {
+          // Exclude unchecked checkbox & radio
+          return;
+        }
+        const existingValue = formData.get(elem.name);
+        if(existingValue === null) {
+          formData.set(elem.name, elem.value);
+        } else if(Array.isArray(existingValue)) {
+          existingValue.push(elem.value);
+        } else {
+          formData.set(elem.name, [existingValue, elem.value]);
+        }
+      }
+    });
+    return formData;
+  }
 
   constructor() {
     super();
@@ -30,9 +56,16 @@ class Form extends WComponent{
     }
   }
   bindEvents() {
-    // Re-bind form access on slot change
+    this.events = {
+      submit: new Event('submit')
+    };
+
+    // Re-bind form element access on slot change
     const slot = this.shadowRoot.querySelector('slot');
     slot.addEventListener('slotchange', () => this.bindFormAccess());
+
+    const submitBtn = this.querySelector('input[type="submit"], button[type="submit"]');
+    submitBtn.addEventListener('click', this.submitHandler);
   }
   /**
    * Bind direct form access from document by name.
@@ -79,30 +112,9 @@ class Form extends WComponent{
     DOM.create('slot', {}, form);
   }
 
-  /**
-   * Get form data.
-   * @returns {FormData}
-   */
-  get data() { 
-    const formData = new FormData();
-    const elements = Array.from(this.querySelectorAll(FORM_ELEMENT_TYPES));
-    elements.forEach(elem => {
-      if(typeof elem.name === 'string' && elem.value !== null && elem.value !== undefined) {
-        if((elem.type === 'checkbox' || elem.type === 'radio') && !elem.checked) {
-          // Exclude unchecked checkbox & radio
-          return;
-        }
-        const existingValue = formData.get(elem.name);
-        if(existingValue === null) {
-          formData.set(elem.name, elem.value);
-        } else if(Array.isArray(existingValue)) {
-          existingValue.push(elem.value);
-        } else {
-          formData.set(elem.name, [existingValue, elem.value]);
-        }
-      }
-    });
-    return formData;
+  submitHandler = e => {
+    this.dispatchEvent(this.events.submit);
+    this.shadowRoot.querySelector('form').submit();
   }
 
 }
