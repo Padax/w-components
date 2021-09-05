@@ -79,12 +79,13 @@ class Checkable extends WComponent{
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    const input = this.shadowRoot.querySelector('input');
-    const parser = this.getAttributeParserByName(name);
-    const value = parser(newValue, this.attributes[name]);
-    if(input) {
-      input[name] = value;
-      if(!value) {
+    if(name === this.constructor.attributes.checked.name
+       || name === this.constructor.attributes.disabled.name) {
+      const input = this.shadowRoot.querySelector('input');
+      const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
+      if(value) {
+        input.setAttribute(name, value);
+      } else {
         input.removeAttribute(name);
       }
     }
