@@ -12,6 +12,7 @@ import ListItem from "./components/ListItem.js";
 import Code from "./components/Code.js";
 import CheckBox from "./components/checkable/Checkbox.js";
 import Radio from "./components/checkable/Radio.js";
+import Form from "./components/Form.js";
 import SPALink from "./components/spa/SPALink.js";
 import SPAPage from "./components/spa/SPAPage.js";
 
@@ -33,6 +34,7 @@ const wc={
     defineCustomElement(prefix, 'code', Code);
     defineCustomElement(prefix, 'checkbox', CheckBox);
     defineCustomElement(prefix, 'radio', Radio);
+    defineCustomElement(prefix, 'form', Form);
     defineCustomElement(prefix, 'spa-link', SPALink);
     defineCustomElement(prefix, 'spa-page', SPAPage);
   },

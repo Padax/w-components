@@ -66,7 +66,7 @@ class Checkable extends WComponent{
         value, attr.defaultValue
       )
     },
-    value: { name: 'value' },
+    value: { name: 'value', defaultValue: 'on' },
     name: { name: 'name' }
   };
   static get observedAttributes() {

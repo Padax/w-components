@@ -27,7 +27,6 @@ class WComponent extends HTMLElement{
   componentWillRender() {}
   componentDidRender() {}
 
-
   /**
    * Set all properties from all observed attributes.
    */
@@ -67,7 +66,13 @@ class WComponent extends HTMLElement{
     }
     if(typeof this.constructor.attributes[name].parser !== 'function') {
       // Default parser: return value as is.
-      return value => value;
+      return value => {
+        if(typeof value === 'string') {
+          return value;
+        } else {
+          return this.constructor.attributes[name].defaultValue;
+        }
+      };
     }
     return this.constructor.attributes[name].parser;
   }
@@ -75,7 +80,7 @@ class WComponent extends HTMLElement{
     if(typeof name !== 'string') {
       return undefined;
     }
-    return this.constructor.attributes[name].defatulValue;
+    return this.constructor.attributes[name].defaultValue;
   }
   setStylesheet(stylesheet){
     DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
