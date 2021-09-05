@@ -22,6 +22,7 @@ class WComponent extends HTMLElement{
     this.componentWillRender();
     this.render();
     this.componentDidRender();
+    this.key = new Date().getTime();
   }
   
   componentWillRender() {}
@@ -59,6 +60,9 @@ class WComponent extends HTMLElement{
         }
       });
     });
+  }
+  equals(component) {
+    return this.key === component.key;
   }
   getAttributeParserByName(name) {
     if(typeof name !== 'string') {
