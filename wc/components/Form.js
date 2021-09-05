@@ -69,7 +69,9 @@ class Form extends WComponent{
     submitBtn.addEventListener('click', this.submitHandler);
 
     // Bind radio click callback for name group control
-    this.querySelectorAll('w-radio').forEach(radio => radio.addEventListener('click', this.radioClickCallback));
+    this.querySelectorAll('w-radio').forEach(radio => {
+      radio.addEventListener('change', this.radioChangeCallback);
+    });
   }
   /**
    * Bind direct form access from document by name.
@@ -116,16 +118,16 @@ class Form extends WComponent{
     DOM.create('slot', {}, form);
   }
 
-  radioClickCallback = e => {
+  radioChangeCallback = e => {
     const radio = e.target;
     if(typeof radio.name !== 'string' || radio.disabled) { return; }
 
     const radios = Array.from(this.querySelectorAll(`w-radio[name='${radio.name}']`));
-    radios.forEach(r => {
-      if(!r.equals(radio)) {
-        r.checked = false;
-      }
-    });
+    // radios.forEach(r => {
+    //   if(!r.equals(radio)) {
+    //     r.checked = false;
+    //   }
+    // });
   }
   submitHandler = e => {
     this.dispatchEvent(this.events.submit);

@@ -88,11 +88,17 @@ class Checkable extends WComponent{
       } else {
         input.removeAttribute(name);
       }
+
+      // Trigger change event
+      if(name === this.constructor.attributes.checked.name && oldValue !== newValue) {
+        this.dispatchEvent(this.events.change);
+      }
     }
   }
   bindEvents() {
     this.events = {
-      change: new Event('change')
+      change: new Event('change'),
+      click: new Event('click')
     };
     this.shadowRoot.addEventListener('click', this.clickHandler);
   }
@@ -115,7 +121,6 @@ class Checkable extends WComponent{
   clickHandler = e => {
     if(!this.disabled) {  // Trigger checked change
       this.checked = !this.checked;
-      this.dispatchEvent(this.events.change);
     }
   };
 
