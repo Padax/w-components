@@ -119,7 +119,7 @@ class Checkable extends WComponent{
   }
 
   clickHandler = e => {
-    if(!this.disabled) {  // Trigger checked change
+    if(!this.disabled) {
       this.checked = !this.checked;
     }
   };
