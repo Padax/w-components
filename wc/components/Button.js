@@ -139,7 +139,8 @@ class Button extends WComponent{
     if(this.disabled){
       attrs["disabled"]=true;
     }
-    DOM.create("button", {props:{textContent:this.textContent, className:classList.join(" ")}, attrs:attrs}, this.shadowRoot);
+    const btn=DOM.create("button", {props:{className:classList.join(" ")}, attrs:attrs}, this.shadowRoot);
+    DOM.create("slot", {}, btn);
   }
 }
 Button.prototype.stylesheet=stylesheet;
