@@ -1,6 +1,8 @@
 import DOM from "./util/DOM.js";
 import Nav from "./components/layout/Nav.js";
 import NavPart from "./components/layout/NavPart.js";
+import Grid from "./components/layout/Grid.js";
+import Section from "./components/layout/Section.js";
 import Button from "./components/Button.js";
 import Dialog from "./components/Dialog.js";
 import Calendar from "./components/Calendar.js";
@@ -23,6 +25,8 @@ const wc={
 
     defineCustomElement(prefix, 'nav', Nav);
     defineCustomElement(prefix, 'nav-part', NavPart);
+    defineCustomElement(prefix, 'grid', Grid);
+    defineCustomElement(prefix, 'section', Section);
     defineCustomElement(prefix, 'button', Button);
     defineCustomElement(prefix, 'dialog', Dialog);
     defineCustomElement(prefix, 'calendar', Calendar);
