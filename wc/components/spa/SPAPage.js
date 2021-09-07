@@ -43,6 +43,9 @@ class SPAPage extends WComponent{
     return path.startsWith(this.path);
   }
   setCurrent(current){
+    if(this.current===current){
+      return;
+    }
     this.current=current;
     this.render();
   }
@@ -50,12 +53,14 @@ class SPAPage extends WComponent{
     const props={
       className:this.current?"show":"hide"
     };
-    if(this.root){
+    if(this.current){ // if shown, take content outside of template
       const template=this.querySelector("template");
       if(template!==null){
         this.appendChild(template.content.cloneNode(true));
         template.remove();
       }
+    }
+    if(this.root){
       DOM.modify(this.root, {props: props});
     }else{
       this.root=DOM.create("slot", {props: props}, this.shadowRoot);
