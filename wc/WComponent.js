@@ -82,8 +82,17 @@ class WComponent extends HTMLElement{
     }
     return this.constructor.attributes[name].defaultValue;
   }
-  setStylesheet(stylesheet){
-    DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
+  setStylesheet(stylesheet, id){ // id is optional, for style overwrite
+    if(id){
+      const styleElement=this.shadowRoot.querySelector("#"+id);
+      if(styleElement){
+        DOM.modify(styleElement, { props: { textContent: stylesheet } });
+      }else{
+        DOM.create('style', { props: { textContent: stylesheet, id:id } }, this.shadowRoot);
+      }
+    }else{
+      DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
+    }
   }
 
 }
