@@ -1,7 +1,7 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 
 const stylesheet=`
-  label {
+  div {
     display: inline-flex;
     align-items: center;
   }
@@ -19,7 +19,7 @@ const stylesheet=`
     font-size: var(--icon-font-size);
     vertical-align: middle;
   }
-  label:hover .icon {
+  div:hover .icon {
     color: var(--color-primary-60);
   }
   slot {
@@ -34,7 +34,7 @@ const stylesheet=`
   input:checked:active + .icon {
     color: var(--color-primary-60);
   }
-  label:hover input:checked + .icon {
+  div:hover input:checked + .icon {
     color: var(--color-primary-40);
   }
 
@@ -47,7 +47,7 @@ const stylesheet=`
     color: var(--color-gray-30);
     cursor: default;
   }
-  label:hover input:disabled + .icon {
+  div:hover input:disabled + .icon {
     color: var(--color-gray-10);
   }
 `;
@@ -66,7 +66,7 @@ class Checkable extends WComponent{
         value, attr.defaultValue
       )
     },
-    value: { name: 'value' },
+    value: { name: 'value', defaultValue: 'on' },
     name: { name: 'name' }
   };
   static get observedAttributes() {
@@ -75,22 +75,35 @@ class Checkable extends WComponent{
 
   constructor() {
     super();
-    this.shadowRoot.querySelector('input').addEventListener('change', this.inputChangeHandler);
+    this.bindEvents();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    const input = this.shadowRoot.querySelector('input');
-    const parser = this.getAttributeParserByName(name);
-    const value = parser(newValue, this.attributes[name]);
-    if(input) {
-      input[name] = value;
-      if(!value) {
+    if(name === this.constructor.attributes.checked.name
+       || name === this.constructor.attributes.disabled.name) {
+      const input = this.shadowRoot.querySelector('input');
+      const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
+      if(value) {
+        input.setAttribute(name, value);
+      } else {
         input.removeAttribute(name);
+      }
+
+      // Trigger change event
+      if(name === this.constructor.attributes.checked.name && oldValue !== newValue) {
+        this.dispatchEvent(this.events.change);
       }
     }
   }
-  render(){
-    const ctn = DOM.create('label', null, this.shadowRoot);
+  bindEvents() {
+    this.events = {
+      change: new Event('change'),
+      click: new Event('click')
+    };
+    this.shadowRoot.addEventListener('click', this.clickHandler);
+  }
+  render() {
+    const ctn = DOM.create('div', null, this.shadowRoot);
     
     const inputAttrs = { type: this.type };
     if(this.checked) { inputAttrs.checked = true; }
@@ -105,10 +118,9 @@ class Checkable extends WComponent{
     DOM.create('slot', {}, ctn);
   }
 
-  inputChangeHandler = e => {
-    this.checked = e.target.checked;
-    if(typeof this.onchange === 'function') {
-      this.onchange.bind(e.target)(e);
+  clickHandler = e => {
+    if(!this.disabled) {
+      this.checked = !this.checked;
     }
   };
 

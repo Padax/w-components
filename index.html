@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>W-Components</title>
 <style>
 w-nav-part>div{
 	display:flex;
@@ -13,6 +14,10 @@ w-nav-part>div>a{
 }
 w-list>w-li>a.link{
 	color:#880000;
+}
+w-section>div{
+	background-color:#ffcccc;text-align:center;
+	margin:10px;
 }
 </style>
 <script type="module">
@@ -38,7 +43,7 @@ w-list>w-li>a.link{
 		<w-nav-part width="fit" rwd-effect="hide" rwd-size="mobile">
 			<div>
 				<a href="https://github.com/Padax/w-components">
-					<img src="https://training.pada-x.com/images/ntu.png" width="30" height="30" />
+					<img src="image/title.png" />
 				</a>
 			</div>
 		</w-nav-part>
@@ -53,18 +58,31 @@ w-list>w-li>a.link{
 			<div><a target="_blank" href="https://github.com/Padax/w-components">Donate</a></div>
 		</w-nav-part>
 	</w-nav>
-  <!-- CheckBox -->
-  <w-heading level="3" underlined>CheckBox</w-heading>
-  <w-checkbox>Un-Checked</w-checkbox>
-  <w-checkbox checked>Checked</w-checkbox>
-  <w-checkbox disabled>Un-Checked Disabled</w-checkbox>
-  <w-checkbox checked disabled>Checked Disabled</w-checkbox>
-  <!-- Radio -->
-  <w-heading level="3" underlined="true">Radio</w-heading>
-  <w-radio>Un-Checked</w-radio>
-  <w-radio checked>Checked</w-radio>
-  <w-radio disabled>Un-Checked Disabled</w-radio>
-  <w-radio checked disabled>Checked Disabled</w-radio>
+	<w-section width="500">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+	</w-section>
+  <w-form name="form" action="test.html" method="get">
+   <!-- CheckBox -->
+    <w-heading level="3" underlined>CheckBox</w-heading>
+    <w-checkbox name="checkbox" value="1">Un-Checked</w-checkbox>
+    <w-checkbox name="checkbox" checked value="2">Checked</w-checkbox>
+    <w-checkbox name="checkbox" disabled value="3">Un-Checked Disabled</w-checkbox>
+    <w-checkbox name="checkbox" checked disabled>Checked Disabled</w-checkbox>
+    <input type="checkbox" name="native" value="5" /> Native Checkbox
+    <!-- Radio -->
+    <w-heading level="3" underlined="true">Radio</w-heading>
+    <w-radio name="radio" value="radio1">Un-Checked</w-radio>
+    <w-radio name="radio" checked value="radio2">Checked</w-radio>
+    <w-radio name="radio" disabled value="radio3">Un-Checked Disabled</w-radio>
+    <w-radio name="radio" checked disabled value="radio4">Checked Disabled</w-radio>
+
+    <button type="submit">SUBMIT</button>
+  </w-form>
 	<w-spa-page path="/heading" id="heading-page">
 		<template>
 			<w-display-heading level="1" underlined>LONG LIVE W-COMPONENTS!</w-display-heading>
