@@ -32,7 +32,6 @@ class Grid extends WComponent{
     }
     this.setStylesheet(`
       .container{
-        width:100%;max-width:1200px;
         display:grid;
         grid-template-columns:${gridColumns.join(" ")};
         grid-template-rows:${gridRows.join(" ")};
