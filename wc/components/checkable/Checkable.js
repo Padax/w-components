@@ -75,7 +75,6 @@ class Checkable extends WComponent{
 
   constructor() {
     super();
-    this.bindEvents();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -117,12 +116,6 @@ class Checkable extends WComponent{
 
     DOM.create('slot', {}, ctn);
   }
-
-  clickHandler = e => {
-    if(!this.disabled) {
-      this.checked = !this.checked;
-    }
-  };
 
 }
 Checkable.prototype.stylesheet=stylesheet;

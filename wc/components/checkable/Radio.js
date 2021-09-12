@@ -11,7 +11,14 @@ const stylesheet=`
 class Radio extends Checkable{
   constructor() {
     super();
+    this.bindEvents();
   }
+  
+  clickHandler = e => {
+    if(!this.disabled && !this.checked) {
+      this.checked = !this.checked;
+    }
+  };
 }
 Radio.prototype.stylesheet += stylesheet;
 Radio.prototype.type = 'radio';

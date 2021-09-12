@@ -62,7 +62,7 @@ class Form extends WComponent{
 
     // Re-bind form element access on slot change
     const slot = this.shadowRoot.querySelector('slot');
-    slot.addEventListener('slotchange', () => this.bindFormAccess());
+    slot.addEventListener('slotchange', () => this.bindFormElementAccess());
 
     // Bind submit event on submit button click
     const submitBtn = this.querySelector('input[type="submit"], button[type="submit"]');

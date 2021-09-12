@@ -13,7 +13,16 @@ const stylesheet=`
 class Checkbox extends Checkable{
   constructor() {
     super();
+    this.bindEvents();
   }
+  
+  clickHandler = e => {
+    if(!this.disabled) {
+      this.checked = !this.checked;
+    }
+  };
+
+
 }
 Checkbox.prototype.stylesheet += stylesheet;
 Checkbox.prototype.type = 'checkbox';
