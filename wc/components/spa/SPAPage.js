@@ -32,6 +32,7 @@ class SPAPage extends WComponent{
       this.setCurrent(this.match(window.location.pathname));
     });
   }
+  /*
   componentWillRender(){
     this.current=this.match(window.location.pathname);
     this.events={
@@ -39,6 +40,7 @@ class SPAPage extends WComponent{
       dispose:new Event("dispose")
     };
   }
+  */
   match(path){
     return path.startsWith(this.path);
   }
@@ -47,9 +49,9 @@ class SPAPage extends WComponent{
       return;
     }
     this.current=current;
-    this.render();
+    this.init();
   }
-  render(){
+  init(){
     const props={
       className:this.current?"show":"hide"
     };

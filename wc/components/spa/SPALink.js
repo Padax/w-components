@@ -15,7 +15,7 @@ class SPALink extends WComponent{
   constructor(){
     super();
   }
-  render(){
+  init(){
     DOM.create("slot", {events:{
       click:()=>{
         this.changePage()

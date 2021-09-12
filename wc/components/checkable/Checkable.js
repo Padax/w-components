@@ -102,7 +102,7 @@ class Checkable extends WComponent{
     };
     this.shadowRoot.addEventListener('click', this.clickHandler);
   }
-  render() {
+  init() {
     const ctn = DOM.create('div', null, this.shadowRoot);
     
     const inputAttrs = { type: this.type };

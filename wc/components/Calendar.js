@@ -77,14 +77,16 @@ class Calendar extends WComponent{
   constructor(){
     super();
   }
+  /*
   componentWillRender(){
     this.calendar=null;
     this.calendarDate=new Date();
     this.entries={};
   }
+  */
   changeMonth(offset){
     this.calendarDate.setMonth(this.calendarDate.getMonth()+offset);
-    this.render();
+    this.init();
   }
   addEntry(entry){
     if(this.entries[entry.date]){
@@ -92,9 +94,9 @@ class Calendar extends WComponent{
     }else{
       this.entries[entry.date]=[entry];
     }
-    this.render();
+    this.init();
   }
-  render(){
+  init(){
     if(this.calendar!==null){
       this.calendar.remove();
     }

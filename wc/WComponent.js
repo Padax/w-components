@@ -19,14 +19,8 @@ class WComponent extends HTMLElement{
     this.bindProps();
     this.attachShadow({ mode: 'open' });
     this.setStylesheet(this.stylesheet);
-    this.componentWillRender();
-    this.render();
-    this.componentDidRender();
+    this.init();
   }
-  
-  componentWillRender() {}
-  componentDidRender() {}
-
   /**
    * Set all properties from all observed attributes.
    */

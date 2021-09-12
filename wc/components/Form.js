@@ -107,7 +107,7 @@ class Form extends WComponent{
       });
     });
   }
-  render() {
+  init() {
     const attrs = { 
       name: this.name,
       action: this.action, 
