@@ -33,6 +33,15 @@ class WComponent extends HTMLElement{
     });
   }
   /**
+   * Call update method in attribute changed callback if attribute name is acceptable
+   */
+  attributeChangedCallback(name, oldValue, newValue){
+    if(typeof this.constructor.attributes[name] === 'object'){
+      this.update({name, oldValue, newValue});
+    }
+  }
+  update(){}
+  /**
    * Dynamically create getters & setters for property-attribute sync 
    *  by parsing class field attribute object.
    */

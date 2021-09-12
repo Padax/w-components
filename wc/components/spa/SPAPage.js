@@ -50,7 +50,7 @@ class SPAPage extends WComponent{
     // first render
     this.render();
   }
-  update(){
+  update(args){
     this.render();
   }
   render(){
@@ -77,7 +77,6 @@ class SPAPage extends WComponent{
       return;
     }
     this.current=current;
-    this.update();
   }
 }
 SPAPage.prototype.stylesheet=stylesheet;

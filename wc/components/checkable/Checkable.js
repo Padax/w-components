@@ -78,7 +78,9 @@ class Checkable extends WComponent{
     this.bindEvents();
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  update(args) {
+    const {name, oldValue, newValue} = args;
+    console.log(name, oldValue, newValue); // called when init because getter change attribute from null to something
     if(name === this.constructor.attributes.checked.name
        || name === this.constructor.attributes.disabled.name) {
       const input = this.shadowRoot.querySelector('input');
