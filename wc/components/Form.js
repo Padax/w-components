@@ -123,11 +123,11 @@ class Form extends WComponent{
     if(typeof radio.name !== 'string' || radio.disabled) { return; }
 
     const radios = Array.from(this.querySelectorAll(`w-radio[name='${radio.name}']`));
-    // radios.forEach(r => {
-    //   if(!r.equals(radio)) {
-    //     r.checked = false;
-    //   }
-    // });
+    radios.forEach(r => {
+      if(!r.equals(radio)) {
+        r.checked = false;
+      }
+    });
   }
   submitHandler = e => {
     this.dispatchEvent(this.events.submit);

@@ -19,7 +19,8 @@ class WComponent extends HTMLElement{
     this.attachShadow({ mode: 'open' });
     this.setStylesheet(this.stylesheet);
     this.init();
-    this.componentDidInit();
+    //this.tabIndex = '0';  // Make component focusable
+    this.key = new Date().getTime() + Math.random();
   }
   /**
    * Call update method in attribute changed callback if attribute name is acceptable
@@ -28,9 +29,6 @@ class WComponent extends HTMLElement{
     if(typeof this.constructor.attributes[name] === 'object'){
       this.update({name, oldValue, newValue});
     }
-  }
-  componentDidInit() {
-    //this.tabIndex = '0';  // Make component focusable
   }
   update(){}
   /**
@@ -54,6 +52,9 @@ class WComponent extends HTMLElement{
         }
       });
     });
+  }
+  equals(component) {
+    return this.key === component.key;
   }
   getAttributeParserByName(name) {
     if(typeof name !== 'string') {

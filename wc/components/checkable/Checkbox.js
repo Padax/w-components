@@ -17,6 +17,20 @@ class Checkbox extends Checkable{
     this.bindEvents();
   }
   
+  update({ name, oldValue, newValue } = {}) {
+    super.update({ name, oldValue, newValue });
+    
+    const checkedAttr = this.constructor.attributes.checked;
+    const disabledAttr = this.constructor.attributes.disabled;
+    if(name === checkedAttr.name || name === disabledAttr.name) {
+
+      // Trigger change event
+      if(name === checkedAttr.name && oldValue !== newValue) {
+        this.dispatchEvent(this.events.change);
+      }
+    }
+  }
+  
   clickHandler = e => {
     this.dispatchEvent(this.events.click);
     if(!this.disabled) {

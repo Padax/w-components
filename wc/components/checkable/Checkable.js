@@ -78,23 +78,6 @@ class Checkable extends WComponent{
     super();
   }
 
-  update({ name, oldValue, newValue } = {}) {
-    if(name === this.constructor.attributes.checked.name
-       || name === this.constructor.attributes.disabled.name) {
-      const input = this.shadowRoot.querySelector('input');
-      const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
-      if(value) {
-        input.setAttribute(name, value);
-      } else {
-        input.removeAttribute(name);
-      }
-
-      // Trigger change event
-      if(name === this.constructor.attributes.checked.name && oldValue !== newValue) {
-        this.dispatchEvent(this.events.change);
-      }
-    }
-  }
   bindEvents() {
     this.events = {
       change: new Event('change'),
@@ -116,6 +99,19 @@ class Checkable extends WComponent{
     DOM.create('span', { props: iconProps }, ctn);
 
     DOM.create('slot', {}, ctn);
+  }
+  update({ name, newValue } = {}) {
+    const checkedAttr = this.constructor.attributes.checked;
+    const disabledAttr = this.constructor.attributes.disabled;
+    if(name === checkedAttr.name || name === disabledAttr.name) {
+      const input = this.shadowRoot.querySelector('input');
+      const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
+      if(value) {
+        input.setAttribute(name, value);
+      } else {
+        input.removeAttribute(name);
+      }
+    }
   }
 
 }
