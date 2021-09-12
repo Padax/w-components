@@ -37,7 +37,7 @@ class ListItem extends WComponent{
   constructor(){
     super();
   }
-  render(){
+  init(){
     // render
     const mark=this.parentElement.mark?this.parentElement.mark:"";
     const markedItem=DOM.create("div", {props:{className:"item"}, attrs:{mark, disabled: this.disabled}}, this.shadowRoot);

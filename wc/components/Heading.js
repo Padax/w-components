@@ -60,7 +60,7 @@ class Heading extends WComponent{
     super();
   }
 
-  render() {
+  init() {
     const props = {
       className: `heading${this.underlined ? ' underlined' : ''}`
     };

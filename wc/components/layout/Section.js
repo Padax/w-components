@@ -20,7 +20,7 @@ class Section extends WComponent{
   constructor(){
     super();
   }
-  render(){
+  init(){
     const grid=DOM.create(`${window.prefix}-grid`, {attrs:{
       columns:3, rows:2
     }, styles:{

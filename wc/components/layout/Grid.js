@@ -38,7 +38,7 @@ class Grid extends WComponent{
       }
     `, "grid");
   }
-  render(){
+  init(){
     this.setGridStylesheet(this.columns, this.rows);
     if(!this.container){
       this.container=DOM.create("div", {props:{className:"container"}}, this.shadowRoot);
@@ -46,7 +46,7 @@ class Grid extends WComponent{
     }
   }
   attributeChangedCallback(name, oldValue, newValue){
-    this.render();
+    this.init();
   }
 }
 Grid.prototype.stylesheet=stylesheet;

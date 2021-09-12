@@ -11,7 +11,7 @@ class Nav extends WComponent{
   constructor(){
     super();
   }
-  render(){
+  init(){
     const root=DOM.create("slot", {}, this.shadowRoot);
   }
 }

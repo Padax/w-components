@@ -19,7 +19,7 @@ class Dialog extends WComponent{
   constructor(){
     super();
   }
-  render(){
+  init(){
     this.dialog=DOM.create("div", {props:{className:"dialog"}});
     this.head=DOM.create("slot", {props:{name:"head"}}, this.dialog);
     this.main=DOM.create("slot", {props:{name:"main"}}, this.dialog);

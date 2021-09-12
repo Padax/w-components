@@ -99,7 +99,7 @@ class NavPart extends WComponent{
       }
     `);
   }
-  render(){
+  init(){
     let rwdSize = this["rwd-size"];
     if(this["rwd-effect"]!=="none" && rwdSize!=="none"){
       if(rwdSize==="mobile"){

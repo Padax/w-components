@@ -143,7 +143,7 @@ class Code extends WComponent{
 
   };
 
-  render() {
+  init() {
     const props = {
       className: 'code'
     };
