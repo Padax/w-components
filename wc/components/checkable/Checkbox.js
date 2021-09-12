@@ -11,17 +11,19 @@ const stylesheet=`
 `;
 
 class Checkbox extends Checkable{
+
   constructor() {
     super();
     this.bindEvents();
   }
   
   clickHandler = e => {
+    this.dispatchEvent(this.events.click);
     if(!this.disabled) {
       this.checked = !this.checked;
     }
+    e.stopPropagation();
   };
-
 
 }
 Checkbox.prototype.stylesheet += stylesheet;

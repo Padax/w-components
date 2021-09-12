@@ -53,6 +53,7 @@ const stylesheet=`
 `;
 
 class Checkable extends WComponent{
+
   static attributes = {
     checked: {
       name: 'checked', defaultValue: false, 

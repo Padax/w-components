@@ -16,7 +16,6 @@ class WComponent extends HTMLElement{
   constructor(){
     super();
     this.createGettersAndSetters();
-    this.bindProps();
     this.attachShadow({ mode: 'open' });
     this.setStylesheet(this.stylesheet);
     this.componentWillRender();
@@ -27,17 +26,6 @@ class WComponent extends HTMLElement{
   componentWillRender() {}
   componentDidRender() {}
 
-  /**
-   * Set all properties from all observed attributes.
-   */
-  bindProps() {
-    if(!Array.isArray(this.constructor.observedAttributes)) {
-      return;
-    }
-    this.constructor.observedAttributes.forEach(attr => {
-      this[attr.name] = this.getAttribute(attr.name);
-    });
-  }
   /**
    * Dynamically create getters & setters for property-attribute sync 
    *  by parsing class field attribute object.
