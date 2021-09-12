@@ -78,7 +78,7 @@ class Checkable extends WComponent{
     this.bindEvents();
   }
 
-  update(args) {
+  update({ name, oldValue, newValue } = {}) {
     const {name, oldValue, newValue} = args;
     console.log(name, oldValue, newValue); // called right after init because first-added attribute will trigger attributeChangedCallback
     if(name === this.constructor.attributes.checked.name
