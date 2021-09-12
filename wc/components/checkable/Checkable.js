@@ -78,7 +78,8 @@ class Checkable extends WComponent{
     this.bindEvents();
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  update({ name, oldValue, newValue } = {}) {
+    console.log(name, oldValue, newValue); // called right after init because first-added attribute will trigger attributeChangedCallback
     if(name === this.constructor.attributes.checked.name
        || name === this.constructor.attributes.disabled.name) {
       const input = this.shadowRoot.querySelector('input');
@@ -102,7 +103,7 @@ class Checkable extends WComponent{
     };
     this.shadowRoot.addEventListener('click', this.clickHandler);
   }
-  render() {
+  init() {
     const ctn = DOM.create('div', null, this.shadowRoot);
     
     const inputAttrs = { type: this.type };

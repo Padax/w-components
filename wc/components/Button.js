@@ -132,7 +132,7 @@ class Button extends WComponent{
   constructor(){
     super();
   }
-  render(){
+  init(){
     const classList=[];
     classList.push(this.display, this.size, this.outlined?"outline-"+this.color:this.color);
     const attrs={};

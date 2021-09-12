@@ -46,7 +46,7 @@ class Form extends WComponent{
     this.bindEvents();
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  update({ name, oldValue, newValue } = {}) {
     const form = this.shadowRoot.querySelector('form');
     const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
     form[name] = value;
@@ -107,7 +107,7 @@ class Form extends WComponent{
       });
     });
   }
-  render() {
+  init() {
     const attrs = { 
       name: this.name,
       action: this.action, 

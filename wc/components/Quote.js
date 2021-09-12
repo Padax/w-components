@@ -35,7 +35,7 @@ class Quote extends WComponent{
     return this.getDefaultValueByName('align');
   }
 
-  render() {
+  init() {
     DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
 
     const container = DOM.create('div', { props: { className: this.parseAlign() } }, this.shadowRoot);

@@ -53,7 +53,7 @@ class List extends WComponent{
   constructor(){
     super();
   }
-  render(){
+  init(){
     const list=DOM.create("div", {props:{className:"list"}, attrs:{appearance: this.appearance}}, this.shadowRoot);
     DOM.create("slot", {}, list);
     /*
