@@ -32,15 +32,43 @@ class SPAPage extends WComponent{
       this.setCurrent(this.match(window.location.pathname));
     });
   }
-  /*
-  componentWillRender(){
-    this.current=this.match(window.location.pathname);
+  init(){
+    // init custom events
     this.events={
       init:new Event("init"),
       dispose:new Event("dispose")
     };
+    // handle template
+    this.current=this.match(window.location.pathname);
+    if(this.current){ // if shown, take content outside of template
+      const template=this.querySelector("template");
+      if(template!==null){
+        this.appendChild(template.content.cloneNode(true));
+        template.remove();
+      }
+    }
+    // first render
+    this.render();
   }
-  */
+  update(){
+    this.render();
+  }
+  render(){
+    const props={
+      className:this.current?"show":"hide"
+    };
+    if(this.root){
+      DOM.modify(this.root, {props: props});
+    }else{
+      this.root=DOM.create("slot", {props: props}, this.shadowRoot);
+    }
+    // fire custom event
+    if(this.current){
+      this.dispatchEvent(this.events.init);
+    }else{
+      this.dispatchEvent(this.events.dispose);
+    }
+  }
   match(path){
     return path.startsWith(this.path);
   }
@@ -49,29 +77,7 @@ class SPAPage extends WComponent{
       return;
     }
     this.current=current;
-    this.init();
-  }
-  init(){
-    const props={
-      className:this.current?"show":"hide"
-    };
-    if(this.current){ // if shown, take content outside of template
-      const template=this.querySelector("template");
-      if(template!==null){
-        this.appendChild(template.content.cloneNode(true));
-        template.remove();
-      }
-    }
-    if(this.root){
-      DOM.modify(this.root, {props: props});
-    }else{
-      this.root=DOM.create("slot", {props: props}, this.shadowRoot);
-    }
-    if(this.current){
-      this.dispatchEvent(this.events.init);
-    }else{
-      this.dispatchEvent(this.events.dispose);
-    }
+    this.update();
   }
 }
 SPAPage.prototype.stylesheet=stylesheet;

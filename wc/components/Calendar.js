@@ -77,16 +77,9 @@ class Calendar extends WComponent{
   constructor(){
     super();
   }
-  /*
-  componentWillRender(){
-    this.calendar=null;
-    this.calendarDate=new Date();
-    this.entries={};
-  }
-  */
   changeMonth(offset){
     this.calendarDate.setMonth(this.calendarDate.getMonth()+offset);
-    this.init();
+    this.update();
   }
   addEntry(entry){
     if(this.entries[entry.date]){
@@ -94,12 +87,21 @@ class Calendar extends WComponent{
     }else{
       this.entries[entry.date]=[entry];
     }
-    this.init();
+    this.update();
   }
   init(){
-    if(this.calendar!==null){
-      this.calendar.remove();
-    }
+    // init fields
+    this.calendar=null;
+    this.calendarDate=new Date();
+    this.entries={};
+    // first render
+    this.render();
+  }
+  update(){
+    this.calendar.remove();
+    this.render();
+  }
+  render(){
     // create calendar
     const calendar=DOM.create("div", {props:{
       className:"calendar"
