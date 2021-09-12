@@ -79,7 +79,6 @@ class Checkable extends WComponent{
   }
 
   update({ name, oldValue, newValue } = {}) {
-    console.log(name, oldValue, newValue); // called right after init because first-added attribute will trigger attributeChangedCallback
     if(name === this.constructor.attributes.checked.name
        || name === this.constructor.attributes.disabled.name) {
       const input = this.shadowRoot.querySelector('input');

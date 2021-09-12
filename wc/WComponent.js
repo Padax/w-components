@@ -19,6 +19,7 @@ class WComponent extends HTMLElement{
     this.attachShadow({ mode: 'open' });
     this.setStylesheet(this.stylesheet);
     this.init();
+    this.componentDidInit();
   }
   /**
    * Call update method in attribute changed callback if attribute name is acceptable
@@ -27,6 +28,9 @@ class WComponent extends HTMLElement{
     if(typeof this.constructor.attributes[name] === 'object'){
       this.update({name, oldValue, newValue});
     }
+  }
+  componentDidInit() {
+    //this.tabIndex = '0';  // Make component focusable
   }
   update(){}
   /**
