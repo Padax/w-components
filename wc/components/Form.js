@@ -46,7 +46,7 @@ class Form extends WComponent{
     this.bindEvents();
   }
 
-  update(args) {
+  update({ name, oldValue, newValue } = {}) {
     const {name, oldValue, newValue} = args;
     const form = this.shadowRoot.querySelector('form');
     const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
