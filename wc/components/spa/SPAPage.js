@@ -72,7 +72,6 @@ class SPAPage extends WComponent{
     }
   }
   match(path){
-    console.log(path, window.wconfig.spa.basename+this.path)
     return path.startsWith(window.wconfig.spa.basename+this.path);
   }
   setCurrent(current){

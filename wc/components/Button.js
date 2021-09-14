@@ -123,7 +123,7 @@ class Button extends WComponent{
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^inline-block$|^block$/
       )
-    },
+    }
   };
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
