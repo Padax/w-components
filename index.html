@@ -22,7 +22,11 @@ w-section>div{
 </style>
 <script type="module">
 	import wc from "./wc/index.js";
-	wc.init();
+	wc.init({
+		spa:{
+			basename:window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))
+		}
+	});
 	// manipulate calendar
 	const calendar=document.querySelector("w-calendar");
 	calendar.addEntry({date:"2021-05-27", content:"測試看看"});

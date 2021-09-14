@@ -43,7 +43,7 @@ class ListItem extends WComponent{
     const markedItem=DOM.create("div", {props:{className:"item"}, attrs:{mark, disabled: this.disabled}}, this.shadowRoot);
     if(mark==="number"){
       // calculate index
-      const itemTagName=window.prefix+"-li";
+      const itemTagName=window.wconfig.prefix+"-li";
       let element=this;
       let index=0;
       while((element=element.previousSibling)!=null){

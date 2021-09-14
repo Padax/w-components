@@ -21,7 +21,7 @@ class Section extends WComponent{
     super();
   }
   init(){
-    const grid=DOM.create(`${window.prefix}-grid`, {attrs:{
+    const grid=DOM.create(`${window.wconfig.prefix}-grid`, {attrs:{
       columns:3, rows:2
     }, styles:{
       width:`${this.width}px`, maxWidth:"100%"

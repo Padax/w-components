@@ -17,12 +17,13 @@ import Radio from "./components/checkable/Radio.js";
 import Form from "./components/Form.js";
 import SPALink from "./components/spa/SPALink.js";
 import SPAPage from "./components/spa/SPAPage.js";
-
+const defaultWConfig={prefix:"w", spa:{basename:""}};
 const wc={
-  init:function(prefix="w"){
-    window.prefix=prefix;
+  init:function(wconfig={}){
+    window.wconfig=Object.assign(defaultWConfig, wconfig);
     this.initTheme();
 
+    const prefix=window.wconfig.prefix;
     defineCustomElement(prefix, 'nav', Nav);
     defineCustomElement(prefix, 'nav-part', NavPart);
     defineCustomElement(prefix, 'grid', Grid);

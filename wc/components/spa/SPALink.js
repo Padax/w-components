@@ -23,10 +23,11 @@ class SPALink extends WComponent{
     }}, this.shadowRoot);
   }
   changePage(){
-    window.history.pushState({}, this.href, this.href);
+    const href=window.wconfig.spa.basename+this.href;
+    window.history.pushState({}, href, href);
     const pages=document.querySelectorAll("w-spa-page");
     pages.forEach((page)=>{
-      page.setCurrent(page.match(this.href));
+      page.setCurrent(page.match(href));
     });
   }
 }

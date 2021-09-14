@@ -38,15 +38,8 @@ class SPAPage extends WComponent{
       init:new Event("init"),
       dispose:new Event("dispose")
     };
-    // handle template
+    // init current
     this.current=this.match(window.location.pathname);
-    if(this.current){ // if shown, take content outside of template
-      const template=this.querySelector("template");
-      if(template!==null){
-        this.appendChild(template.content.cloneNode(true));
-        template.remove();
-      }
-    }
     // first render
     this.render();
   }
@@ -54,6 +47,15 @@ class SPAPage extends WComponent{
     this.render();
   }
   render(){
+    // handle template
+    if(this.current){ // if shown, take content outside of template
+      const template=this.querySelector("template");
+      if(template!==null){
+        this.appendChild(template.content.cloneNode(true));
+        template.remove();
+      }
+    }
+    // render contents
     const props={
       className:this.current?"show":"hide"
     };
@@ -70,7 +72,8 @@ class SPAPage extends WComponent{
     }
   }
   match(path){
-    return path.startsWith(this.path);
+    console.log(path, window.wconfig.spa.basename+this.path)
+    return path.startsWith(window.wconfig.spa.basename+this.path);
   }
   setCurrent(current){
     if(this.current===current){
