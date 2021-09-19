@@ -1,4 +1,5 @@
-import WComponent, { DOM } from "../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../WComponent.js";
+
 const stylesheet = `
   .left { text-align: left; }
   .center { text-align: center; }
@@ -12,33 +13,29 @@ const stylesheet = `
     content: '— '
   }
 `;
+
 class Quote extends WComponent{
+  
+  static attributes = {
+    align: {
+      name: 'align', defaultValue: 'left', 
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^left$|^center$|^right$/
+      )
+    }
+  };
+  static get observedAttributes() {
+    return this.getObservedAttributes(this.attributes);
+  }
+
   constructor(){
     super();
-  }
-  static defaultValues = {
-    align: 'left'
-  };
-
-  getDefaultValueByName(name) {
-    return this.constructor.defaultValues[name];
-  }
-  /**
-   * Parse align attribute to a valid value
-   * @param {string} align 
-   * @returns {string} Alignment class name
-   */
-   parseAlign(align = this.getAttribute('align')) {
-    if(align == 'left' || align == 'center' || align == 'right') {
-      return align;
-    }
-    return this.getDefaultValueByName('align');
   }
 
   init() {
     DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
 
-    const container = DOM.create('div', { props: { className: this.parseAlign() } }, this.shadowRoot);
+    const container = DOM.create('div', { props: { className: this.align } }, this.shadowRoot);
     
     const quoteContainer = DOM.create('div', {}, container);
     DOM.create('slot', { props: { name: 'quote' } }, quoteContainer);

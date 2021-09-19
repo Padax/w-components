@@ -1,4 +1,4 @@
-import WComponent, { DOM } from "../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 const stylesheet=`
   .dialog{
     width:300px;
@@ -13,9 +13,19 @@ const stylesheet=`
   }
 `;
 class Dialog extends WComponent{
-  static get observedAttributes(){
-      return ["open"];
+  
+  static attributes = {
+    open: {
+      name: 'open', defaultValue: false, 
+      parser: (value, attr) => AttributeParser.parseBoolAttr(
+        value, attr.defaultValue
+      )
+    }
+  };
+  static get observedAttributes() {
+    return this.getObservedAttributes(this.attributes);
   }
+
   constructor(){
     super();
   }
@@ -24,10 +34,10 @@ class Dialog extends WComponent{
     this.head=DOM.create("slot", {props:{name:"head"}}, this.dialog);
     this.main=DOM.create("slot", {props:{name:"main"}}, this.dialog);
   }
-  connectedCallback(){}
-  attributeChangedCallback(name, oldValue, newValue){
-    if(name==="open"){
-      if(newValue==="true"){
+  update({ name, newValue }){
+    const attr = this.constructor.attributes.open;
+    if(name === attr.name){
+      if(attr.parser(newValue, attr.defaultValue)){
         this.shadowRoot.appendChild(this.dialog);
       }else{
         this.dialog.remove();
