@@ -1,4 +1,4 @@
-import WComponent, { DOM, AttributeParser } from "../WComponent.js";
+import WComponent, { DOM } from "../WComponent.js";
 
 const stylesheet=`
 `;
@@ -19,7 +19,7 @@ class Form extends WComponent{
    */
    get data() { 
     const formData = new FormData();
-    const elements = Array.from(this.querySelectorAll(FORM_ELEMENT_TYPES));
+    const elements = Array.from(this.querySelectorAll(this.formElementTypes));
     elements.forEach(elem => {
       // Exclude elements with invalid name or value
       if(typeof elem.name !== 'string' || typeof elem.value !== 'string') { return; }
@@ -44,6 +44,7 @@ class Form extends WComponent{
     this.bindFormAccess();
     this.bindFormElementAccess();
     this.bindEvents();
+    this.formElementTypes = getFormElementTypes();
   }
 
   update({ name, oldValue, newValue } = {}) {
@@ -88,7 +89,7 @@ class Form extends WComponent{
    * Dynamically add getters & setters for form elements to get direct access by name.
    */
   bindFormElementAccess() {
-    this.querySelectorAll(FORM_ELEMENT_TYPES).forEach(elem => {
+    this.querySelectorAll(this.formElementTypes).forEach(elem => {
       // Exclude elements with invalid name
       if(typeof elem.name !== 'string') { return; }
       // Exclude elements which getters are already set
@@ -137,9 +138,14 @@ class Form extends WComponent{
 }
 Form.prototype.stylesheet=stylesheet;
 
-const FORM_ELEMENT_TYPES = [
-  'input', 'select', 'textarea',
-  'w-checkbox', 'w-radio'
-];
+function getFormElementTypes() {
+  let types = [ 'input', 'select', 'textarea' ];
+  if(window.wconfig && typeof window.wconfig.prefix === 'string') {
+    types.push(`${window.wconfig.prefix}-checkbox`);
+    types.push(`${window.wconfig.prefix}-radio`);
+  }
+  
+  return types;
+}
 
 export default Form;
