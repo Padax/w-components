@@ -76,6 +76,7 @@ class Checkable extends WComponent{
 
   constructor() {
     super();
+    this.tabIndex = '0';  // For focus/blur event
   }
 
   bindEvents() {
