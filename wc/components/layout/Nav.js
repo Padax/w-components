@@ -20,7 +20,6 @@ class Nav extends WComponent{
     DOM.create("slot", {}, this.shadowRoot);
   }
   scroll(){
-    console.log(this.docTop, this.docThreshold);
     if(this.docTop<=this.docThreshold){
       if(document.documentElement.scrollTop>this.docThreshold){
         this.style.backgroundColor="white";
