@@ -133,14 +133,26 @@ class Button extends WComponent{
     super();
   }
   init(){
+    this.render();
+  }
+  update(){
+    this.render();
+  }
+  render(){
     const classList=[];
     classList.push(this.display, this.size, this.outlined?"outline-"+this.color:this.color);
-    const attrs={};
+    const attrs={removes:[]};
     if(this.disabled){
       attrs["disabled"]=true;
+    }else{
+      attrs.removes.push("disabled");
     }
-    const btn=DOM.create("button", {props:{className:classList.join(" ")}, attrs:attrs}, this.shadowRoot);
-    DOM.create("slot", {}, btn);
+    if(this.btn){
+      DOM.modify(this.btn, {props:{className:classList.join(" ")}, attrs:attrs});
+    }else{
+      this.btn=DOM.create("button", {props:{className:classList.join(" ")}, attrs:attrs}, this.shadowRoot);
+      DOM.create("slot", {}, this.btn);
+    }
   }
 }
 Button.prototype.stylesheet=stylesheet;

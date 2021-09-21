@@ -37,6 +37,11 @@ const DOM={
     return element;
   },
   setAttributes:function(element, attributes){
+    if(attributes.removes instanceof Array){
+      attributes.removes.forEach((name)=>{
+        element.removeAttribute(name);
+      });
+    }
     for(const name in attributes){
       element.setAttribute(name, attributes[name]);
     }
