@@ -15,9 +15,13 @@ w-nav-part>div>a{
 w-list>w-li>a.link{
 	color:#880000;
 }
-w-section>div{
-	background-color:#ffcccc;text-align:center;
-	margin:10px;
+w-section.keyvisual>div.welcome{
+	height:450px;
+	background-image:url("image/keyvisual.png");
+	background-repeat:no-repeat;
+	background-position:bottom right;
+	color:var(--color-primary-60);
+	padding-left:100px;
 }
 </style>
 <script type="module">
@@ -62,6 +66,11 @@ w-section>div{
 			<div><a target="_blank" href="https://github.com/Padax/w-components">Donate</a></div>
 		</w-nav-part>
 	</w-nav>
+	<w-section class="keyvisual" cols="1">
+		<div class="welcome">
+			<w-display-heading level="5">Your Next Stop:<br/>W-Components</w-display-heading>
+		</div>
+	</w-section>
 	<w-section cols="3" rowgap="70">
 		<w-card layout="icon-cross" icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
 		<w-card layout="icon-cross" icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
