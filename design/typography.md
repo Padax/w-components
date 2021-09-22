@@ -11,7 +11,7 @@
 
 ## Font sizes
 
-Typography scale: 1.25 line-height
+Typography scale: 1.5 line-height
 
 ### Display headings
 Header Tags | Usage | Font size & Line-height (px)
