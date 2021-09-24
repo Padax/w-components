@@ -7,7 +7,6 @@ Keyboarding and screen reader users.
 
 ## Tools
 ### Color Contrast
-[[Microsoft] A11y - Focus Orderer](https://www.figma.com/community/plugin/731310036968334777/A11y---Focus-Orderer)
+- Microsoft: [A11y - Color Contrast Checker](https://www.figma.com/community/plugin/733159460536249875/A11y---Color-Contrast-Checker)
 ### Navigation experiences
-[[Microsoft] A11y - Color Contrast Checker](https://www.figma.com/community/plugin/733159460536249875/A11y---Color-Contrast-Checker)
-[]()
+- Microsoft: [A11y - Focus Orderer](https://www.figma.com/community/plugin/731310036968334777/A11y---Focus-Orderer)
