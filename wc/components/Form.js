@@ -54,12 +54,16 @@ class Form extends WComponent{
     };
 
     // Re-bind form element access on slot change
-    const slot = this.shadowRoot.querySelector('slot');
-    slot.addEventListener('slotchange', () => this.bindFormElementAccess());
+    this.shadowRoot.querySelector('slot')
+      .addEventListener('slotchange', () => this.bindFormElementAccess());
+
+    // Bind text input enter submit
+    this.querySelector('input[type="text"]')
+      .addEventListener('keypress', this.submitHandler);
 
     // Bind submit event on submit button click
-    const submitBtn = this.querySelector('input[type="submit"], button[type="submit"]');
-    submitBtn.addEventListener('click', this.submitHandler);
+    this.querySelector('input[type="submit"], button[type="submit"]')
+      .addEventListener('click', this.submitHandler);
 
     // Bind radio click callback for name group control
     this.querySelectorAll(`${window.wconfig.prefix}-radio`).forEach(radio => {
