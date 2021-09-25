@@ -1,6 +1,9 @@
 import WComponent, { DOM } from "../WComponent.js";
 
 const stylesheet=`
+  #elementCtn * {
+    display: none !important;
+  }
 `;
 
 class Form extends WComponent{
@@ -17,12 +20,9 @@ class Form extends WComponent{
    * Get form data.
    * @returns {FormData}
    */
-   get data() { 
+  get data() { 
     const formData = new FormData();
-    const elements = Array.from(this.querySelectorAll(this.formElementTypes));
-    elements.forEach(elem => {
-      // Exclude elements with invalid name or value
-      if(typeof elem.name !== 'string' || typeof elem.value !== 'string') { return; }
+    this.getValidFormElements().forEach(elem => {
       // Exclude unchecked checkbox & radio
       if(elem.type === 'checkbox' && !elem.checked) { return; }
       if(elem.type === 'radio' && !elem.checked) { return; }
@@ -47,15 +47,6 @@ class Form extends WComponent{
     this.formElementTypes = getFormElementTypes();
   }
 
-  update({ name, oldValue, newValue } = {}) {
-    const form = this.shadowRoot.querySelector('form');
-    const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
-    form[name] = value;
-
-    if(name === this.constructor.attributes.name.name) {
-      this.bindFormAccess(oldValue);
-    }
-  }
   bindEvents() {
     this.events = {
       submit: new Event('submit')
@@ -70,7 +61,7 @@ class Form extends WComponent{
     submitBtn.addEventListener('click', this.submitHandler);
 
     // Bind radio click callback for name group control
-    this.querySelectorAll('w-radio').forEach(radio => {
+    this.querySelectorAll(`${window.wconfig.prefix}-radio`).forEach(radio => {
       radio.addEventListener('change', this.radioChangeCallback);
     });
   }
@@ -89,7 +80,7 @@ class Form extends WComponent{
    * Dynamically add getters & setters for form elements to get direct access by name.
    */
   bindFormElementAccess() {
-    this.querySelectorAll(this.formElementTypes).forEach(elem => {
+    this.getValidFormElements().forEach(elem => {
       // Exclude elements with invalid name
       if(typeof elem.name !== 'string') { return; }
       // Exclude elements which getters are already set
@@ -108,22 +99,56 @@ class Form extends WComponent{
       });
     });
   }
+  getValidFormElements() {
+    return Array.from(this.querySelectorAll(this.formElementTypes))
+      .filter(elem => typeof elem.name === 'string' && elem.disabled !== true);
+  }
   init() {
     const attrs = { 
       name: this.name,
       action: this.action, 
       method: this.method 
     };
+
     const form = DOM.create('form', { attrs }, this.shadowRoot);
-    
     DOM.create('slot', {}, form);
+    DOM.create('div', { attrs: { id: 'elementCtn' } }, form);
+  }
+  injectFormElements() {
+    const formElements = this.getValidFormElements().map(elem => {
+      if(elem instanceof HTMLFormElement) {
+        return elem.cloneNode(true);
+      } else {
+        const attrs = {
+          type: elem.type,
+          name: elem.name,
+          value: elem.value
+        };
+        if(elem.checked) {
+          attrs.checked = elem.checked;
+        }
+        return DOM.create('input', { attrs })
+      }
+    });
+
+    const elementCtn = this.shadowRoot.querySelector('#elementCtn');
+    elementCtn.replaceChildren(...formElements);
+  }
+  update({ name, oldValue, newValue } = {}) {
+    const form = this.shadowRoot.querySelector('form');
+    const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
+    form[name] = value;
+
+    if(name === this.constructor.attributes.name.name) {
+      this.bindFormAccess(oldValue);
+    }
   }
 
   radioChangeCallback = e => {
     const radio = e.target;
     if(typeof radio.name !== 'string' || radio.disabled) { return; }
 
-    const radios = Array.from(this.querySelectorAll(`w-radio[name='${radio.name}']`));
+    const radios = Array.from(this.querySelectorAll(`${window.wconfig.prefix}-radio[name='${radio.name}']`));
     radios.forEach(r => {
       if(!r.equals(radio)) {
         r.checked = false;
@@ -131,6 +156,7 @@ class Form extends WComponent{
     });
   }
   submitHandler = e => {
+    this.injectFormElements();
     this.dispatchEvent(this.events.submit);
     this.shadowRoot.querySelector('form').submit();
   }
