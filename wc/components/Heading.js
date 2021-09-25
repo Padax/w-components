@@ -1,5 +1,8 @@
 import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 const stylesheet = `
+  :host {
+    display: block;
+  }
   h1 { 
     font-size: 2.5rem; 
     font-weight: var(--font-weight-medium);

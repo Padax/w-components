@@ -127,6 +127,9 @@ const stylesheet = `
     /* purposely ignored */
   }
 
+  :host {
+    display: block;
+  }
   div.code {
     color: var(--color-gray-80);
     background-color: var(--color-gray-10);

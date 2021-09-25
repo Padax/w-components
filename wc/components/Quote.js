@@ -1,6 +1,9 @@
 import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 
 const stylesheet = `
+  :host {
+    display: block;
+  }
   .left { text-align: left; }
   .center { text-align: center; }
   .right { text-align: right; }
@@ -33,8 +36,6 @@ class Quote extends WComponent{
   }
 
   init() {
-    DOM.create('style', { props: { textContent: stylesheet } }, this.shadowRoot);
-
     const container = DOM.create('div', { props: { className: this.align } }, this.shadowRoot);
     
     const quoteContainer = DOM.create('div', {}, container);

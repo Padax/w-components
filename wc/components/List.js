@@ -1,5 +1,8 @@
 import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 const stylesheet=`
+  :host {
+    display: block;
+  }
   div.list{
     margin:1rem 0px;
   }

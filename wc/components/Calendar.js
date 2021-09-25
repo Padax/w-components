@@ -1,6 +1,9 @@
 import DateTime from "../util/DateTime.js";
 import WComponent, { DOM } from "../WComponent.js";
 const stylesheet=`
+  :host {
+    display: block;
+  }
   .calendar{}
   .calendar>.month{
     display:flex;
