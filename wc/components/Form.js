@@ -28,6 +28,7 @@ class Form extends WComponent{
       if(elem.type === 'radio' && !elem.checked) { return; }
 
       const existingValue = formData.get(elem.name);
+      // Set value if key is null, or append value as an array
       if(existingValue === null) {
         formData.set(elem.name, elem.value);
       } else if(Array.isArray(existingValue)) {
@@ -99,6 +100,10 @@ class Form extends WComponent{
       });
     });
   }
+  /**
+   * Get valid form elements for submit, ie. has a name & is not disabled.
+   * @returns [Array<Node>]
+   */
   getValidFormElements() {
     return Array.from(this.querySelectorAll(this.formElementTypes))
       .filter(elem => typeof elem.name === 'string' && elem.disabled !== true);
@@ -112,13 +117,17 @@ class Form extends WComponent{
 
     const form = DOM.create('form', { attrs }, this.shadowRoot);
     DOM.create('slot', {}, form);
+    // Container for form element injection for submit
     DOM.create('div', { attrs: { id: 'elementCtn' } }, form);
   }
+  /**
+   * Clone all valid form elements into inner form for submit.
+   */
   injectFormElements() {
     const formElements = this.getValidFormElements().map(elem => {
-      if(elem instanceof HTMLFormElement) {
+      if(elem instanceof HTMLFormElement) { // HTML native element
         return elem.cloneNode(true);
-      } else {
+      } else {  // W-Components
         const attrs = {
           type: elem.type,
           name: elem.name,
@@ -131,6 +140,7 @@ class Form extends WComponent{
       }
     });
 
+    // Replace the content with the current valid form elements
     const elementCtn = this.shadowRoot.querySelector('#elementCtn');
     elementCtn.replaceChildren(...formElements);
   }
@@ -139,16 +149,21 @@ class Form extends WComponent{
     const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
     form[name] = value;
 
+    // Re-bind form access
     if(name === this.constructor.attributes.name.name) {
       this.bindFormAccess(oldValue);
     }
   }
 
+  /**
+   * Change event handler for w-radio name group value set.
+   */
   radioChangeCallback = e => {
     const radio = e.target;
     if(typeof radio.name !== 'string' || radio.disabled) { return; }
 
     const radios = Array.from(this.querySelectorAll(`${window.wconfig.prefix}-radio[name='${radio.name}']`));
+    // Compare each w-radio in the same group, uncheck all which are not the current event target.
     radios.forEach(r => {
       if(!r.equals(radio)) {
         r.checked = false;
