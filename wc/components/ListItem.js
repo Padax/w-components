@@ -28,6 +28,12 @@ class ListItem extends WComponent{
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
+    },
+    mark: { 
+      name: 'mark', defaultValue: 'none',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^none$|^circle$|^outline-circle$|^number$/
+      )
     }
   };
   static get observedAttributes() {
@@ -39,8 +45,8 @@ class ListItem extends WComponent{
   }
   init(){
     // render
-    const mark=this.parentElement.mark?this.parentElement.mark:"";
-    const markedItem=DOM.create("div", {props:{className:"item"}, attrs:{mark, disabled: this.disabled}}, this.shadowRoot);
+    const mark=this.mark;
+    this.markedItem=DOM.create("div", {props:{className:"item"}, attrs:{mark}}, this.shadowRoot);
     if(mark==="number"){
       // calculate index
       const itemTagName=window.wconfig.prefix+"-li";
@@ -51,11 +57,38 @@ class ListItem extends WComponent{
           index++;
         }
       }
-      DOM.create("div", {props:{className:"mark", textContent:(index+1)+"."}}, markedItem);
+      DOM.create("div", {props:{className:"mark", textContent:(index+1)+"."}}, this.markedItem);
     }else{
-      DOM.create("div", {props:{className:"mark"}}, markedItem);
+      DOM.create("div", {props:{className:"mark"}}, this.markedItem);
     }
-    DOM.create("slot", {}, markedItem);
+    DOM.create("slot", {}, this.markedItem);
+  }
+  update(){
+    // handle disabled
+    const attrs={removes:[]};
+    if(this.disabled){
+      attrs["disabled"]=true;
+    }else{
+      attrs.removes.push("disabled");
+    }
+    DOM.modify(this, {attrs});
+    // handle mark
+    const mark=this.mark;
+    DOM.modify(this.markedItem, {attrs:{mark}});
+    if(mark==="number"){
+      // calculate index
+      const itemTagName=window.wconfig.prefix+"-li";
+      let element=this;
+      let index=0;
+      while((element=element.previousSibling)!=null){
+        if(typeof element.tagName==="string" && element.tagName.toLowerCase()===itemTagName){
+          index++;
+        }
+      }
+      DOM.modify(this.markedItem.querySelector(".mark"), {props:{textContent:(index+1)+"."}});
+    }else{
+      DOM.modify(this.markedItem.querySelector(".mark"), {props:{textContent:""}});
+    }
   }
 }
 ListItem.prototype.stylesheet=stylesheet;

@@ -57,20 +57,23 @@ class List extends WComponent{
     super();
   }
   init(){
-    const list=DOM.create("div", {props:{className:"list"}, attrs:{appearance: this.appearance}}, this.shadowRoot);
-    DOM.create("slot", {}, list);
-    /*
-    const items=this.querySelectorAll(window.prefix+"-li");
-    items.forEach((item)=>{
-      const markedItemAttrs={};
-      if(item.getAttribute("disabled")!==null){
-        markedItemAttrs.disabled=true;
-      }
-      const markedItem=DOM.create("div", {props:{className:"item"}, attrs:markedItemAttrs}, list);
-      DOM.create("div", {props:{className:"mark"}}, markedItem);
-      DOM.replace(item, markedItem);
-    });
-    */
+    for(let i=0;i<this.children.length;i++){
+      this.children[i].setAttribute("mark", this.mark);
+    }
+    this.list=DOM.create("div", {props:{className:"list"}, attrs:{appearance: this.appearance}}, this.shadowRoot);
+    DOM.create("slot", {}, this.list);
+  }
+  update(args){
+    switch(args.name){
+      case 'mark':
+        for(let i=0;i<this.children.length;i++){
+          this.children[i].setAttribute("mark", args.newValue);
+        }
+        break;
+      case 'appearance':
+        DOM.modify(this.list, {attrs:{appearance: this.appearance}});
+        break;
+    }
   }
 }
 List.prototype.stylesheet=stylesheet;

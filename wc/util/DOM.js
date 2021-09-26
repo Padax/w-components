@@ -41,6 +41,7 @@ const DOM={
       attributes.removes.forEach((name)=>{
         element.removeAttribute(name);
       });
+      delete attributes.removes;
     }
     for(const name in attributes){
       element.setAttribute(name, attributes[name]);
