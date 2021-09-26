@@ -50,7 +50,10 @@ class Form extends WComponent{
 
   bindEvents() {
     this.events = {
-      submit: new Event('submit')
+      submit: new Event(
+        'submit', 
+        { cancelable: true }  // For form submit prevention
+      )
     };
 
     // Re-bind form element access on slot change
@@ -176,8 +179,10 @@ class Form extends WComponent{
   }
   submitHandler = e => {
     this.injectFormElements();
-    this.dispatchEvent(this.events.submit);
-    this.shadowRoot.querySelector('form').submit();
+    if(this.dispatchEvent(this.events.submit)) {
+      // Submit inner form only if submit event dispatch is not cancelled
+      this.shadowRoot.querySelector('form').submit();
+    }
   }
 
 }
