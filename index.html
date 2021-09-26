@@ -15,13 +15,12 @@ w-nav-part>div>a{
 w-list>w-li>a.link{
 	color:#880000;
 }
-w-section.keyvisual>div.welcome{
-	height:450px;
-	background-image:url("image/keyvisual.png");
-	background-repeat:no-repeat;
-	background-position:bottom right;
+w-hero{
+	display:block;
+	background-color:var(--color-gray-10);
+}
+w-hero>w-display-heading{
 	color:var(--color-primary-60);
-	padding-left:100px;
 }
 </style>
 <script type="module">
@@ -56,21 +55,22 @@ w-section.keyvisual>div.welcome{
 			</div>
 		</w-nav-part>
 		<w-nav-part arrange="left" rwd-effect="slide" rwd-size="800">
-			<div><w-spa-link href="/heading">Heading</w-spa-link></div>
-			<div><w-spa-link href="/main">Main</w-spa-link></div>
-			<div><a href="https://www.google.com/">Google</a></div>
-			<div><a href="https://www.twitter.com/">Twitter</a></div>
+			<div><w-spa-link href="/heading">設計</w-spa-link></div>
+			<div><w-spa-link href="/main">元件</w-spa-link></div>
+			<div><w-spa-link href="/document">開發</w-spa-link></div>
 		</w-nav-part>
 		<w-nav-part width="fit" arrange="right" rwd-effect="iconify" rwd-size="mobile">
 			<div><a target="_blank" href="https://github.com/Padax/w-components">GitHub</a></div>
 			<div><a target="_blank" href="https://github.com/Padax/w-components">Donate</a></div>
 		</w-nav-part>
 	</w-nav>
-	<w-section class="keyvisual" cols="1">
-		<div class="welcome">
-			<w-display-heading level="5">Your Next Stop:<br/>W-Components</w-display-heading>
+	<w-hero type="image" src="image/keyvisual.png">
+		<w-display-heading level="5">Your Next Stop:<br/>W-Components</w-display-heading>
+		<w-heading level="3">基於 Web Components 原生技術，<br/>執行高效率、高品質程式碼，俐落的設計質感。</w-heading>
+		<div>
+			<w-button size="xlarge">開始使用</w-button>
 		</div>
-	</w-section>
+	</w-hero>
 	<w-section cols="3" rowgap="70">
 		<w-card layout="icon-cross" icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
 		<w-card layout="icon-cross" icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>

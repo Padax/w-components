@@ -3,7 +3,7 @@ const stylesheet=`
   :host{
     display:flex;
     justify-content:center;
-    padding:50px 0px;
+    padding:80px 0px;
   }
 `;
 class Section extends WComponent{

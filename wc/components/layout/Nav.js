@@ -2,8 +2,8 @@ import WComponent, { DOM } from "../../WComponent.js";
 const stylesheet=`
   :host{
     display:flex;align-items:center;
-    padding:15px;
-    position:sticky;top:0px;left:0px;
+    padding:15px;width:calc(100% - 30px);
+    position:fixed;top:0px;left:0px;
     background-color:transparent;
     transition:background-color 0.2s;
     z-index:100;
@@ -15,7 +15,7 @@ class Nav extends WComponent{
   }
   init(){
     this.docTop=document.documentElement.scrollTop;
-    this.docThreshold=100;
+    this.docThreshold=0;
     window.addEventListener("scroll", this.scroll.bind(this));
     DOM.create("slot", {}, this.shadowRoot);
   }

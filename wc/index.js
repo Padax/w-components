@@ -3,6 +3,7 @@ import Nav from "./components/layout/Nav.js";
 import NavPart from "./components/layout/NavPart.js";
 import Grid from "./components/layout/Grid.js";
 import Section from "./components/layout/Section.js";
+import Hero from "./components/layout/Hero.js";
 import Card from "./components/layout/Card.js";
 import Button from "./components/Button.js";
 import Dialog from "./components/Dialog.js";
@@ -29,6 +30,7 @@ const wc={
     defineCustomElement(prefix, 'nav-part', NavPart);
     defineCustomElement(prefix, 'grid', Grid);
     defineCustomElement(prefix, 'section', Section);
+    defineCustomElement(prefix, 'hero', Hero);
     defineCustomElement(prefix, 'card', Card);
     defineCustomElement(prefix, 'button', Button);
     defineCustomElement(prefix, 'dialog', Dialog);
