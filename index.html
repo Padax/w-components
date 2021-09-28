@@ -15,6 +15,12 @@ w-hero{
 w-hero>w-display-heading{
 	color:var(--color-primary-60);
 }
+w-section>w-heading{
+	text-align:center;
+}
+w-section.team{
+	background-color:var(--color-gray-10);
+}
 </style>
 <script type="module">
 	import wc from "./wc/index.js";
@@ -70,10 +76,13 @@ w-hero>w-display-heading{
 		<w-card layout="icon-cross" icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
 		<w-card layout="icon-cross" icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
 	</w-section>
-	<w-section width="800" cols="3">
-		<w-card icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
-		<w-card icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
-		<w-card icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
+	<w-section class="team" width="800" cols="1" rowgap="60">
+		<w-heading level="2" underlined>核心團隊</w-heading>
+		<w-grid cols="3" colgap="15" rowgap="30">
+			<w-card icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
+			<w-card icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
+			<w-card icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
+		</w-grid>
 	</w-section>
   <w-form name="form" action="test.html" method="get">
    <!-- CheckBox -->
