@@ -9,6 +9,10 @@ const stylesheet=`
   .wrapper[width='auto']{
     flex:auto;
   }
+  .wrapper>::slotted(*){
+    display:flex;justify-content:center;align-items:center;
+    padding:0px 10px;margin:0px 10px;
+  }
   .wrapper>slot{
     flex:auto;display:flex;align-items:center;
   }
@@ -80,11 +84,14 @@ class NavPart extends WComponent{
         .wrapper{
           overflow-x:auto;
         }
+        .wrapper>slot[rwd='iconify-${rwdSize}']::slotted(*){
+          padding:10px;margin:10px;
+        }
         .wrapper>slot[rwd='iconify-${rwdSize}']{
           display:none;
-          text-align:center;line-height:2rem;padding:10px 0px;
+          text-align:center;line-height:2rem;padding:10px 0px;padding-top:30px;
           z-index:101;
-          position:fixed;top:0px;right:0px;min-width:150px;height:100%;
+          position:fixed;top:0px;right:0px;min-width:250px;height:100%;
           background-color:#ffffff;box-shadow:0px 0px 5px #888888;
         }
         .wrapper>slot[rwd='iconify-${rwdSize}'].show, .wrapper>.show{
