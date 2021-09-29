@@ -40,7 +40,8 @@ const stylesheet=`
     display:none;
     position:fixed;
     top:0px;left:0px;
-    width:100%;height:100%;
+    width:100%;height:100vh;
+    background-color:rgba(0,0,0,0.3);
     z-index:100;
   }
 `;
@@ -91,7 +92,7 @@ class NavPart extends WComponent{
           display:none;
           text-align:center;line-height:2rem;padding:10px 0px;padding-top:30px;
           z-index:101;
-          position:fixed;top:0px;right:0px;min-width:250px;height:100%;
+          position:fixed;top:0px;right:0px;min-width:250px;height:100vh;
           background-color:#ffffff;box-shadow:0px 0px 5px #888888;
         }
         .wrapper>slot[rwd='iconify-${rwdSize}'].show, .wrapper>.show{
