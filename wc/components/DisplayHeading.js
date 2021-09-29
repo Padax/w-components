@@ -1,5 +1,8 @@
 import Heading from "./Heading.js";
 const stylesheet = `
+  :host {
+    display: block;
+  }
   h1 { 
     font-size: 5.5rem;
     line-height: calc(5.5rem * var(--line-height-normal-ratio)); 
