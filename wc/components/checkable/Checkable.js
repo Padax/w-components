@@ -1,6 +1,9 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 
 const stylesheet=`
+  :host {
+    display: inline-block;
+  }
   div {
     display: inline-flex;
     align-items: center;
