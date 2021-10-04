@@ -27,9 +27,6 @@ class WComponent extends HTMLElement{
    */
   attributeChangedCallback(name, oldValue, newValue){
     if(this.key && this.hasDefinedAttribute(name)){
-      if(oldValue===newValue){
-        return;
-      }
       this.update({name, oldValue, newValue});
     }
   }
