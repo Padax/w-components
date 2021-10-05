@@ -62,7 +62,11 @@ class Form extends WComponent{
 
     // Bind text input enter submit
     this.querySelector('input[type="text"]')
-      .addEventListener('keypress', this.submitHandler);
+      .addEventListener('keypress', e => {
+        if(e.charCode === 13) { // Enter key pressed
+          this.submitHandler(e);
+        }
+      });
 
     // Bind submit event on submit button click
     this.querySelector('input[type="submit"], button[type="submit"]')
