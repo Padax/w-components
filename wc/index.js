@@ -19,11 +19,11 @@ import Radio from "./components/checkable/Radio.js";
 import Form from "./components/Form.js";
 import SPALink from "./components/spa/SPALink.js";
 import SPAPage from "./components/spa/SPAPage.js";
-const defaultWConfig={prefix:"w", spa:{basename:""}};
+const defaultWConfig={theme:"light", prefix:"w", spa:{basename:""}};
 const wc={
   init:function(wconfig={}){
     window.wconfig=Object.assign(defaultWConfig, wconfig);
-    this.initTheme();
+    this.initTheme(window.wconfig.theme);
 
     const prefix=window.wconfig.prefix;
     defineCustomElement(prefix, 'nav', Nav);
@@ -47,11 +47,17 @@ const wc={
     defineCustomElement(prefix, 'spa-link', SPALink);
     defineCustomElement(prefix, 'spa-page', SPAPage);
   },
-  initTheme:function(){
+  initTheme:function(name){
     const head=document.querySelector("head");
-    DOM.create("link", {props:{
-      rel:"stylesheet", type:"text/css", href:"wc/theme/light.css"
-    }}, head);
+    const id="wc-theme-stylesheet";
+    const themeLink=head.querySelector(`#${id}`);
+    if(themeLink===null){
+      DOM.create("link", {props:{
+        rel:"stylesheet", type:"text/css", href:`wc/theme/${name}.css`, id:id
+      }}, head);
+    }else{
+      DOM.modify(themeLink, {props:{href:`wc/theme/${name}.css`}});
+    }
   }
 };
 

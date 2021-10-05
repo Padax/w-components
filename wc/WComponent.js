@@ -85,7 +85,8 @@ class WComponent extends HTMLElement{
   }
   setStylesheet(stylesheet, id){ // id is optional, for style overwrite
     if(id){
-      const styleElement=this.shadowRoot.querySelector("#"+id);
+      id=`wc-stylesheet-${id}`;
+      const styleElement=this.shadowRoot.querySelector(`#${id}`);
       if(styleElement){
         DOM.modify(styleElement, { props: { textContent: stylesheet } });
       }else{
