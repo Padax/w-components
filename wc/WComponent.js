@@ -43,14 +43,9 @@ class WComponent extends HTMLElement{
     }
     this.constructor.observedAttributes.forEach(attrName => {
       Object.defineProperty(this, attrName, {
-        get: () => {
-          const parser = this.getAttributeParserByName(attrName);
-          return parser(this.getAttribute(attrName), this.constructor.attributes[attrName]);
-        },
+        get: () => this.parseAttributeValueByName(attrName, this.getAttribute(attrName)),
         set: value => {
-          value = `${value}`;
-          const parser = this.getAttributeParserByName(attrName);
-          this.setAttribute(attrName, parser(value, this.constructor.attributes[attrName]));
+          this.setAttribute(attrName, this.parseAttributeValueByName(attrName, `${value}`));
         }
       });
     });
@@ -82,6 +77,9 @@ class WComponent extends HTMLElement{
   }
   hasDefinedAttribute(name) {
     return typeof name === 'string' && typeof this.constructor.attributes[name] === 'object';
+  }
+  parseAttributeValueByName(name, value) {
+    return this.getAttributeParserByName(name)(value, this.constructor.attributes[name]);
   }
   setStylesheet(stylesheet, id){ // id is optional, for style overwrite
     if(id){

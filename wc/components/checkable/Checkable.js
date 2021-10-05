@@ -109,7 +109,7 @@ class Checkable extends WComponent{
     const disabledAttr = this.constructor.attributes.disabled;
     if(name === checkedAttr.name || name === disabledAttr.name) {
       const input = this.shadowRoot.querySelector('input');
-      const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
+      const value = this.parseAttributeValueByName(name, newValue);
       if(value) {
         input.setAttribute(name, value);
       } else {

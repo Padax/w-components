@@ -157,7 +157,7 @@ class Form extends WComponent{
   }
   update({ name, oldValue, newValue } = {}) {
     const form = this.shadowRoot.querySelector('form');
-    const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
+    const value = this.parseAttributeValueByName(name, newValue);
     form[name] = value;
 
     // Re-bind form access

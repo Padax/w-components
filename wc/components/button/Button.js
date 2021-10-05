@@ -142,7 +142,7 @@ class Button extends WComponent{
     DOM.create("slot", {}, btn);
   }
   update({ name, newValue }){
-    const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
+    const value = this.parseAttributeValueByName(name, newValue);
     const settings = {
       props: this.renderProps({ [name]: value }),
       attrs: this.renderAttrs({ [name]: value })
