@@ -31,28 +31,28 @@ const stylesheet=`
     border-color:var(--color-critical-70);
   }
   /* outline */
-  button.outline-primary{
+  button.outlined {
     background-color:transparent;
-    border-color:var(--color-primary-60);
     border-width:1px;
+  }
+  button.outlined.primary {
+    border-color:var(--color-primary-60);
     color:var(--color-primary-60);
   }
-  button.outline-primary:hover{
+  button.outlined.primary:hover{
     background-color:var(--color-primary-10);
   }
-  button.outline-primary:active{
+  button.outlined.primary:active{
     background-color:var(--color-primary-20);
   }
-  button.outline-critical{
-    background-color:transparent;
+  button.outlined.critical{
     border-color:var(--color-critical-60);
-    border-width:1px;
     color:var(--color-critical-60);
   }
-  button.outline-critical:hover{
+  button.outlined.critical:hover{
     background-color:var(--color-critical-10);
   }
-  button.outline-critical:active{
+  button.outlined.critical:active{
     background-color:var(--color-critical-20);
   }
   /* disabled */
@@ -72,24 +72,24 @@ const stylesheet=`
     border-color:var(--color-gray-40);
   }
   /* size */
-  button.xlarge{
+  button.xl {
     font-size:calc(var(--font-size-normal) * 1.5);
     line-height:calc(var(--line-height-normal) * 1.5);
     padding:6px 32px;
   }
-  button.large{
+  button.lg {
     font-size:calc(var(--font-size-normal) * 1.25);
     line-height:calc(var(--line-height-normal) * 1.25);
     padding:4px 24px;
   }
-  button.small{
+  button.sm {
     font-size:calc(var(--font-size-normal) * 0.875);
     line-height:calc(var(--line-height-normal) * 0.875);
     padding:4px 12px;
   }
   /* block */
   button.block{
-    display:block;width:100%;
+    display:block; width:100%;
   }
 `;
 class Button extends WComponent{
@@ -113,9 +113,9 @@ class Button extends WComponent{
       )
     },
     size: {
-      name: 'size', defaultValue: 'normal', 
+      name: 'size', defaultValue: 'md', 
       parser: (value, attr) => AttributeParser.parseStringAttr(
-        value, attr.defaultValue, /^small$|^normal$|^large$|^xlarge$/
+        value, attr.defaultValue, /^sm$|^md$|^lg$|^xl$/
       )
     },
     display: {
@@ -133,26 +133,40 @@ class Button extends WComponent{
     super();
   }
   init(){
-    this.render();
+    const settings = { props: this.renderProps(), attrs: this.renderAttrs() };
+
+    const btn = DOM.create("button", settings, this.shadowRoot);
+    DOM.create("slot", {}, btn);
   }
-  update(){
-    this.render();
+  update({ name, newValue }){
+    const value = this.getAttributeParserByName(name)(newValue, this.constructor.attributes[name]);
+    const settings = {
+      props: this.renderProps({ [name]: value }),
+      attrs: this.renderAttrs({ [name]: value })
+    };
+    
+    const btn = this.shadowRoot.querySelector('button');
+    DOM.modify(btn, settings);
   }
-  render(){
-    const classList=[];
-    classList.push(this.display, this.size, this.outlined?"outline-"+this.color:this.color);
-    const attrs={removes:[]};
-    if(this.disabled){
+  renderProps({ display, size, color, outlined} = {}) {
+    const classList = [ 
+      display ? display : this.display, 
+      size ? size : this.size, 
+      color ? color : this.color 
+    ];
+    if(outlined || outlined === undefined && this.outlined) {
+      classList.push('outlined');
+    }
+    return { className: classList.join(' ') };
+  }
+  renderAttrs({ disabled } = {}) {
+    const attrs = { removes: [] };
+    if(disabled || disabled === undefined && this.disabled){
       attrs["disabled"]=true;
-    }else{
+    } else {
       attrs.removes.push("disabled");
     }
-    if(this.btn){
-      DOM.modify(this.btn, {props:{className:classList.join(" ")}, attrs:attrs});
-    }else{
-      this.btn=DOM.create("button", {props:{className:classList.join(" ")}, attrs:attrs}, this.shadowRoot);
-      DOM.create("slot", {}, this.btn);
-    }
+    return attrs;
   }
 }
 Button.prototype.stylesheet=stylesheet;

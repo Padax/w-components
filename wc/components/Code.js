@@ -142,9 +142,6 @@ class Code extends WComponent{
   constructor(){
     super();
   }
-  static defaultValues = {
-
-  };
 
   init() {
     const props = {
