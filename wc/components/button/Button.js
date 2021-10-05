@@ -71,22 +71,22 @@ const stylesheet=`
   }
   /* size */
   button.xl {
-    height: 46px;
+    height: 46px; line-height: 46px;
     font-size:calc(var(--font-size-normal) * 1.5);
     padding: 0 32px;
   }
   button.lg {
-    height: 36px;
+    height: 36px; line-height: 36px;
     font-size:calc(var(--font-size-normal) * 1.25);
     padding: 0 24px;
   }
   button.md {
-    height: 30px;
+    height: 30px; line-height: 30px;
     font-size:var(--font-size-normal);
     padding: 0 20px;
   }
   button.sm {
-    height: 27px;
+    height: 27px; line-height: 27px;
     font-size:calc(var(--font-size-normal) * 0.875);
     padding: 0 12px;
   }

@@ -2,6 +2,7 @@ import { DOM } from "../../WComponent.js";
 import Button from "./Button.js";
 const stylesheet=`
   button .icon {
+    width: 24px; height: 24px;
     margin-right: 8px;
   }
 `;
