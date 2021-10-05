@@ -1,13 +1,11 @@
-import WComponent, { DOM, AttributeParser } from "../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 const stylesheet=`
   button{
-    display:inline-block;vertical-align:middle;box-sizing:border-box;
+    display:inline-flex; align-items: center; vertical-align: middle;
+    box-sizing: content-box;
     font-family:var(--font-family);
-    font-size:var(--font-size-normal);line-height:var(--line-height-normal);
     border-width:1px;border-color:var(--color-primary-60);border-style:solid;border-radius:4px;
     background-color:var(--color-primary-60);color:var(--color-gray-0);
-    padding:4px 20px;
-    cursor:pointer;
     cursor:pointer;transition:background-color 0.2s, border-color 0.2s;
   }
   button:hover{
@@ -73,19 +71,24 @@ const stylesheet=`
   }
   /* size */
   button.xl {
+    height: 46px;
     font-size:calc(var(--font-size-normal) * 1.5);
-    line-height:calc(var(--line-height-normal) * 1.5);
-    padding:6px 32px;
+    padding: 0 32px;
   }
   button.lg {
+    height: 36px;
     font-size:calc(var(--font-size-normal) * 1.25);
-    line-height:calc(var(--line-height-normal) * 1.25);
-    padding:4px 24px;
+    padding: 0 24px;
+  }
+  button.md {
+    height: 30px;
+    font-size:var(--font-size-normal);
+    padding: 0 20px;
   }
   button.sm {
+    height: 27px;
     font-size:calc(var(--font-size-normal) * 0.875);
-    line-height:calc(var(--line-height-normal) * 0.875);
-    padding:4px 12px;
+    padding: 0 12px;
   }
   /* block */
   button.block{
