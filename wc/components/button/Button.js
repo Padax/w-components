@@ -1,12 +1,13 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 const stylesheet=`
   button{
-    display:inline-flex; align-items: center; vertical-align: middle;
-    box-sizing: content-box;
+    box-sizing: border-box;
+    display: inline-flex; align-items: center; justify-content: center;
     font-family:var(--font-family);
     border-width:1px;border-color:var(--color-primary-60);border-style:solid;border-radius:4px;
     background-color:var(--color-primary-60);color:var(--color-gray-0);
     cursor:pointer;transition:background-color 0.2s, border-color 0.2s;
+    vertical-align: middle;
   }
   button:hover{
     background-color:var(--color-primary-40);
@@ -71,28 +72,29 @@ const stylesheet=`
   }
   /* size */
   button.xl {
-    height: 46px; line-height: 46px;
+    height: 48px;
     font-size:calc(var(--font-size-normal) * 1.5);
     padding: 0 32px;
   }
   button.lg {
-    height: 36px; line-height: 36px;
+    height: 38px;
     font-size:calc(var(--font-size-normal) * 1.25);
     padding: 0 24px;
   }
   button.md {
-    height: 30px; line-height: 30px;
+    height: 32px;
     font-size:var(--font-size-normal);
     padding: 0 20px;
   }
   button.sm {
-    height: 27px; line-height: 27px;
+    height: 29px;
     font-size:calc(var(--font-size-normal) * 0.875);
     padding: 0 12px;
   }
   /* block */
   button.block{
-    display:block; width:100%;
+    display: flex; 
+    width:100%;
   }
 `;
 class Button extends WComponent{
