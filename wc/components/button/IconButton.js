@@ -2,8 +2,12 @@ import { DOM } from "../../WComponent.js";
 import Button from "./Button.js";
 const stylesheet=`
   button .icon {
+    display: inline-flex; align-items: center; justify-content: center;
     width: 24px; height: 24px;
     margin-right: 8px;
+  }
+  button .icon > * {
+    width: 100%; height: 100%;
   }
 `;
 class IconButton extends Button {
@@ -25,7 +29,7 @@ class IconButton extends Button {
     const settings = { props: this.renderProps(), attrs: this.renderAttrs() };
 
     const btn = DOM.create("button", settings, this.shadowRoot);
-    DOM.create('img', { attrs: { src: this.icon }, props: { className: 'icon' } }, btn);
+    DOM.create('slot', { attrs: { name: 'icon' }, props: { className: 'icon' } }, btn);
 
     const ctn = DOM.create('span', { props: { className: 'slot-ctn' } }, btn);
     DOM.create("slot", {}, ctn);

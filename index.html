@@ -70,7 +70,10 @@ w-section.team{
 		<w-heading level="3">基於 Web Components 原生技術，<br/>執行高效率、高品質程式碼，俐落的設計質感。</w-heading>
 		<div>
 			<w-button size="xl">開始使用</w-button><!--
-      --><w-icon-button size="xl" color="gray" outlined icon="image/github.svg" style="margin-left: 20px">GitHub</w-icon-button>
+      --><w-icon-button size="xl" color="gray" outlined style="margin-left: 20px">
+        <img src="image/github.svg" slot="icon" />
+        GitHub
+      </w-icon-button>
 		</div>
 	</w-hero>
 	<w-section cols="3" rowgap="70">
