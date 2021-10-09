@@ -4,16 +4,22 @@ const stylesheet=`
     box-sizing: border-box;
     display: inline-flex; align-items: center; justify-content: center;
     font-family:var(--font-family);
-    border-width:1px;border-color:var(--color-primary-60);border-style:solid;border-radius:4px;
-    background-color:var(--color-primary-60);color:var(--color-gray-0);
+    border-width:1px;border-style:solid;border-radius:4px;
+    color:var(--color-gray-0);
     cursor:pointer;transition:background-color 0.2s, border-color 0.2s;
     vertical-align: middle;
   }
-  button:hover{
+
+  /* color */
+  button.primary {
+    background-color:var(--color-primary-60);
+    border-color:var(--color-primary-60);
+  }
+  button.primary:hover{
     background-color:var(--color-primary-40);
     border-color:var(--color-primary-40);
   }
-  button:active{
+  button.primary:active{
     background-color:var(--color-primary-70);
     border-color:var(--color-primary-70);
   }
@@ -29,11 +35,26 @@ const stylesheet=`
     background-color:var(--color-critical-70);
     border-color:var(--color-critical-70);
   }
-  /* outline */
+  button.gray {
+    background-color:var(--color-gray-10);
+    border-color:var(--color-gray-10);
+    color:var(--color-gray-90);
+  }
+  button.gray:hover{
+    background-color:var(--color-gray-20);
+    border-color:var(--color-gray-20);
+  }
+  button.gray:active{
+    background-color:var(--color-gray-30);
+    border-color:var(--color-gray-30);
+  }
+
+  /* outlined */
   button.outlined {
     background-color:transparent;
     border-width:1px;
   }
+  /* outline color */
   button.outlined.primary {
     border-color:var(--color-primary-60);
     color:var(--color-primary-60);
@@ -54,22 +75,34 @@ const stylesheet=`
   button.outlined.critical:active{
     background-color:var(--color-critical-20);
   }
+  button.outlined.gray {
+    border-color:var(--color-gray-90);
+    color:var(--color-gray-90);
+  }
+  button.outlined.gray:hover{
+    background-color:var(--color-gray-10);
+  }
+  button.outlined.gray:active{
+    background-color:var(--color-gray-20);
+  }
+
   /* disabled */
-  button:disabled{
-    color:var(--color-gray-30);background-color:var(--color-gray-10);
+  button:disabled,
+  button:disabled:hover, button:disabled:active,
+  button.outlined:disabled,
+  button.outlined:disabled:hover {
+    background-color:var(--color-gray-10);
     border-color:var(--color-gray-10);
+    color:var(--color-gray-40);
     cursor:default;
   }
-  button:disabled:hover, button:disabled:active{
-    color:var(--color-gray-30);background-color:var(--color-gray-10);
-    border-color:var(--color-gray-10);
-  }
-  button[class*="outline-"]:disabled{
+  /* disabled outlined */
+  button.outlined:disabled,
+  button.outlined:disabled:hover {
     border-color:var(--color-gray-40);
   }
-  button[class*="outline-"]:disabled:hover{
-    border-color:var(--color-gray-40);
-  }
+  /* disabled color */
+  
   /* size */
   button.xl {
     height: 48px;
@@ -91,7 +124,8 @@ const stylesheet=`
     font-size:calc(var(--font-size-normal) * 0.875);
     padding: 0 12px;
   }
-  /* block */
+
+  /* display */
   button.block{
     display: flex; 
     width:100%;
@@ -108,7 +142,7 @@ class Button extends WComponent{
     color: {
       name: 'color', defaultValue: 'primary', 
       parser: (value, attr) => AttributeParser.parseStringAttr(
-        value, attr.defaultValue, /^primary$|^critical$/
+        value, attr.defaultValue, /^primary$|^critical$|^gray$/
       )
     },
     outlined: {
