@@ -3,11 +3,21 @@ import Button from "./Button.js";
 const stylesheet=`
   button .icon {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 24px; height: 24px;
+    height: 100%;
     margin-right: 8px;
   }
-  button .icon > * {
-    width: 100%; height: 100%;
+
+  button.md .icon {
+    font-size: 14px;
+  }
+  button.md .icon {
+    font-size: 16px;
+  }
+  button.md .icon {
+    font-size: 20px;
+  }
+  button.xl .icon {
+    font-size: 22px;
   }
 `;
 class IconButton extends Button {

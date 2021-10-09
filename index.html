@@ -25,6 +25,34 @@ w-section>w-heading{
 w-section.team{
 	background-color:var(--color-gray-10);
 }
+[class*=" icon-"] {
+  height: inherit;
+}
+[class*=" icon-"]:before {
+  font-family: 'Icons-Filled' !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  height: inherit;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-ic_fluent_weather_moon_16_filled:before {
+  content: "\fb15";
+	color:var(--color-gray-70);
+}
+.icon-ic_fluent_weather_sunny_20_filled:before {
+  content: "\f8b9";
+	color:var(--color-gray-70);
+}
+.icon-ic_fluent_globe_16_filled:before {
+  content: "\fa27";
+	color:var(--color-gray-70);
+}
+.icon-ic_fluent_heart_16_filled:before {
+  content: "\f47c";
+	color:var(--color-critical-50);
+}
 </style>
 <script type="module">
 	import wc from "./wc/index.js";
@@ -61,8 +89,15 @@ w-section.team{
 			<div><w-spa-link href="/document">開發</w-spa-link></div>
 		</w-nav-part>
 		<w-nav-part width="fit" arrange="right" rwd-effect="iconify" rwd-size="mobile">
-			<w-button color="gray">深色模式</w-button>
-			<w-button color="gray">English</w-button>
+			<w-icon-button color="gray" style="margin: 0 10px; padding: 0;">
+        <i class=" icon-ic_fluent_weather_moon_16_filled" slot="icon"></i>深色模式
+      </w-icon-button>
+			<w-icon-button color="gray" style="margin: 0 10px; padding: 0;">
+        <i class=" icon-ic_fluent_globe_16_filled" slot="icon"></i>English
+      </w-icon-button>
+			<w-icon-button color="gray" outlined style="margin: 0 10px; padding: 0;">
+        <i class="  icon-ic_fluent_heart_16_filled" slot="icon"></i>贊助
+      </w-icon-button>
 		</w-nav-part>
 	</w-nav>
 	<w-hero type="image" src="image/keyvisual.png">

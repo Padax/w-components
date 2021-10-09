@@ -105,22 +105,22 @@ const stylesheet=`
   
   /* size */
   button.xl {
-    height: 48px;
+    height: 48px; line-height: 48px;
     font-size:calc(var(--font-size-normal) * 1.5);
     padding: 0 32px;
   }
   button.lg {
-    height: 38px;
+    height: 38px; line-height: 38px;
     font-size:calc(var(--font-size-normal) * 1.25);
     padding: 0 24px;
   }
   button.md {
-    height: 32px;
+    height: 32px; line-height: 32px;
     font-size:var(--font-size-normal);
     padding: 0 20px;
   }
   button.sm {
-    height: 29px;
+    height: 29px; line-height: 29px;
     font-size:calc(var(--font-size-normal) * 0.875);
     padding: 0 12px;
   }
