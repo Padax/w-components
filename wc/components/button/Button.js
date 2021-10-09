@@ -76,6 +76,7 @@ const stylesheet=`
     background-color:var(--color-critical-20);
   }
   button.outlined.gray {
+    background-color:var(--color-gray-0);
     border-color:var(--color-gray-90);
     color:var(--color-gray-90);
   }
@@ -101,7 +102,6 @@ const stylesheet=`
   button.outlined:disabled:hover {
     border-color:var(--color-gray-40);
   }
-  /* disabled color */
   
   /* size */
   button.xl {
