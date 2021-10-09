@@ -3,21 +3,19 @@ import Button from "./Button.js";
 const stylesheet=`
   button .icon {
     display: inline-flex; align-items: center; justify-content: center;
-    height: 100%;
+    height: 100%; line-height: 100%;
     margin-right: 8px;
   }
 
+  button.sm .icon,
   button.md .icon {
-    font-size: 14px;
+    font-size: var(--font-size-normal); 
+    max-height: var(--font-size-normal);
   }
-  button.md .icon {
-    font-size: 16px;
-  }
-  button.md .icon {
-    font-size: 20px;
-  }
+  button.lg .icon,
   button.xl .icon {
-    font-size: 22px;
+    font-size: calc(var(--font-size-normal) * 1.25); 
+    max-height: calc(var(--font-size-normal) * 1.25); 
   }
 `;
 class IconButton extends Button {
