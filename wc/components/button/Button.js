@@ -206,7 +206,7 @@ class Button extends WComponent{
     return { className: classList.join(' ') };
   }
   renderAttrs({ disabled } = {}) {
-    const attrs = { removes: [] };
+    const attrs = { removes: [], part: 'button' };
     if(disabled || disabled === undefined && this.disabled){
       attrs["disabled"]=true;
     } else {
