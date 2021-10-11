@@ -183,6 +183,7 @@ class Button extends WComponent{
 
     const btn = DOM.create("button", settings, this.shadowRoot);
     DOM.create("slot", {}, btn);
+    this.renderStylesheet();
   }
   update({ name, newValue }){
     const value = this.parseAttributeValueByName(name, newValue);
@@ -193,6 +194,10 @@ class Button extends WComponent{
     
     const btn = this.shadowRoot.querySelector('button');
     DOM.modify(btn, settings);
+
+    if(name === 'display') {
+      this.renderStylesheet(value);
+    }
   }
   renderProps({ display, size, color, outlined} = {}) {
     const classList = [ 
@@ -213,6 +218,9 @@ class Button extends WComponent{
       attrs.removes.push("disabled");
     }
     return attrs;
+  }
+  renderStylesheet(display) {
+    this.setStylesheet(`:host { display: ${display ? display : this.display} }`, 'display');
   }
 }
 Button.prototype.stylesheet=stylesheet;
