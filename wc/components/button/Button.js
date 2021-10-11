@@ -48,6 +48,13 @@ const stylesheet=`
     background-color:var(--color-gray-30);
     border-color:var(--color-gray-30);
   }
+  button.none,
+  button.none:hover,
+  button.none:active {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--color-gray-90);
+  }
 
   /* outlined */
   button.outlined {
@@ -142,7 +149,7 @@ class Button extends WComponent{
     color: {
       name: 'color', defaultValue: 'primary', 
       parser: (value, attr) => AttributeParser.parseStringAttr(
-        value, attr.defaultValue, /^primary$|^critical$|^gray$/
+        value, attr.defaultValue, /^primary$|^critical$|^gray$|^none$/
       )
     },
     outlined: {

@@ -25,17 +25,9 @@ w-section>w-heading{
 w-section.team{
 	background-color:var(--color-gray-10);
 }
-[class*=" icon-"] {
-  height: inherit;
-}
 [class*=" icon-"]:before {
   font-family: 'Icons-Filled' !important;
   font-style: normal;
-  font-weight: normal !important;
-  font-variant: normal;
-  height: inherit;
-  text-transform: none;
-  -webkit-font-smoothing: antialiased;
 }
 .icon-ic_fluent_weather_moon_16_filled:before {
   content: "\fb15";
@@ -106,8 +98,7 @@ w-section.team{
 		<div>
 			<w-button size="xl">開始使用</w-button><!--
       --><w-icon-button size="xl" color="gray" outlined style="margin-left: 20px">
-        <img src="image/github.svg" slot="icon" />
-        GitHub
+        <img src="image/github.svg" slot="icon" />GitHub
       </w-icon-button>
 		</div>
 	</w-hero>
@@ -185,6 +176,18 @@ w-section.team{
 			<w-display-heading level="6">LONG LIVE W-COMPONENTS!</w-display-heading>
 		</template>
 	</w-spa-page>
+  <!-- IconButton -->
+  <w-heading level="3" underlined="true" style="margin: 10px 0;">IconButton</w-heading>
+  <w-icon-button outlined icon="menu" style="margin-top: 10px">Preset</w-icon-button>
+  <w-icon-button outlined>
+    <i class=" icon-ic_fluent_weather_moon_16_filled" slot="icon"></i>IconFont
+  </w-icon-button>
+  <w-icon-button outlined>
+    <img src="image/github.svg" slot="icon" />Image
+  </w-icon-button>
+  <w-icon-button color="none" icon="menu">NONE</w-icon-button>
+  <w-icon-button color="gray" icon="menu" icononly></w-icon-button> Icon Only
+
 	<w-spa-page path="/main">
 		<w-heading level="1" underlined>Main Content</w-heading>
     <w-form name="form" action="test.html" method="post">
