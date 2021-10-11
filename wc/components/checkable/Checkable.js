@@ -5,6 +5,7 @@ const stylesheet=`
     display: inline-block;
   }
   div {
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
   }
@@ -12,7 +13,6 @@ const stylesheet=`
     width: 0; hieght: 0; margin: 0;
   }
   .icon {
-    cursor: pointer;
     color: var(--color-gray-30);
     margin-right: 8px;
   }
@@ -24,9 +24,6 @@ const stylesheet=`
   }
   div:hover .icon {
     color: var(--color-primary-60);
-  }
-  slot {
-    cursor: pointer;
   }
 
   input:checked + .icon:before {
