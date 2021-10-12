@@ -78,7 +78,10 @@ class NavPart extends WComponent{
     this.setStylesheet(`
       @media (max-width:${rwdSize}px){
         :host([rwd-effect='iconify'])>::slotted(w-nav-part){
-          display:block;margin:30px 0px;
+          padding:20px 0px;
+          display:grid;
+          grid-template-columns:1fr;
+          row-gap:10px;
         }
         :host([rwd-effect='iconify'])>slot{
           display:none;
