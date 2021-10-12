@@ -77,26 +77,28 @@ w-section.team{
 </head>
 <body>
 	<w-nav>
-		<w-nav-part width="fit" rwd-effect="hide" rwd-size="mobile">
+		<w-nav-part width="fit">
 			<a href="https://github.com/Padax/w-components">
 				<img src="image/title.png" />
 			</a>
 		</w-nav-part>
-		<w-nav-part arrange="left" rwd-effect="slide" rwd-size="800">
-			<div><w-spa-link href="/heading">設計</w-spa-link></div>
-			<div><w-spa-link href="/main">元件</w-spa-link></div>
-			<div><w-spa-link href="/document">開發</w-spa-link></div>
-		</w-nav-part>
-		<w-nav-part width="fit" arrange="right" rwd-effect="iconify" rwd-size="mobile">
-			<w-icon-button color="gray" style="margin: 0 10px; padding: 0;">
-        <i class=" icon-ic_fluent_weather_moon_16_filled" slot="icon"></i>深色模式
-      </w-icon-button>
-			<w-icon-button color="gray" style="margin: 0 10px; padding: 0;">
-        <i class=" icon-ic_fluent_globe_16_filled" slot="icon"></i>English
-      </w-icon-button>
-			<w-icon-button id="btnDonate" color="gray" outlined disabled style="margin: 0 10px; padding: 0;">
-        <i class="  icon-ic_fluent_heart_16_filled" slot="icon"></i>贊助
-      </w-icon-button>
+		<w-nav-part arrange="right" rwd-effect="iconify" rwd-size="800">
+			<w-nav-part arrange="left">
+				<div><w-spa-link href="/heading">設計</w-spa-link></div>
+				<div><w-spa-link href="/main">元件</w-spa-link></div>
+				<div><w-spa-link href="/document">開發</w-spa-link></div>
+			</w-nav-part>
+			<w-nav-part width="fit" arrange="right">
+				<w-icon-button color="gray" style="margin: 0 10px; padding: 0;">
+					<i class=" icon-ic_fluent_weather_moon_16_filled" slot="icon"></i>深色模式
+				</w-icon-button>
+				<w-icon-button color="gray" style="margin: 0 10px; padding: 0;">
+					<i class=" icon-ic_fluent_globe_16_filled" slot="icon"></i>English
+				</w-icon-button>
+				<w-icon-button id="btnDonate" color="gray" outlined disabled style="margin: 0 10px; padding: 0;">
+					<i class="  icon-ic_fluent_heart_16_filled" slot="icon"></i>贊助
+				</w-icon-button>
+			</w-nav-part>
 		</w-nav-part>
 	</w-nav>
 	<w-hero type="image" src="image/keyvisual.png">

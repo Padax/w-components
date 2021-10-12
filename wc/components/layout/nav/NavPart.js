@@ -1,42 +1,37 @@
-import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../../../WComponent.js";
 const stylesheet=`
   :host{
-    display:contents;
+    display:flex;flex:auto;align-items:center;
   }
-  .wrapper{
-    flex:none;display:flex;align-items:center;
+  :host([width='fit']){
+    flex:none;
   }
-  .wrapper[width='auto']{
-    flex:auto;
-  }
-  .wrapper>::slotted(*){
+  :host>::slotted(:not(w-nav-part)){
     display:flex;justify-content:center;align-items:center;
     padding:0px 10px;margin:0px 10px;
   }
-  .wrapper>slot{
-    flex:auto;display:flex;align-items:center;
-  }
-  .wrapper>slot + .trigger{
+  :host>.trigger{
     flex:auto;display:none;align-items:center;
+    padding:0px 10px;margin:0px 10px;
   }
-  .wrapper>slot + .trigger:before{
+  :host>.trigger:before{
     font-family:var(--icon-font-regular);
     font-size:1.5rem;
     content:'\\f4e1'
   }
-  .wrapper>slot[arrange='left'],
-  .wrapper>slot[arrange='left'] + .trigger{
+  :host([arrange='left']),
+  :host([arrange='left'])>.trigger{
     justify-content:flex-start;
   }
-  .wrapper>slot[arrange='right'],
-  .wrapper>slot[arrange='right'] + .trigger{
+  :host([arrange='right']),
+  :host([arrange='right'])>.trigger{
     justify-content:flex-end;
   }
-  .wrapper>slot[arrange='center'],
-  .wrapper>slot[arrange='center'] + .trigger{
+  :host([arrange='center']),
+  :host(slot[arrange='center'])>.trigger{
     justify-content:center;
   }
-  .wrapper>.mask{
+  :host>.mask{
     display:none;
     position:fixed;
     top:0px;left:0px;
@@ -62,7 +57,7 @@ class NavPart extends WComponent{
     'rwd-effect': {
       name: 'rwd-effect', defaultValue: 'none', 
       parser: (value, attr) => AttributeParser.parseStringAttr(
-        value, attr.defaultValue, /^none$|^iconify$|^slide$|^hide$/
+        value, attr.defaultValue, /^none$|^iconify$|^hide$/
       )
     },
     'rwd-size': {
@@ -82,26 +77,25 @@ class NavPart extends WComponent{
   setMediaStylesheet(rwdSize){
     this.setStylesheet(`
       @media (max-width:${rwdSize}px){
-        .wrapper{
-          overflow-x:auto;
+        :host([rwd-effect='iconify'])>::slotted(w-nav-part){
+          display:block;margin:30px 0px;
         }
-        .wrapper>slot[rwd='iconify-${rwdSize}']::slotted(*){
-          padding:10px;margin:10px;
-        }
-        .wrapper>slot[rwd='iconify-${rwdSize}']{
+        :host([rwd-effect='iconify'])>slot{
           display:none;
-          text-align:center;line-height:2rem;padding:10px 0px;padding-top:30px;
+          text-align:center;
+          line-height:3rem;
+          padding:10px 0px;
           z-index:101;
           position:fixed;top:0px;right:0px;min-width:250px;height:100vh;
           background-color:#ffffff;box-shadow:0px 0px 5px #888888;
         }
-        .wrapper>slot[rwd='iconify-${rwdSize}'].show, .wrapper>.show{
+        :host([rwd-effect='iconify'])>.show{
           display:block;
         }
-        .wrapper>slot[rwd^='iconify-${rwdSize}'] + .trigger{
+        :host([rwd-effect='iconify'])>.trigger{
           display:flex;
         }
-        .wrapper>slot[rwd='hide-${rwdSize}']{
+        :host([rwd-effect='hide']){
           display:none;
         }
       }
@@ -119,13 +113,7 @@ class NavPart extends WComponent{
       }
       this.setMediaStylesheet(rwdSize);
     }
-    const wrapper=DOM.create("div", {
-      attrs:{width: this.width},
-      props:{className:"wrapper"}
-    }, this.shadowRoot);
-    const root=DOM.create("slot", {attrs:{
-      arrange: this.arrange, rwd:this["rwd-effect"]+"-"+rwdSize
-    }}, wrapper);
+    const root=DOM.create("slot", {}, this.shadowRoot);
     const toggle=()=>{
       root.classList.toggle("show");
       mask.classList.toggle("show");
@@ -134,12 +122,12 @@ class NavPart extends WComponent{
       className:"trigger"
     }, events:{
       click:toggle
-    }}, wrapper);
+    }}, this.shadowRoot);
     const mask=DOM.create("div", {props:{
       className:"mask"
     }, events:{
       click:toggle
-    }}, wrapper);
+    }}, this.shadowRoot);
   }
 }
 NavPart.prototype.stylesheet=stylesheet;
