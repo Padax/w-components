@@ -24,6 +24,7 @@ const stylesheet=`
     background-color:var(--color-gray-20);
   }
   div.list[appearance$='panel']>::slotted(*[disabled]){
+    pointer-events:none;
     color:var(--color-gray-40);
   }
   div.list[appearance$='panel']>::slotted(*[disabled]:hover),
@@ -59,6 +60,7 @@ class List extends WComponent{
   init(){
     for(let i=0;i<this.children.length;i++){
       this.children[i].setAttribute("mark", this.mark);
+      this.children[i].setAttribute("index", i);
     }
     this.list=DOM.create("div", {props:{className:"list"}, attrs:{appearance: this.appearance}}, this.shadowRoot);
     DOM.create("slot", {}, this.list);
@@ -68,10 +70,11 @@ class List extends WComponent{
       case 'mark':
         for(let i=0;i<this.children.length;i++){
           this.children[i].setAttribute("mark", args.newValue);
+          this.children[i].setAttribute("index", i);
         }
         break;
       case 'appearance':
-        DOM.modify(this.list, {attrs:{appearance: this.appearance}});
+        DOM.modify(this.list, {attrs:{appearance: args.newValue}});
         break;
     }
   }
