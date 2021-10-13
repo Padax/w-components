@@ -89,7 +89,7 @@ class NavPart extends WComponent{
         :host([rwd-effect='iconify'])>slot{
           display:none;
           text-align:center;
-          padding:10px 0px;
+          padding:10px;
           z-index:101;
           position:fixed;top:0px;right:0px;min-width:250px;height:100vh;
           background-color:#ffffff;box-shadow:0px 0px 5px #888888;
