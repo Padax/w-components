@@ -81,12 +81,14 @@ class NavPart extends WComponent{
           padding:20px 0px;
           display:grid;
           grid-template-columns:1fr;
-          row-gap:10px;
+          row-gap:20px;
+        }
+        :host([rwd-effect='iconify'])>::slotted(w-nav-part[rwd-effect='hide']){
+          display:none;
         }
         :host([rwd-effect='iconify'])>slot{
           display:none;
           text-align:center;
-          line-height:3rem;
           padding:10px 0px;
           z-index:101;
           position:fixed;top:0px;right:0px;min-width:250px;height:100vh;
@@ -98,7 +100,7 @@ class NavPart extends WComponent{
         :host([rwd-effect='iconify'])>.trigger{
           display:flex;
         }
-        :host([rwd-effect='hide']){
+        :host(w-nav-part[rwd-effect='hide']){
           display:none;
         }
       }
