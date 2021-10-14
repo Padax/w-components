@@ -12,12 +12,6 @@ const stylesheet=`
   }
   :host>.trigger{
     flex:auto;display:none;align-items:center;
-    padding:0px 10px;margin:0px 10px;
-  }
-  :host>.trigger:before{
-    font-family:var(--icon-font-regular);
-    font-size:1.5rem;
-    content:'\\f4e1'
   }
   :host([arrange='left']),
   :host([arrange='left'])>.trigger{
@@ -123,8 +117,8 @@ class NavPart extends WComponent{
       root.classList.toggle("show");
       mask.classList.toggle("show");
     };
-    DOM.create("div", {props:{
-      className:"trigger"
+    DOM.create("w-icon-button", {props:{className:"trigger"}, attrs:{
+      color:"none", icon:"menu"
     }, events:{
       click:toggle
     }}, this.shadowRoot);
