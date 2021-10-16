@@ -105,7 +105,7 @@ const stylesheet=`
   .icon.more-vertical-filled:before { content: '\\fd54'; }
   .icon.navigation-filled:before { content: '\\ffa9'; }
   .icon.search-filled:before { content: '\\fe39'; }
-  .icon.settings-filled:before { content: '\\fb61'; }
+  .icon.settings-filled:before { content: '\\f6b1'; }
   .icon.share-filled:before { content: '\\fb36'; }
   .icon.sparkle-filled:before { content: '\\101fd'; }
   .icon.star-filled:before { content: '\\f717'; }
