@@ -20,6 +20,7 @@ import Radio from "./components/checkable/Radio.js";
 import Form from "./components/Form.js";
 import SPALink from "./components/spa/SPALink.js";
 import SPAPage from "./components/spa/SPAPage.js";
+import Icon from "./components/Icon.js";
 const defaultWConfig={theme:"light", prefix:"w", spa:{basename:""}};
 const wc={
   init:function(wconfig={}){
@@ -48,6 +49,7 @@ const wc={
     defineCustomElement(prefix, 'form', Form);
     defineCustomElement(prefix, 'spa-link', SPALink);
     defineCustomElement(prefix, 'spa-page', SPAPage);
+    defineCustomElement(prefix, 'icon', Icon);
   },
   initTheme:function(name){
     const head=document.querySelector("head");
