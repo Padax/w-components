@@ -3,6 +3,7 @@
 We offhand use the third-party icon scheme.
 
 - Microsoft: [Fluent System Icons](https://github.com/microsoft/fluentui-system-icons)
+- Searching Tool: [Fluent UI Icon Library](https://bennymeg.github.io/ngx-fluent-ui/)
 
 > Before the launch of the first edition, see if it is integrated and to self-designed exclusive icon set.
 
