@@ -9,7 +9,7 @@ We offhand use the third-party icon scheme.
 
 ## The list of icons
 
-Sorting out the icons first that anyone probably needs to use them from our currently existing components.
+Sorting out the icons first that anyone probably needs to use them from our currently components.
 
 ### Regular
 
