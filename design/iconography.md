@@ -12,6 +12,7 @@ We offhand use the third-party icon scheme.
 Sorting out the icons first that anyone probably needs to use them from our currently components.
 
 ### Regular
+*Sorting: A→Z
 
 Image | Item | State | Size | Theme | Name
 ------------ | ------------- | ------------- | ------------- | ------------- | -------------
@@ -80,6 +81,7 @@ Image | Item | State | Size | Theme | Name
 
 
 ### Filled
+*Sorting: A→Z
 
 Image | Item | State | Size | Theme | Name
 ------------ | ------------- | ------------- | ------------- | ------------- | -------------
