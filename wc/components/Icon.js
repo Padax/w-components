@@ -33,6 +33,7 @@ const stylesheet=`
 
   /* preset iconfont */
   .icon span { font-family: var(--icon-font-regular); }
+  .icon span:before { display:inline-block; }
   .icon span.add:before { content: '\\f108'; }
   .icon span.add-circle:before { content: '\\fcb9'; }
   .icon span.alert:before { content: '\\fb21'; }
