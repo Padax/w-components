@@ -117,8 +117,8 @@ class NavPart extends WComponent{
       root.classList.toggle("show");
       mask.classList.toggle("show");
     };
-    DOM.create("w-icon-button", {props:{className:"trigger"}, attrs:{
-      color:"none", icon:"menu"
+    DOM.create("w-icon", {props:{className:"trigger"}, attrs:{
+      type:"navigation", size:"xl"
     }, events:{
       click:toggle
     }}, this.shadowRoot);
