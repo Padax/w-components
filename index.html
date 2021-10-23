@@ -90,13 +90,16 @@ w-section.team{
 			</w-nav-part>
 			<w-nav-part width="fit" arrange="right">
 				<w-icon-button display="block" color="gray" style="padding: 0;">
-					<i class=" icon-ic_fluent_weather_moon_16_filled" slot="icon"></i>深色模式
+          <w-icon type="weather-moon-filled" style="color: var(--color-gray-70)"></w-icon>
+          深色模式
 				</w-icon-button>
 				<w-icon-button display="block" color="gray" style="padding: 0;">
-					<i class=" icon-ic_fluent_globe_16_filled" slot="icon"></i>English
+          <w-icon type="globe-filled" style="color: var(--color-gray-70)"></w-icon>
+					English
 				</w-icon-button>
 				<w-icon-button display="block" id="btnDonate" color="gray" outlined style="padding: 0;">
-					<i class="  icon-ic_fluent_heart_16_filled" slot="icon"></i>贊助
+          <w-icon type="heart-filled" style="color: var(--color-critical-50)"></w-icon>
+          贊助
 				</w-icon-button>
 			</w-nav-part>
 		</w-nav-part>
@@ -107,7 +110,7 @@ w-section.team{
 		<div>
 			<w-button size="xl">開始使用</w-button><!--
       --><w-icon-button size="xl" color="gray" outlined style="margin-left: 20px">
-        <img src="image/github.svg" slot="icon" />GitHub
+        <w-icon size="22"><img src="image/github.svg" /></w-icon>GitHub
       </w-icon-button>
 		</div>
 	</w-hero>

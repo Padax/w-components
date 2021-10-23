@@ -47,11 +47,11 @@ class IconButton extends Button {
     const btn = DOM.create("button", settings, this.shadowRoot);
 
     const icon = this.querySelector(getWIconTag());
-    const iconSettings = {
-      attrs: { size: this.size, type: this.icon },
-      props: { className: 'icon' }
-    };
     if(!icon) {
+      const iconSettings = {
+        attrs: { size: this.size, type: this.icon },
+        props: { className: 'icon' }
+      };
       DOM.create(getWIconTag(), iconSettings, btn);
     } else if(!icon.getAttribute('size')) {
       DOM.modify(icon, { attrs: { size: this.size } });
