@@ -40,23 +40,55 @@ class IconButton extends Button {
       }
     `);
   }
+
+  bindEvents() {
+    // Re-render icon
+    this.shadowRoot.querySelector('slot')
+      .addEventListener('slotchange', () => this.renderIcon());
+  }
   
   init(){
     const settings = { props: this.renderProps(), attrs: this.renderAttrs() };
-
     const btn = DOM.create("button", settings, this.shadowRoot);
+    this.renderIcon();
+    DOM.create("slot", {}, btn);
+  }
 
+  update({ name, oldValue, newValue }){
+    super.update({ name, oldValue, newValue });
+    
+    if(name === 'icon' || name === 'size') {
+      oldValue = this.parseAttributeValueByName(name, oldValue);
+      newValue = this.parseAttributeValueByName(name, newValue);
+      this.renderIcon(name, oldValue, newValue);
+    }
+  }
+
+  renderIcon(name, oldValue, newValue) {
+    const btn = this.shadowRoot.querySelector('button');
     const icon = this.querySelector(getWIconTag());
+    const presetIcon = this.shadowRoot.querySelector(getWIconTag());
+
     if(!icon) {
       const iconSettings = {
-        attrs: { size: this.size, type: this.icon },
+        attrs: { 
+          size: name === 'size' ? newValue : this.size, 
+          type: name === 'icon' ? newValue : this.icon 
+        },
         props: { className: 'icon' }
       };
-      DOM.create(getWIconTag(), iconSettings, btn);
+      if(presetIcon) {
+        DOM.modify(presetIcon, iconSettings);
+      } else {
+        DOM.create(getWIconTag(), iconSettings, btn);
+      }
     } else if(!icon.getAttribute('size')) {
+      // Use button size if slotted icon size unspecified.
       DOM.modify(icon, { attrs: { size: this.size } });
+    } else if(name === 'size' && icon.getAttribute('size') === oldValue) {
+      // Override icon size on update if slotted icon size and previous button size are the same.
+      DOM.modify(icon, { attrs: { size: newValue } });
     }
-    DOM.create("slot", {}, btn);
   }
 
   // Override to render icononly property.
