@@ -65,7 +65,6 @@ const stylesheet=`
   .icon span.search:before { content: '\\fe35'; }
   .icon span.settings:before { content: '\\f6a8'; }
   .icon span.share:before { content: '\\fb2e'; }
-  .icon span.sparkle:before { content: '\\101f1'; }
   .icon span.star:before { content: '\\f70e'; }
   .icon span.subtract:before { content: '\\fc71'; }
   .icon span.subtract-circle:before { content: '\\f7a7'; }
@@ -108,7 +107,6 @@ const stylesheet=`
   .icon span.search-filled:before { content: '\\fe39'; }
   .icon span.settings-filled:before { content: '\\f6b1'; }
   .icon span.share-filled:before { content: '\\fb36'; }
-  .icon span.sparkle-filled:before { content: '\\101fd'; }
   .icon span.star-filled:before { content: '\\f717'; }
   .icon span.subtract-filled:before { content: '\\fc7b'; }
   .icon span.subtract-circle-filled:before { content: '\\f7bf'; }
