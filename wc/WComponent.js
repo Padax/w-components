@@ -26,7 +26,7 @@ class WComponent extends HTMLElement{
    *  2. The attribute is defined in the component static field 'attributes'.
    */
   attributeChangedCallback(name, oldValue, newValue){
-    if(this.key && this.hasDefinedAttribute(name)){
+    if(oldValue !== newValue && this.key && this.hasDefinedAttribute(name)){
       this.update({name, oldValue, newValue});
     }
   }
