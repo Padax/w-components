@@ -198,7 +198,7 @@ const ICON_PRESET = [
   'text-quote', 'timer', 'toggle-left', 'toggle-right',
   'weather-moon', 'weather-sunny'
 ];
-function getIconPresetRegExp() {
+export function getIconPresetRegExp() {
   return new RegExp(
     ICON_PRESET.map(icon => `^${icon}$`)
     .concat(ICON_PRESET.map(icon => `^${icon}-filled$`))

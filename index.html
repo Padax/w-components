@@ -130,12 +130,16 @@ w-section.team{
   <!-- IconButton -->
   <w-heading level="3" underlined="true" style="margin: 10px 0;">IconButton</w-heading>
   <div style="margin: 10px;">
-    <w-icon-button outlined icon="navigation" style="margin-top: 10px">Preset</w-icon-button>
+    <w-icon-button outlined icon="navigation" size="sm">Preset</w-icon-button>
     <w-icon-button outlined>
-      <i class=" icon-ic_fluent_weather_moon_16_filled" slot="icon"></i>IconFont
+      <w-icon type="heart-filled"></w-icon>Preset Icon
     </w-icon-button>
-    <w-icon-button outlined>
-      <img src="image/github.svg" slot="icon" />Image
+    <w-icon-button outlined size="lg">
+      <w-icon><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
+      Custom IconFont
+    </w-icon-button>
+    <w-icon-button outlined size="xl">
+      <w-icon><img src="image/github.svg" /></w-icon>Custom Image
     </w-icon-button>
     <w-icon-button color="none" icon="navigation">NONE</w-icon-button>
     <w-icon-button color="gray" icon="navigation" icononly></w-icon-button> Icon Only
