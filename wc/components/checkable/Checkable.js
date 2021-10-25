@@ -10,7 +10,7 @@ const stylesheet=`
     align-items: center;
   }
   input {
-    width: 0; hieght: 0; margin: 0;
+    width: 0; height: 0; margin: 0;
   }
   .icon {
     color: var(--color-gray-30);
