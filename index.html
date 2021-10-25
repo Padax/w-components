@@ -132,6 +132,30 @@ w-section.team{
 			<w-card icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
 		</w-grid>
 	</w-section>
+  <!-- Form -->
+  <w-heading level="2" underlined="true" style="margin: 10px 0;">Form</w-heading>
+  <w-form name="form" action="test.html" method="post">
+    <!-- TextInput -->
+    <w-heading level="3" underlined>TextInput</w-heading>
+    <w-textinput></w-textinput>
+    <w-textinput value="測試"></w-textinput>
+    <w-textinput name="test" value="測試 name 屬性"></w-textinput>
+    <!-- CheckBox -->
+    <w-heading level="3" underlined>CheckBox</w-heading>
+    <w-checkbox name="checkbox" value="1">Un-Checked</w-checkbox>
+    <w-checkbox name="checkbox" checked value="2">Checked</w-checkbox>
+    <w-checkbox name="checkbox" disabled value="3">Un-Checked Disabled</w-checkbox>
+    <w-checkbox name="checkbox" checked disabled>Checked Disabled</w-checkbox>
+    <input type="checkbox" name="native" value="5" /> Native Checkbox
+    <!-- Radio -->
+    <w-heading level="3" underlined="true">Radio</w-heading>
+    <w-radio name="radio" value="radio1">Un-Checked</w-radio>
+    <w-radio name="radio" checked value="radio2">Checked</w-radio>
+    <w-radio name="radio" disabled value="radio3">Un-Checked Disabled</w-radio>
+    <w-radio name="radio" checked disabled value="radio4">Checked Disabled</w-radio>
+    <input type="text" name="text" value="5" />
+    <button type="submit">SUBMIT</button>
+  </w-form>
   <!-- IconButton -->
   <w-heading level="3" underlined="true" style="margin: 10px 0;">IconButton</w-heading>
   <div style="margin: 10px;">
@@ -287,24 +311,7 @@ w-section.team{
 		</template>
 	</w-spa-page>
 	<w-spa-page path="/main">
-		<w-heading level="1" underlined>Main Content</w-heading>
-    <w-form name="form" action="test.html" method="post">
-     <!-- CheckBox -->
-      <w-heading level="3" underlined>CheckBox</w-heading>
-      <w-checkbox name="checkbox" value="1">Un-Checked</w-checkbox>
-      <w-checkbox name="checkbox" checked value="2">Checked</w-checkbox>
-      <w-checkbox name="checkbox" disabled value="3">Un-Checked Disabled</w-checkbox>
-      <w-checkbox name="checkbox" checked disabled>Checked Disabled</w-checkbox>
-      <input type="checkbox" name="native" value="5" /> Native Checkbox
-      <!-- Radio -->
-      <w-heading level="3" underlined="true">Radio</w-heading>
-      <w-radio name="radio" value="radio1">Un-Checked</w-radio>
-      <w-radio name="radio" checked value="radio2">Checked</w-radio>
-      <w-radio name="radio" disabled value="radio3">Un-Checked Disabled</w-radio>
-      <w-radio name="radio" checked disabled value="radio4">Checked Disabled</w-radio>
-      <input type="text" name="text" value="5" />
-      <button type="submit">SUBMIT</button>
-    </w-form>
+    <w-heading level="1" underlined>Main Content</w-heading>
 		<w-heading level="3" underlined="true">List</w-heading>
 		<w-list>
 			<w-li><a href="https://www.google.com/" class="link">Google</a></w-li>

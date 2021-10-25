@@ -195,6 +195,7 @@ Form.prototype.stylesheet=stylesheet;
 function getFormElementTypes() {
   let types = [ 'input', 'select', 'textarea' ];
   if(window.wconfig && typeof window.wconfig.prefix === 'string') {
+    types.push(`${window.wconfig.prefix}-textinput`);
     types.push(`${window.wconfig.prefix}-checkbox`);
     types.push(`${window.wconfig.prefix}-radio`);
   }

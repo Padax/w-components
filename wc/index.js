@@ -15,6 +15,7 @@ import Quote from "./components/Quote.js";
 import List from "./components/List.js";
 import ListItem from "./components/ListItem.js";
 import Code from "./components/Code.js";
+import TextInput from "./components/TextInput.js";
 import CheckBox from "./components/checkable/Checkbox.js";
 import Radio from "./components/checkable/Radio.js";
 import Form from "./components/Form.js";
@@ -44,6 +45,7 @@ const wc={
     defineCustomElement(prefix, 'list', List);
     defineCustomElement(prefix, 'li', ListItem);
     defineCustomElement(prefix, 'code', Code);
+    defineCustomElement(prefix, 'textinput', TextInput);
     defineCustomElement(prefix, 'checkbox', CheckBox);
     defineCustomElement(prefix, 'radio', Radio);
     defineCustomElement(prefix, 'form', Form);
