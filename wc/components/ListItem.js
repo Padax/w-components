@@ -58,9 +58,11 @@ class ListItem extends WComponent{
     DOM.create("slot", {}, this.shadowRoot);
   }
   update(args){
+    /* has implemented in WComponent update method
     if(args.oldValue===args.newValue){
       return;
     }
+    */
     // handle disabled
     const attrs={removes:[]};
     if(this.disabled){
