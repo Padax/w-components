@@ -5,6 +5,7 @@ const stylesheet=`
     display: inline-block;
   }
   :host > input {
+    width:100%;box-sizing:border-box;
     font-size:var(--font-size-small);
     padding:5px 8px;
     border-width:1px;
@@ -16,6 +17,7 @@ const stylesheet=`
 class TextInput extends WComponent{
 
   static attributes = {
+    placeholder: { name: 'placeholder', defaultValue: '' },
     value: { name: 'value', defaultValue: '' },
     name: { name: 'name' }
   };
@@ -28,6 +30,7 @@ class TextInput extends WComponent{
   }
   init() {
     const inputAttrs = { type: 'text' };
+    if(this.placeholder) { inputAttrs.placeholder = this.placeholder; }
     if(this.value) { inputAttrs.value = this.value; }
     if(this.name) { inputAttrs.name = this.name; }
     DOM.create('input', { attrs: inputAttrs, events:{
