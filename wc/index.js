@@ -53,16 +53,16 @@ const wc={
     defineCustomElement(prefix, 'spa-page', SPAPage);
     defineCustomElement(prefix, 'icon', Icon);
   },
-  initTheme:function(name){
+  initTheme:function(name, host="https://padax.github.io/w-components/"){
     const head=document.querySelector("head");
     const id="wc-theme-stylesheet";
     const themeLink=head.querySelector(`#${id}`);
     if(themeLink===null){
       DOM.create("link", {props:{
-        rel:"stylesheet", type:"text/css", href:`wc/theme/${name}.css`, id:id
+        rel:"stylesheet", type:"text/css", href:`${host}wc/theme/${name}.css`, id:id
       }}, head);
     }else{
-      DOM.modify(themeLink, {props:{href:`wc/theme/${name}.css`}});
+      DOM.modify(themeLink, {props:{href:`${host}wc/theme/${name}.css`}});
     }
   }
 };
