@@ -48,15 +48,8 @@ const stylesheet=`
     background-color:var(--color-gray-30);
     border-color:var(--color-gray-30);
   }
-  button.none,
-  button.none:hover,
-  button.none:active {
-    background-color: transparent;
-    border-color: transparent;
-    color: var(--color-gray-90);
-  }
 
-  /* outlined */
+  /* outlined & plaintext */
   button.outlined {
     background-color:transparent;
     border-width:1px;
@@ -66,20 +59,20 @@ const stylesheet=`
     border-color:var(--color-primary-60);
     color:var(--color-primary-60);
   }
-  button.outlined.primary:hover{
+  button.outlined.primary:hover {
     background-color:var(--color-primary-10);
   }
-  button.outlined.primary:active{
+  button.outlined.primary:active {
     background-color:var(--color-primary-20);
   }
-  button.outlined.critical{
+  button.outlined.critical {
     border-color:var(--color-critical-60);
     color:var(--color-critical-60);
   }
-  button.outlined.critical:hover{
+  button.outlined.critical:hover {
     background-color:var(--color-critical-10);
   }
-  button.outlined.critical:active{
+  button.outlined.critical:active {
     background-color:var(--color-critical-20);
   }
   button.outlined.gray {
@@ -87,18 +80,53 @@ const stylesheet=`
     border-color:var(--color-gray-90);
     color:var(--color-gray-90);
   }
-  button.outlined.gray:hover{
+  button.outlined.gray:hover {
     background-color:var(--color-gray-10);
   }
-  button.outlined.gray:active{
+  button.outlined.gray:active {
+    background-color:var(--color-gray-20);
+  }
+  
+  /* plaintext */
+  button.plaintext {
+    background-color:transparent;
+  }
+  /* outline color */
+  button.plaintext.primary {
+    border-color:transparent;
+    color:var(--color-primary-60);
+  }
+  button.plaintext.primary:hover {
+    background-color:var(--color-primary-10);
+  }
+  button.plaintext.primary:active {
+    background-color:var(--color-primary-20);
+  }
+  button.plaintext.critical {
+    border-color:transparent;
+    color:var(--color-critical-60);
+  }
+  button.plaintext.critical:hover {
+    background-color:var(--color-critical-10);
+  }
+  button.plaintext.critical:active {
+    background-color:var(--color-critical-20);
+  }
+  button.plaintext.gray {
+    border-color:transparent;
+    color:var(--color-gray-90);
+  }
+  button.plaintext.gray:hover {
+    background-color:var(--color-gray-10);
+  }
+  button.plaintext.gray:active {
     background-color:var(--color-gray-20);
   }
 
   /* disabled */
-  button:disabled,
-  button:disabled:hover, button:disabled:active,
-  button.outlined:disabled,
-  button.outlined:disabled:hover {
+  button:disabled, button:disabled:hover, button:disabled:active,
+  button.outlined:disabled, button.outlined:disabled:hover, button.outlined:disabled:active,
+  button.plaintext:disabled, button.plaintext:disabled:hover, button.plaintext:disabled:active {
     background-color:var(--color-gray-10);
     border-color:var(--color-gray-10);
     color:var(--color-gray-40);
@@ -108,6 +136,11 @@ const stylesheet=`
   button.outlined:disabled,
   button.outlined:disabled:hover {
     border-color:var(--color-gray-40);
+  }
+  /* disabled plaintext */
+  button.outlined:disabled,
+  button.outlined:disabled:hover {
+    border-color:transparent;
   }
   
   /* size */
@@ -149,11 +182,17 @@ class Button extends WComponent{
     color: {
       name: 'color', defaultValue: 'primary', 
       parser: (value, attr) => AttributeParser.parseStringAttr(
-        value, attr.defaultValue, /^primary$|^critical$|^gray$|^none$/
+        value, attr.defaultValue, /^primary$|^critical$|^gray$/
       )
     },
     outlined: {
       name: 'outlined', defaultValue: false, 
+      parser: (value, attr) => AttributeParser.parseBoolAttr(
+        value, attr.defaultValue
+      )
+    },
+    plaintext: {
+      name: 'plaintext', defaultValue: false, 
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
@@ -199,14 +238,17 @@ class Button extends WComponent{
       this.renderStylesheet(value);
     }
   }
-  renderProps({ display, size, color, outlined} = {}) {
+  renderProps({ display, size, color, outlined, plaintext } = {}) {
     const classList = [ 
       display ? display : this.display, 
       size ? size : this.size, 
-      color ? color : this.color 
+      color ? color : this.color
     ];
     if(outlined || outlined === undefined && this.outlined) {
       classList.push('outlined');
+    }
+    if(plaintext || plaintext === undefined && this.plaintext) {
+      classList.push('plaintext');
     }
     return { className: classList.join(' ') };
   }
