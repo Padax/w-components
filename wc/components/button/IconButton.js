@@ -3,11 +3,18 @@ import Button from "./Button.js";
 import { getIconPresetRegExp } from "../Icon.js";
 const stylesheet=`
   /* icon-only button */
-  button.icononly {
-    padding: 10px;
-  }
   button.icononly .icon {
     margin-right: 0;
+  }
+  button.icononly.sm,
+  button.icononly.md {
+    padding: 8px;
+  }
+  button.icononly.lg {
+    padding: 9px;
+  }
+  button.icononly.xl {
+    padding: 14px;
   }
 `;
 
@@ -36,9 +43,13 @@ class IconButton extends Button {
     this.setStylesheet(`
       .icon, button > ::slotted(${getWIconTag()}) {
         line-height: 100%; 
-        margin-right: 8px;
+        margin-right: 10px;
       }
     `);
+  }
+
+  getIconSizeByButtonSize(size) {
+    return size === 'lg' || size === 'xl' ? 'md' : 'sm';
   }
 
   bindEvents() {
@@ -72,7 +83,9 @@ class IconButton extends Button {
     if(!icon) {
       const iconSettings = {
         attrs: { 
-          size: name === 'size' ? newValue : this.size, 
+          size: name === 'size' 
+            ? this.getIconSizeByButtonSize(newValue) 
+            : this.getIconSizeByButtonSize(this.size), 
           type: name === 'icon' ? newValue : this.icon 
         },
         props: { className: 'icon' }
