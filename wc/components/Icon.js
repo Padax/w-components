@@ -1,32 +1,36 @@
 import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 
 const stylesheet=`
-  :host {
+  :host { 
+    display: inline-flex;
+    align-items: center;
     vertical-align: middle;
   }
-
+  .icon { line-height: 100%; }
+  
   /* icon size */
   .icon.sm { 
     font-size: var(--font-size-normal); 
     height: var(--font-size-normal);
-    line-height: var(--font-size-normal);
   }
   .icon.md { 
     font-size: calc(var(--font-size-normal) * 1.25); 
     height: calc(var(--font-size-normal) * 1.25); 
-    line-height: calc(var(--font-size-normal) * 1.25); 
   }
   .icon.lg { 
     font-size: calc(var(--font-size-normal) * 1.5); 
     height: calc(var(--font-size-normal) * 1.5); 
-    line-height: calc(var(--font-size-normal) * 1.5); 
   }
   .icon.xl { 
     font-size: calc(var(--font-size-normal) * 2); 
     height: calc(var(--font-size-normal) * 2); 
-    line-height: calc(var(--font-size-normal) * 2); 
+  }
+  .icon span { 
+    display: inline-block;
+    height: inherit; 
   }
   ::slotted(*) {
+    display: inline-block;
     height: inherit;
     width: auto;
   }
@@ -178,7 +182,6 @@ class Icon extends WComponent {
       this.setStylesheet(`.icon { 
         font-size: ${size}; 
         height: ${size};
-        line-height: ${size};
       }`, 'size');
     }
   }

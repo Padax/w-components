@@ -35,8 +35,8 @@ class IconButton extends Button {
     super();
     this.setStylesheet(`
       .icon, button > ::slotted(${getWIconTag()}) {
-        font-family: var(--icon-font-regular);
-        line-height: 100%; margin-right: 8px;
+        line-height: 100%; 
+        margin-right: 8px;
       }
     `);
   }
