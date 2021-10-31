@@ -66,6 +66,7 @@ const stylesheet=`
   .icon span.settings:before { content: '\\f6a8'; }
   .icon span.share:before { content: '\\fb2e'; }
   .icon span.star:before { content: '\\f70e'; }
+  .icon span.star-emphasis:before { content: '\\fba7'; }
   .icon span.subtract:before { content: '\\fc71'; }
   .icon span.subtract-circle:before { content: '\\f7a7'; }
   .icon span.text-quote:before { content: '\\f800'; }
@@ -108,6 +109,7 @@ const stylesheet=`
   .icon span.settings-filled:before { content: '\\f6b1'; }
   .icon span.share-filled:before { content: '\\fb36'; }
   .icon span.star-filled:before { content: '\\f717'; }
+  .icon span.star-emphasis-filled:before { content: '\\fbaf'; }
   .icon span.subtract-filled:before { content: '\\fc7b'; }
   .icon span.subtract-circle-filled:before { content: '\\f7bf'; }
   .icon span.text-quote-filled:before { content: '\\f819'; }
@@ -194,7 +196,7 @@ const ICON_PRESET = [
   'checkmark', 'checkmark-circle', 'copy', 'dismiss', 'dismiss-circle',
   'error-circle', 'flash', 'globe', 'heart', 'home', 'info',
   'leaf-one', 'more-vertical', 'navigation', 'search', 'settings',
-  'share', 'sparkle', 'star', 'subtract', 'subtract-circle',
+  'share', 'star', 'star-emphasis', 'subtract', 'subtract-circle',
   'text-quote', 'timer', 'toggle-left', 'toggle-right',
   'weather-moon', 'weather-sunny'
 ];
