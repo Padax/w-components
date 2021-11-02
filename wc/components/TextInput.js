@@ -34,6 +34,7 @@ class TextInput extends WComponent{
     if(this.value) { inputAttrs.value = this.value; }
     if(this.name) { inputAttrs.name = this.name; }
     DOM.create('input', { attrs: inputAttrs, events:{
+      change: this.handleChange.bind(this),
       input: this.handleInput.bind(this)
     }}, this.shadowRoot);
   }
@@ -41,6 +42,10 @@ class TextInput extends WComponent{
     const input = this.shadowRoot.querySelector('input');
     const value = this.parseAttributeValueByName(name, newValue);
     input[name]=value;
+  }
+  handleChange(e){
+    this.setAttribute("value", e.target.value);
+    this.dispatchEvent(new Event("change", e));
   }
   handleInput(e){
     this.setAttribute("value", e.target.value);
