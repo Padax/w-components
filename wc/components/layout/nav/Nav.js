@@ -15,7 +15,7 @@ const stylesheet=`
   }
   slot{
     display:flex;align-items:center;
-    width:100%;max-width:1250px;
+    width:100%;max-width:1200px;
     height:100%;
   }
 `;
