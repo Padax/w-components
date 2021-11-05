@@ -1,4 +1,4 @@
-import WComponent, { DOM } from "../WComponent.js";
+import WComponent, { DOM } from "../../WComponent.js";
 
 const stylesheet=`
   #elementCtn * {
