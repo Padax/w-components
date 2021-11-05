@@ -5,8 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title>W-Components</title>
 <style>
-w-list>w-li>a.link{
-	color:#880000;
+@media (max-width:800px){
+  w-nav-part>w-icon-button::part(button){
+    height:48px;
+  }
+  w-nav-part>w-icon-button#btnDonate{
+    padding-right:0px;
+  }
 }
 w-hero{
 	display:block;
@@ -24,6 +29,9 @@ w-section>w-heading{
 }
 w-section.team{
 	background-color:var(--color-gray-10);
+}
+w-list>w-li>a.link{
+	color:#880000;
 }
 [class*=" icon-"]:before {
   font-family: 'Icons-Filled' !important;
@@ -91,15 +99,15 @@ w-section.team{
 				<div><w-spa-link href="/document">開發</w-spa-link></div>
 			</w-nav-part>
 			<w-nav-part width="fit" arrange="right">
-				<w-icon-button display="block" color="gray" style="padding: 0;">
+				<w-icon-button display="block" color="gray" style="padding: 0px;">
           <w-icon type="weather-moon-filled" style="color: var(--color-gray-70)"></w-icon>
           深色模式
 				</w-icon-button>
-				<w-icon-button display="block" color="gray" style="padding: 0;">
+				<w-icon-button display="block" color="gray" style="padding: 0px;">
           <w-icon type="globe-filled" style="color: var(--color-gray-70)"></w-icon>
 					English
 				</w-icon-button>
-				<w-icon-button display="block" id="btnDonate" color="gray" outlined style="padding: 0;">
+				<w-icon-button display="block" id="btnDonate" color="gray" outlined style="padding-left: 0px;">
           <w-icon type="heart-filled" style="color: var(--color-critical-50)"></w-icon>
           贊助
 				</w-icon-button>
