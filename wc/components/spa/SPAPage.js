@@ -33,11 +33,6 @@ class SPAPage extends WComponent{
     });
   }
   init(){
-    // init custom events
-    this.events={
-      init:new Event("init"),
-      dispose:new Event("dispose")
-    };
     // init current
     this.current=this.match(window.location.pathname);
     // first render
@@ -66,9 +61,9 @@ class SPAPage extends WComponent{
     }
     // fire custom event
     if(this.current){
-      this.dispatchEvent(this.events.init);
+      this.dispatchEvent(new Event('init'));
     }else{
-      this.dispatchEvent(this.events.dispose);
+      this.dispatchEvent(new Event('dispose'));
     }
   }
   match(path){

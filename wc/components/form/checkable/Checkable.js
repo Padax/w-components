@@ -80,10 +80,6 @@ class Checkable extends WComponent{
   }
 
   bindEvents() {
-    this.events = {
-      change: new Event('change'),
-      click: new Event('click')
-    };
     this.shadowRoot.addEventListener('click', this.clickHandler);
   }
   init() {

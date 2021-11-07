@@ -49,13 +49,6 @@ class Form extends WComponent{
   }
 
   bindEvents() {
-    this.events = {
-      submit: new Event(
-        'submit', 
-        { cancelable: true }  // For form submit prevention
-      )
-    };
-
     // Re-bind form element access on slot change
     this.shadowRoot.querySelector('slot')
       .addEventListener('slotchange', () => this.bindFormElementAccess());
@@ -110,6 +103,20 @@ class Form extends WComponent{
         }
       });
     });
+  }
+  /**
+   * Create custom Event object for form submit.
+   * @param {Event} [e={}] - Original event to be passed as the EventInit argument.
+   * @returns {Event}
+   */
+  createSubmitEvent(e) {
+    return new Event(
+      'submit',  
+      {
+        ...e,  
+        cancelable: true  // For form submit prevention 
+      }
+    );
   }
   /**
    * Get valid form elements for submit, ie. has a name & is not disabled.
@@ -183,7 +190,7 @@ class Form extends WComponent{
   }
   submitHandler = e => {
     this.injectFormElements();
-    if(this.dispatchEvent(this.events.submit)) {
+    if(this.dispatchEvent(this.createSubmitEvent(e))) {
       // Submit inner form only if submit event dispatch is not cancelled
       this.shadowRoot.querySelector('form').submit();
     }

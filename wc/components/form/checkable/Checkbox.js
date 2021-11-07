@@ -26,13 +26,13 @@ class Checkbox extends Checkable{
 
       // Trigger change event
       if(name === checkedAttr.name && oldValue !== newValue) {
-        this.dispatchEvent(this.events.change);
+        this.dispatchEvent(new Event('change'));
       }
     }
   }
   
   clickHandler = e => {
-    this.dispatchEvent(this.events.click);
+    this.dispatchEvent(new Event('click', e));
     if(!this.disabled) {
       this.checked = !this.checked;
     }
