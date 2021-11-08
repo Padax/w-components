@@ -1,6 +1,6 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 const stylesheet=`
-  button{
+  button {
     box-sizing: border-box;
     display: inline-flex; align-items: center; justify-content: center;
     font-family:var(--font-family);
@@ -49,97 +49,119 @@ const stylesheet=`
     border-color:var(--color-gray-30);
   }
 
-  /* outlined & plaintext */
-  button.outlined {
+  /* type - outline */
+  button.outline {
     background-color:transparent;
     border-width:1px;
   }
   /* outline color */
-  button.outlined.primary {
+  button.outline.primary {
     border-color:var(--color-primary-60);
     color:var(--color-primary-60);
   }
-  button.outlined.primary:hover {
+  button.outline.primary:hover {
     background-color:var(--color-primary-10);
   }
-  button.outlined.primary:active {
+  button.outline.primary:active {
     background-color:var(--color-primary-20);
   }
-  button.outlined.critical {
+  button.outline.critical {
     border-color:var(--color-critical-60);
     color:var(--color-critical-60);
   }
-  button.outlined.critical:hover {
+  button.outline.critical:hover {
     background-color:var(--color-critical-10);
   }
-  button.outlined.critical:active {
+  button.outline.critical:active {
     background-color:var(--color-critical-20);
   }
-  button.outlined.gray {
+  button.outline.gray {
     background-color:var(--color-gray-0);
     border-color:var(--color-gray-90);
     color:var(--color-gray-90);
   }
-  button.outlined.gray:hover {
+  button.outline.gray:hover {
     background-color:var(--color-gray-10);
   }
-  button.outlined.gray:active {
+  button.outline.gray:active {
     background-color:var(--color-gray-20);
   }
   
-  /* plaintext */
-  button.plaintext {
+  /* type - text */
+  button.text {
     background-color:transparent;
   }
   /* outline color */
-  button.plaintext.primary {
+  button.text.primary {
     border-color:transparent;
     color:var(--color-primary-60);
   }
-  button.plaintext.primary:hover {
+  button.text.primary:hover {
     background-color:var(--color-primary-10);
   }
-  button.plaintext.primary:active {
+  button.text.primary:active {
     background-color:var(--color-primary-20);
   }
-  button.plaintext.critical {
+  button.text.critical {
     border-color:transparent;
     color:var(--color-critical-60);
   }
-  button.plaintext.critical:hover {
+  button.text.critical:hover {
     background-color:var(--color-critical-10);
   }
-  button.plaintext.critical:active {
+  button.text.critical:active {
     background-color:var(--color-critical-20);
   }
-  button.plaintext.gray {
+  button.text.gray {
     border-color:transparent;
     color:var(--color-gray-90);
   }
-  button.plaintext.gray:hover {
+  button.text.gray:hover {
     background-color:var(--color-gray-10);
   }
-  button.plaintext.gray:active {
+  button.text.gray:active {
     background-color:var(--color-gray-20);
+  }
+
+  /* type - link*/
+  button.link {
+    background-color: transparent;
+    border-color :transparent;
+    color: var(--color-gray-90);
+  }
+  button.link:hover {
+    background-color: transparent;
+    border-color :transparent;
+    color: var(--color-gray-60);
+  }
+  button.link:active {
+    background-color: transparent;
+    border-color :transparent;
+    color: var(--color-primary-60);
   }
 
   /* disabled */
   button:disabled, button:disabled:hover, button:disabled:active,
-  button.outlined:disabled, button.outlined:disabled:hover, button.outlined:disabled:active,
-  button.plaintext:disabled, button.plaintext:disabled:hover, button.plaintext:disabled:active {
+  button.outline:disabled, button.outline:disabled:hover, button.outline:disabled:active,
+  button.text:disabled, button.text:disabled:hover, button.text:disabled:active {
     background-color:var(--color-gray-10);
     border-color:var(--color-gray-10);
     color:var(--color-gray-40);
     cursor:default;
   }
-  /* disabled outlined */
-  button.outlined:disabled,
-  button.outlined:disabled:hover {
+  /* disabled outline */
+  button.outline:disabled,
+  button.outline:disabled:hover {
     border-color:var(--color-gray-40);
   }
-  /* disabled plaintext */
-  button.outlined:disabled,
-  button.outlined:disabled:hover {
+  /* disabled text */
+  button.outline:disabled,
+  button.outline:disabled:hover {
+    border-color:transparent;
+  }
+  /* disabled link */ 
+  button.link:disabled {
+    background-color:transparent;
     border-color:transparent;
   }
   
@@ -185,16 +207,10 @@ class Button extends WComponent{
         value, attr.defaultValue, /^primary$|^critical$|^gray$/
       )
     },
-    outlined: {
-      name: 'outlined', defaultValue: false, 
-      parser: (value, attr) => AttributeParser.parseBoolAttr(
-        value, attr.defaultValue
-      )
-    },
-    plaintext: {
-      name: 'plaintext', defaultValue: false, 
-      parser: (value, attr) => AttributeParser.parseBoolAttr(
-        value, attr.defaultValue
+    type: {
+      name: 'type', defaultValue: 'regular',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^outline$|^text$|^link$/
       )
     },
     size: {
@@ -208,7 +224,8 @@ class Button extends WComponent{
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^inline-block$|^block$/
       )
-    }
+    },
+    href: { name: 'href', defaultValue: undefined }
   };
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
@@ -216,6 +233,10 @@ class Button extends WComponent{
   
   constructor(){
     super();
+    this.bindEvents();
+  }
+  bindEvents() {
+    this.shadowRoot.addEventListener('click', this.clickHandler);
   }
   init(){
     const settings = { props: this.renderProps(), attrs: this.renderAttrs() };
@@ -238,18 +259,13 @@ class Button extends WComponent{
       this.renderStylesheet(value);
     }
   }
-  renderProps({ display, size, color, outlined, plaintext } = {}) {
+  renderProps({ display, type, size, color } = {}) {
     const classList = [ 
       display ? display : this.display, 
+      type ? type: this.type,
       size ? size : this.size, 
       color ? color : this.color
     ];
-    if(outlined || outlined === undefined && this.outlined) {
-      classList.push('outlined');
-    }
-    if(plaintext || plaintext === undefined && this.plaintext) {
-      classList.push('plaintext');
-    }
     return { className: classList.join(' ') };
   }
   renderAttrs({ disabled } = {}) {
@@ -264,6 +280,12 @@ class Button extends WComponent{
   renderStylesheet(display) {
     this.setStylesheet(`:host { display: ${display ? display : this.display} }`, 'display');
   }
+
+  clickHandler = e => {
+    if(this.type === 'link' && typeof this.href === 'string') {
+      document.location.href = this.href;
+    }
+  };
 }
 Button.prototype.stylesheet=stylesheet;
 export default Button;

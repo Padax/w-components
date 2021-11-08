@@ -107,7 +107,7 @@ w-list>w-li>a.link{
           <w-icon type="globe-filled" style="color: var(--color-gray-70)"></w-icon>
 					English
 				</w-icon-button>
-				<w-icon-button display="block" id="btnDonate" color="gray" outlined style="padding-left: 0px;">
+				<w-icon-button display="block" id="btnDonate" color="gray" type="outline" style="padding-left: 0px;">
           <w-icon type="heart-filled" style="color: var(--color-critical-50)"></w-icon>
           贊助
 				</w-icon-button>
@@ -119,7 +119,7 @@ w-list>w-li>a.link{
 		<w-heading level="3">基於 Web Components 原生技術，<br/>執行高效率、高品質程式碼，俐落的設計質感。</w-heading>
 		<div>
 			<w-button size="xl">開始使用</w-button><!--
-      --><w-icon-button size="xl" color="gray" outlined style="margin-left: 20px">
+      --><w-icon-button size="xl" color="gray" type="outline" style="margin-left: 20px">
         <w-icon size="22"><img src="image/github.svg" /></w-icon>GitHub
       </w-icon-button>
 		</div>
@@ -167,15 +167,15 @@ w-list>w-li>a.link{
   <!-- IconButton -->
   <w-heading level="3" underlined="true" style="margin: 10px 0;">IconButton</w-heading>
   <div style="margin: 10px;">
-    <w-icon-button outlined icon="navigation">Preset</w-icon-button>
-    <w-icon-button outlined>
+    <w-icon-button type="outline" icon="navigation">Preset</w-icon-button>
+    <w-icon-button type="outline">
       <w-icon type="heart-filled"></w-icon>Preset Icon
     </w-icon-button>
-    <w-icon-button outlined>
+    <w-icon-button type="outline">
       <w-icon><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
       Custom IconFont
     </w-icon-button>
-    <w-icon-button outlined>
+    <w-icon-button type="outline">
       <w-icon><img src="image/github.svg" /></w-icon>Custom Image
     </w-icon-button>
     <w-icon-button color="none" icon="navigation">NONE</w-icon-button>
@@ -183,20 +183,29 @@ w-list>w-li>a.link{
   <div style="margin: 10px;">
     <w-icon-button icon="heart" size="sm" icononly></w-icon-button>
     <w-icon-button icon="heart" size="sm" icononly disabled></w-icon-button>
-    <w-icon-button icon="heart" size="sm" icononly outlined></w-icon-button>
-    <w-icon-button icon="heart" size="sm" icononly plaintext></w-icon-button>
+    <w-icon-button icon="heart" size="sm" icononly type="outline"></w-icon-button>
+    <w-icon-button icon="heart" size="sm" icononly type="text"></w-icon-button>
     <w-icon-button icon="heart" size="md" icononly></w-icon-button>
     <w-icon-button icon="heart" size="md" icononly disabled></w-icon-button>
-    <w-icon-button icon="heart" size="md" icononly outlined></w-icon-button>
-    <w-icon-button icon="heart" size="md" icononly plaintext></w-icon-button>
+    <w-icon-button icon="heart" size="md" icononly type="outline"></w-icon-button>
+    <w-icon-button icon="heart" size="md" icononly type="text"></w-icon-button>
     <w-icon-button icon="heart" size="lg" icononly></w-icon-button>
     <w-icon-button icon="heart" size="lg" icononly disabled></w-icon-button>
-    <w-icon-button icon="heart" size="lg" icononly outlined></w-icon-button>
-    <w-icon-button icon="heart" size="lg" icononly plaintext></w-icon-button>
+    <w-icon-button icon="heart" size="lg" icononly type="outline"></w-icon-button>
+    <w-icon-button icon="heart" size="lg" icononly type="text"></w-icon-button>
     <w-icon-button icon="heart" size="xl" icononly></w-icon-button>
     <w-icon-button icon="heart" size="xl" icononly disabled></w-icon-button>
-    <w-icon-button icon="heart" size="xl" icononly outlined></w-icon-button>
-    <w-icon-button icon="heart" size="xl" icononly outlined plaintext></w-icon-button>
+    <w-icon-button icon="heart" size="xl" icononly type="outline"></w-icon-button>
+    <w-icon-button icon="heart" size="xl" icononly type="outline" type="text"></w-icon-button>
+  </div>
+  <!-- Button Link -->
+  <w-heading level="3" underlined="true" style="margin: 10px 0;">Button Link</w-heading>
+  <div style="margin: 10px;">
+    <w-button type="link" size="sm">Preset</w-button>
+    <w-button type="link" size="md">Preset</w-button>
+    <w-button type="link" size="lg">Preset</w-button>
+    <w-button type="link" size="xl">Preset</w-button>
+    <w-icon-button type="link" icon="navigation" disabled>Preset</w-icon-button>
   </div>
 
 	<w-spa-page path="/heading" id="heading-page">
@@ -271,53 +280,53 @@ w-list>w-li>a.link{
     <w-heading>Primary</w-heading>
     <div style="margin: 10px">
       <w-button size="sm">Small</w-button>
-      <w-button size="sm" outlined color="primary">Small Outline</w-button>
+      <w-button size="sm" type="outline" color="primary">Small Outline</w-button>
       <w-button size="md">Normal</w-button>
       <w-button disabled>Normal</w-button>
-      <w-button outlined color="primary">Outline</w-button>
-      <w-button disabled outlined color="primary">Outline</w-button>
+      <w-button type="outline" color="primary">Outline</w-button>
+      <w-button disabled type="outline" color="primary">Outline</w-button>
       <w-button size="lg">Large</w-button>
-      <w-button size="lg" outlined color="primary">Large Outline</w-button>
+      <w-button size="lg" type="outline" color="primary">Large Outline</w-button>
       <w-button size="xl">X Large</w-button>
-      <w-button size="xl" outlined color="primary">X Large Outline</w-button>
+      <w-button size="xl" type="outline" color="primary">X Large Outline</w-button>
     </div>
     <w-button display="block" style="margin: 10px">Block</w-button>
-    <w-button display="block" outlined color="primary" style="margin: 10px">Outline Block</w-button>
+    <w-button display="block" type="outline" color="primary" style="margin: 10px">Outline Block</w-button>
     <w-button display="block" size="lg" style="margin: 10px">Large Block</w-button>
     <w-button display="block" size="xl" disabled style="margin: 10px">XLarge Block Disabled</w-button>
     <!-- Critical -->
     <w-heading>Critical</w-heading>
     <div style="margin: 10px">
       <w-button size="sm" color="critical">Small</w-button>
-      <w-button size="sm" outlined color="critical">Small Outline</w-button>
+      <w-button size="sm" type="outline" color="critical">Small Outline</w-button>
       <w-button size="md" color="critical">Normal</w-button>
       <w-button disabled color="critical">Normal</w-button>
-      <w-button outlined color="critical">Outline</w-button>
-      <w-button disabled outlined color="critical">Outline</w-button>
+      <w-button type="outline" color="critical">Outline</w-button>
+      <w-button disabled type="outline" color="critical">Outline</w-button>
       <w-button size="lg" color="critical">Large</w-button>
-      <w-button size="lg" outlined color="critical">Large Outline</w-button>
+      <w-button size="lg" type="outline" color="critical">Large Outline</w-button>
       <w-button size="xl" color="critical">X Large</w-button>
-      <w-button size="xl" outlined color="critical">X Large Outline</w-button>
+      <w-button size="xl" type="outline" color="critical">X Large Outline</w-button>
     </div>
     <w-button display="block" color="critical" style="margin: 10px">Block</w-button>
-    <w-button display="block" outlined color="critical" style="margin: 10px">Outline Block</w-button>
+    <w-button display="block" type="outline" color="critical" style="margin: 10px">Outline Block</w-button>
     <w-button display="block" size="lg" color="critical" style="margin: 10px">Large Block</w-button>
     <!-- Gray -->
     <w-heading>Gray</w-heading>
     <div style="margin: 10px">
       <w-button size="sm" color="gray">Small</w-button>
-      <w-button size="sm" outlined color="gray">Small Outline</w-button>
+      <w-button size="sm" type="outline" color="gray">Small Outline</w-button>
       <w-button size="md" color="gray">Normal</w-button>
       <w-button disabled color="gray">Normal</w-button>
-      <w-button outlined color="gray">Outline</w-button>
-      <w-button disabled outlined color="gray">Outline</w-button>
+      <w-button type="outline" color="gray">Outline</w-button>
+      <w-button disabled type="outline" color="gray">Outline</w-button>
       <w-button size="lg" color="gray">Large</w-button>
-      <w-button size="lg" outlined color="gray">Large Outline</w-button>
+      <w-button size="lg" type="outline" color="gray">Large Outline</w-button>
       <w-button size="xl" color="gray">X Large</w-button>
-      <w-button size="xl" outlined color="gray">X Large Outline</w-button>
+      <w-button size="xl" type="outline" color="gray">X Large Outline</w-button>
     </div>
     <w-button display="block" color="gray" style="margin: 10px">Block</w-button>
-    <w-button display="block" outlined color="gray" style="margin: 10px">Outline Block</w-button>
+    <w-button display="block" type="outline" color="gray" style="margin: 10px">Outline Block</w-button>
     <w-button display="block" size="lg" color="gray" style="margin: 10px">Large Block</w-button>
 
     <!-- Icon -->
