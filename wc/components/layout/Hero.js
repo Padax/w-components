@@ -1,4 +1,4 @@
-import WComponent, { DOM, AttributeParser } from '../../WComponent.js';
+import WComponent, { DOM, AttributeParser, getWTagName } from '../../WComponent.js';
 const stylesheet=`
   .keyvisual{
     padding-top:120px;padding-bottom:0px;
@@ -33,7 +33,7 @@ class Hero extends WComponent{
     super();
   }
   init(){
-    const section=DOM.create(`${window.wconfig.prefix}-section`, {attrs:{cols:1}, props:{className:'keyvisual'}}, this.shadowRoot);
+    const section=DOM.create(getWTagName('section'), {attrs:{cols:1}, props:{className:'keyvisual'}}, this.shadowRoot);
     const welcome=DOM.create('div', {props:{
       className:'welcome'
     }}, section);

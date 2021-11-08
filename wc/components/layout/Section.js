@@ -1,4 +1,4 @@
-import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
+import WComponent, { DOM, AttributeParser, getWTagName } from "../../WComponent.js";
 const stylesheet=`
   :host{
     display:flex;
@@ -40,7 +40,7 @@ class Section extends WComponent{
     super();
   }
   init(){
-    const grid=DOM.create(`${window.wconfig.prefix}-grid`, {attrs:{
+    const grid=DOM.create(getWTagName('grid'), {attrs:{
       cols:this.cols, colgap:this.colgap, rowgap:this.rowgap
     }, styles:{
       width:`${this.width}px`, maxWidth:"100%"

@@ -1,4 +1,4 @@
-import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
+import WComponent, { DOM, AttributeParser, getWTagName } from "../../WComponent.js";
 const stylesheet=`
   .card{
     text-align:center;
@@ -67,10 +67,10 @@ class Card extends WComponent{
       DOM.create("img", {props:{className:"icon", src:this.icon}}, this.card);
     }
     if(this.title){
-      DOM.create(window.wconfig.prefix+"-heading", {attrs:{level:4}, props:{className:"title", textContent:this.title}}, this.card);
+      DOM.create(getWTagName('heading'), {attrs:{level:4}, props:{className:"title", textContent:this.title}}, this.card);
     }
     if(this.description){
-      DOM.create(window.wconfig.prefix+"-heading", {attrs:{level:4}, props:{className:"description", textContent:this.description}}, this.card);
+      DOM.create(getWTagName('heading'), {attrs:{level:4}, props:{className:"description", textContent:this.description}}, this.card);
     }
   }
 }

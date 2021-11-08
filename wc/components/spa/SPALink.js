@@ -1,4 +1,4 @@
-import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
+import WComponent, { DOM, AttributeParser, getWTagName } from "../../WComponent.js";
 class SPALink extends WComponent{
   static attributes = {
     href: {
@@ -25,7 +25,7 @@ class SPALink extends WComponent{
   changePage(){
     const href=window.wconfig.spa.basename+this.href;
     window.history.pushState({}, href, href);
-    const pages=document.querySelectorAll("w-spa-page");
+    const pages=document.querySelectorAll(getWTagName('spa-page'));
     pages.forEach((page)=>{
       page.setCurrent(page.match(href));
     });

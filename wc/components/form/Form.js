@@ -1,4 +1,4 @@
-import WComponent, { DOM } from "../../WComponent.js";
+import WComponent, { DOM, getWTagName } from "../../WComponent.js";
 
 const stylesheet=`
   #elementCtn * {
@@ -66,7 +66,7 @@ class Form extends WComponent{
       .addEventListener('click', this.submitHandler);
 
     // Bind radio click callback for name group control
-    this.querySelectorAll(`${window.wconfig.prefix}-radio`).forEach(radio => {
+    this.querySelectorAll(getWTagName('radio')).forEach(radio => {
       radio.addEventListener('change', this.radioChangeCallback);
     });
   }
@@ -180,7 +180,7 @@ class Form extends WComponent{
     const radio = e.target;
     if(typeof radio.name !== 'string' || radio.disabled) { return; }
 
-    const radios = Array.from(this.querySelectorAll(`${window.wconfig.prefix}-radio[name='${radio.name}']`));
+    const radios = Array.from(this.querySelectorAll(`${getWTagName('radio')}[name='${radio.name}']`));
     // Compare each w-radio in the same group, uncheck all which are not the current event target.
     radios.forEach(r => {
       if(!r.equals(radio)) {
@@ -200,12 +200,12 @@ class Form extends WComponent{
 Form.prototype.stylesheet=stylesheet;
 
 function getFormElementTypes() {
-  let types = [ 'input', 'select', 'textarea' ];
-  if(window.wconfig && typeof window.wconfig.prefix === 'string') {
-    types.push(`${window.wconfig.prefix}-textinput`);
-    types.push(`${window.wconfig.prefix}-checkbox`);
-    types.push(`${window.wconfig.prefix}-radio`);
-  }
+  let types = [ 
+    'input', 'select', 'textarea', 
+    getWTagName('textinput'),
+    getWTagName('checkbox'),
+    getWTagName('radio')
+  ];
   
   return types;
 }

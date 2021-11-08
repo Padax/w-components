@@ -101,6 +101,14 @@ class WComponent extends HTMLElement{
 
 }
 
+export function getWTagName(tag) { 
+  let prefix = 'w';
+  if(window.wconfig && typeof window.wconfig.prefix === 'string') {
+    prefix = window.wconfig.prefix;
+  }
+  return `${prefix}-${tag}`; 
+}
+
 export default WComponent;
 export { DOM };
 export * as AttributeParser from './util/AttributeParser.js';

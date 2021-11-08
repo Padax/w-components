@@ -1,4 +1,4 @@
-import { DOM, AttributeParser } from "../../WComponent.js";
+import { DOM, AttributeParser, getWTagName } from "../../WComponent.js";
 import Button from "./Button.js";
 import { getIconPresetRegExp } from "../Icon.js";
 const stylesheet=`
@@ -41,7 +41,7 @@ class IconButton extends Button {
   constructor(){
     super();
     this.setStylesheet(`
-      .icon, button > ::slotted(${getWIconTag()}) {
+      .icon, button > ::slotted(${getWTagName('icon')}) {
         line-height: 100%; 
         margin-right: 10px;
       }
@@ -77,8 +77,8 @@ class IconButton extends Button {
 
   renderIcon(name, oldValue, newValue) {
     const btn = this.shadowRoot.querySelector('button');
-    const icon = this.querySelector(getWIconTag());
-    const presetIcon = this.shadowRoot.querySelector(getWIconTag());
+    const icon = this.querySelector(getWTagName('icon'));
+    const presetIcon = this.shadowRoot.querySelector(getWTagName('icon'));
 
     if(!icon) {
       const iconSettings = {
@@ -93,7 +93,7 @@ class IconButton extends Button {
       if(presetIcon) {
         DOM.modify(presetIcon, iconSettings);
       } else {
-        DOM.create(getWIconTag(), iconSettings, btn);
+        DOM.create(getWTagName('icon'), iconSettings, btn);
       }
     } else if(!icon.getAttribute('size')) {
       // Use button size if slotted icon size unspecified.
@@ -115,7 +115,5 @@ class IconButton extends Button {
   }
 }
 Button.prototype.stylesheet += stylesheet;
-
-function getWIconTag() { return `${window.wconfig.prefix}-icon`; }
 
 export default IconButton;
