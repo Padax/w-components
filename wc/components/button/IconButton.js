@@ -53,6 +53,7 @@ class IconButton extends Button {
   }
 
   bindEvents() {
+    super.bindEvents();
     // Re-render icon
     this.shadowRoot.querySelector('slot')
       .addEventListener('slotchange', () => this.renderIcon());
@@ -113,7 +114,9 @@ class IconButton extends Button {
     }
     return props;
   }
+
+  clickHandler = this.clickHandler.bind(this);
 }
-Button.prototype.stylesheet += stylesheet;
+IconButton.prototype.stylesheet += stylesheet;
 
 export default IconButton;

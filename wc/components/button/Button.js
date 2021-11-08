@@ -225,7 +225,13 @@ class Button extends WComponent{
         value, attr.defaultValue, /^inline-block$|^block$/
       )
     },
-    href: { name: 'href', defaultValue: undefined }
+    href: { name: 'href', defaultValue: undefined },
+    target: {
+      name: 'target', defaultValue: 'current',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^current$|^new$/
+      )
+    }
   };
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
@@ -282,8 +288,12 @@ class Button extends WComponent{
   }
 
   clickHandler = e => {
-    if(this.type === 'link' && typeof this.href === 'string') {
-      document.location.href = this.href;
+    if(typeof this.href === 'string') {
+      if(this.target === 'new') {
+        window.open(this.href, '_blank');
+      } else {
+        document.location.href = this.href;
+      }
     }
   };
 }
