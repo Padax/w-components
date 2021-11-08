@@ -8,13 +8,13 @@ const stylesheet=`
   }
   button.icononly.sm,
   button.icononly.md {
-    padding: 8px;
+    padding: 5px;
   }
   button.icononly.lg {
-    padding: 9px;
+    padding: 7px;
   }
   button.icononly.xl {
-    padding: 14px;
+    padding: 11px;
   }
 `;
 
@@ -49,7 +49,7 @@ class IconButton extends Button {
   }
 
   getIconSizeByButtonSize(size) {
-    return size === 'lg' || size === 'xl' ? 'md' : 'sm';
+    return size === 'xl' ? 'lg' : size;
   }
 
   bindEvents() {

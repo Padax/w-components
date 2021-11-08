@@ -150,7 +150,7 @@ const stylesheet=`
     padding: 0 32px;
   }
   button.lg {
-    height: 38px; line-height: 38px;
+    height: 40px; line-height: 40px;
     font-size:calc(var(--font-size-normal) * 1.25);
     padding: 0 24px;
   }
@@ -160,8 +160,8 @@ const stylesheet=`
     padding: 0 20px;
   }
   button.sm {
-    height: 29px; line-height: 29px;
-    font-size:calc(var(--font-size-normal) * 0.875);
+    height: 28px; line-height: 28px;
+    font-size: var(--font-size-normal);
     padding: 0 12px;
   }
 
