@@ -29,6 +29,7 @@ const stylesheet=`
     border-radius:4px;
   }
   :host > textarea.growable{
+    overflow-y:hidden;
     height:var(--line-height-normal);
     resize:none;
   }
@@ -150,6 +151,7 @@ class TextInput extends WComponent{
     const element=e.target;
     const styles=window.getComputedStyle(element);
     const padding=parseInt(styles.getPropertyValue('padding-top'))+parseInt(styles.getPropertyValue('padding-bottom'));
+    element.style.height=""; // important for get scrollHeight not depending on height
     element.style.height=(element.scrollHeight-padding)+"px"; // minus padding top and bottom
     this.setAttribute("value", element.value);
   }

@@ -465,10 +465,20 @@ w-list>w-li>a.link{
     <w-heading level="2" underlined="true" style="margin: 10px 0;">Form</w-heading>
     <w-form name="form" action="test.html" method="post">
       <!-- TextInput -->
-      <w-heading level="3" underlined>TextInput</w-heading>
-      <w-textinput placeholder="測試 placeholder 屬性"></w-textinput>
-      <w-textinput value="測試"></w-textinput>
-      <w-textinput name="test" value="測試 name 屬性"></w-textinput>
+      <w-heading level="5">Outlined</w-heading>
+      <w-textinput placeholder="This is Placeholder"></w-textinput>
+      <w-textinput value="Disabled" disabled></w-textinput>
+      <w-textinput name="test" value="Test name" style="width:50px;"></w-textinput>
+      <w-textinput type="growable">Growable multiline text</w-textinput>
+      <w-textinput type="growable" disabled value="Disabled">Disabled</w-textinput>
+      <w-textinput type="multiple" value="Multiple lines" style="width:300px;">Textarea multiline text in 300px width</w-textinput>
+      <w-heading level="5">Filled</w-heading>
+      <w-textinput appearance="filled" placeholder="This is Placeholder"></w-textinput>
+      <w-textinput appearance="filled" value="Disabled" disabled></w-textinput>
+      <w-textinput appearance="filled" name="test" value="Test name" style="width:50px;"></w-textinput>
+      <w-textinput appearance="filled" type="growable">Growable multiline text</w-textinput>
+      <w-textinput appearance="filled" type="growable" disabled value="Disabled">Disabled</w-textinput>
+      <w-textinput appearance="filled" type="multiple" value="Multiple lines" style="width:300px;">Textarea multiline text in 300px width</w-textinput>
       <!-- CheckBox -->
       <w-heading level="3" underlined>CheckBox</w-heading>
       <w-checkbox name="checkbox" value="1">Un-Checked</w-checkbox>
