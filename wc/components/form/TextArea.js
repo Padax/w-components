@@ -4,18 +4,6 @@ const stylesheet=`
   :host {
     display:inline-flex;
   }
-  :host > input {
-    display:block;width:100%;
-    font-family:var(--font-family);
-    font-size:var(--font-size-normal);
-    line-height: var(--line-height-normal);
-    color:var(--color-gray-100);
-    padding:8px 16px;
-    border-width:1px;
-    border-style:solid;
-    border-color:var(--color-gray-30);
-    border-radius:4px;
-  }
   :host > textarea {
     display:block;width:100%;
     font-family:var(--font-family);
@@ -28,54 +16,72 @@ const stylesheet=`
     border-color:var(--color-gray-30);
     border-radius:4px;
   }
-  :host > textarea.growable{
-    overflow-y:hidden;
-    height:var(--line-height-normal);
+  :host > textarea.resize-both{
+    resize:both;
+  }
+  :host > textarea.resize-vertical{
+    resize:vertical;
+  }
+  :host > textarea.resize-horizontal{
+    resize:horizontal;
+  }
+  :host > textarea.resize-none{
     resize:none;
   }
-  :host > input:hover, :host > textarea:hover{
+  :host > textarea.growable{
+    resize:none;
+    overflow-y:hidden;
+    height:var(--line-height-normal);
+  }
+  :host > textarea:hover{
     border-color:var(--color-gray-40);
   }
-  :host > input:active, :host > textarea:active,
-  :host > input:focus, :host > textarea:focus{
+  :host > textarea:active,
+  :host > textarea:focus{
     border-color:var(--color-gray-60);
     outline-width:0px;
   }
-  :host > input:disabled, :host > textarea:disabled{
+  :host > textarea:disabled{
     border-width:0px;
     background-color:var(--color-gray-10);
     color:var(--color-gray-40);
   }
   /* filled */
-  :host > input.filled{
-    border-width:0px;
-    border-bottom-width:1px;
-    border-radius:4px 4px 0px 0px;
-    background-color:var(--color-gray-10);
-  }
   :host > textarea.filled{
     border-width:0px;
     border-bottom-width:1px;
     border-radius:4px 4px 0px 0px;
     background-color:var(--color-gray-10);
   }
-  :host > input.filled:hover, :host > textarea.filled:hover{
+  :host > textarea.filled:hover{
     background-color:var(--color-gray-20);
   }
-  :host > input.filled:active, :host > textarea.filled:active,
-  :host > input.filled:focus, :host > textarea.filled:focus{
+  :host > textarea.filled:active,
+  :host > textarea.filled:focus{
     background-color:var(--color-gray-30);
   }
-  :host > input.filled:disabled, :host > textarea.filled:disabled{
+  :host > textarea.filled:disabled{
     background-color:var(--color-gray-10);
     color:var(--color-gray-40);
     border-color:var(--color-gray-30);
   }
 `;
 
-class TextInput extends WComponent{
+class TextArea extends WComponent{
 
   static attributes = {
+    type: { 
+      name: 'type', defaultValue: 'normal',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^normal$|^growable$/
+      )
+    },
+    resize:{
+      name: 'resize', defaultValue: 'both',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^both$|^horizontal$|^vertical$|^none$/
+      )
+    },
     appearance: {
       name: 'appearance', defaultValue: 'outlined',
       parser: (value, attr) => AttributeParser.parseStringAttr(
@@ -100,22 +106,36 @@ class TextInput extends WComponent{
     super();
   }
   init() {
-    const inputAttrs = { type: 'text' };
+    // generate attributes
+    const inputAttrs = {};
     if(this.placeholder) { inputAttrs.placeholder = this.placeholder; }
     if(this.value) { inputAttrs.value = this.value; }
     if(this.name) { inputAttrs.name = this.name; }
     if(this.disabled) { inputAttrs.disabled = true; }
-    const inputProps = { className: this.appearance}
-    this.input=DOM.create('input', { attrs: inputAttrs, props:inputProps, events:{
+    // generate properties
+    const inputProps = {
+      textContent:this.textContent,
+      className: this.appearance+" "+this.type+" resize-"+this.resize
+    };
+    // generate input event handler
+    let inputHandler=this.handleInput.bind(this);
+    if(this.type==='growable'){
+      inputHandler=this.handleGrowableInput.bind(this);
+    }
+    // generate input element inside
+    this.input=DOM.create('textarea', { attrs: inputAttrs, props:inputProps, events:{
       change: this.handleChange.bind(this),
-      input: this.handleInput.bind(this)
+      input: inputHandler
     }}, this.shadowRoot);
   }
   update({ name, newValue } = {}) {
     const value = this.parseAttributeValueByName(name, newValue);
     switch(name){
+      case 'type':
+      case 'resize':
       case 'appearance':
-        DOM.modify(this.input, {props:{className:this.appearance}});
+        const className=this.appearance+" "+this.type+" resize-"+this.resize;
+        DOM.modify(this.input, {props:{className:className}});
         break;
       default:
         this.input[name]=value;
@@ -137,5 +157,5 @@ class TextInput extends WComponent{
     this.setAttribute("value", element.value);
   }
 }
-TextInput.prototype.stylesheet=stylesheet;
-export default TextInput;
+TextArea.prototype.stylesheet=stylesheet;
+export default TextArea;

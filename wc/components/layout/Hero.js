@@ -9,6 +9,12 @@ const stylesheet=`
     background-repeat:no-repeat;
     background-position:bottom right;
     padding-left:50px;
+    padding-bottom:120px;
+  }
+  @media (max-width:500px){
+    .keyvisual>div.welcome{
+      background-image:none;
+    }
   }
 `;
 class Hero extends WComponent{
@@ -34,7 +40,7 @@ class Hero extends WComponent{
   }
   init(){
     const section=DOM.create(getWTagName('section'), {attrs:{cols:1}, props:{className:'keyvisual'}}, this.shadowRoot);
-    const welcome=DOM.create('div', {props:{
+    const welcome=DOM.create('div', {attrs:{part:'keyvisual'}, props:{
       className:'welcome'
     }}, section);
     DOM.create('slot', {}, welcome);
