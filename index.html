@@ -13,6 +13,9 @@
     padding-right:0px;
   }
 }
+w-nav-part w-nav-part.links w-button::part(button){
+  padding:0px;
+}
 w-hero{
 	display:block;
 	background-color:var(--color-gray-10);
@@ -109,7 +112,7 @@ w-list>w-li>a.link{
 			</a>
 		</w-nav-part>
 		<w-nav-part arrange="right" rwd-effect="iconify" rwd-size="800">
-			<w-nav-part arrange="left">
+			<w-nav-part arrange="left" class="links">
 				<div><w-spa-link href="/heading"><w-button type="link">設計</w-button></w-spa-link></div>
 				<div><w-spa-link href="/main"><w-button type="link">元件</w-button></w-spa-link></div>
 				<div><w-spa-link href="/document"><w-button type="link">開發</w-button></w-spa-link></div>
@@ -136,8 +139,8 @@ w-list>w-li>a.link{
 		<div>
       <w-spa-link href="./get-started">
         <w-button size="xl">開始使用</w-button>
-      </w-spa-link><!--
--->   <w-icon-button size="xl" color="gray" type="outline" href="https://github.com/Padax/w-components" style="margin-left: 20px">
+      </w-spa-link>
+      <w-icon-button size="xl" color="gray" type="outline" href="https://github.com/Padax/w-components" style="margin-left: 20px">
         <w-icon size="22"><img src="image/github.svg" /></w-icon>GitHub
       </w-icon-button>
 		</div>
