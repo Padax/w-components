@@ -23,10 +23,11 @@ import Radio from "./components/form/checkable/Radio.js";
 import SPALink from "./components/spa/SPALink.js";
 import SPAPage from "./components/spa/SPAPage.js";
 import Icon from "./components/Icon.js";
-const defaultWConfig={theme:"light", prefix:"w", spa:{basename:""}};
+const defaultWConfig={theme:"light", spa:{basename:""}};
 const wc={
   init:function(wconfig={}){
     window.wconfig=Object.assign(defaultWConfig, wconfig);
+    window.wconfig.prefix='w'; // force prefix to 'w'
     this.initTheme(window.wconfig.theme);
 
     const prefix=window.wconfig.prefix;
