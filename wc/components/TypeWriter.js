@@ -37,7 +37,6 @@ class TypeWriter extends WComponent{
   }
   init(){
     this.circleTime=this.speed*20;
-    console.log(this.circleTime);
     this.effect={
       content:this.textContent,
       frameIndex:0,
