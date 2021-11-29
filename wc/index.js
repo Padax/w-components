@@ -23,6 +23,10 @@ import Radio from "./components/form/checkable/Radio.js";
 import SPALink from "./components/spa/SPALink.js";
 import SPAPage from "./components/spa/SPAPage.js";
 import Icon from "./components/Icon.js";
+
+import DarkThemeStylesheet from "./theme/dark.css.js";
+import LightThemeStylesheet from "./theme/light.css.js";
+
 const defaultWConfig={theme:"light", spa:{basename:""}};
 const wc={
   init:function(wconfig={}){
@@ -56,16 +60,27 @@ const wc={
     defineCustomElement(prefix, 'spa-page', SPAPage);
     defineCustomElement(prefix, 'icon', Icon);
   },
-  initTheme:function(name, host="https://padax.github.io/w-components/"){
+  initTheme:function(nameOrLink){
     const head=document.querySelector("head");
     const id="wc-theme-stylesheet";
-    const themeLink=head.querySelector(`#${id}`);
-    if(themeLink===null){
-      DOM.create("link", {props:{
-        rel:"stylesheet", type:"text/css", href:`${host}wc/theme/${name}.css`, id:id
+    const themeElement=head.querySelector(`#${id}`);
+    if(themeElement){
+      themeElement.remove();
+    }
+    if(nameOrLink==="dark" || nameOrLink==="light"){
+      let stylesheet;
+      if(nameOrLink==="dark"){
+        stylesheet=DarkThemeStylesheet;
+      }else{
+        stylesheet=LightThemeStylesheet;
+      }
+      DOM.create("style", {props:{
+        id:id, textContent:stylesheet
       }}, head);
     }else{
-      DOM.modify(themeLink, {props:{href:`${host}wc/theme/${name}.css`}});
+      DOM.create("link", {props:{
+        id:id, rel:"stylesheet", type:"text/css", href:nameOrLink
+      }}, head);
     }
   }
 };

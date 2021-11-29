@@ -1,10 +1,11 @@
+const DarkThemeStylesheet=`
 @font-face {
   font-family:"Icons";
-  src:url("./icon-font.ttf") format("truetype");
+  src:url("https://padax.github.io/w-components/wc/theme/icon-font.ttf") format("truetype");
 }
 @font-face {
   font-family:"Icons-Filled";
-  src:url("./icon-font-filled.ttf") format("truetype");
+  src:url("https://padax.github.io/w-components/wc/theme/icon-font-filled.ttf") format("truetype");
 }
 :root {
   /* Font Family */
@@ -108,3 +109,5 @@ a{
 a:hover, a:active{
   text-decoration:underline;
 }
+`;
+export default DarkThemeStylesheet;
