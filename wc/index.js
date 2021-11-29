@@ -14,6 +14,7 @@ import DisplayHeading from "./components/DisplayHeading.js";
 import Quote from "./components/Quote.js";
 import List from "./components/List.js";
 import ListItem from "./components/ListItem.js";
+import TypeWriter from "./components/TypeWriter.js";
 import Code from "./components/Code.js";
 import Form from "./components/form/Form.js";
 import TextInput from "./components/form/TextInput.js";
@@ -50,6 +51,7 @@ const wc={
     defineCustomElement(prefix, 'quote', Quote);
     defineCustomElement(prefix, 'list', List);
     defineCustomElement(prefix, 'li', ListItem);
+    defineCustomElement(prefix, 'typewriter', TypeWriter);
     defineCustomElement(prefix, 'code', Code);
     defineCustomElement(prefix, 'textinput', TextInput);
     defineCustomElement(prefix, 'textarea', TextArea);
