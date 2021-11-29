@@ -15,8 +15,14 @@ const stylesheet=`
 `;
 class TypeWriter extends WComponent{
   static attributes = {
+    speed: {
+      name: 'speed', defaultValue: 5, min: 1, max: 10,
+      parser: (value, attr) => AttributeParser.parseIntAttr(
+        value, attr.defaultValue, attr.min, attr.max
+      )
+    },
     delay: {
-      name: 'delay', defaultValue: 0, min: 0, max: 1000,
+      name: 'delay', defaultValue: 0, min: 0, max: 1000000,
       parser: (value, attr) => AttributeParser.parseIntAttr(
         value, attr.defaultValue, attr.min, attr.max
       )
@@ -30,13 +36,13 @@ class TypeWriter extends WComponent{
     super();
   }
   init(){
-    this.circleTime=100;
+    this.circleTime=this.speed*20;
+    console.log(this.circleTime);
     this.effect={
       content:this.textContent,
       frameIndex:0,
-      frames:new Array(Math.floor((this.delay*1000)/this.circleTime)).fill(-1) // record display length in every time frame
+      frames:new Array(Math.floor(this.delay/this.circleTime)).fill(-1) // record display length in every time frame
     };
-    console.log(this.effect.frames.length);
     this.effect.frames.push(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1);
     for(let i=2;i<=this.effect.content.length;i++){
       this.effect.frames.push(i);
@@ -50,7 +56,7 @@ class TypeWriter extends WComponent{
     this.start();
   }
   start(){
-    this.effectId=window.setInterval(this.refresh.bind(this), 100);
+    this.effectId=window.setInterval(this.refresh.bind(this), this.circleTime);
   }
   refresh(){
     if(this.effect.frames[this.effect.frameIndex]!==-1){
