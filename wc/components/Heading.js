@@ -70,7 +70,6 @@ class Heading extends WComponent{
   }
 
   init() {
-    console.log(this.getStylesheet())
     this.setStylesheet(this.getStylesheet(), 'heading');
     DOM.create("slot", {}, this.shadowRoot);
   }
