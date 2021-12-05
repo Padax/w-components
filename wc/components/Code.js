@@ -129,13 +129,11 @@ const stylesheet = `
 
   :host {
     display: block;
-  }
-  div.code {
     color: var(--color-gray-80);
     background-color: var(--color-gray-10);
     border-radius: 4px;
+    padding: 20px;
     white-space: pre;
-    padding: 10px;
   }
 `;
 class Code extends WComponent{
@@ -144,10 +142,7 @@ class Code extends WComponent{
   }
 
   init() {
-    const props = {
-      className: 'code'
-    };
-    const code = DOM.create('div', { props }, this.shadowRoot);
+    const code = DOM.create('code', {}, this.shadowRoot);
     code.innerHTML = hljs.highlightAuto(this.innerHTML).value;
   }
 }
