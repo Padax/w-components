@@ -139,12 +139,24 @@ const stylesheet = `
 class Code extends WComponent{
   constructor(){
     super();
+    this.bindObserver();
+  }
+  
+  bindObserver() {
+    // Observe code content change
+    const observer = new MutationObserver(this.loadHighlightContent.bind(this));    
+    observer.observe(this, { childList: true });
   }
 
   init() {
-    const code = DOM.create('code', {}, this.shadowRoot);
-    code.innerHTML = hljs.highlightAuto(this.innerHTML).value;
+    DOM.create('code', { props: { id: 'code' } }, this.shadowRoot);
+    this.loadHighlightContent();
   }
+
+  loadHighlightContent() {
+    this.shadowRoot.querySelector('#code').innerHTML = hljs.highlightAuto(this.innerHTML).value;
+  };
 }
 Code.prototype.stylesheet=stylesheet;
+
 export default Code;

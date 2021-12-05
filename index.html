@@ -120,6 +120,11 @@ w-list>w-li>a.link{
 	page.addEventListener("dispose", ()=>{
 		console.log("Dispose");
 	});
+  
+  document.querySelector('#step2Code').innerHTML = `<script type="module">
+  import wc from "./wc/index.js";
+  wc.init();
+</scr` + `ipt>`;
 </script>
 </head>
 <body>
@@ -199,10 +204,7 @@ w-list>w-li>a.link{
             <span class="step-no">02</span>
             <span class="step-title">引用</span>
           </div>
-<w-code><script type="module">
-  import wc from "./wc/index.js";
-  wc.init();
-</script></w-code>
+          <w-code id="step2Code"></w-code>
         </div>
         <div>
           <div class="step">
