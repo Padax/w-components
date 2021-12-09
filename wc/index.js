@@ -7,7 +7,8 @@ import Hero from "./components/layout/Hero.js";
 import Card from "./components/layout/Card.js";
 import Button from "./components/button/Button.js";
 import IconButton from "./components/button/IconButton.js";
-import Dialog from "./components/Dialog.js";
+import Dialog from "./components/dialog/Dialog.js";
+import AlertDialog from "./components/dialog/AlertDialog.js";
 import Calendar from "./components/Calendar.js";
 import Heading from "./components/Heading.js";
 import DisplayHeading from "./components/DisplayHeading.js";
@@ -45,6 +46,7 @@ const wc={
     defineCustomElement(prefix, 'button', Button);
     defineCustomElement(prefix, 'icon-button', IconButton);
     defineCustomElement(prefix, 'dialog', Dialog);
+    defineCustomElement(prefix, 'alert-dialog', AlertDialog);
     defineCustomElement(prefix, 'calendar', Calendar);
     defineCustomElement(prefix, 'heading', Heading);
     defineCustomElement(prefix, 'display-heading', DisplayHeading);

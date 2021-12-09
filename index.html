@@ -591,14 +591,14 @@ w-list>w-li>a.link{
 
 		<!-- Dialog -->
 		<w-heading level="3" underlined="true">Dialog</w-heading>
-		<w-button onclick="document.querySelector('w-dialog').setAttribute('open', 'true');">Open Dialog</w-button>
-		<w-button onclick="document.querySelector('w-dialog').setAttribute('open', 'false');">Close Dialog</w-button>
-		<w-dialog open="false">
-			<div slot="head" class="head">這是標題</div>
-			<div slot="main" class="main">
+		<w-button onclick="document.querySelector('w-dialog').show();">Open Dialog</w-button>
+		<w-button onclick="document.querySelector('w-alert-dialog').show();">Open Alert Dialog</w-button>
+		<w-dialog title="這是標題">
+			<div>
 				大家好，我是彭彭。
 			</div>
 		</w-dialog>
+    <w-alert-dialog>警告訊息</w-alert-dialog>
 		<!-- Calendar -->
 		<w-heading level="3" underlined="true">Calendar</w-heading>
 		<w-calendar></w-calendar>
