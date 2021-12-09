@@ -1,12 +1,4 @@
 const DarkThemeStylesheet=`
-@font-face {
-  font-family:"Icons";
-  src:url("https://padax.github.io/w-components/wc/theme/icon-font.ttf") format("truetype");
-}
-@font-face {
-  font-family:"Icons-Filled";
-  src:url("https://padax.github.io/w-components/wc/theme/icon-font-filled.ttf") format("truetype");
-}
 :root {
   /* Font Family */
   --font-family:-apple-system, "Segoe UI", "Roboto", "San Francisco", "Helvetica", sans-serif;
