@@ -62,28 +62,22 @@ const wc={
     defineCustomElement(prefix, 'spa-page', SPAPage);
     defineCustomElement(prefix, 'icon', Icon);
   },
-  initTheme:function(nameOrLink){
+  initTheme:function(name){
     const head=document.querySelector("head");
     const id="wc-theme-stylesheet";
     const themeElement=head.querySelector(`#${id}`);
     if(themeElement){
       themeElement.remove();
     }
-    if(nameOrLink==="dark" || nameOrLink==="light"){
-      let stylesheet;
-      if(nameOrLink==="dark"){
-        stylesheet=DarkThemeStylesheet;
-      }else{
-        stylesheet=LightThemeStylesheet;
-      }
-      DOM.create("style", {props:{
-        id:id, textContent:stylesheet
-      }}, head);
+    let stylesheet;
+    if(name==="dark"){
+      stylesheet=DarkThemeStylesheet;
     }else{
-      DOM.create("link", {props:{
-        id:id, rel:"stylesheet", type:"text/css", href:nameOrLink
-      }}, head);
+      stylesheet=LightThemeStylesheet;
     }
+    DOM.create("style", {props:{
+      id:id, textContent:stylesheet
+    }}, head);
   }
 };
 
