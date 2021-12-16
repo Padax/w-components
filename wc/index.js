@@ -22,6 +22,7 @@ import TextInput from "./components/form/TextInput.js";
 import TextArea from "./components/form/TextArea.js";
 import CheckBox from "./components/form/checkable/Checkbox.js";
 import Radio from "./components/form/checkable/Radio.js";
+import Select from "./components/form/Select.js";
 import SPALink from "./components/spa/SPALink.js";
 import SPAPage from "./components/spa/SPAPage.js";
 import Icon from "./components/Icon.js";
@@ -59,6 +60,7 @@ const wc={
     defineCustomElement(prefix, 'textarea', TextArea);
     defineCustomElement(prefix, 'checkbox', CheckBox);
     defineCustomElement(prefix, 'radio', Radio);
+    defineCustomElement(prefix, 'select', Select);
     defineCustomElement(prefix, 'form', Form);
     defineCustomElement(prefix, 'spa-link', SPALink);
     defineCustomElement(prefix, 'spa-page', SPAPage);
