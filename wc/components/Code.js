@@ -1,4 +1,4 @@
-import WComponent, { DOM } from "../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 import hljs from '../../external/highlight.js/lib/common.js';
 
 const stylesheet = `
@@ -137,6 +137,18 @@ const stylesheet = `
   }
 `;
 class Code extends WComponent{
+  static attributes = {
+    lang: {
+      name: 'lang', defaultValue: 'auto',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^(?!\s*$).+/ // Non-empty string
+      )
+    }
+  };
+  static get observedAttributes() {
+    return this.getObservedAttributes(this.attributes);
+  }
+
   constructor(){
     super();
     this.bindObserver();
@@ -154,8 +166,17 @@ class Code extends WComponent{
   }
 
   loadHighlightContent() {
-    this.shadowRoot.querySelector('#code').innerHTML = hljs.highlightAuto(this.innerHTML).value;
-  };
+    const highlightHTML = this.lang === this.getDefaultAttributeValueByName('lang')
+      ? hljs.highlightAuto(this.innerHTML).value  // auto detect
+      : hljs.highlight(this.innerHTML, { language: this.lang }).value;  // assign language
+    
+    this.shadowRoot.querySelector('#code').innerHTML = highlightHTML;
+  }
+  
+  update({ name, newValue }) {
+    const value = this.parseAttributeValueByName(name, newValue);
+    this.loadHighlightContent();
+  }
 }
 Code.prototype.stylesheet=stylesheet;
 
