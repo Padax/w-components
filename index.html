@@ -612,7 +612,13 @@ w-list>w-li>a.link{
       <w-button type="link" size="xl">Preset</w-button>
       <w-icon-button type="link" icon="navigation" disabled>Preset</w-icon-button>
     </div>
-
+    <!-- Camera -->
+    <w-heading level="3" underlined="true">Camera</w-heading>
+    <w-camera autoplay="false"></w-camera>
+    <w-button onclick="document.querySelector('w-camera').start();">Start</w-button>
+    <w-button onclick="document.querySelector('w-camera').pause();">Pause</w-button>
+    <w-button onclick="document.querySelector('w-camera').stop();">Stop</w-button>
+    <w-button onclick="document.querySelector('w-camera').takePicture({download:true});">Take Picture</w-button>
 		<!-- Dialog -->
 		<w-heading level="3" underlined="true">Dialog</w-heading>
 		<w-button onclick="document.querySelector('w-dialog').show();">Open Dialog</w-button>
