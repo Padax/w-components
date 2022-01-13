@@ -544,10 +544,29 @@ w-list>w-li>a.link{
       <w-radio name="radio" checked disabled value="radio4">Checked Disabled</w-radio>
       <input type="text" name="text" value="5" />
       <!-- Select -->
-      <w-select placeholder="請選擇"></w-select>
-      <w-select placeholder="請選擇" disabled></w-select>
-      <w-select appearance="filled" placeholder="please choose ..."></w-select>
-      <w-select appearance="filled" placeholder="please choose ..." disabled></w-select>
+      <w-heading level="3" underlined="true">Select</w-heading>
+      <w-select>
+        <w-option value="1">選項一</w-option>
+        <w-option value="2">選項二</w-option>
+        <w-option value="3" disabled>選項三</w-option>
+      </w-select>
+      <w-select placeholder="請選擇" name="gender">
+        <w-option value="male">男</w-option>
+        <w-option value="female">女</w-option>
+        <w-option value="none" disabled>無性別</w-option>
+      </w-select>
+      <w-select placeholder="請選擇" disabled>
+        <w-option value="1" disabled>選項一</w-option>
+        <w-option value="2" selected>選項二</w-option>
+      </w-select>
+      <w-select appearance="filled" placeholder="please choose ...">
+        <w-option value="1" disabled>選項一</w-option>
+        <w-option value="2" selected>選項二</w-option>
+      </w-select>
+      <w-select appearance="filled" placeholder="please choose ..." disabled>
+        <w-option value="1">選項一</w-option>
+        <w-option value="2">選項二</w-option>
+      </w-select>
       <button type="submit">SUBMIT</button>
     </w-form>
     <!-- IconButton -->

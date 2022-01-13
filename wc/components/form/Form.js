@@ -204,7 +204,8 @@ function getFormElementTypes() {
     'input', 'select', 'textarea', 
     getWTagName('textinput'),
     getWTagName('checkbox'),
-    getWTagName('radio')
+    getWTagName('radio'),
+    getWTagName('select')
   ];
   
   return types;

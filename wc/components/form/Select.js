@@ -9,11 +9,6 @@ const stylesheet=`
     color:var(--color-gray-60);
     cursor:pointer;
   }
-  .select:after{
-    content:'\\f261';
-    font-family:var(--icon-font-filled);
-    margin-left:8px;
-  }
   .select:hover{
     border-color:var(--color-gray-40);
   }
@@ -26,9 +21,6 @@ const stylesheet=`
     background-color:var(--color-gray-10);
     border-width:0px;
     cursor:default;
-  }
-  .select[disabled]:after{
-    color:var(--color-gray-40);
   }
   /* filled */
   .filled{
@@ -51,6 +43,16 @@ const stylesheet=`
     border-color:var(--color-gray-20);
     cursor:default;
   }
+  /* .select>option */
+  .select>option{
+    padding:5px 0px;
+  }
+  .select>option.placeholder{
+    color:var(--color-gray-100);
+  }
+  .select>option:disabled{
+    color:var(--color-gray-40);
+  }
 `;
 
 class Select extends WComponent{
@@ -64,7 +66,7 @@ class Select extends WComponent{
     },
     placeholder: { name: 'placeholder', defaultValue: '' },
     value: {
-      name: 'value', defaultValue: null
+      name: 'value', defaultValue: ''
     },
     name: { name: 'name' },
     disabled: {
@@ -85,9 +87,49 @@ class Select extends WComponent{
     const selectAttrs = {};
     if(this.disabled) { selectAttrs.disabled = true; }
     const selectProps = {className:'select ' + this.appearance};
-    if(this.placeholder) { selectProps.textContent = this.placeholder; }
-    this.select=DOM.create('div', { attrs: selectAttrs, props:selectProps}, this.shadowRoot);
-    this.options=DOM.create('slot', {}, this.shadowRoot);
+    this.select=DOM.create('select', {
+      attrs: selectAttrs,
+      props: selectProps,
+      events:{
+        change:()=>{
+          this.selectedIndex=this.select.selectedIndex;
+          this.value=this.select.options[this.selectedIndex].value;
+        }
+      }
+    }, this.shadowRoot);
+    if(this.placeholder){
+      this.select.add(DOM.create('option', {props:{
+        className:'placeholder',
+        textContent:this.placeholder
+      }}));
+    }
+    DOM.create('slot', {events:{
+      slotchange:()=>{
+        // remove first
+        let options=this.select.querySelectorAll('option.w-option');
+        options.forEach((option)=>{
+          option.remove();
+        });
+        // re-add
+        options=this.querySelectorAll('w-option');
+        options.forEach((option)=>{
+          const attrs={};
+          if(option.value){
+            attrs.value=option.value;
+          }
+          if(option.disabled){
+            attrs.disabled=true;
+          }
+          if(option.selected){
+            attrs.selected=true;
+          }
+          this.select.add(DOM.create('option', {attrs, props:{
+            className:'w-option',
+            textContent:option.textContent
+          }}));
+        });
+      }
+    }}, this.shadowRoot);
   }
   update({ name, newValue } = {}) {
     const value = this.parseAttributeValueByName(name, newValue);
@@ -103,7 +145,15 @@ class Select extends WComponent{
         }
         break;
       case 'placeholder':
-        DOM.modify(this.select, {props:{textContent:value}});
+        const placeholderOption=this.select.querySelector('option.placeholder');
+        if(placeholderOption===null){
+          this.select.add(DOM.create('option', {props:{
+            className:'placeholder',
+            textContent:this.placeholder
+          }}), this.select.options[0]);
+        }else{
+          DOM.modify(placeholderOption, {props:{textContent:value}});
+        }
         break;
       default:
         this.select[name]=value;
