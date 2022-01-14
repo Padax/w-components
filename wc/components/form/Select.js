@@ -65,9 +65,7 @@ class Select extends WComponent{
       )
     },
     placeholder: { name: 'placeholder', defaultValue: '' },
-    value: {
-      name: 'value', defaultValue: ''
-    },
+    value: { name: 'value', defaultValue: '' },
     name: { name: 'name' },
     disabled: {
       name: 'disabled', defaultValue: false, 
@@ -92,13 +90,13 @@ class Select extends WComponent{
       props: selectProps,
       events:{
         change:()=>{
-          this.selectedIndex=this.select.selectedIndex;
           this.value=this.select.options[this.selectedIndex].value;
         }
       }
     }, this.shadowRoot);
     if(this.placeholder){
       this.select.add(DOM.create('option', {props:{
+        value:'',
         className:'placeholder',
         textContent:this.placeholder
       }}));
@@ -112,7 +110,7 @@ class Select extends WComponent{
         });
         // re-add
         options=this.querySelectorAll('w-option');
-        options.forEach((option)=>{
+        options.forEach((option, index)=>{
           const attrs={};
           if(option.value){
             attrs.value=option.value;
@@ -122,6 +120,7 @@ class Select extends WComponent{
           }
           if(option.selected){
             attrs.selected=true;
+
           }
           this.select.add(DOM.create('option', {attrs, props:{
             className:'w-option',
@@ -133,6 +132,7 @@ class Select extends WComponent{
   }
   update({ name, newValue } = {}) {
     const value = this.parseAttributeValueByName(name, newValue);
+    console.log(name, value);
     switch(name){
       case 'appearance':
         DOM.modify(this.select, {props:{className:'select ' + this.appearance}});
@@ -148,12 +148,16 @@ class Select extends WComponent{
         const placeholderOption=this.select.querySelector('option.placeholder');
         if(placeholderOption===null){
           this.select.add(DOM.create('option', {props:{
+            value:'',
             className:'placeholder',
             textContent:this.placeholder
           }}), this.select.options[0]);
         }else{
           DOM.modify(placeholderOption, {props:{textContent:value}});
         }
+        break;
+      case 'value':
+        this.select.value=value;
         break;
       default:
         this.select[name]=value;
