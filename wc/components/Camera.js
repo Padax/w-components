@@ -35,6 +35,18 @@ class Camera extends WComponent{
       this.start();
     }
   }
+  update({ name, newValue } = {}){
+    const value=this.parseAttributeValueByName(name, newValue);
+    switch(name){
+      case 'width':
+      case 'height':
+        this[name]=value;
+        if(this.video!==null){
+          this.video[name]=value;
+        }
+        break;
+    }
+  }
   start(){
     if(this.video===null){
       window.navigator.mediaDevices.getUserMedia({audio:false, video:true}).then((stream)=>{
