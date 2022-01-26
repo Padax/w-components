@@ -16,35 +16,19 @@ const stylesheet=`
     border-color:var(--color-gray-30);
     border-radius:4px;
   }
-  :host > textarea {
-    display:block;width:100%;
-    font-family:var(--font-family);
-    font-size:var(--font-size-normal);
-    line-height:var(--line-height-normal);
-    color:var(--color-gray-100);
-    padding:8px 16px;
-    border-width:1px;
-    border-style:solid;
-    border-color:var(--color-gray-30);
-    border-radius:4px;
-  }
-  :host > textarea.growable{
-    overflow-y:hidden;
-    height:var(--line-height-normal);
-    resize:none;
-  }
-  :host > input:hover, :host > textarea:hover{
+  :host > input:hover{
     border-color:var(--color-gray-40);
   }
-  :host > input:active, :host > textarea:active,
-  :host > input:focus, :host > textarea:focus{
+  :host > input:active,
+  :host > input:focus{
     border-color:var(--color-gray-60);
     outline-width:0px;
   }
-  :host > input:disabled, :host > textarea:disabled{
+  :host > input:disabled{
     border-width:0px;
     background-color:var(--color-gray-10);
     color:var(--color-gray-40);
+    filter:opacity(70%);
   }
   /* filled */
   :host > input.filled{
@@ -53,23 +37,18 @@ const stylesheet=`
     border-radius:4px 4px 0px 0px;
     background-color:var(--color-gray-10);
   }
-  :host > textarea.filled{
-    border-width:0px;
-    border-bottom-width:1px;
-    border-radius:4px 4px 0px 0px;
-    background-color:var(--color-gray-10);
-  }
-  :host > input.filled:hover, :host > textarea.filled:hover{
+  :host > input.filled:hover{
     background-color:var(--color-gray-20);
   }
-  :host > input.filled:active, :host > textarea.filled:active,
-  :host > input.filled:focus, :host > textarea.filled:focus{
+  :host > input.filled:active,
+  :host > input.filled:focus{
     background-color:var(--color-gray-30);
   }
-  :host > input.filled:disabled, :host > textarea.filled:disabled{
+  :host > input.filled:disabled{
     background-color:var(--color-gray-10);
     color:var(--color-gray-40);
     border-color:var(--color-gray-30);
+    filter:opacity(70%);
   }
 `;
 

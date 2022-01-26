@@ -19,6 +19,7 @@ const stylesheet=`
   .select[disabled]{
     color:var(--color-gray-40);
     background-color:var(--color-gray-10);
+    filter:opacity(70%);
     border-width:0px;
     cursor:default;
   }
@@ -41,6 +42,7 @@ const stylesheet=`
     background-color:var(--color-gray-10);
     border-width:0px 0px 1px 0px;
     border-color:var(--color-gray-20);
+    filter:opacity(70%);
     cursor:default;
   }
   /* .select>option */
@@ -52,6 +54,7 @@ const stylesheet=`
   }
   .select>option:disabled{
     color:var(--color-gray-40);
+    filter:opacity(70%);
   }
 `;
 

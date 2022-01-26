@@ -45,6 +45,7 @@ const stylesheet=`
     border-width:0px;
     background-color:var(--color-gray-10);
     color:var(--color-gray-40);
+    filter:opacity(70%);
   }
   /* filled */
   :host > textarea.filled{
@@ -64,6 +65,7 @@ const stylesheet=`
     background-color:var(--color-gray-10);
     color:var(--color-gray-40);
     border-color:var(--color-gray-30);
+    filter:opacity(70%);
   }
 `;
 
