@@ -32,6 +32,9 @@ class Option extends WComponent{
   }
 
   init(){}
+  update(){
+    this.parentElement.updateOptions();
+  }
 }
 Option.prototype.stylesheet=stylesheet;
 export default Option;

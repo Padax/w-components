@@ -93,7 +93,7 @@ class Select extends WComponent{
       props: selectProps,
       events:{
         change:()=>{
-          this.value=this.select.options[this.selectedIndex].value;
+          this.value=this.select.options[this.select.selectedIndex].value;
         }
       }
     }, this.shadowRoot);
@@ -105,37 +105,37 @@ class Select extends WComponent{
       }}));
     }
     DOM.create('slot', {events:{
-      slotchange:()=>{
-        // remove first
-        let options=this.select.querySelectorAll('option.w-option');
-        options.forEach((option)=>{
-          option.remove();
-        });
-        // re-add
-        options=this.querySelectorAll('w-option');
-        options.forEach((option, index)=>{
-          const attrs={};
-          if(option.value){
-            attrs.value=option.value;
-          }
-          if(option.disabled){
-            attrs.disabled=true;
-          }
-          if(option.selected){
-            attrs.selected=true;
-
-          }
-          this.select.add(DOM.create('option', {attrs, props:{
-            className:'w-option',
-            textContent:option.textContent
-          }}));
-        });
-      }
+      slotchange:this.updateOptions.bind(this)
     }}, this.shadowRoot);
   }
-  update({ name, newValue } = {}) {
+  updateOptions(){
+    // remove first
+    let options=this.select.querySelectorAll('option.w-option');
+    options.forEach((option)=>{
+      option.remove();
+    });
+    // re-add
+    options=this.querySelectorAll('w-option');
+    options.forEach((option, index)=>{
+      const attrs={};
+      if(option.value){
+        attrs.value=option.value;
+      }
+      if(option.disabled){
+        attrs.disabled=true;
+      }
+      if(option.selected){
+        attrs.selected=true;
+      }
+      this.select.add(DOM.create('option', {attrs, props:{
+        className:'w-option',
+        textContent:option.textContent
+      }}));
+    });
+    this.select.dispatchEvent(new Event('change'));
+  }
+  update({ name, oldValue, newValue } = {}) {
     const value = this.parseAttributeValueByName(name, newValue);
-    console.log(name, value);
     switch(name){
       case 'appearance':
         DOM.modify(this.select, {props:{className:'select ' + this.appearance}});
