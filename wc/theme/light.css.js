@@ -64,6 +64,11 @@ const LightThemeStylesheet=`
 
   color: var(--color-gray-100);
 
+  /* Box Shadow */
+  --box-shadow-10:0px 1px 1px rgba(70, 73, 77, 0.2), 0px 1px 8px rgba(70, 73, 77, 0.1);
+  --box-shadow-20:0px 2px 2px rgba(70, 73, 77, 0.2), 0px 2px 12px rgba(70, 73, 77, 0.15);
+  --box-shadow-30:0px 3px 3px rgba(70, 73, 77, 0.2), 0px 3px 16px rgba(70, 73, 77, 0.2);
+
   /* Font Size */
   --font-size-small: 14px;
   --font-size-normal: 16px;
