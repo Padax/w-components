@@ -93,7 +93,11 @@ class Select extends WComponent{
       props: selectProps,
       events:{
         change:()=>{
-          this.value=this.select.options[this.select.selectedIndex].value;
+          if(this.select.selectedIndex>-1){
+            this.value=this.select.options[this.select.selectedIndex].value;
+          }else{
+            this.value='';
+          }
         }
       }
     }, this.shadowRoot);
@@ -160,7 +164,11 @@ class Select extends WComponent{
         }
         break;
       case 'value':
-        this.select.value=value;
+        if(value==='null' || value==='undefined'){
+          this.select.value='';
+        }else{
+          this.select.value=value;
+        }
         break;
       default:
         this.select[name]=value;
