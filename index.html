@@ -113,13 +113,12 @@ w-list>w-li>a.link{
 #btnDocLink::part(button) {
   color: var(--color-primary-60);
 }
-#keyVisualLeft {
-  width: 100%; height: 520px;
+#keyVisualLeftCtn {
   background-image: url('./image/keyvisual-left.png');
   background-repeat: no-repeat;
-  position: absolute;
-  z-index: -1;
-  top: 1298px;
+  background-position: 0 497px;
+  padding: 0;
+  margin-top: 20px;
 }
 </style>
 <script type="module">
@@ -207,60 +206,59 @@ w-list>w-li>a.link{
       </div>
     </div>
 	</w-hero>
-  <div id="keyVisualLeft"></div>
-  <w-section rowgap="8" style="margin-top:20px">
-    <w-heading level="1" style="margin: 0">快速上手</w-heading>
-    <w-heading level="3" style="color:var(--color-gray-60); margin-top: 8px; margin-bottom: 8px;">
-      三步驟輕鬆使用 W-Components
-    </w-heading>
-    <w-grid cols="2" colgap="48" style="padding: 0; margin-top: 32px">
-      <div>
+  <w-section id="keyVisualLeftCtn">
+    <w-section rowgap="2">
+      <w-heading level="1" style="margin: 0">快速上手</w-heading>
+      <w-heading level="3" style="color:var(--color-gray-60); margin-top: 8px; margin-bottom: 8px;">
+        三步驟輕鬆使用 W-Components
+      </w-heading>
+      <w-grid cols="2" colgap="48" style="padding: 0; margin-top: 32px">
+        <div>
+          <div>
+            <div class="step" style="margin-top: 0">
+              <span class="step-no">01</span>
+              <span class="step-title">取得</span>
+            </div>
+            <w-code lang="shell">$ npm install @padax/w-components</w-code>
+          </div>
+          <div>
+            <div class="step">
+              <span class="step-no">02</span>
+              <span class="step-title">引用</span>
+            </div>
+            <w-code id="step2Code"></w-code>
+          </div>
+          <div>
+            <div class="step">
+              <span class="step-no">03</span>
+              <span class="step-title">無腦使用</span>
+            </div>
+            <w-code><w-button size="xl">Hello World!</w-button></w-code>
+          </div>
+        </div>
         <div>
           <div class="step" style="margin-top: 0">
-            <span class="step-no">01</span>
-            <span class="step-title">取得</span>
+            <span class="step-no">&nbsp;</span>
+            <span class="step-title">&nbsp;</span>
           </div>
-          <w-code lang="shell">$ npm install @padax/w-components</w-code>
-        </div>
-        <div>
-          <div class="step">
-            <span class="step-no">02</span>
-            <span class="step-title">引用</span>
+          <div style="border: 1px solid #D4D7D9; border-radius: 4px; padding: 100px; text-align:center">
+            <w-button size="xl">Hello World!</w-button>
           </div>
-          <w-code id="step2Code"></w-code>
-        </div>
-        <div>
-          <div class="step">
-            <span class="step-no">03</span>
-            <span class="step-title">無腦使用</span>
+          <div style="margin-top: 24px; text-align: right">
+            <w-icon-button id="btnDocLink" size="xl" type="link" icon="arrow-right" color="primary">前往開發文件</w-icon-button>
           </div>
-          <w-code><w-button size="xl">Hello World!</w-button></w-code>
         </div>
-      </div>
-      <div>
-        <div class="step" style="margin-top: 0">
-          <span class="step-no">&nbsp;</span>
-          <span class="step-title">&nbsp;</span>
-        </div>
-        <div style="border: 1px solid #D4D7D9; border-radius: 4px; padding: 100px; text-align:center">
-          <w-button size="xl">Hello World!</w-button>
-        </div>
-        <div style="margin-top: 24px; text-align: right">
-          <w-icon-button id="btnDocLink" size="xl" type="link" icon="arrow-right" color="primary">前往開發文件</w-icon-button>
-        </div>
-      </div>
-    </w-grid>
+      </w-grid>
+    </w-section>
+    <w-section cols="3" rowgap="70" style="margin-top: 31px;">
+      <w-card layout="icon-cross" icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
+      <w-card layout="icon-cross" icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
+      <w-card layout="icon-cross" icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
+      <w-card layout="icon-cross" icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
+      <w-card layout="icon-cross" icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
+      <w-card layout="icon-cross" icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
+    </w-section>
   </w-section>
-	<w-section cols="2" rowgap="70">
-	</w-section>
-	<w-section cols="3" rowgap="70">
-		<w-card layout="icon-cross" icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
-		<w-card layout="icon-cross" icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
-		<w-card layout="icon-cross" icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
-		<w-card layout="icon-cross" icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
-		<w-card layout="icon-cross" icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
-		<w-card layout="icon-cross" icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
-	</w-section>
 	<w-section class="team" width="800" cols="1" rowgap="60">
 		<w-heading level="2" underlined style="text-align: center;">核心團隊</w-heading>
 		<w-grid cols="3" colgap="15" rowgap="30">
