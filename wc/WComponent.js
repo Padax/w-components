@@ -19,6 +19,7 @@ class WComponent extends HTMLElement{
     this.attachShadow({ mode: 'open' });
     this.setStylesheet(this.stylesheet);
     this.init();
+    this.key = new Date().getTime() + Math.random();
   }
   /**
    * Call update method in attribute changed callback if:
@@ -29,9 +30,6 @@ class WComponent extends HTMLElement{
     if(oldValue !== newValue && this.key && this.hasDefinedAttribute(name)){
       this.update({name, oldValue, newValue});
     }
-  }
-  connectedCallback() {
-    this.key = new Date().getTime() + Math.random();
   }
   /**
    * Dynamically create getters & setters for property-attribute sync 
