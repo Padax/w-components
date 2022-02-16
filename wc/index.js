@@ -9,6 +9,7 @@ import Button from "./components/button/Button.js";
 import IconButton from "./components/button/IconButton.js";
 import Dialog from "./components/dialog/Dialog.js";
 import AlertDialog from "./components/dialog/AlertDialog.js";
+import ConfirmDialog from "./components/dialog/ConfirmDialog.js";
 import Calendar from "./components/Calendar.js";
 import Camera from "./components/Camera.js";
 import Heading from "./components/Heading.js";
@@ -50,6 +51,7 @@ const wc={
     defineCustomElement(prefix, 'icon-button', IconButton);
     defineCustomElement(prefix, 'dialog', Dialog);
     defineCustomElement(prefix, 'alert-dialog', AlertDialog);
+    defineCustomElement(prefix, 'confirm-dialog', ConfirmDialog);
     defineCustomElement(prefix, 'calendar', Calendar);
     defineCustomElement(prefix, 'camera', Camera);
     defineCustomElement(prefix, 'heading', Heading);

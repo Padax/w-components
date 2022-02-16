@@ -635,14 +635,47 @@ w-list>w-li>a.link{
     <w-button onclick="document.querySelector('w-camera').takePicture({download:true});">Take Picture</w-button>
 		<!-- Dialog -->
 		<w-heading level="3" underlined="true">Dialog</w-heading>
-		<w-button onclick="document.querySelector('w-dialog').show();">Open Dialog</w-button>
-		<w-button onclick="document.querySelector('w-alert-dialog').show();">Open Alert Dialog</w-button>
-		<w-dialog title="這是標題">
+		<w-button id="open-full-dialog-btn">Open Dialog</w-button>
+		<w-button onclick="document.querySelector('#titleless-dialog').open();">Open Titleless Dialog</w-button>
+    <w-button onclick="document.querySelector('#alert-dialog').open();">Open Alert Dialog</w-button>
+    <w-button id="open-confirm-dialog-btn">Open Confirm Dialog</w-button>
+		<w-dialog id="full-dialog" title="這是標題">
 			<div>
 				大家好，我是彭彭。
 			</div>
 		</w-dialog>
-    <w-alert-dialog>警告訊息</w-alert-dialog>
+    <w-dialog id="titleless-dialog">
+      這是無標題的對話框
+    </w-dialog>
+    <w-alert-dialog id="alert-dialog">
+      這是警告視窗
+    </w-alert-dialog>
+    <w-confirm-dialog id="confirm-dialog">
+      這是警告視窗
+    </w-confirm-dialog>
+    <script>
+      const openDialogBtn=document.querySelector("#open-full-dialog-btn");
+      openDialogBtn.addEventListener("click", ()=>{
+        const dialog=document.querySelector("#full-dialog");
+        dialog.open({
+          title:"哈哈哈哈哈",
+          actions:{
+            primary:{
+              handler:()=>{
+                alert("執行");
+              }
+            }
+          }
+        });
+      });
+      const openConfirmDialogBtn=document.querySelector("#open-confirm-dialog-btn");
+      openConfirmDialogBtn.addEventListener("click", ()=>{
+        const dialog=document.querySelector("#confirm-dialog");
+        dialog.open(function(){
+          alert("執行");
+        });
+      });
+    </script>
 		<!-- Calendar -->
 		<w-heading level="3" underlined="true">Calendar</w-heading>
 		<w-calendar></w-calendar>
