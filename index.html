@@ -131,7 +131,7 @@ w-list>w-li>a.link{
 	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
 	calendar.addEntry({date:"2021-05-20", content:"測試看看"});
 	// manipulate spa-page
-	const page=document.querySelector("#heading-page");
+	const page=document.querySelector("#components-page");
 	page.addEventListener("init", ()=>{
 		console.log("Init");
 	});
@@ -148,15 +148,15 @@ w-list>w-li>a.link{
 <body>
 	<w-nav>
 		<w-nav-part width="fit">
-			<a href="https://github.com/Padax/w-components" style="padding:0px;margin:0px">
+			<w-spa-link href="/" style="padding:0px;margin:0px">
 				<img src="image/title.png" />
-			</a>
+      </w-spa-link>
 		</w-nav-part>
 		<w-nav-part arrange="right" rwd-effect="iconify" rwd-size="800">
 			<w-nav-part arrange="left" class="links">
-				<div><w-spa-link href="/heading"><w-button type="link">設計</w-button></w-spa-link></div>
-				<div><w-spa-link href="/main"><w-button type="link">元件</w-button></w-spa-link></div>
-				<div><w-spa-link href="/document"><w-button type="link">開發</w-button></w-spa-link></div>
+				<div><w-spa-link href="/design"><w-button type="link">設計</w-button></w-spa-link></div>
+				<div><w-spa-link href="/components"><w-button type="link">元件</w-button></w-spa-link></div>
+				<div><w-spa-link href="/documents"><w-button type="link">開發</w-button></w-spa-link></div>
 			</w-nav-part>
 			<w-nav-part width="fit" arrange="right">
 				<w-icon-button display="block" color="gray" style="padding: 0px;">
@@ -174,100 +174,103 @@ w-list>w-li>a.link{
 			</w-nav-part>
 		</w-nav-part>
 	</w-nav>
-	<w-hero background-image="image/keyvisual.png" background-coverage="center" background-position="right-bottom">
-    <div class="desktop">
-      <w-display-heading level="5" class="headline">
-        <w-typewriter>Your Next Stop:</w-typewriter>
-        <w-typewriter delay="4000" speed="8">W-Components</w-typewriter>
-      </w-display-heading>
-      <w-heading level="3" class="description">基於 Web Components 原生技術，<br/>執行高效率、高品質程式碼，俐落的設計質感。</w-heading>
-      <div>
-        <w-spa-link href="./get-started">
-          <w-button size="xl">開始使用</w-button>
-        </w-spa-link>
-        <w-icon-button size="xl" color="gray" type="outline" href="https://github.com/Padax/w-components" style="margin-left: 20px">
-          <w-icon size="22"><img src="image/github.svg" /></w-icon>GitHub
-        </w-icon-button>
-      </div>
-    </div>
-    <div class="mobile">
-      <w-heading level="1" class="headline">Your Next Stop:<br/>W-Components</w-heading>
-      <w-heading level="3" class="description">基於 Web Components 原生技術，執行高效率、高品質程式碼，俐落的設計質感。</w-heading>
-      <div>
-        <w-spa-link href="./get-started">
-          <w-button display="block" size="xl">開始使用</w-button>
-        </w-spa-link>
-        <w-icon-button display="block" size="xl" color="gray" type="outline" href="https://github.com/Padax/w-components" style="margin-left: 20px">
-          <w-icon size="22"><img src="image/github.svg" /></w-icon>GitHub
-        </w-icon-button>
-      </div>
-    </div>
-	</w-hero>
-  <w-section>
-    <w-section id="keyVisualLeftCtn">
-      <w-section rowgap="2" style="padding-left: 56px; padding-right: 56px">
-        <w-heading level="1" style="margin: 0">快速上手</w-heading>
-        <w-heading level="3" style="color:var(--color-gray-60); margin-top: 8px; margin-bottom: 8px;">
-          三步驟輕鬆使用 W-Components
-        </w-heading>
-        <w-grid cols="2" colgap="48" style="padding: 0; margin-top: 32px">
+  <w-spa-page path="/" exact>
+    <template>
+      <w-hero background-image="image/keyvisual.png" background-coverage="center" background-position="right-bottom">
+        <div class="desktop">
+          <w-display-heading level="5" class="headline">
+            <w-typewriter>Your Next Stop:</w-typewriter>
+            <w-typewriter delay="4000" speed="8">W-Components</w-typewriter>
+          </w-display-heading>
+          <w-heading level="3" class="description">基於 Web Components 原生技術，<br/>執行高效率、高品質程式碼，俐落的設計質感。</w-heading>
           <div>
-            <div>
-              <div class="step" style="margin-top: 0">
-                <span class="step-no">01</span>
-                <span class="step-title">取得</span>
-              </div>
-              <w-code lang="shell">$ npm install @padax/w-components</w-code>
-            </div>
-            <div>
-              <div class="step">
-                <span class="step-no">02</span>
-                <span class="step-title">引用</span>
-              </div>
-              <w-code id="step2Code"></w-code>
-            </div>
-            <div>
-              <div class="step">
-                <span class="step-no">03</span>
-                <span class="step-title">無腦使用</span>
-              </div>
-              <w-code><w-button size="xl">Hello World!</w-button></w-code>
-            </div>
+            <w-spa-link href="./get-started">
+              <w-button size="xl">開始使用</w-button>
+            </w-spa-link>
+            <w-icon-button size="xl" color="gray" type="outline" href="https://github.com/Padax/w-components" style="margin-left: 20px">
+              <w-icon size="22"><img src="image/github.svg" /></w-icon>GitHub
+            </w-icon-button>
           </div>
+        </div>
+        <div class="mobile">
+          <w-heading level="1" class="headline">Your Next Stop:<br/>W-Components</w-heading>
+          <w-heading level="3" class="description">基於 Web Components 原生技術，執行高效率、高品質程式碼，俐落的設計質感。</w-heading>
           <div>
-            <div class="step" style="margin-top: 0">
-              <span class="step-no">&nbsp;</span>
-              <span class="step-title">&nbsp;</span>
-            </div>
-            <div style="border: 1px solid #D4D7D9; border-radius: 4px; padding: 100px; text-align:center">
-              <w-button size="xl">Hello World!</w-button>
-            </div>
-            <div style="margin-top: 24px; text-align: right">
-              <w-icon-button size="xl" type="text" icon="arrow-right" color="primary">前往開發文件</w-icon-button>
-            </div>
+            <w-spa-link href="./get-started">
+              <w-button display="block" size="xl">開始使用</w-button>
+            </w-spa-link>
+            <w-icon-button display="block" size="xl" color="gray" type="outline" href="https://github.com/Padax/w-components" style="margin-left: 20px">
+              <w-icon size="22"><img src="image/github.svg" /></w-icon>GitHub
+            </w-icon-button>
           </div>
+        </div>
+      </w-hero>
+      <w-section>
+        <w-section id="keyVisualLeftCtn">
+          <w-section rowgap="2" style="padding-left: 56px; padding-right: 56px">
+            <w-heading level="1" style="margin: 0">快速上手</w-heading>
+            <w-heading level="3" style="color:var(--color-gray-60); margin-top: 8px; margin-bottom: 8px;">
+              三步驟輕鬆使用 W-Components
+            </w-heading>
+            <w-grid cols="2" colgap="48" style="padding: 0; margin-top: 32px">
+              <div>
+                <div>
+                  <div class="step" style="margin-top: 0">
+                    <span class="step-no">01</span>
+                    <span class="step-title">取得</span>
+                  </div>
+                  <w-code lang="shell">$ npm install @padax/w-components</w-code>
+                </div>
+                <div>
+                  <div class="step">
+                    <span class="step-no">02</span>
+                    <span class="step-title">引用</span>
+                  </div>
+                  <w-code id="step2Code"></w-code>
+                </div>
+                <div>
+                  <div class="step">
+                    <span class="step-no">03</span>
+                    <span class="step-title">無腦使用</span>
+                  </div>
+                  <w-code><w-button size="xl">Hello World!</w-button></w-code>
+                </div>
+              </div>
+              <div>
+                <div class="step" style="margin-top: 0">
+                  <span class="step-no">&nbsp;</span>
+                  <span class="step-title">&nbsp;</span>
+                </div>
+                <div style="border: 1px solid #D4D7D9; border-radius: 4px; padding: 100px; text-align:center">
+                  <w-button size="xl">Hello World!</w-button>
+                </div>
+                <div style="margin-top: 24px; text-align: right">
+                  <w-icon-button size="xl" type="text" icon="arrow-right" color="primary">前往開發文件</w-icon-button>
+                </div>
+              </div>
+            </w-grid>
+          </w-section>
+          <w-section cols="3" rowgap="70" style="margin-top: 31px;">
+            <w-card layout="icon-cross" icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
+            <w-card layout="icon-cross" icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
+            <w-card layout="icon-cross" icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
+            <w-card layout="icon-cross" icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
+            <w-card layout="icon-cross" icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
+            <w-card layout="icon-cross" icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
+          </w-section>
+        </w-section>
+      </w-section>
+      <w-section class="team" width="800" cols="1" rowgap="60">
+        <w-heading level="2" underlined style="text-align: center;">核心團隊</w-heading>
+        <w-grid cols="3" colgap="15" rowgap="30">
+          <w-card icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
+          <w-card icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
+          <w-card icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
         </w-grid>
       </w-section>
-      <w-section cols="3" rowgap="70" style="margin-top: 31px;">
-        <w-card layout="icon-cross" icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
-        <w-card layout="icon-cross" icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
-        <w-card layout="icon-cross" icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
-        <w-card layout="icon-cross" icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
-        <w-card layout="icon-cross" icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
-        <w-card layout="icon-cross" icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
-      </w-section>
-    </w-section>
-  </w-section>
-	<w-section class="team" width="800" cols="1" rowgap="60">
-		<w-heading level="2" underlined style="text-align: center;">核心團隊</w-heading>
-		<w-grid cols="3" colgap="15" rowgap="30">
-			<w-card icon="image/team/niz.png" title="Niz Kuo" description="Product Manager"></w-card>
-			<w-card icon="image/team/chao-wei.png" title="Chao-Wei Peng" description="Product Owner"></w-card>
-			<w-card icon="image/team/yakko.png" title="Yakko Wu" description="Product Designer"></w-card>
-		</w-grid>
-	</w-section>
-
-	<w-spa-page path="/heading" id="heading-page">
+    </template>
+  </w-spa-page>
+	<w-spa-page path="/components" id="components-page">
 		<template>
 			<w-display-heading level="1" underlined>LONG LIVE W-COMPONENTS!</w-display-heading>
 			<w-display-heading level="2">LONG LIVE W-COMPONENTS!</w-display-heading>
@@ -282,403 +285,405 @@ w-list>w-li>a.link{
 			<w-heading level="4">LONG LIVE W-COMPONENTS!</w-heading>
 			<w-heading>LONG LIVE W-COMPONENTS!</w-heading>
 			<w-heading level="6">LONG LIVE W-COMPONENTS!</w-heading>
-		</template>
-	</w-spa-page>
-	<w-spa-page path="/main">
-    <w-heading level="1" underlined>Main Content</w-heading>
-		<w-heading level="3" underlined="true">List</w-heading>
-		<w-list>
-			<w-li><a href="https://www.google.com/" class="link">Google</a></w-li>
-			<w-li><a href="https://www.facebook.com/">Facebook</a></w-li>
-			<w-li>Twitter</w-li>
-		</w-list>
-		<w-list mark="number">
-			<w-li>Item 1</w-li>
-			<w-li>Item 2</w-li>
-			<w-li>Item 3</w-li>
-		</w-list>
-		<w-list mark="circle" appearance="panel">
-			<w-li>Item 1</w-li>
-			<w-li disabled><a href="https://www.google.com/">Google</a></w-li>
-			<w-li>Item 3</w-li>
-		</w-list>
-		<w-list mark="circle" appearance="divided-panel">
-			<w-li>Item 1</w-li>
-			<w-li disabled>Item 2</w-li>
-			<w-li>Item 3</w-li>
-		</w-list>
-		<w-list mark="outline-circle" appearance="divided-panel">
-			<w-li>Item 1</w-li>
-			<w-li>Item 2</w-li>
-			<w-li>Item 3</w-li>
-		</w-list>
-		<w-heading level="3" underlined>Code</w-heading>
-		<w-code>
-			//Javascript Example
-			const sample = 'This is a block of code.';
-			console.log('2nd line.');
-		</w-code>
-		<w-code style="margin: 10px;">
-			<!--HTML Example-->
-			<h1>This is a block of code.</h1>
-			<p>2nd Line.</p>
-		</w-code>
-		<!-- Quote -->
-		<w-heading level="3" underlined>Quote</w-heading>
-		<w-quote>
-			<span slot="quote">This is a quote without source.</span>
-		</w-quote>
-		<w-quote>
-			<span slot="quote">This is a quote aligned to the left.</span>
-			<span slot="source">Someone famous in Source Title</span>
-		</w-quote>
-		<w-quote align="center">
-			<span slot="quote">This is a quote aligned to the center.</span>
-			<span slot="source">Someone famous in Source Title</span>
-		</w-quote>
-		<w-quote align="right">
-			<span slot="quote">This is a quote aligned to the right.</span>
-			<span slot="source">Someone famous in Source Title</span>
-		</w-quote>
-    <!-- Buttons -->
-    <!-- Primary -->
-    <w-heading level="3" underlined="true">Button</w-heading>
-    <w-heading>Primary</w-heading>
-    <div style="margin: 10px">
-      <w-button size="sm">Small</w-button>
-      <w-button size="sm" type="outline" color="primary">Small Outline</w-button>
-      <w-button size="md">Normal</w-button>
-      <w-button disabled>Normal</w-button>
-      <w-button type="outline" color="primary">Outline</w-button>
-      <w-button disabled type="outline" color="primary">Outline</w-button>
-      <w-button size="lg">Large</w-button>
-      <w-button size="lg" type="outline" color="primary">Large Outline</w-button>
-      <w-button size="xl">X Large</w-button>
-      <w-button size="xl" type="outline" color="primary">X Large Outline</w-button>
-    </div>
-    <w-button display="block" style="margin: 10px">Block</w-button>
-    <w-button display="block" type="outline" color="primary" style="margin: 10px">Outline Block</w-button>
-    <w-button display="block" size="lg" style="margin: 10px">Large Block</w-button>
-    <w-button display="block" size="xl" disabled style="margin: 10px">XLarge Block Disabled</w-button>
-    <!-- Critical -->
-    <w-heading>Critical</w-heading>
-    <div style="margin: 10px">
-      <w-button size="sm" color="critical">Small</w-button>
-      <w-button size="sm" type="outline" color="critical">Small Outline</w-button>
-      <w-button size="md" color="critical">Normal</w-button>
-      <w-button disabled color="critical">Normal</w-button>
-      <w-button type="outline" color="critical">Outline</w-button>
-      <w-button disabled type="outline" color="critical">Outline</w-button>
-      <w-button size="lg" color="critical">Large</w-button>
-      <w-button size="lg" type="outline" color="critical">Large Outline</w-button>
-      <w-button size="xl" color="critical">X Large</w-button>
-      <w-button size="xl" type="outline" color="critical">X Large Outline</w-button>
-    </div>
-    <w-button display="block" color="critical" style="margin: 10px">Block</w-button>
-    <w-button display="block" type="outline" color="critical" style="margin: 10px">Outline Block</w-button>
-    <w-button display="block" size="lg" color="critical" style="margin: 10px">Large Block</w-button>
-    <!-- Gray -->
-    <w-heading>Gray</w-heading>
-    <div style="margin: 10px">
-      <w-button size="sm" color="gray">Small</w-button>
-      <w-button size="sm" type="outline" color="gray">Small Outline</w-button>
-      <w-button size="md" color="gray">Normal</w-button>
-      <w-button disabled color="gray">Normal</w-button>
-      <w-button type="outline" color="gray">Outline</w-button>
-      <w-button disabled type="outline" color="gray">Outline</w-button>
-      <w-button size="lg" color="gray">Large</w-button>
-      <w-button size="lg" type="outline" color="gray">Large Outline</w-button>
-      <w-button size="xl" color="gray">X Large</w-button>
-      <w-button size="xl" type="outline" color="gray">X Large Outline</w-button>
-    </div>
-    <w-button display="block" color="gray" style="margin: 10px">Block</w-button>
-    <w-button display="block" type="outline" color="gray" style="margin: 10px">Outline Block</w-button>
-    <w-button display="block" size="lg" color="gray" style="margin: 10px">Large Block</w-button>
+    </template>
+  </w-spa-page>
+  <w-spa-page path="/documents">
+    <templage>
+      <w-heading level="1" underlined>Main Content</w-heading>
+      <w-heading level="3" underlined="true">List</w-heading>
+      <w-list>
+        <w-li><a href="https://www.google.com/" class="link">Google</a></w-li>
+        <w-li><a href="https://www.facebook.com/">Facebook</a></w-li>
+        <w-li>Twitter</w-li>
+      </w-list>
+      <w-list mark="number">
+        <w-li>Item 1</w-li>
+        <w-li>Item 2</w-li>
+        <w-li>Item 3</w-li>
+      </w-list>
+      <w-list mark="circle" appearance="panel">
+        <w-li>Item 1</w-li>
+        <w-li disabled><a href="https://www.google.com/">Google</a></w-li>
+        <w-li>Item 3</w-li>
+      </w-list>
+      <w-list mark="circle" appearance="divided-panel">
+        <w-li>Item 1</w-li>
+        <w-li disabled>Item 2</w-li>
+        <w-li>Item 3</w-li>
+      </w-list>
+      <w-list mark="outline-circle" appearance="divided-panel">
+        <w-li>Item 1</w-li>
+        <w-li>Item 2</w-li>
+        <w-li>Item 3</w-li>
+      </w-list>
+      <w-heading level="3" underlined>Code</w-heading>
+      <w-code>
+        //Javascript Example
+        const sample = 'This is a block of code.';
+        console.log('2nd line.');
+      </w-code>
+      <w-code style="margin: 10px;">
+        <!--HTML Example-->
+        <h1>This is a block of code.</h1>
+        <p>2nd Line.</p>
+      </w-code>
+      <!-- Quote -->
+      <w-heading level="3" underlined>Quote</w-heading>
+      <w-quote>
+        <span slot="quote">This is a quote without source.</span>
+      </w-quote>
+      <w-quote>
+        <span slot="quote">This is a quote aligned to the left.</span>
+        <span slot="source">Someone famous in Source Title</span>
+      </w-quote>
+      <w-quote align="center">
+        <span slot="quote">This is a quote aligned to the center.</span>
+        <span slot="source">Someone famous in Source Title</span>
+      </w-quote>
+      <w-quote align="right">
+        <span slot="quote">This is a quote aligned to the right.</span>
+        <span slot="source">Someone famous in Source Title</span>
+      </w-quote>
+      <!-- Buttons -->
+      <!-- Primary -->
+      <w-heading level="3" underlined="true">Button</w-heading>
+      <w-heading>Primary</w-heading>
+      <div style="margin: 10px">
+        <w-button size="sm">Small</w-button>
+        <w-button size="sm" type="outline" color="primary">Small Outline</w-button>
+        <w-button size="md">Normal</w-button>
+        <w-button disabled>Normal</w-button>
+        <w-button type="outline" color="primary">Outline</w-button>
+        <w-button disabled type="outline" color="primary">Outline</w-button>
+        <w-button size="lg">Large</w-button>
+        <w-button size="lg" type="outline" color="primary">Large Outline</w-button>
+        <w-button size="xl">X Large</w-button>
+        <w-button size="xl" type="outline" color="primary">X Large Outline</w-button>
+      </div>
+      <w-button display="block" style="margin: 10px">Block</w-button>
+      <w-button display="block" type="outline" color="primary" style="margin: 10px">Outline Block</w-button>
+      <w-button display="block" size="lg" style="margin: 10px">Large Block</w-button>
+      <w-button display="block" size="xl" disabled style="margin: 10px">XLarge Block Disabled</w-button>
+      <!-- Critical -->
+      <w-heading>Critical</w-heading>
+      <div style="margin: 10px">
+        <w-button size="sm" color="critical">Small</w-button>
+        <w-button size="sm" type="outline" color="critical">Small Outline</w-button>
+        <w-button size="md" color="critical">Normal</w-button>
+        <w-button disabled color="critical">Normal</w-button>
+        <w-button type="outline" color="critical">Outline</w-button>
+        <w-button disabled type="outline" color="critical">Outline</w-button>
+        <w-button size="lg" color="critical">Large</w-button>
+        <w-button size="lg" type="outline" color="critical">Large Outline</w-button>
+        <w-button size="xl" color="critical">X Large</w-button>
+        <w-button size="xl" type="outline" color="critical">X Large Outline</w-button>
+      </div>
+      <w-button display="block" color="critical" style="margin: 10px">Block</w-button>
+      <w-button display="block" type="outline" color="critical" style="margin: 10px">Outline Block</w-button>
+      <w-button display="block" size="lg" color="critical" style="margin: 10px">Large Block</w-button>
+      <!-- Gray -->
+      <w-heading>Gray</w-heading>
+      <div style="margin: 10px">
+        <w-button size="sm" color="gray">Small</w-button>
+        <w-button size="sm" type="outline" color="gray">Small Outline</w-button>
+        <w-button size="md" color="gray">Normal</w-button>
+        <w-button disabled color="gray">Normal</w-button>
+        <w-button type="outline" color="gray">Outline</w-button>
+        <w-button disabled type="outline" color="gray">Outline</w-button>
+        <w-button size="lg" color="gray">Large</w-button>
+        <w-button size="lg" type="outline" color="gray">Large Outline</w-button>
+        <w-button size="xl" color="gray">X Large</w-button>
+        <w-button size="xl" type="outline" color="gray">X Large Outline</w-button>
+      </div>
+      <w-button display="block" color="gray" style="margin: 10px">Block</w-button>
+      <w-button display="block" type="outline" color="gray" style="margin: 10px">Outline Block</w-button>
+      <w-button display="block" size="lg" color="gray" style="margin: 10px">Large Block</w-button>
 
-    <!-- Icon -->
-    <w-heading level="3" underlined="true" style="margin: 10px 0;">Icon</w-heading>
-    <div style="margin: 10px;">
-      <w-icon type="home" size="sm"></w-icon>
-      <w-icon type="home"></w-icon>
-      <w-icon type="home" size="lg"></w-icon>
-      <w-icon type="home" size="xl"></w-icon>
-      <w-icon type="home" size="100"></w-icon>
-      Icon Size
-    </div>
-    <div style="margin: 10px;">
-      <w-icon size="sm"><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
-      <w-icon size="md"><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
-      <w-icon size="lg"><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
-      <w-icon size="xl"><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
-      <w-icon size="100"><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
-      IconFont
-    </div>
-    <div style="margin: 10px;">
-      <w-icon size="sm"><img src="image/github.svg" /></w-icon>
-      <w-icon size="md"><img src="image/github.svg" /></w-icon>
-      <w-icon size="lg"><img src="image/github.svg" /></w-icon>
-      <w-icon size="xl"><img src="image/github.svg" /></w-icon>
-      <w-icon size="100"><img src="image/github.svg" /></w-icon>
-      Image
-    </div>
-    <div style="margin: 10px;">
-      <w-icon type="add"></w-icon>
-      <w-icon type="add-circle"></w-icon>
-      <w-icon type="alert"></w-icon>
-      <w-icon type="animal-rabbit"></w-icon>
-      <w-icon type="add-filled"></w-icon>
-      <w-icon type="add-circle-filled"></w-icon>
-      <w-icon type="alert-filled"></w-icon>
-      <w-icon type="animal-rabbit-filled"></w-icon>
-    </div>
-    <div style="margin: 10px;">
-      <w-icon type="arrow-down"></w-icon>
-      <w-icon type="arrow-left"></w-icon>
-      <w-icon type="arrow-right"></w-icon>
-      <w-icon type="arrow-up"></w-icon>
-      <w-icon type="arrow-sync"></w-icon>
-      <w-icon type="arrow-down-filled"></w-icon>
-      <w-icon type="arrow-left-filled"></w-icon>
-      <w-icon type="arrow-right-filled"></w-icon>
-      <w-icon type="arrow-up-filled"></w-icon>
-      <w-icon type="arrow-sync-filled"></w-icon>
-    </div>
-    <div style="margin: 10px;">
-      <w-icon type="bookmark"></w-icon>
-      <w-icon type="caret-down"></w-icon>
-      <w-icon type="caret-left"></w-icon>
-      <w-icon type="caret-right"></w-icon>
-      <w-icon type="caret-up"></w-icon>
-      <w-icon type="bookmark-filled"></w-icon>
-      <w-icon type="caret-down-filled"></w-icon>
-      <w-icon type="caret-left-filled"></w-icon>
-      <w-icon type="caret-right-filled"></w-icon>
-      <w-icon type="caret-up-filled"></w-icon>
-    </div>
-    <div style="margin: 10px;">
-      <w-icon type="checkmark"></w-icon>
-      <w-icon type="checkmark-circle"></w-icon>
-      <w-icon type="copy"></w-icon>
-      <w-icon type="dismiss"></w-icon>
-      <w-icon type="dismiss-circle"></w-icon>
-      <w-icon type="checkmark-filled"></w-icon>
-      <w-icon type="checkmark-circle-filled"></w-icon>
-      <w-icon type="copy-filled"></w-icon>
-      <w-icon type="dismiss-filled"></w-icon>
-      <w-icon type="dismiss-circle-filled"></w-icon>
-    </div>
-    <div style="margin: 10px;">
-      <w-icon type="error-circle"></w-icon>
-      <w-icon type="flash"></w-icon>
-      <w-icon type="globe"></w-icon>
-      <w-icon type="heart"></w-icon>
-      <w-icon type="home"></w-icon>
-      <w-icon type="info"></w-icon>
-      <w-icon type="error-circle-filled"></w-icon>
-      <w-icon type="flash-filled"></w-icon>
-      <w-icon type="globe-filled"></w-icon>
-      <w-icon type="heart-filled"></w-icon>
-      <w-icon type="home-filled"></w-icon>
-      <w-icon type="info-filled"></w-icon>
-    </div>
-    <div style="margin: 10px;">
-      <w-icon type="leaf-one"></w-icon>
-      <w-icon type="more-vertical"></w-icon>
-      <w-icon type="navigation"></w-icon>
-      <w-icon type="search"></w-icon>
-      <w-icon type="settings"></w-icon>
-      <w-icon type="leaf-one-filled"></w-icon>
-      <w-icon type="more-vertical-filled"></w-icon>
-      <w-icon type="navigation-filled"></w-icon>
-      <w-icon type="search-filled"></w-icon>
-      <w-icon type="settings-filled"></w-icon>
-    </div>
-    <div style="margin: 10px;">
-      <w-icon type="share"></w-icon>
-      <w-icon type="sparkle"></w-icon>
-      <w-icon type="star"></w-icon>
-      <w-icon type="star-emphasis"></w-icon>
-      <w-icon type="subtract"></w-icon>
-      <w-icon type="subtract-circle"></w-icon>
-      <w-icon type="share-filled"></w-icon>
-      <w-icon type="sparkle-filled"></w-icon>
-      <w-icon type="star-filled"></w-icon>
-      <w-icon type="star-emphasis-filled"></w-icon>
-      <w-icon type="subtract-filled"></w-icon>
-      <w-icon type="subtract-circle-filled"></w-icon>
-    </div>
-    <div style="margin: 10px;">
-      <w-icon type="text-quote"></w-icon>
-      <w-icon type="timer"></w-icon>
-      <w-icon type="toggle-left"></w-icon>
-      <w-icon type="toggle-right"></w-icon>
-      <w-icon type="text-quote-filled"></w-icon>
-      <w-icon type="timer-filled"></w-icon>
-      <w-icon type="toggle-left-filled"></w-icon>
-      <w-icon type="toggle-right-filled"></w-icon>
-    </div>
-    <div style="margin: 10px;">
-      <w-icon type="weather-moon"></w-icon>
-      <w-icon type="weather-sunny"></w-icon>
-      <w-icon type="weather-moon-filled"></w-icon>
-      <w-icon type="weather-sunny-filled"></w-icon>
-    </div>
-    
-    <!-- Form -->
-    <w-heading level="2" underlined="true" style="margin: 10px 0;">Form</w-heading>
-    <w-form name="form" action="test.html" method="post">
-      <w-heading level="3" underlined>TextInput &amp; TextArea</w-heading>
-      <!-- TextInput -->
-      <w-heading level="5">Outlined</w-heading>
-      <w-textinput placeholder="This is Placeholder"></w-textinput>
-      <w-textinput value="Disabled" disabled></w-textinput>
-      <w-textinput name="test" value="Test name" style="width:50px;"></w-textinput>
-      <w-textarea type="growable">Growable multiline text</w-textarea>
-      <w-textarea type="growable" disabled value="Disabled">Disabled</w-textarea>
-      <w-textarea value="Multiple lines" style="width:300px;">Textarea multiline text in 300px width</w-textarea>
-      <w-heading level="5">Filled</w-heading>
-      <w-textinput appearance="filled" placeholder="This is Placeholder"></w-textinput>
-      <w-textinput appearance="filled" value="Disabled" disabled></w-textinput>
-      <w-textinput appearance="filled" name="test" value="Test name" style="width:50px;"></w-textinput>
-      <w-textarea appearance="filled" type="growable" resize="both">Growable multiline text</w-textarea>
-      <w-textarea appearance="filled" type="growable" disabled value="Disabled">Disabled</w-textarea>
-      <w-textarea appearance="filled" value="Multiple lines" resize="vertical" style="width:300px;">Textarea multiline text in 300px width</w-textarea>
-      <!-- CheckBox -->
-      <w-heading level="3" underlined>CheckBox</w-heading>
-      <w-checkbox name="checkbox" value="1">Un-Checked</w-checkbox>
-      <w-checkbox name="checkbox" checked value="2">Checked</w-checkbox>
-      <w-checkbox name="checkbox" disabled value="3">Un-Checked Disabled</w-checkbox>
-      <w-checkbox name="checkbox" checked disabled>Checked Disabled</w-checkbox>
-      <input type="checkbox" name="native" value="5" /> Native Checkbox
-      <!-- Radio -->
-      <w-heading level="3" underlined="true">Radio</w-heading>
-      <w-radio name="radio" value="radio1">Un-Checked</w-radio>
-      <w-radio name="radio" checked value="radio2">Checked</w-radio>
-      <w-radio name="radio" disabled value="radio3">Un-Checked Disabled</w-radio>
-      <w-radio name="radio" checked disabled value="radio4">Checked Disabled</w-radio>
-      <input type="text" name="text" value="5" />
-      <!-- Select -->
-      <w-heading level="3" underlined="true">Select</w-heading>
-      <w-select>
-        <w-option value="1">選項一</w-option>
-        <w-option value="2">選項二</w-option>
-        <w-option value="3" disabled>選項三</w-option>
-      </w-select>
-      <w-select placeholder="請選擇" name="gender">
-        <w-option value="male">男</w-option>
-        <w-option value="female">女</w-option>
-        <w-option value="none" disabled>無性別</w-option>
-      </w-select>
-      <w-select placeholder="請選擇" disabled>
-        <w-option value="1" disabled>選項一</w-option>
-        <w-option value="2" selected>選項二</w-option>
-      </w-select>
-      <w-select appearance="filled" placeholder="please choose ...">
-        <w-option value="1" disabled>選項一</w-option>
-        <w-option value="2" selected>選項二</w-option>
-      </w-select>
-      <w-select appearance="filled" placeholder="please choose ..." disabled>
-        <w-option value="1">選項一</w-option>
-        <w-option value="2">選項二</w-option>
-      </w-select>
-      <button type="submit">SUBMIT</button>
-    </w-form>
-    <!-- IconButton -->
-    <w-heading level="3" underlined="true" style="margin: 10px 0;">IconButton</w-heading>
-    <div style="margin: 10px;">
-      <w-icon-button type="outline" icon="navigation">Preset</w-icon-button>
-      <w-icon-button type="outline">
-        <w-icon type="heart-filled"></w-icon>Preset Icon
-      </w-icon-button>
-      <w-icon-button type="outline">
-        <w-icon><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
-        Custom IconFont
-      </w-icon-button>
-      <w-icon-button type="outline">
-        <w-icon><img src="image/github.svg" /></w-icon>Custom Image
-      </w-icon-button>
-      <w-icon-button color="none" icon="navigation">NONE</w-icon-button>
-    </div>
-    <div style="margin: 10px;">
-      <w-icon-button icon="heart" size="sm" icononly></w-icon-button>
-      <w-icon-button icon="heart" size="sm" icononly disabled></w-icon-button>
-      <w-icon-button icon="heart" size="sm" icononly type="outline"></w-icon-button>
-      <w-icon-button icon="heart" size="sm" icononly type="text"></w-icon-button>
-      <w-icon-button icon="heart" size="md" icononly></w-icon-button>
-      <w-icon-button icon="heart" size="md" icononly disabled></w-icon-button>
-      <w-icon-button icon="heart" size="md" icononly type="outline"></w-icon-button>
-      <w-icon-button icon="heart" size="md" icononly type="text"></w-icon-button>
-      <w-icon-button icon="heart" size="lg" icononly></w-icon-button>
-      <w-icon-button icon="heart" size="lg" icononly disabled></w-icon-button>
-      <w-icon-button icon="heart" size="lg" icononly type="outline"></w-icon-button>
-      <w-icon-button icon="heart" size="lg" icononly type="text"></w-icon-button>
-      <w-icon-button icon="heart" size="xl" icononly></w-icon-button>
-      <w-icon-button icon="heart" size="xl" icononly disabled></w-icon-button>
-      <w-icon-button icon="heart" size="xl" icononly type="outline"></w-icon-button>
-      <w-icon-button icon="heart" size="xl" icononly type="text"></w-icon-button>
-    </div>
-    <!-- Link Button -->
-    <w-heading level="3" underlined="true" style="margin: 10px 0;">Link Button</w-heading>
-    <div style="margin: 10px;">
-      <w-button type="link" size="sm">Preset</w-button>
-      <w-button type="link" size="md">Preset</w-button>
-      <w-button type="link" size="lg">Preset</w-button>
-      <w-button type="link" size="xl">Preset</w-button>
-      <w-icon-button type="link" icon="navigation" disabled>Preset</w-icon-button>
-    </div>
-    <!-- Camera -->
-    <w-heading level="3" underlined="true">Camera</w-heading>
-    <w-camera autoplay="false"></w-camera>
-    <w-button onclick="document.querySelector('w-camera').start();">Start</w-button>
-    <w-button onclick="document.querySelector('w-camera').pause();">Pause</w-button>
-    <w-button onclick="document.querySelector('w-camera').stop();">Stop</w-button>
-    <w-button onclick="document.querySelector('w-camera').takePicture({download:true});">Take Picture</w-button>
-		<!-- Dialog -->
-		<w-heading level="3" underlined="true">Dialog</w-heading>
-		<w-button id="open-full-dialog-btn">Open Dialog</w-button>
-		<w-button onclick="document.querySelector('#titleless-dialog').open();">Open Titleless Dialog</w-button>
-    <w-button onclick="document.querySelector('#alert-dialog').open();">Open Alert Dialog</w-button>
-    <w-button id="open-confirm-dialog-btn">Open Confirm Dialog</w-button>
-		<w-dialog id="full-dialog" title="這是標題">
-			<div>
-				大家好，我是彭彭。
-			</div>
-		</w-dialog>
-    <w-dialog id="titleless-dialog">
-      這是無標題的對話框
-    </w-dialog>
-    <w-alert-dialog id="alert-dialog">
-      這是警告視窗
-    </w-alert-dialog>
-    <w-confirm-dialog id="confirm-dialog">
-      這是警告視窗
-    </w-confirm-dialog>
-    <script>
-      const openDialogBtn=document.querySelector("#open-full-dialog-btn");
-      openDialogBtn.addEventListener("click", ()=>{
-        const dialog=document.querySelector("#full-dialog");
-        dialog.open({
-          title:"哈哈哈哈哈",
-          actions:{
-            primary:{
-              handler:()=>{
-                alert("執行");
+      <!-- Icon -->
+      <w-heading level="3" underlined="true" style="margin: 10px 0;">Icon</w-heading>
+      <div style="margin: 10px;">
+        <w-icon type="home" size="sm"></w-icon>
+        <w-icon type="home"></w-icon>
+        <w-icon type="home" size="lg"></w-icon>
+        <w-icon type="home" size="xl"></w-icon>
+        <w-icon type="home" size="100"></w-icon>
+        Icon Size
+      </div>
+      <div style="margin: 10px;">
+        <w-icon size="sm"><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
+        <w-icon size="md"><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
+        <w-icon size="lg"><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
+        <w-icon size="xl"><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
+        <w-icon size="100"><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
+        IconFont
+      </div>
+      <div style="margin: 10px;">
+        <w-icon size="sm"><img src="image/github.svg" /></w-icon>
+        <w-icon size="md"><img src="image/github.svg" /></w-icon>
+        <w-icon size="lg"><img src="image/github.svg" /></w-icon>
+        <w-icon size="xl"><img src="image/github.svg" /></w-icon>
+        <w-icon size="100"><img src="image/github.svg" /></w-icon>
+        Image
+      </div>
+      <div style="margin: 10px;">
+        <w-icon type="add"></w-icon>
+        <w-icon type="add-circle"></w-icon>
+        <w-icon type="alert"></w-icon>
+        <w-icon type="animal-rabbit"></w-icon>
+        <w-icon type="add-filled"></w-icon>
+        <w-icon type="add-circle-filled"></w-icon>
+        <w-icon type="alert-filled"></w-icon>
+        <w-icon type="animal-rabbit-filled"></w-icon>
+      </div>
+      <div style="margin: 10px;">
+        <w-icon type="arrow-down"></w-icon>
+        <w-icon type="arrow-left"></w-icon>
+        <w-icon type="arrow-right"></w-icon>
+        <w-icon type="arrow-up"></w-icon>
+        <w-icon type="arrow-sync"></w-icon>
+        <w-icon type="arrow-down-filled"></w-icon>
+        <w-icon type="arrow-left-filled"></w-icon>
+        <w-icon type="arrow-right-filled"></w-icon>
+        <w-icon type="arrow-up-filled"></w-icon>
+        <w-icon type="arrow-sync-filled"></w-icon>
+      </div>
+      <div style="margin: 10px;">
+        <w-icon type="bookmark"></w-icon>
+        <w-icon type="caret-down"></w-icon>
+        <w-icon type="caret-left"></w-icon>
+        <w-icon type="caret-right"></w-icon>
+        <w-icon type="caret-up"></w-icon>
+        <w-icon type="bookmark-filled"></w-icon>
+        <w-icon type="caret-down-filled"></w-icon>
+        <w-icon type="caret-left-filled"></w-icon>
+        <w-icon type="caret-right-filled"></w-icon>
+        <w-icon type="caret-up-filled"></w-icon>
+      </div>
+      <div style="margin: 10px;">
+        <w-icon type="checkmark"></w-icon>
+        <w-icon type="checkmark-circle"></w-icon>
+        <w-icon type="copy"></w-icon>
+        <w-icon type="dismiss"></w-icon>
+        <w-icon type="dismiss-circle"></w-icon>
+        <w-icon type="checkmark-filled"></w-icon>
+        <w-icon type="checkmark-circle-filled"></w-icon>
+        <w-icon type="copy-filled"></w-icon>
+        <w-icon type="dismiss-filled"></w-icon>
+        <w-icon type="dismiss-circle-filled"></w-icon>
+      </div>
+      <div style="margin: 10px;">
+        <w-icon type="error-circle"></w-icon>
+        <w-icon type="flash"></w-icon>
+        <w-icon type="globe"></w-icon>
+        <w-icon type="heart"></w-icon>
+        <w-icon type="home"></w-icon>
+        <w-icon type="info"></w-icon>
+        <w-icon type="error-circle-filled"></w-icon>
+        <w-icon type="flash-filled"></w-icon>
+        <w-icon type="globe-filled"></w-icon>
+        <w-icon type="heart-filled"></w-icon>
+        <w-icon type="home-filled"></w-icon>
+        <w-icon type="info-filled"></w-icon>
+      </div>
+      <div style="margin: 10px;">
+        <w-icon type="leaf-one"></w-icon>
+        <w-icon type="more-vertical"></w-icon>
+        <w-icon type="navigation"></w-icon>
+        <w-icon type="search"></w-icon>
+        <w-icon type="settings"></w-icon>
+        <w-icon type="leaf-one-filled"></w-icon>
+        <w-icon type="more-vertical-filled"></w-icon>
+        <w-icon type="navigation-filled"></w-icon>
+        <w-icon type="search-filled"></w-icon>
+        <w-icon type="settings-filled"></w-icon>
+      </div>
+      <div style="margin: 10px;">
+        <w-icon type="share"></w-icon>
+        <w-icon type="sparkle"></w-icon>
+        <w-icon type="star"></w-icon>
+        <w-icon type="star-emphasis"></w-icon>
+        <w-icon type="subtract"></w-icon>
+        <w-icon type="subtract-circle"></w-icon>
+        <w-icon type="share-filled"></w-icon>
+        <w-icon type="sparkle-filled"></w-icon>
+        <w-icon type="star-filled"></w-icon>
+        <w-icon type="star-emphasis-filled"></w-icon>
+        <w-icon type="subtract-filled"></w-icon>
+        <w-icon type="subtract-circle-filled"></w-icon>
+      </div>
+      <div style="margin: 10px;">
+        <w-icon type="text-quote"></w-icon>
+        <w-icon type="timer"></w-icon>
+        <w-icon type="toggle-left"></w-icon>
+        <w-icon type="toggle-right"></w-icon>
+        <w-icon type="text-quote-filled"></w-icon>
+        <w-icon type="timer-filled"></w-icon>
+        <w-icon type="toggle-left-filled"></w-icon>
+        <w-icon type="toggle-right-filled"></w-icon>
+      </div>
+      <div style="margin: 10px;">
+        <w-icon type="weather-moon"></w-icon>
+        <w-icon type="weather-sunny"></w-icon>
+        <w-icon type="weather-moon-filled"></w-icon>
+        <w-icon type="weather-sunny-filled"></w-icon>
+      </div>
+      
+      <!-- Form -->
+      <w-heading level="2" underlined="true" style="margin: 10px 0;">Form</w-heading>
+      <w-form name="form" action="test.html" method="post">
+        <w-heading level="3" underlined>TextInput &amp; TextArea</w-heading>
+        <!-- TextInput -->
+        <w-heading level="5">Outlined</w-heading>
+        <w-textinput placeholder="This is Placeholder"></w-textinput>
+        <w-textinput value="Disabled" disabled></w-textinput>
+        <w-textinput name="test" value="Test name" style="width:50px;"></w-textinput>
+        <w-textarea type="growable">Growable multiline text</w-textarea>
+        <w-textarea type="growable" disabled value="Disabled">Disabled</w-textarea>
+        <w-textarea value="Multiple lines" style="width:300px;">Textarea multiline text in 300px width</w-textarea>
+        <w-heading level="5">Filled</w-heading>
+        <w-textinput appearance="filled" placeholder="This is Placeholder"></w-textinput>
+        <w-textinput appearance="filled" value="Disabled" disabled></w-textinput>
+        <w-textinput appearance="filled" name="test" value="Test name" style="width:50px;"></w-textinput>
+        <w-textarea appearance="filled" type="growable" resize="both">Growable multiline text</w-textarea>
+        <w-textarea appearance="filled" type="growable" disabled value="Disabled">Disabled</w-textarea>
+        <w-textarea appearance="filled" value="Multiple lines" resize="vertical" style="width:300px;">Textarea multiline text in 300px width</w-textarea>
+        <!-- CheckBox -->
+        <w-heading level="3" underlined>CheckBox</w-heading>
+        <w-checkbox name="checkbox" value="1">Un-Checked</w-checkbox>
+        <w-checkbox name="checkbox" checked value="2">Checked</w-checkbox>
+        <w-checkbox name="checkbox" disabled value="3">Un-Checked Disabled</w-checkbox>
+        <w-checkbox name="checkbox" checked disabled>Checked Disabled</w-checkbox>
+        <input type="checkbox" name="native" value="5" /> Native Checkbox
+        <!-- Radio -->
+        <w-heading level="3" underlined="true">Radio</w-heading>
+        <w-radio name="radio" value="radio1">Un-Checked</w-radio>
+        <w-radio name="radio" checked value="radio2">Checked</w-radio>
+        <w-radio name="radio" disabled value="radio3">Un-Checked Disabled</w-radio>
+        <w-radio name="radio" checked disabled value="radio4">Checked Disabled</w-radio>
+        <input type="text" name="text" value="5" />
+        <!-- Select -->
+        <w-heading level="3" underlined="true">Select</w-heading>
+        <w-select>
+          <w-option value="1">選項一</w-option>
+          <w-option value="2">選項二</w-option>
+          <w-option value="3" disabled>選項三</w-option>
+        </w-select>
+        <w-select placeholder="請選擇" name="gender">
+          <w-option value="male">男</w-option>
+          <w-option value="female">女</w-option>
+          <w-option value="none" disabled>無性別</w-option>
+        </w-select>
+        <w-select placeholder="請選擇" disabled>
+          <w-option value="1" disabled>選項一</w-option>
+          <w-option value="2" selected>選項二</w-option>
+        </w-select>
+        <w-select appearance="filled" placeholder="please choose ...">
+          <w-option value="1" disabled>選項一</w-option>
+          <w-option value="2" selected>選項二</w-option>
+        </w-select>
+        <w-select appearance="filled" placeholder="please choose ..." disabled>
+          <w-option value="1">選項一</w-option>
+          <w-option value="2">選項二</w-option>
+        </w-select>
+        <button type="submit">SUBMIT</button>
+      </w-form>
+      <!-- IconButton -->
+      <w-heading level="3" underlined="true" style="margin: 10px 0;">IconButton</w-heading>
+      <div style="margin: 10px;">
+        <w-icon-button type="outline" icon="navigation">Preset</w-icon-button>
+        <w-icon-button type="outline">
+          <w-icon type="heart-filled"></w-icon>Preset Icon
+        </w-icon-button>
+        <w-icon-button type="outline">
+          <w-icon><i class=" icon-ic_fluent_weather_moon_16_filled"></i></w-icon>
+          Custom IconFont
+        </w-icon-button>
+        <w-icon-button type="outline">
+          <w-icon><img src="image/github.svg" /></w-icon>Custom Image
+        </w-icon-button>
+        <w-icon-button color="none" icon="navigation">NONE</w-icon-button>
+      </div>
+      <div style="margin: 10px;">
+        <w-icon-button icon="heart" size="sm" icononly></w-icon-button>
+        <w-icon-button icon="heart" size="sm" icononly disabled></w-icon-button>
+        <w-icon-button icon="heart" size="sm" icononly type="outline"></w-icon-button>
+        <w-icon-button icon="heart" size="sm" icononly type="text"></w-icon-button>
+        <w-icon-button icon="heart" size="md" icononly></w-icon-button>
+        <w-icon-button icon="heart" size="md" icononly disabled></w-icon-button>
+        <w-icon-button icon="heart" size="md" icononly type="outline"></w-icon-button>
+        <w-icon-button icon="heart" size="md" icononly type="text"></w-icon-button>
+        <w-icon-button icon="heart" size="lg" icononly></w-icon-button>
+        <w-icon-button icon="heart" size="lg" icononly disabled></w-icon-button>
+        <w-icon-button icon="heart" size="lg" icononly type="outline"></w-icon-button>
+        <w-icon-button icon="heart" size="lg" icononly type="text"></w-icon-button>
+        <w-icon-button icon="heart" size="xl" icononly></w-icon-button>
+        <w-icon-button icon="heart" size="xl" icononly disabled></w-icon-button>
+        <w-icon-button icon="heart" size="xl" icononly type="outline"></w-icon-button>
+        <w-icon-button icon="heart" size="xl" icononly type="text"></w-icon-button>
+      </div>
+      <!-- Link Button -->
+      <w-heading level="3" underlined="true" style="margin: 10px 0;">Link Button</w-heading>
+      <div style="margin: 10px;">
+        <w-button type="link" size="sm">Preset</w-button>
+        <w-button type="link" size="md">Preset</w-button>
+        <w-button type="link" size="lg">Preset</w-button>
+        <w-button type="link" size="xl">Preset</w-button>
+        <w-icon-button type="link" icon="navigation" disabled>Preset</w-icon-button>
+      </div>
+      <!-- Camera -->
+      <w-heading level="3" underlined="true">Camera</w-heading>
+      <w-camera autoplay="false"></w-camera>
+      <w-button onclick="document.querySelector('w-camera').start();">Start</w-button>
+      <w-button onclick="document.querySelector('w-camera').pause();">Pause</w-button>
+      <w-button onclick="document.querySelector('w-camera').stop();">Stop</w-button>
+      <w-button onclick="document.querySelector('w-camera').takePicture({download:true});">Take Picture</w-button>
+      <!-- Dialog -->
+      <w-heading level="3" underlined="true">Dialog</w-heading>
+      <w-button id="open-full-dialog-btn">Open Dialog</w-button>
+      <w-button onclick="document.querySelector('#titleless-dialog').open();">Open Titleless Dialog</w-button>
+      <w-button onclick="document.querySelector('#alert-dialog').open();">Open Alert Dialog</w-button>
+      <w-button id="open-confirm-dialog-btn">Open Confirm Dialog</w-button>
+      <w-dialog id="full-dialog" title="這是標題">
+        <div>
+          大家好，我是彭彭。
+        </div>
+      </w-dialog>
+      <w-dialog id="titleless-dialog">
+        這是無標題的對話框
+      </w-dialog>
+      <w-alert-dialog id="alert-dialog">
+        這是警告視窗
+      </w-alert-dialog>
+      <w-confirm-dialog id="confirm-dialog">
+        這是警告視窗
+      </w-confirm-dialog>
+      <script>
+        const openDialogBtn=document.querySelector("#open-full-dialog-btn");
+        openDialogBtn.addEventListener("click", ()=>{
+          const dialog=document.querySelector("#full-dialog");
+          dialog.open({
+            title:"哈哈哈哈哈",
+            actions:{
+              primary:{
+                handler:()=>{
+                  alert("執行");
+                }
               }
             }
-          }
+          });
         });
-      });
-      const openConfirmDialogBtn=document.querySelector("#open-confirm-dialog-btn");
-      openConfirmDialogBtn.addEventListener("click", ()=>{
-        const dialog=document.querySelector("#confirm-dialog");
-        dialog.open(function(){
-          alert("執行");
+        const openConfirmDialogBtn=document.querySelector("#open-confirm-dialog-btn");
+        openConfirmDialogBtn.addEventListener("click", ()=>{
+          const dialog=document.querySelector("#confirm-dialog");
+          dialog.open(function(){
+            alert("執行");
+          });
         });
-      });
-    </script>
-		<!-- Calendar -->
-		<w-heading level="3" underlined="true">Calendar</w-heading>
-		<w-calendar></w-calendar>
+      </script>
+      <!-- Calendar -->
+      <w-heading level="3" underlined="true">Calendar</w-heading>
+      <w-calendar></w-calendar>
+    </template>
 	</w-spa-page>
 </body>
 </html>

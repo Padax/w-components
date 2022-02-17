@@ -15,6 +15,12 @@ class SPAPage extends WComponent{
         value, attr.defaultValue, /.*/
       )
     },
+    exact: {
+      name: 'exact', defaultValue: false,
+      parser: (value, attr) => AttributeParser.parseBoolAttr(
+        value, attr.defaultValue
+      )
+    },
     current: {
       name: 'current', defaultValue: false,
       parser: (value, attr) => AttributeParser.parseBoolAttr(
@@ -67,7 +73,11 @@ class SPAPage extends WComponent{
     }
   }
   match(path){
-    return path.startsWith(window.wconfig.spa.basename+this.path);
+    if(this.exact){
+      return path===window.wconfig.spa.basename+this.path;
+    }else{
+      return path.startsWith(window.wconfig.spa.basename+this.path);
+    }
   }
   setCurrent(current){
     if(this.current===current){
