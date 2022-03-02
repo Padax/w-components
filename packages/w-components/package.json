@@ -1,12 +1,9 @@
 {
-  "name": "@padax/w-components-project",
-  "version": "1.0.0",
-  "private": "true",
+  "name": "@padax/w-components",
+  "version": "0.0.1",
   "description": "Web Component Library",
   "main": "index.js",
-  "workspaces": [
-    "./packages/*"
-  ],
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,5 +17,8 @@
   ],
   "author": "WC Team",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Padax/w-components/issues"
+  },
   "homepage": "https://github.com/Padax/w-components#readme"
 }
