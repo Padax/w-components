@@ -8,7 +8,8 @@
     "./packages/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,13 @@
   ],
   "author": "WC Team",
   "license": "MIT",
-  "homepage": "https://github.com/Padax/w-components#readme"
+  "homepage": "https://github.com/Padax/w-components#readme",
+  "dependencies": {
+    "@padax/w-components": "file:packages/w-components"
+  },
+  "devDependencies": {
+    "highlight.js": "^11.4.0",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
+  }
 }

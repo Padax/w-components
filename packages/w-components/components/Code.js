@@ -1,5 +1,5 @@
 import WComponent, { DOM, AttributeParser } from "../WComponent.js";
-import hljs from '../../external/highlight.js/lib/common.js';
+import hljs from 'highlight.js';
 
 const stylesheet = `
   /*!

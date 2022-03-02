@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Padax/w-components/issues"
   },
-  "homepage": "https://github.com/Padax/w-components#readme"
+  "homepage": "https://github.com/Padax/w-components#readme",
+  "peerDependencies": {
+    "highlight.js": "^11.4.0"
+  }
 }

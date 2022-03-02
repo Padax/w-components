@@ -1,2 +1,2 @@
-import wc from '@padax/web-components';
+import wc from '@padax/w-components';
 export default wc;
