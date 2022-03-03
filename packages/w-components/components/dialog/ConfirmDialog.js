@@ -8,14 +8,16 @@ class ConfirmDialog extends Dialog{
   init(){
     super.init();
   }
-  open(handler){
+  open(handler, color="primary"){
     super.open({
       title:"",
       actions:{
         primary:{
-          handler
+          handler, color
         },
-        secondary:{}
+        secondary:{
+          color
+        }
       }
     })
   }

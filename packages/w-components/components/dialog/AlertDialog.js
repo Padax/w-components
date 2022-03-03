@@ -8,12 +8,12 @@ class AlertDialog extends Dialog{
   init(){
     super.init();
   }
-  open(){
+  open(color){
     super.open({
       title:"",
       actions:{
         primary:{
-          color:"critical"
+          color
         }
       }
     })

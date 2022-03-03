@@ -642,6 +642,7 @@ w-list>w-li>a.link{
       <w-button id="open-full-dialog-btn">Open Dialog</w-button>
       <w-button onclick="document.querySelector('#titleless-dialog').open();">Open Titleless Dialog</w-button>
       <w-button onclick="document.querySelector('#alert-dialog').open();">Open Alert Dialog</w-button>
+      <w-button onclick="document.querySelector('#alert-dialog').open('critical');">Open Alert Dialog with Critical</w-button>
       <w-button id="open-confirm-dialog-btn">Open Confirm Dialog</w-button>
       <w-dialog id="full-dialog" title="這是標題">
         <div>
@@ -655,7 +656,7 @@ w-list>w-li>a.link{
         這是警告視窗
       </w-alert-dialog>
       <w-confirm-dialog id="confirm-dialog">
-        這是警告視窗
+        這是確認視窗
       </w-confirm-dialog>
       <script>
         const openDialogBtn=document.querySelector("#open-full-dialog-btn");
