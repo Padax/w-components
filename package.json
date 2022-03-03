@@ -1,14 +1,15 @@
 {
-  "name": "@padax/w-components",
-  "version": "1.0.2",
+  "name": "@padax/w-components-project",
+  "version": "1.0.0",
+  "private": "true",
   "description": "Web Component Library",
   "main": "index.js",
-  "dependencies": {
-    "css-loader": "^6.2.0"
-  },
-  "devDependencies": {},
+  "workspaces": [
+    "./packages/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,13 @@
   ],
   "author": "WC Team",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Padax/w-components/issues"
+  "homepage": "https://github.com/Padax/w-components#readme",
+  "dependencies": {
+    "@padax/w-components": "file:packages/w-components"
   },
-  "homepage": "https://github.com/Padax/w-components#readme"
+  "devDependencies": {
+    "highlight.js": "^11.4.0",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
+  }
 }

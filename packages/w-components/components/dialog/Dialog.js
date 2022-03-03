@@ -1,8 +1,11 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 const stylesheet=`
-  .dialog-mask{
+  .dialog-backdrop{
     position:fixed;left:0px;top:0px;width:100%;height:100%;z-index:100000000;
     background-color:rgba(0,0,0,0.5);
+  }
+  .dialog-backdrop-none{
+    display:none;
   }
   .dialog{
     width:600px;
@@ -76,10 +79,13 @@ class Dialog extends WComponent{
     super();
   }
   init(){
-    this.mask=DOM.create("div", {
-      props:{className:"dialog-mask"},
+    this.backdrop=DOM.create("div", {
       events:{
-        click:this.close.bind(this)
+        click:(e)=>{
+          if(e.target.backdrop==="standard"){
+            this.close();
+          }
+        }
       }
     });
     this.dialog=DOM.create("div", {props:{className:"dialog"}});
@@ -112,14 +118,14 @@ class Dialog extends WComponent{
     }, this.footer);
     // buttons
     this.btns={};
-    this.btns.secondary={
+    this.btns.tertiary={
       defaultValues:{
         text:"Cancel",
         color:"primary"
       },
       element:DOM.create("w-button", {
-        attrs:{type:"link", size:"sm"},
-        props:{className:"secondary", textContent:"Cancel"},
+        attrs:{type:"link", size:"m"},
+        props:{className:"tertiary", textContent:"Cancel"},
         events:{
           click:async (e)=>{
             if(typeof e.target.handler==="function"){
@@ -130,14 +136,14 @@ class Dialog extends WComponent{
         }
       }, footerLeft)
     };
-    this.btns.tertiary={
+    this.btns.secondary={
       defaultValues:{
         text:"Cancel",
         color:"primary"
       },
       element:DOM.create("w-button", {
-        attrs:{type:"outline", size:"sm"},
-        props:{className:"tertiary", textContent:"Cancel"},
+        attrs:{type:"outline", size:"m"},
+        props:{className:"secondary", textContent:"Cancel"},
         events:{
           click:async (e)=>{
             if(typeof e.target.handler==="function"){
@@ -154,7 +160,7 @@ class Dialog extends WComponent{
         color:"primary"
       },
       element:DOM.create("w-button", {
-        attrs:{size:"sm"},
+        attrs:{size:"m"},
         props:{className:"primary", textContent:"OK"},
         events:{
           click:async (e)=>{
@@ -173,10 +179,10 @@ class Dialog extends WComponent{
       case "display":
         if(newValue){
           this.shadowRoot.appendChild(this.dialog);
-          this.shadowRoot.appendChild(this.mask);
+          this.shadowRoot.appendChild(this.backdrop);
         }else{
           this.dialog.remove();
-          this.mask.remove();
+          this.backdrop.remove();
         }
         break;
       case "title":
@@ -201,6 +207,19 @@ class Dialog extends WComponent{
       if(args.title){
         this.title=args.title;
       }
+      let backdrop="standard";
+      if(args.backdrop){
+        backdrop=args.backdrop;
+        if(backdrop!=="standard" && backdrop!=="no-action" && backdrop!=="none"){
+          backdrop="standard";
+        }
+      }
+      DOM.modify(this.backdrop, {
+        props:{
+          backdrop:backdrop,
+          className:"dialog-backdrop"+(backdrop==="none"?" dialog-backdrop-none":"")
+        }
+      });
     }
     this.display=true;
   }

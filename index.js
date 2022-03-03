@@ -1,2 +1,2 @@
-import wc from "./wc/index.js";
+import wc from '@padax/w-components';
 export default wc;
