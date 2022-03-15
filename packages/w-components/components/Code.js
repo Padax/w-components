@@ -133,7 +133,7 @@ const stylesheet = `
     background-color: var(--color-gray-10);
     border-radius: 4px;
     padding: 20px;
-    white-space: pre;
+    white-space: pre-wrap;
   }
 `;
 class Code extends WComponent{
