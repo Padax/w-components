@@ -114,8 +114,14 @@ w-list>w-li>a.link{
   background-image: url('./images/keyvisual-left.png');
   background-repeat: no-repeat;
   background-position: 0 497px;
-  padding: 0;
   margin-top: 20px;
+  padding-left: 56px; padding-right: 56px;
+}
+@media (max-width:1024px){
+  #keyVisualLeftCtn{
+    background-image:none;
+    padding-left:0px;padding-right:0px;
+  }
 }
 </style>
 <script type="module">
@@ -207,7 +213,7 @@ w-list>w-li>a.link{
       </w-hero>
       <w-section>
         <w-section id="keyVisualLeftCtn">
-          <w-section rowgap="2" style="padding-left: 56px; padding-right: 56px">
+          <w-section rowgap="2">
             <w-heading level="1" style="margin: 0">快速上手</w-heading>
             <w-heading level="3" style="color:var(--color-gray-60); margin-top: 8px; margin-bottom: 8px;">
               三步驟輕鬆使用 W-Components
