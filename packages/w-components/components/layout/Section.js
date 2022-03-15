@@ -43,7 +43,7 @@ class Section extends WComponent{
     const grid=DOM.create(getWTagName('grid'), {attrs:{
       cols:this.cols, colgap:this.colgap, rowgap:this.rowgap
     }, styles:{
-      width:`${this.width}px`, maxWidth:"100%"
+      width:"100%", maxWidth:`${this.width}px`
     }}, this.shadowRoot);
     DOM.create("slot", {}, grid);
   }
