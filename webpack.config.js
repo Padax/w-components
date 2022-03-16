@@ -1,14 +1,25 @@
 const path = require('path');
 
 module.exports = {
-  entry: './index.js',
+  mode: 'development',
+  entry: {
+    index: './index.js'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.bundle.js',
+    filename: '[name].bundle.js',
+    clean: true,
     module: true,
     libraryTarget: 'module'
   },
   experiments: {
     outputModule: true
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname),
+    },
+    compress: true,
+    port: 9000
   }
 };
