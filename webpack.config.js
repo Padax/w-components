@@ -22,7 +22,7 @@ module.exports = {
     compress: true,
     port: 9000,
     devMiddleware: {
-      writeToDisk: filePath => /.bundle.js$/ .test(filePath)
+      writeToDisk: filePath => !/.hot-update./ .test(filePath)
     }
   }
 };
