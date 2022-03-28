@@ -5,7 +5,7 @@ const stylesheet=`
     background-color:rgba(0,0,0,0.5);
   }
   .dialog-backdrop-none{
-    display:none;
+    opacity:0.01;
   }
   .dialog{
     width:600px;
@@ -69,6 +69,18 @@ class Dialog extends WComponent{
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /.*/
       )
+    },
+    color: {
+      name: 'color', defaultValue: 'primary', 
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^primary$|^critical$|^gray$/
+      )
+    },
+    backdrop: {
+      name: 'backdrop', defaultValue: 'normal', 
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^normal$|^none$|^no-action$/
+      )
     }
   };
   static get observedAttributes() {
@@ -79,10 +91,14 @@ class Dialog extends WComponent{
     super();
   }
   init(){
-    this.backdrop=DOM.create("div", {
+    this.backdropElement=DOM.create("div", {
+      props:{
+        backdrop:this.backdrop,
+        className:"dialog-backdrop"+(this.backdrop==="none"?" dialog-backdrop-none":"")
+      },
       events:{
         click:(e)=>{
-          if(e.target.backdrop==="standard"){
+          if(e.target.backdrop==="normal"){
             this.close();
           }
         }
@@ -121,7 +137,7 @@ class Dialog extends WComponent{
     this.btns.tertiary={
       defaultValues:{
         text:"Cancel",
-        color:"primary"
+        color:this.color
       },
       element:DOM.create("w-button", {
         attrs:{type:"link", size:"m"},
@@ -139,7 +155,7 @@ class Dialog extends WComponent{
     this.btns.secondary={
       defaultValues:{
         text:"Cancel",
-        color:"primary"
+        color:this.color
       },
       element:DOM.create("w-button", {
         attrs:{type:"outline", size:"m"},
@@ -157,7 +173,7 @@ class Dialog extends WComponent{
     this.btns.primary={
       defaultValues:{
         text:"OK",
-        color:"primary"
+        color:this.color
       },
       element:DOM.create("w-button", {
         attrs:{size:"m"},
@@ -179,10 +195,10 @@ class Dialog extends WComponent{
       case "display":
         if(newValue){
           this.shadowRoot.appendChild(this.dialog);
-          this.shadowRoot.appendChild(this.backdrop);
+          this.shadowRoot.appendChild(this.backdropElement);
         }else{
           this.dialog.remove();
-          this.backdrop.remove();
+          this.backdropElement.remove();
         }
         break;
       case "title":
@@ -193,6 +209,11 @@ class Dialog extends WComponent{
           this.dialog.insertBefore(this.head, this.dialog.firstChild);
         }else{
           this.head.remove();
+        }
+        break;
+      case "color":
+        for(const key in this.btns){
+          this.btns[key].defaultValues.color=newValue;
         }
         break;
     }
@@ -207,14 +228,14 @@ class Dialog extends WComponent{
       if(args.title){
         this.title=args.title;
       }
-      let backdrop="standard";
+      let backdrop=this.backdrop;
       if(args.backdrop){
         backdrop=args.backdrop;
-        if(backdrop!=="standard" && backdrop!=="no-action" && backdrop!=="none"){
-          backdrop="standard";
+        if(backdrop!=="normal" && backdrop!=="no-action" && backdrop!=="none"){
+          backdrop=this.backdrop;
         }
       }
-      DOM.modify(this.backdrop, {
+      DOM.modify(this.backdropElement, {
         props:{
           backdrop:backdrop,
           className:"dialog-backdrop"+(backdrop==="none"?" dialog-backdrop-none":"")
