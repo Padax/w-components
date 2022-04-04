@@ -19,9 +19,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname),
     },
-    historyApiFallback: {
-      index: 'index.html'
-    },
+    historyApiFallback: true,
     compress: true,
     port: 9000,
     devMiddleware: {
