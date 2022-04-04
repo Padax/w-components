@@ -10,7 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "analyze": "webpack --env analyze=true"
   },
   "repository": {
     "type": "git",
@@ -27,8 +28,8 @@
     "@padax/w-components": "file:packages/w-components"
   },
   "devDependencies": {
-    "highlight.js": "^11.4.0",
     "webpack": "^5.69.1",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
   }

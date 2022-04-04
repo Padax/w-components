@@ -1,7 +1,8 @@
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = {
-  mode: 'development',
+module.exports = env => ({
+  mode: 'production',
   entry: {
     index: './index.js'
   },
@@ -25,5 +26,8 @@ module.exports = {
     devMiddleware: {
       writeToDisk: filePath => !/.hot-update./ .test(filePath)
     }
-  }
-};
+  },
+  plugins: [
+    new BundleAnalyzerPlugin({ analyzerMode: env.analyze === 'true' ? 'server' : 'disabled' })
+  ]
+});
