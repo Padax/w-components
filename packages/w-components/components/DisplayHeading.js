@@ -43,6 +43,8 @@ const propStylesheet = {
   `
 };
 class DisplayHeading extends Heading{
+  static tagName = 'display-heading';
+
   constructor(){
     super();
   }

@@ -22,6 +22,7 @@ const stylesheet=`
   }
 `;
 class Hero extends WComponent{
+  static tagName = 'hero';
   static attributes = {
     'background-image': {
       name: 'background-image', defaultValue: '',

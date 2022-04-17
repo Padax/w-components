@@ -5,7 +5,7 @@ const stylesheet=`
 `;
 
 class Option extends WComponent{
-
+  static tagName = 'option';
   static attributes = {
     value: {
       name: 'value', defaultValue: null

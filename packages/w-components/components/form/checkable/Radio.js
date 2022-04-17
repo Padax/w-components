@@ -9,7 +9,8 @@ const stylesheet=`
   }
 `;
 class Radio extends Checkable{
-
+  static tagName = 'radio';
+  
   constructor() {
     super();
     this.bindEvents();

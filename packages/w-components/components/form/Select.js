@@ -59,7 +59,7 @@ const stylesheet=`
 `;
 
 class Select extends WComponent{
-
+  static tagName = 'select';
   static attributes = {
     appearance: {
       name: 'appearance', defaultValue: 'outlined',

@@ -137,6 +137,7 @@ const stylesheet = `
   }
 `;
 class Code extends WComponent{
+  static tagName = 'code';
   static attributes = {
     lang: {
       name: 'lang', defaultValue: 'auto',

@@ -18,7 +18,7 @@ const stylesheet = `
 `;
 
 class Quote extends WComponent{
-  
+  static tagName = 'quote';
   static attributes = {
     align: {
       name: 'align', defaultValue: 'left', 

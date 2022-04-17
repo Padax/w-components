@@ -194,6 +194,7 @@ const stylesheet=`
   }
 `;
 class Button extends WComponent{
+  static tagName = 'button';
   static attributes = {
     disabled: {
       name: 'disabled', defaultValue: false, 

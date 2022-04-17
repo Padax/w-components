@@ -36,6 +36,7 @@ const stylesheet=`
   }
 `;
 class List extends WComponent{
+  static tagName = 'list';
   static attributes = {
     mark: { 
       name: 'mark', defaultValue: 'none',

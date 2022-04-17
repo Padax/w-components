@@ -53,7 +53,7 @@ const stylesheet=`
 `;
 
 class TextInput extends WComponent{
-
+  static tagName = 'textinput';
   static attributes = {
     appearance: {
       name: 'appearance', defaultValue: 'outlined',

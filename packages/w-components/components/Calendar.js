@@ -76,6 +76,7 @@ const stylesheet=`
   }
 `;
 class Calendar extends WComponent{
+  static tagName = 'calendar';
   static NUMBER_NAMES=["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"];
   constructor(){
     super();

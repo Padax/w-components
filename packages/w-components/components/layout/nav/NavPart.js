@@ -35,6 +35,7 @@ const stylesheet=`
   }
 `;
 class NavPart extends WComponent{
+  static tagName = 'nav-part';
   static attributes = {
     width: {
       name: 'width', defaultValue: 'auto',

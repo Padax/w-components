@@ -1,7 +1,10 @@
-import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 import Dialog from "./Dialog.js";
+
 const stylesheet=``;
+
 class ConfirmDialog extends Dialog{
+  static tagName = 'cofirm-dialog';
+  
   constructor(){
     super();
   }
@@ -23,4 +26,5 @@ class ConfirmDialog extends Dialog{
   }
 }
 ConfirmDialog.prototype.stylesheet+=stylesheet;
+
 export default ConfirmDialog;

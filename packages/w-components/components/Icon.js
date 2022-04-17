@@ -125,6 +125,7 @@ const stylesheet=`
 `;
 
 class Icon extends WComponent {
+  static tagName = 'icon';
   static attributes = {
     type: {
       name: 'type', defaultValue: '', 

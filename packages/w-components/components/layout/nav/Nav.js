@@ -20,6 +20,8 @@ const stylesheet=`
   }
 `;
 class Nav extends WComponent{
+  static tagName = 'nav';
+
   constructor(){
     super();
   }

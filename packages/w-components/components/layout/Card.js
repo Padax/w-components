@@ -27,6 +27,7 @@ const stylesheet=`
   }
 `;
 class Card extends WComponent{
+  static tagName = 'card';
   static attributes = {
     layout: {
       name: 'layout', defaultValue: 'standard', 

@@ -19,6 +19,7 @@ const stylesheet=`
 `;
 
 class IconButton extends Button {
+  static tagName = 'icon-button';
   static attributes = {
     ...Button.attributes,
     icon: {

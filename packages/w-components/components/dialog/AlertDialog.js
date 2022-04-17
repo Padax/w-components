@@ -1,7 +1,10 @@
-import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 import Dialog from "./Dialog.js";
+
 const stylesheet=``;
-class AlertDialog extends Dialog{
+
+class AlertDialog extends Dialog{  
+  static tagName = 'alert-dialog';
+  
   constructor(){
     super();
   }
@@ -20,4 +23,5 @@ class AlertDialog extends Dialog{
   }
 }
 AlertDialog.prototype.stylesheet+=stylesheet;
+
 export default AlertDialog;

@@ -47,6 +47,7 @@ const propStylesheet = {
   `
 };
 class Heading extends WComponent{
+  static tagName = 'heading';
   static attributes = {
     level: {
       name: 'level', defaultValue: 5, min: 1, max: 6,

@@ -8,6 +8,7 @@ const stylesheet=`
   }
 `;
 class SPAPage extends WComponent{
+  static tagName = 'spa-page';
   static attributes = {
     path: {
       name: 'path', defaultValue: '',

@@ -70,7 +70,7 @@ const stylesheet=`
 `;
 
 class TextArea extends WComponent{
-
+  static tagName = 'textarea';
   static attributes = {
     type: { 
       name: 'type', defaultValue: 'normal',

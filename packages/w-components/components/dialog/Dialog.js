@@ -1,4 +1,5 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
+
 const stylesheet=`
   .dialog-backdrop{
     position:fixed;left:0px;top:0px;width:100%;height:100%;z-index:100000000;
@@ -55,8 +56,9 @@ const stylesheet=`
     margin-left:16px;
   }
 `;
+
 class Dialog extends WComponent{
-  
+  static tagName = 'dialog';
   static attributes = {
     display: {
       name: 'display', defaultValue: false, 
@@ -265,4 +267,5 @@ class Dialog extends WComponent{
   }
 }
 Dialog.prototype.stylesheet=stylesheet;
+
 export default Dialog;

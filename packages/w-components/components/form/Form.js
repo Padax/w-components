@@ -7,6 +7,7 @@ const stylesheet=`
 `;
 
 class Form extends WComponent{
+  static tagName = 'form';
   static attributes = {
     name: { name: 'name' },
     action: { name: 'action' },

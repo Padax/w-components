@@ -11,7 +11,8 @@ const stylesheet=`
 `;
 
 class Checkbox extends Checkable{
-
+  static tagName = 'checkbox';
+  
   constructor() {
     super();
     this.bindEvents();

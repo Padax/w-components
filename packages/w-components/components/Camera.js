@@ -1,6 +1,7 @@
 import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 const stylesheet=``;
 class Camera extends WComponent{
+  static tagName = 'camera';
   static attributes = {
     width: {
       name: 'width', defaultValue: 640, min: 480, max: 4096,
