@@ -1,9 +1,9 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 const stylesheet=`
-  slot.hide{
+  :host([current='false']){
     display:none;
   }
-  slot.show{
+  :host([current='true']){
     display:block;
   }
 `;
@@ -42,12 +42,12 @@ class SPAPage extends WComponent{
     // init current
     this.current=this.match(window.location.pathname);
     // first render
-    this.render();
+    this.render(true);
   }
   update(args){
     this.render();
   }
-  render(){
+  render(init=false){
     // handle template
     if(this.current){ // if shown, take content outside of template
       const template=this.querySelector("template");
@@ -57,13 +57,8 @@ class SPAPage extends WComponent{
       }
     }
     // render contents
-    const props={
-      className:this.current?"show":"hide"
-    };
-    if(this.root){
-      DOM.modify(this.root, {props: props});
-    }else{
-      this.root=DOM.create("slot", {props: props}, this.shadowRoot);
+    if(init){
+      DOM.create("slot", {}, this.shadowRoot);
     }
     // fire custom event
     if(this.current){
