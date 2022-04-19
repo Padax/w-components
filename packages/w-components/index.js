@@ -50,8 +50,8 @@ const wc={
     defineCustomElement(prefix, 'button', Button);
     defineCustomElement(prefix, 'icon-button', IconButton);
     defineCustomElement(prefix, 'dialog', Dialog);
-    defineCustomElement(prefix, 'alert-dialog', AlertDialog);
-    defineCustomElement(prefix, 'confirm-dialog', ConfirmDialog);
+    defineCustomElement(prefix, 'alert', AlertDialog);
+    defineCustomElement(prefix, 'confirm', ConfirmDialog);
     defineCustomElement(prefix, 'calendar', Calendar);
     defineCustomElement(prefix, 'camera', Camera);
     defineCustomElement(prefix, 'heading', Heading);
