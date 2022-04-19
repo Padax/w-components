@@ -9,9 +9,9 @@ const stylesheet=`
 class Section extends WComponent{
   static attributes = {
     width: {
-      name: 'width', defaultValue: 1200,
-      parser: (value, attr) => AttributeParser.parseIntAttr(
-          value, attr.defaultValue, 0, 10000
+      name: 'width', defaultValue: '1200',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^full$|^[0-9]{1,5}$/
       )
     },
     cols: {
@@ -40,10 +40,16 @@ class Section extends WComponent{
     super();
   }
   init(){
+    let width=this.width;
+    if(width==="full"){
+      width="100%";
+    }else{
+      width+="px";
+    }
     const grid=DOM.create(getWTagName('grid'), {attrs:{
       cols:this.cols, colgap:this.colgap, rowgap:this.rowgap
     }, styles:{
-      width:"100%", maxWidth:`${this.width}px`
+      width:"100%", maxWidth:width
     }}, this.shadowRoot);
     DOM.create("slot", {}, grid);
   }
