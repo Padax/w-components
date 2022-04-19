@@ -1,4 +1,4 @@
-import WComponent, { DOM } from "../../../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../../../WComponent.js";
 const stylesheet=`
   nav{
     display:flex;align-items:center;justify-content:center;
@@ -15,11 +15,22 @@ const stylesheet=`
   }
   slot{
     display:flex;align-items:center;
-    width:100%;max-width:1200px;
-    height:100%;
+    width:100%;height:100%;
+    transition:max-width 0.5s;
   }
 `;
 class Nav extends WComponent{
+  static attributes = {
+    width: {
+      name: 'width', defaultValue: 'normal',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^normal$|^full$/
+      )
+    }
+  };
+  static get observedAttributes() {
+    return this.getObservedAttributes(this.attributes);
+  }
   constructor(){
     super();
   }
@@ -28,7 +39,19 @@ class Nav extends WComponent{
     this.docThreshold=0;
     window.addEventListener("scroll", this.scroll.bind(this));
     this.root=DOM.create("nav", {}, this.shadowRoot);
-    DOM.create("slot", {}, this.root);
+    this.slotElement=DOM.create("slot", {styles:{
+      maxWidth:this.width==="normal"?"1200px":"100%"
+    }}, this.root);
+  }
+  update({ name, newValue }){
+    const value=this.parseAttributeValueByName(name, newValue);
+    switch(name){
+      case 'width':
+        DOM.modify(this.slotElement, {styles:{
+          maxWidth:newValue==="normal"?"1200px":"100%"
+        }});
+        break;
+    }
   }
   scroll(){
     if(this.docTop<=this.docThreshold){
