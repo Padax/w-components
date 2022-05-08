@@ -1,28 +1,28 @@
 import DOM from "./util/DOM.js";
 import DarkThemeStylesheet from "./theme/dark.css.js";
 import LightThemeStylesheet from "./theme/light.css.js";
+import * as wComponents from './w-components.js';
 
 const defaultWConfig={theme:"light", spa:{basename:""}};
 const wc={
-  init: async function(wconfig={}){
+  init: function(wconfig={}){
     window.wconfig=Object.assign(defaultWConfig, wconfig);
     window.wconfig.prefix='w'; // force prefix to 'w'
     
     this.initTheme(window.wconfig.theme);
-
-    await this.initComponents(window.wconfig.prefix, window.wconfig.components);
-    typeof window.wconfig.callback === 'function' && window.wconfig.callback();
+    this.initComponents(window.wconfig.prefix, window.wconfig.components);
   },
   initComponents: async function(prefix = window.wconfig.prefix, components = []) {
     if(!Array.isArray(components) || components.length === 0) {
       // Import all
-      const module = await import('./w-components.js');
-      Object.values(module.default).forEach(c => defineCustomElement(prefix, c.tagName, c));
+      for(let componentName in wComponents) {
+        const c = wComponents[componentName];
+        defineCustomElement(prefix, c.tagName, c);
+      }
     } else {
       // Import assigned individuals
-      const module = await import(`./w-components.js`);
       components.forEach(componentName => {
-        const c = module.default[componentName];
+        const c = wComponents[componentName];
         defineCustomElement(prefix, c.tagName, c);
       });
     }
@@ -56,3 +56,4 @@ function defineCustomElement(prefix, name, element) {
 }
 
 export default wc;
+export { wComponents };
