@@ -123,35 +123,70 @@ w-list>w-li>a.link{
     padding-left:20px;padding-right:20px;
   }
 }
+#components-page{
+  padding-top:80px;
+}
+#components-page main{
+  display:flex;
+}
+#components-page main>.menu{
+  flex:none;
+  width:150px;height:calc(100vh - 100px);position:sticky;top:80px;left:0px;
+  padding:10px 15px;border-right:1px solid #cccccc;
+}
+#components-page main>.menu>.item{
+  cursor:pointer;padding:5px;
+}
+#components-page main>.menu>.separator{
+  height:1px;background-color:var(--color-gray-20);
+  padding:0px 5px;margin:10px 0px;
+}
+#components-page main>.content{
+  flex:auto;padding:10px;
+}
 </style>
 <script type="module">
 	import wc from "./dist/index.bundle.js";
+  // manipulate nav
+  const nav=document.querySelector("w-nav");
+	// manipulate spa-page
+	const page=document.querySelector("#components-page");
+	page.addEventListener("init", ()=>{
+		nav.setAttribute("width", "full");
+	});
+	page.addEventListener("dispose", ()=>{
+		nav.setAttribute("width", "normal");
+	});
+  // init components
 	wc.init({
     components: ['Button', 'SPALink', 'SPAPage', 'Calendar'],
 		spa:{
 			basename:window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))
-		},
-    callback: () => {
-      // manipulate calendar
-      const calendar=document.querySelector("w-calendar");
-      calendar.addEntry({date:"2021-05-27", content:"測試看看"});
-      calendar.addEntry({date:"2021-05-27", content:"測試看看"});
-      calendar.addEntry({date:"2021-05-20", content:"測試看看"});
-      // manipulate spa-page
-      const page=document.querySelector("#components-page");
-      page.addEventListener("init", ()=>{
-        console.log("Init");
-      });
-      page.addEventListener("dispose", ()=>{
-        console.log("Dispose");
-      });
-      
-      document.querySelector('#step2Code').innerHTML = `<script type="module">
+		}
+	});
+	// manipulate calendar
+	const calendar=document.querySelector("w-calendar");
+	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
+	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
+	calendar.addEntry({date:"2021-05-20", content:"測試看看"});
+
+  document.querySelector('#step2Code').innerHTML = `<script type="module">
   import wc from "./wc/index.js";
   wc.init();
 </scr` + `ipt>`;
     }
 	});
+</script>
+<script>
+function showComponent(name){
+  const componentClass=window.customElements.get(name);
+  const container=document.querySelector("#component-definition");
+  container.innerHTML=`<h3>Attributes</h3>`;
+  for(let key in componentClass.attributes){
+    let attribute=componentClass.attributes[key];
+    container.innerHTML+=`<div>Name: ${attribute.name}, Default: ${attribute.defaultValue}`;
+  }
+}
 </script>
 </head>
 <body>
@@ -281,19 +316,17 @@ w-list>w-li>a.link{
   </w-spa-page>
 	<w-spa-page path="/components" id="components-page">
 		<template>
-			<w-display-heading level="1" underlined>LONG LIVE W-COMPONENTS!</w-display-heading>
-			<w-display-heading level="2">LONG LIVE W-COMPONENTS!</w-display-heading>
-			<w-display-heading level="3">LONG LIVE W-COMPONENTS!</w-display-heading>
-			<w-display-heading level="4">LONG LIVE W-COMPONENTS!</w-display-heading>
-			<w-display-heading>LONG LIVE W-COMPONENTS!</w-display-heading>
-			<w-display-heading level="6">LONG LIVE W-COMPONENTS!</w-display-heading>
-
-			<w-heading level="1" underlined>LONG LIVE W-COMPONENTS!</w-heading>
-			<w-heading level="2">LONG LIVE W-COMPONENTS!</w-heading>
-			<w-heading level="3">LONG LIVE W-COMPONENTS!</w-heading>
-			<w-heading level="4">LONG LIVE W-COMPONENTS!</w-heading>
-			<w-heading>LONG LIVE W-COMPONENTS!</w-heading>
-			<w-heading level="6">LONG LIVE W-COMPONENTS!</w-heading>
+      <main>
+        <div class="menu">
+          <div class="item" onclick="showComponent('w-button');">Button</div>
+          <div class="item" onclick="showComponent('w-icon-button');">IconButton</div>
+          <div class="item separator"></div>
+          <div class="item" onclick="showComponent('w-dialog');">Dialog</div>
+          <div class="item" onclick="showComponent('w-alert');">AlertDialog</div>
+          <div class="item" onclick="showComponent('w-confirm');">ConfirmDialog</div>
+        </div>
+        <w-section id="component-definition" class="content" cols="1" width="full"></w-section>
+      </main>
     </template>
   </w-spa-page>
   <w-spa-page path="/documents">
@@ -661,12 +694,12 @@ w-list>w-li>a.link{
       <w-dialog id="titleless-dialog">
         這是無標題的對話框
       </w-dialog>
-      <w-alert-dialog id="alert-dialog">
+      <w-alert id="alert-dialog">
         這是警告視窗
-      </w-alert-dialog>
-      <w-confirm-dialog id="confirm-dialog">
+      </w-alert>
+      <w-confirm id="confirm-dialog">
         這是確認視窗
-      </w-confirm-dialog>
+      </w-confirm>
       <script>
         const openDialogBtn=document.querySelector("#open-full-dialog-btn");
         openDialogBtn.addEventListener("click", ()=>{
@@ -690,6 +723,19 @@ w-list>w-li>a.link{
           });
         });
       </script>
+      <w-display-heading level="1" underlined>LONG LIVE W-COMPONENTS!</w-display-heading>
+      <w-display-heading level="2">LONG LIVE W-COMPONENTS!</w-display-heading>
+      <w-display-heading level="3">LONG LIVE W-COMPONENTS!</w-display-heading>
+      <w-display-heading level="4">LONG LIVE W-COMPONENTS!</w-display-heading>
+      <w-display-heading>LONG LIVE W-COMPONENTS!</w-display-heading>
+      <w-display-heading level="6">LONG LIVE W-COMPONENTS!</w-display-heading>
+
+      <w-heading level="1" underlined>LONG LIVE W-COMPONENTS!</w-heading>
+      <w-heading level="2">LONG LIVE W-COMPONENTS!</w-heading>
+      <w-heading level="3">LONG LIVE W-COMPONENTS!</w-heading>
+      <w-heading level="4">LONG LIVE W-COMPONENTS!</w-heading>
+      <w-heading>LONG LIVE W-COMPONENTS!</w-heading>
+      <w-heading level="6">LONG LIVE W-COMPONENTS!</w-heading>
       <!-- Calendar -->
       <w-heading level="3" underlined="true">Calendar</w-heading>
       <w-calendar></w-calendar>
