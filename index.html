@@ -146,7 +146,7 @@ w-list>w-li>a.link{
 }
 </style>
 <script type="module">
-	import wc from "./dist/index.bundle.js";
+	import wc, * as components from "./dist/index.bundle.js";
   // manipulate nav
   const nav=document.querySelector("w-nav");
 	// manipulate spa-page
@@ -159,6 +159,7 @@ w-list>w-li>a.link{
 	});
   // init components
 	wc.init({
+    components, 
 		spa:{
 			basename:window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))
 		}

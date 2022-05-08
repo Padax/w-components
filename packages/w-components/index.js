@@ -12,8 +12,8 @@ const wc={
     this.initTheme(window.wconfig.theme);
     this.initComponents(window.wconfig.prefix, window.wconfig.components);
   },
-  initComponents: async function(prefix = window.wconfig.prefix, components = []) {
-    if(!Array.isArray(components) || components.length === 0) {
+  initComponents: async function(prefix = window.wconfig.prefix, components = {}) {
+    if(!components || typeof components !== 'object' || Object.keys(components).length === 0) {
       // Import all
       for(let componentName in wComponents) {
         const c = wComponents[componentName];
@@ -21,10 +21,13 @@ const wc={
       }
     } else {
       // Import assigned individuals
-      components.forEach(componentName => {
+      // Components should be loaded in our order, not user-difeind order.
+      for(let componentName in wComponents) {
         const c = wComponents[componentName];
-        defineCustomElement(prefix, c.tagName, c);
-      });
+        if(components[componentName]) {
+          defineCustomElement(prefix, c.tagName, c);
+        }
+      }
     }
   },
   initTheme:function(name){

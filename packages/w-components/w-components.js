@@ -16,6 +16,8 @@ import Icon from "./components/Icon.js";
 import IconButton from "./components/button/IconButton.js";
 import List from "./components/List.js";
 import ListItem from "./components/ListItem.js";
+import Nav from './components/layout/nav/Nav.js';
+import NavPart from './components/layout/nav/NavPart.js';
 import Option from "./components/form/Option.js";
 import Quote from "./components/Quote.js";
 import Radio from "./components/form/checkable/Radio.js";
@@ -27,6 +29,8 @@ import TextInput from "./components/form/TextInput.js";
 import TextArea from "./components/form/TextArea.js";
 import TypeWriter from "./components/TypeWriter.js";
 
+// Components should be exported in dependency manner so that it can be loaded and defined in order.
+// For example: Radio should be exported before Form because Radio functions is called in Form.
 export {
   Calendar, Camera, Card, Code, Quote, TypeWriter,
 
@@ -36,11 +40,6 @@ export {
   Grid, Section, Hero,
   Heading, DisplayHeading,
   List, ListItem,
+  Nav, NavPart,
   SPALink, SPAPage
 };
-// export {
-//    
-//    
-//     
-//   
-// };
