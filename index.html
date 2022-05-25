@@ -201,7 +201,7 @@ function showComponent(name){
   // update demo
   let component=null;
   const updateDemo=function(){
-    const inputs=Array.from(table.querySelectorAll("input"));
+    const inputs=Array.from(attributesTable.querySelectorAll("input"));
     const code=`<${componentClass.documents.tagName}${inputs.map((input)=>{
       if(input.value){
         return ` ${input.attribute.name}="${input.value}"`;
@@ -218,8 +218,8 @@ function showComponent(name){
   };
   // attributes
   container.innerHTML+=`<w-heading level='4'>Attributes</w-heading>`;
-  let table=document.createElement("table");
-  table.innerHTML=`
+  const attributesTable=document.createElement("table");
+  attributesTable.innerHTML=`
     <tr>
       <th>Name</th>
       <th>Default</th>
@@ -257,13 +257,16 @@ function showComponent(name){
     td=document.createElement("td");
     td.appendChild(input);
     tr.appendChild(td);
-    table.appendChild(tr);
+    attributesTable.appendChild(tr);
   }
-  container.appendChild(table);
+  container.appendChild(attributesTable);
   // methods
-  container.innerHTML+=`<w-heading level='4'>Methods</w-heading>`;
-  table=document.createElement("table");
-  table.innerHTML=`
+  let heading=document.createElement("w-heading");
+  heading.level=4;
+  heading.textContent="Methods";
+  container.appendChild(heading);
+  const methodsTable=document.createElement("table");
+  methodsTable.innerHTML=`
     <tr>
       <th>Name</th>
       <th>Arguments</th>
@@ -286,11 +289,14 @@ function showComponent(name){
     });
     td.appendChild(btn);
     tr.appendChild(td);
-    // input
-    table.appendChild(tr);
+    methodsTable.appendChild(tr);
   }
-  container.appendChild(table);
+  container.appendChild(methodsTable);
   // demo
+  heading=document.createElement("w-heading");
+  heading.level=4;
+  heading.textContent="Demo";
+  container.appendChild(heading);
   const demoCode=document.createElement("div");
   demoCode.className="demo-code";
   container.appendChild(demoCode);
