@@ -133,6 +133,31 @@ w-list>w-li>a.link{
   height:1px;background-color:var(--color-gray-20);
   padding:0px 5px;margin:10px 0px;
 }
+#components-page table{
+	max-width:100%;min-width:500px;border-collapse:collapse;
+	margin:1.2rem 0px;text-align:left;
+}
+#components-page table tr>th{
+	border-bottom:2px solid #dddddd;padding:8px 10px;
+}
+#components-page table tr>td{
+	border-bottom:1px solid #dddddd;padding:8px 10px;
+}
+#components-page table tr>td:nth-child(1){
+  font-weight:bold;
+}
+#components-page table tr:nth-child(odd){
+	background-color:#eeeeee;
+}
+#components-page table tr>td>div.value{
+  cursor:pointer;
+}
+#components-page table tr>td>div.value:hover{
+  color:var(--color-primary-60);
+}
+#components-page table tr>td>input{
+  width:50px;padding:5px;border:1px solid #dddddd;
+}
 </style>
 <script type="module">
 	import wc from "./dist/index.bundle.js";
@@ -167,11 +192,112 @@ w-list>w-li>a.link{
 function showComponent(name){
   const componentClass=window.customElements.get(name);
   const container=document.querySelector("#component-definition");
-  container.innerHTML=`<h3>Attributes</h3>`;
-  for(let key in componentClass.attributes){
-    let attribute=componentClass.attributes[key];
-    container.innerHTML+=`<div>Name: ${attribute.name}, Default: ${attribute.defaultValue}`;
+  // basic info
+  container.innerHTML=`
+    <w-heading level='3'>${componentClass.documents.title} Component</w-heading>
+    <w-heading level='4'>&lt;${componentClass.documents.tagName}&gt;</w-heading>
+    <div>${componentClass.documents.description}</div>
+  `;
+  // update demo
+  let component=null;
+  const updateDemo=function(){
+    const inputs=Array.from(table.querySelectorAll("input"));
+    const code=`<${componentClass.documents.tagName}${inputs.map((input)=>{
+      if(input.value){
+        return ` ${input.attribute.name}="${input.value}"`;
+      }else{
+        return "";
+      }
+    }).join("")}>Test</${componentClass.documents.tagName}>`;
+    demoCode.textContent=code;
+    demo.innerHTML=code;
+    component=demo.querySelector(componentClass.documents.tagName);
+  };
+  const executeMethod=function(name){
+    component[name]();
+  };
+  // attributes
+  container.innerHTML+=`<w-heading level='4'>Attributes</w-heading>`;
+  let table=document.createElement("table");
+  table.innerHTML=`
+    <tr>
+      <th>Name</th>
+      <th>Default</th>
+      <th>Value</th>
+      <th>Demo</th>
+    </tr>
+  `;
+  for(let key in componentClass.documents.attributes){
+    const attribute=componentClass.documents.attributes[key];
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td>${attribute.name}</td>
+      <td>${attribute.defaultValue}</td>
+    `;
+    // values
+    let td=document.createElement("td");
+    attribute.values.split("|").forEach((value)=>{
+      const item=document.createElement("div");
+      item.className="value";
+      item.textContent=value;
+      item.addEventListener("click", ()=>{
+        if(!value.startsWith("[") || !value.endsWith("]")){
+          input.value=value;
+          input.dispatchEvent(new Event("input"));
+        }
+      });
+      td.appendChild(item);
+    });
+    tr.appendChild(td);
+    // input
+    const input=document.createElement("input");
+    input.type="text";
+    input.attribute=attribute;
+    input.addEventListener("input", updateDemo);
+    td=document.createElement("td");
+    td.appendChild(input);
+    tr.appendChild(td);
+    table.appendChild(tr);
   }
+  container.appendChild(table);
+  // methods
+  container.innerHTML+=`<w-heading level='4'>Methods</w-heading>`;
+  table=document.createElement("table");
+  table.innerHTML=`
+    <tr>
+      <th>Name</th>
+      <th>Arguments</th>
+      <th>Demo</th>
+    </tr>
+  `;
+  for(let key in componentClass.documents.methods){
+    const method=componentClass.documents.methods[key];
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td>${method.name}</td>
+      <td>${method.args}</td>
+    `;
+    // execute
+    let td=document.createElement("td");
+    const btn=document.createElement("button");
+    btn.textContent="execute";
+    btn.addEventListener("click", ()=>{
+      executeMethod(method.name);
+    });
+    td.appendChild(btn);
+    tr.appendChild(td);
+    // input
+    table.appendChild(tr);
+  }
+  container.appendChild(table);
+  // demo
+  const demoCode=document.createElement("div");
+  demoCode.className="demo-code";
+  container.appendChild(demoCode);
+  const demo=document.createElement("div");
+  demo.className="demo";
+  container.appendChild(demo);
+  updateDemo();
 }
 </script>
 </head>
