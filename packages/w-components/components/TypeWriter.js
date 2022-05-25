@@ -73,4 +73,7 @@ class TypeWriter extends WComponent{
   }
 }
 TypeWriter.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(TypeWriter);
+
 export default TypeWriter;

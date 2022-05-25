@@ -131,4 +131,7 @@ class NavPart extends WComponent{
   }
 }
 NavPart.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(NavPart);
+
 export default NavPart;

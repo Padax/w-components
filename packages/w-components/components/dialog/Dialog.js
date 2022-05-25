@@ -268,4 +268,6 @@ class Dialog extends WComponent{
 }
 Dialog.prototype.stylesheet=stylesheet;
 
+DOM.defineCustomElement(Dialog);
+
 export default Dialog;

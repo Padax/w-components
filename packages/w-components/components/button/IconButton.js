@@ -120,4 +120,6 @@ class IconButton extends Button {
 }
 IconButton.prototype.stylesheet += stylesheet;
 
+DOM.defineCustomElement(IconButton);
+
 export default IconButton;

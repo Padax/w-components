@@ -81,4 +81,7 @@ class List extends WComponent{
   }
 }
 List.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(List);
+
 export default List;

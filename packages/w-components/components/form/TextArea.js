@@ -160,4 +160,7 @@ class TextArea extends WComponent{
   }
 }
 TextArea.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(TextArea);
+
 export default TextArea;

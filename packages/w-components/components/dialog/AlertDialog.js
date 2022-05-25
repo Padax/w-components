@@ -1,3 +1,4 @@
+import { DOM } from "../../WComponent.js";
 import Dialog from "./Dialog.js";
 
 const stylesheet=``;
@@ -23,5 +24,7 @@ class AlertDialog extends Dialog{
   }
 }
 AlertDialog.prototype.stylesheet+=stylesheet;
+
+DOM.defineCustomElement(AlertDialog);
 
 export default AlertDialog;

@@ -73,4 +73,7 @@ class Hero extends WComponent{
   }
 }
 Hero.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Hero);
+
 export default Hero;

@@ -76,4 +76,7 @@ class Card extends WComponent{
   }
 }
 Card.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Card);
+
 export default Card;

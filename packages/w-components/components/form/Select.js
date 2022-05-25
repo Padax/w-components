@@ -176,4 +176,7 @@ class Select extends WComponent{
   }
 }
 Select.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Select);
+
 export default Select;

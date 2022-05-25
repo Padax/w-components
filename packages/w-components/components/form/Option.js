@@ -1,4 +1,5 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
+import Select from './Select.js'; // Import for custom element define dependency
 
 const stylesheet=`
 
@@ -33,8 +34,13 @@ class Option extends WComponent{
 
   init(){}
   update(){
-    this.parentElement.updateOptions();
+    if(this.parentElement instanceof Select) {
+      this.parentElement.updateOptions();
+    }
   }
 }
 Option.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Option);
+
 export default Option;

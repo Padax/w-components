@@ -1,4 +1,6 @@
+import { DOM } from "../../../WComponent.js";
 import Checkable from "./Checkable.js";
+
 const stylesheet=`
   .icon:before {
     content: '\\f644';
@@ -41,4 +43,7 @@ class Radio extends Checkable{
 }
 Radio.prototype.stylesheet += stylesheet;
 Radio.prototype.type = 'radio';
+
+DOM.defineCustomElement(Radio);
+
 export default Radio;

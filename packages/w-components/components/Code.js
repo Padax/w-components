@@ -181,4 +181,6 @@ class Code extends WComponent{
 }
 Code.prototype.stylesheet=stylesheet;
 
+DOM.defineCustomElement(Code);
+
 export default Code;

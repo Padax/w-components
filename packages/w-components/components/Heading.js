@@ -93,5 +93,6 @@ class Heading extends WComponent{
 Heading.prototype.stylesheet=stylesheet;
 Heading.prototype.propStylesheet=propStylesheet;
 
+DOM.defineCustomElement(Heading);
 
 export default Heading;

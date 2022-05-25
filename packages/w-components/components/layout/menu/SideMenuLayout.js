@@ -1,4 +1,4 @@
-import WComponent, { DOM, AttributeParser, getWTagName } from "../../../WComponent.js";
+import WComponent, { DOM, AttributeParser } from "../../../WComponent.js";
 const stylesheet=`
   :host{
     display:flex;
@@ -23,6 +23,7 @@ const stylesheet=`
   }
 `;
 class SideMenuLayout extends WComponent{
+  static tagName = 'sidemenu-layout';
   static attributes = {
     position: {
       name: 'position', defaultValue: 'left',
@@ -42,4 +43,7 @@ class SideMenuLayout extends WComponent{
   }
 }
 SideMenuLayout.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(SideMenuLayout);
+
 export default SideMenuLayout;

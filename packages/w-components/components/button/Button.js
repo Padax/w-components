@@ -299,4 +299,7 @@ class Button extends WComponent{
   };
 }
 Button.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Button);
+
 export default Button;

@@ -48,4 +48,7 @@ class Quote extends WComponent{
   }
 }
 Quote.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Quote);
+
 export default Quote;

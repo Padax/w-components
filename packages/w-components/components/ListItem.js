@@ -83,4 +83,7 @@ class ListItem extends WComponent{
   }
 }
 ListItem.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(ListItem);
+
 export default ListItem;

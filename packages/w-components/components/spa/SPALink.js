@@ -32,4 +32,7 @@ class SPALink extends WComponent{
     });
   }
 }
+
+DOM.defineCustomElement(SPALink);
+
 export default SPALink;

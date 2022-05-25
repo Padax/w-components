@@ -197,4 +197,7 @@ class Calendar extends WComponent{
   }
 }
 Calendar.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Calendar);
+
 export default Calendar;

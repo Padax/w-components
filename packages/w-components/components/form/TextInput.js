@@ -117,4 +117,7 @@ class TextInput extends WComponent{
   }
 }
 TextInput.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(TextInput);
+
 export default TextInput;

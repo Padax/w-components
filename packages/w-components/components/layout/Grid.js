@@ -103,4 +103,7 @@ class Grid extends WComponent{
   }
 }
 Grid.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Grid);
+
 export default Grid;

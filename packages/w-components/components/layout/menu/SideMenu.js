@@ -3,6 +3,7 @@ const stylesheet=`
   :host{}
 `;
 class SideMenu extends WComponent{
+  static tagName = 'sidemenu';
   static attributes = {
     position: {
       name: 'position', defaultValue: 'left',
@@ -22,4 +23,7 @@ class SideMenu extends WComponent{
   }
 }
 SideMenu.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(SideMenu);
+
 export default SideMenu;

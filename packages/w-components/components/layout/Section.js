@@ -56,4 +56,7 @@ class Section extends WComponent{
   }
 }
 Section.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Section);
+
 export default Section;

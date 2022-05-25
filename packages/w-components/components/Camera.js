@@ -113,4 +113,7 @@ class Camera extends WComponent{
   }
 }
 Camera.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Camera);
+
 export default Camera;

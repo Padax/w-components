@@ -1,4 +1,5 @@
 import WComponent, { DOM, getWTagName } from "../../WComponent.js";
+import Radio from './checkable/Radio.js';
 
 const stylesheet=`
   #elementCtn * {
@@ -184,7 +185,7 @@ class Form extends WComponent{
     const radios = Array.from(this.querySelectorAll(`${getWTagName('radio')}[name='${radio.name}']`));
     // Compare each w-radio in the same group, uncheck all which are not the current event target.
     radios.forEach(r => {
-      if(!r.equals(radio)) {
+      if(r instanceof Radio && !r.equals(radio)) {
         r.checked = false;
       }
     });
@@ -201,15 +202,15 @@ class Form extends WComponent{
 Form.prototype.stylesheet=stylesheet;
 
 function getFormElementTypes() {
-  let types = [ 
+  return [ 
     'input', 'select', 'textarea', 
     getWTagName('textinput'),
     getWTagName('checkbox'),
     getWTagName('radio'),
     getWTagName('select')
   ];
-  
-  return types;
 }
+
+DOM.defineCustomElement(Form);
 
 export default Form;

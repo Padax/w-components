@@ -212,4 +212,6 @@ export function getIconPresetRegExp() {
   );
 }
 
+DOM.defineCustomElement(Icon);
+
 export default Icon;

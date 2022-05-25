@@ -1,3 +1,4 @@
+import { DOM } from "../../WComponent.js";
 import Dialog from "./Dialog.js";
 
 const stylesheet=``;
@@ -26,5 +27,7 @@ class ConfirmDialog extends Dialog{
   }
 }
 ConfirmDialog.prototype.stylesheet+=stylesheet;
+
+DOM.defineCustomElement(ConfirmDialog);
 
 export default ConfirmDialog;
