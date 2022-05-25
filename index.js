@@ -1,4 +1,4 @@
-import wc, { Button } from '@padax/w-components';
+import wc, * as Components from '@padax/w-components';
 
 export default wc;
-export { Button };
+export { Components };
