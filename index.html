@@ -126,23 +126,12 @@ w-list>w-li>a.link{
 #components-page{
   padding-top:80px;
 }
-#components-page main{
-  display:flex;
-}
-#components-page main>.menu{
-  flex:none;
-  width:150px;height:calc(100vh - 100px);position:sticky;top:80px;left:0px;
-  padding:10px 15px;border-right:1px solid #cccccc;
-}
-#components-page main>.menu>.item{
+#components-page w-sidemenu-layout>w-sidemenu>.item{
   cursor:pointer;padding:5px;
 }
-#components-page main>.menu>.separator{
+#components-page w-sidemenu-layout>w-sidemenu>.separator{
   height:1px;background-color:var(--color-gray-20);
   padding:0px 5px;margin:10px 0px;
-}
-#components-page main>.content{
-  flex:auto;padding:10px;
 }
 </style>
 <script type="module">
@@ -314,17 +303,17 @@ function showComponent(name){
   </w-spa-page>
 	<w-spa-page path="/components" id="components-page">
 		<template>
-      <main>
-        <div class="menu">
+      <w-sidemenu-layout position="left">
+        <w-sidemenu>
           <div class="item" onclick="showComponent('w-button');">Button</div>
           <div class="item" onclick="showComponent('w-icon-button');">IconButton</div>
           <div class="item separator"></div>
           <div class="item" onclick="showComponent('w-dialog');">Dialog</div>
           <div class="item" onclick="showComponent('w-alert');">AlertDialog</div>
           <div class="item" onclick="showComponent('w-confirm');">ConfirmDialog</div>
-        </div>
-        <w-section id="component-definition" class="content" cols="1" width="full"></w-section>
-      </main>
+        </w-sidemenu>
+        <w-sidemenu-content id="component-definition"></w-sidemenu-content>
+      </w-sidemenu-layout>
     </template>
   </w-spa-page>
   <w-spa-page path="/documents">
