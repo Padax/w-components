@@ -22,6 +22,7 @@ const stylesheet=`
   }
 `;
 class Hero extends WComponent{
+  static tagName = 'hero';
   static attributes = {
     'background-image': {
       name: 'background-image', defaultValue: '',
@@ -72,4 +73,7 @@ class Hero extends WComponent{
   }
 }
 Hero.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Hero);
+
 export default Hero;

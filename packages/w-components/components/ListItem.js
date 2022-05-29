@@ -25,6 +25,7 @@ const stylesheet=`
   }
 `;
 class ListItem extends WComponent{
+  static tagName = 'list-item';
   static attributes = {
     disabled: {
       name: 'disabled', defaultValue: false,
@@ -82,4 +83,7 @@ class ListItem extends WComponent{
   }
 }
 ListItem.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(ListItem);
+
 export default ListItem;

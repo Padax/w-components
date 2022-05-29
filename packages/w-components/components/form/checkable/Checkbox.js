@@ -1,3 +1,4 @@
+import { DOM } from "../../../WComponent.js";
 import Checkable from "./Checkable.js";
 
 const stylesheet=`
@@ -11,7 +12,8 @@ const stylesheet=`
 `;
 
 class Checkbox extends Checkable{
-
+  static tagName = 'checkbox';
+  
   constructor() {
     super();
     this.bindEvents();
@@ -42,5 +44,7 @@ class Checkbox extends Checkable{
 }
 Checkbox.prototype.stylesheet += stylesheet;
 Checkbox.prototype.type = 'checkbox';
+
+DOM.defineCustomElement(Checkbox);
 
 export default Checkbox;

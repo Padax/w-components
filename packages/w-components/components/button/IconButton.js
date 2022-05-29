@@ -19,6 +19,7 @@ const stylesheet=`
 `;
 
 class IconButton extends Button {
+  static tagName = 'icon-button';
   static attributes = {
     ...Button.attributes,
     icon: {
@@ -118,5 +119,7 @@ class IconButton extends Button {
   clickHandler = this.clickHandler.bind(this);
 }
 IconButton.prototype.stylesheet += stylesheet;
+
+DOM.defineCustomElement(IconButton);
 
 export default IconButton;

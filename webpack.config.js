@@ -25,6 +25,12 @@ module.exports = env => ({
     port: 9000,
     devMiddleware: {
       writeToDisk: filePath => !/.hot-update./ .test(filePath)
+    },
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      }
     }
   },
   plugins: [

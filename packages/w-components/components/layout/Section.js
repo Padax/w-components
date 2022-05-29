@@ -7,6 +7,7 @@ const stylesheet=`
   }
 `;
 class Section extends WComponent{
+  static tagName = 'section';
   static attributes = {
     width: {
       name: 'width', defaultValue: '1200',
@@ -55,4 +56,7 @@ class Section extends WComponent{
   }
 }
 Section.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Section);
+
 export default Section;

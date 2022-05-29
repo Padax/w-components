@@ -14,6 +14,7 @@ const stylesheet=`
   }
 `;
 class TypeWriter extends WComponent{
+  static tagName = 'typewritter';
   static attributes = {
     speed: {
       name: 'speed', defaultValue: 5, min: 1, max: 10,
@@ -72,4 +73,7 @@ class TypeWriter extends WComponent{
   }
 }
 TypeWriter.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(TypeWriter);
+
 export default TypeWriter;

@@ -137,6 +137,7 @@ const stylesheet = `
   }
 `;
 class Code extends WComponent{
+  static tagName = 'code';
   static attributes = {
     lang: {
       name: 'lang', defaultValue: 'auto',
@@ -179,5 +180,7 @@ class Code extends WComponent{
   }
 }
 Code.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Code);
 
 export default Code;

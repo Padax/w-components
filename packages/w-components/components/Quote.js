@@ -18,7 +18,7 @@ const stylesheet = `
 `;
 
 class Quote extends WComponent{
-  
+  static tagName = 'quote';
   static attributes = {
     align: {
       name: 'align', defaultValue: 'left', 
@@ -48,4 +48,7 @@ class Quote extends WComponent{
   }
 }
 Quote.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Quote);
+
 export default Quote;

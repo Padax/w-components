@@ -27,6 +27,7 @@ const stylesheet=`
   }
 `;
 class Card extends WComponent{
+  static tagName = 'card';
   static attributes = {
     layout: {
       name: 'layout', defaultValue: 'standard', 
@@ -75,4 +76,7 @@ class Card extends WComponent{
   }
 }
 Card.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Card);
+
 export default Card;

@@ -1,4 +1,6 @@
+import { DOM } from "../WComponent.js";
 import Heading from "./Heading.js";
+
 const stylesheet = `
   :host {
     display: block;
@@ -43,6 +45,8 @@ const propStylesheet = {
   `
 };
 class DisplayHeading extends Heading{
+  static tagName = 'display-heading';
+
   constructor(){
     super();
   }
@@ -50,5 +54,6 @@ class DisplayHeading extends Heading{
 DisplayHeading.prototype.stylesheet=stylesheet;
 DisplayHeading.prototype.propStylesheet=propStylesheet;
 
+DOM.defineCustomElement(DisplayHeading);
 
 export default DisplayHeading;

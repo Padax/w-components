@@ -194,6 +194,7 @@ const stylesheet=`
   }
 `;
 class Button extends WComponent{
+  static tagName = 'button';
   static documents = {
     title: 'Button',
     description: 'General styled button component.',
@@ -335,4 +336,7 @@ class Button extends WComponent{
   };
 }
 Button.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Button);
+
 export default Button;

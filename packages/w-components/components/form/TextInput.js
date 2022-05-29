@@ -53,7 +53,7 @@ const stylesheet=`
 `;
 
 class TextInput extends WComponent{
-
+  static tagName = 'textinput';
   static attributes = {
     appearance: {
       name: 'appearance', defaultValue: 'outlined',
@@ -117,4 +117,7 @@ class TextInput extends WComponent{
   }
 }
 TextInput.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(TextInput);
+
 export default TextInput;

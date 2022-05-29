@@ -1,5 +1,6 @@
 import WComponent, { DOM, AttributeParser, getWTagName } from "../../WComponent.js";
 class SPALink extends WComponent{
+  static tagName = 'spa-link';
   static attributes = {
     href: {
       name: 'href', defaultValue: '',
@@ -31,4 +32,7 @@ class SPALink extends WComponent{
     });
   }
 }
+
+DOM.defineCustomElement(SPALink);
+
 export default SPALink;

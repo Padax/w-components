@@ -1,4 +1,5 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
+
 const stylesheet=`
   .dialog-backdrop{
     position:fixed;left:0px;top:0px;width:100%;height:100%;z-index:100000000;
@@ -55,7 +56,9 @@ const stylesheet=`
     margin-left:16px;
   }
 `;
+
 class Dialog extends WComponent{
+  static tagName = 'dialog';
   static documents = {
     title: 'Dialog',
     description: 'General styled dialog component.',
@@ -291,4 +294,7 @@ class Dialog extends WComponent{
   }
 }
 Dialog.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Dialog);
+
 export default Dialog;

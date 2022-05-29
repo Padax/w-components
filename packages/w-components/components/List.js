@@ -36,6 +36,7 @@ const stylesheet=`
   }
 `;
 class List extends WComponent{
+  static tagName = 'list';
   static attributes = {
     mark: { 
       name: 'mark', defaultValue: 'none',
@@ -80,4 +81,7 @@ class List extends WComponent{
   }
 }
 List.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(List);
+
 export default List;

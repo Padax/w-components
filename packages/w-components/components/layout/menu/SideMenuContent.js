@@ -1,8 +1,9 @@
-import WComponent, { DOM, AttributeParser, getWTagName } from "../../../WComponent.js";
+import WComponent, { DOM } from "../../../WComponent.js";
 const stylesheet=`
   :host{}
 `;
 class SideMenuContent extends WComponent{
+  static tagName = 'sidemenu-content';
   static attributes = {};
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
@@ -15,4 +16,7 @@ class SideMenuContent extends WComponent{
   }
 }
 SideMenuContent.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(SideMenuContent);
+
 export default SideMenuContent;

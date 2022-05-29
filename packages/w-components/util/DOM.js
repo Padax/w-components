@@ -65,6 +65,15 @@ const DOM={
       }
     }
     return element;
+  },
+  defineCustomElement(component) {
+    const tag = `${customElementPrefix}-${component.tagName}`;
+    if(!customElements.get(tag)) {
+      customElements.define(tag, component);
+    }
   }
 };
+
+const customElementPrefix = 'w';
+
 export default DOM;

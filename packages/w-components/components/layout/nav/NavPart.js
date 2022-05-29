@@ -35,6 +35,7 @@ const stylesheet=`
   }
 `;
 class NavPart extends WComponent{
+  static tagName = 'nav-part';
   static attributes = {
     width: {
       name: 'width', defaultValue: 'auto',
@@ -130,4 +131,7 @@ class NavPart extends WComponent{
   }
 }
 NavPart.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(NavPart);
+
 export default NavPart;

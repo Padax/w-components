@@ -20,6 +20,7 @@ const stylesheet=`
   }
 `;
 class Nav extends WComponent{
+  static tagName = 'nav';
   static attributes = {
     width: {
       name: 'width', defaultValue: 'normal',
@@ -67,4 +68,7 @@ class Nav extends WComponent{
   }
 }
 Nav.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Nav);
+
 export default Nav;

@@ -59,7 +59,7 @@ const stylesheet=`
 `;
 
 class Select extends WComponent{
-
+  static tagName = 'select';
   static attributes = {
     appearance: {
       name: 'appearance', defaultValue: 'outlined',
@@ -176,4 +176,7 @@ class Select extends WComponent{
   }
 }
 Select.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Select);
+
 export default Select;

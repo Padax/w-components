@@ -1,6 +1,7 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
 const stylesheet=``;
 class Grid extends WComponent{
+  static tagName = 'grid';
   static attributes = {
     cols: {
       name: 'cols', defaultValue: 1,
@@ -102,4 +103,7 @@ class Grid extends WComponent{
   }
 }
 Grid.prototype.stylesheet=stylesheet;
+
+DOM.defineCustomElement(Grid);
+
 export default Grid;

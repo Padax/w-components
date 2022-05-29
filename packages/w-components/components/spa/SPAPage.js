@@ -8,6 +8,7 @@ const stylesheet=`
   }
 `;
 class SPAPage extends WComponent{
+  static tagName = 'spa-page';
   static attributes = {
     path: {
       name: 'path', defaultValue: '',
@@ -69,9 +70,9 @@ class SPAPage extends WComponent{
   }
   match(path){
     if(this.exact){
-      return path===window.wconfig.spa.basename+this.path;
+      return path===BASE_NAME+this.path;
     }else{
-      return path.startsWith(window.wconfig.spa.basename+this.path);
+      return path.startsWith(BASE_NAME+this.path);
     }
   }
   setCurrent(current){
@@ -82,4 +83,9 @@ class SPAPage extends WComponent{
   }
 }
 SPAPage.prototype.stylesheet=stylesheet;
+
+const BASE_NAME = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"));
+
+DOM.defineCustomElement(SPAPage);
+
 export default SPAPage;

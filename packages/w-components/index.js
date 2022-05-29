@@ -1,82 +1,46 @@
 import DOM from "./util/DOM.js";
-import Nav from "./components/layout/nav/Nav.js";
-import NavPart from "./components/layout/nav/NavPart.js";
-import Grid from "./components/layout/Grid.js";
-import Section from "./components/layout/Section.js";
-import Hero from "./components/layout/Hero.js";
-import Card from "./components/layout/Card.js";
-import SideMenuLayout from "./components/layout/menu/SideMenuLayout.js";
-import SideMenu from "./components/layout/menu/SideMenu.js";
-import SideMenuContent from "./components/layout/menu/SideMenuContent.js";
-import Button from "./components/button/Button.js";
-import IconButton from "./components/button/IconButton.js";
-import Dialog from "./components/dialog/Dialog.js";
-import AlertDialog from "./components/dialog/AlertDialog.js";
-import ConfirmDialog from "./components/dialog/ConfirmDialog.js";
-import Calendar from "./components/Calendar.js";
-import Camera from "./components/Camera.js";
-import Heading from "./components/Heading.js";
-import DisplayHeading from "./components/DisplayHeading.js";
-import Quote from "./components/Quote.js";
-import List from "./components/List.js";
-import ListItem from "./components/ListItem.js";
-import TypeWriter from "./components/TypeWriter.js";
-import Code from "./components/Code.js";
-import Form from "./components/form/Form.js";
-import TextInput from "./components/form/TextInput.js";
-import TextArea from "./components/form/TextArea.js";
-import CheckBox from "./components/form/checkable/Checkbox.js";
-import Radio from "./components/form/checkable/Radio.js";
-import Select from "./components/form/Select.js";
-import Option from "./components/form/Option.js";
-import SPALink from "./components/spa/SPALink.js";
-import SPAPage from "./components/spa/SPAPage.js";
-import Icon from "./components/Icon.js";
-
 import DarkThemeStylesheet from "./theme/dark.css.js";
 import LightThemeStylesheet from "./theme/light.css.js";
 
+import AlertDialog from "./components/dialog/AlertDialog.js";
+import Button from "./components/button/Button.js";
+import Calendar from "./components/Calendar.js";
+import Camera from "./components/Camera.js";
+import Card from "./components/layout/Card.js";
+import CheckBox from "./components/form/checkable/Checkbox.js";
+import Code from "./components/Code.js";
+import ConfirmDialog from "./components/dialog/ConfirmDialog.js";
+import Dialog from "./components/dialog/Dialog.js";
+import DisplayHeading from "./components/DisplayHeading.js";
+import Form from "./components/form/Form.js"; 
+import Grid from "./components/layout/Grid.js";
+import Heading from "./components/Heading.js";
+import Hero from "./components/layout/Hero.js";
+import Icon from "./components/Icon.js";
+import IconButton from "./components/button/IconButton.js";
+import List from "./components/List.js";
+import ListItem from "./components/ListItem.js";
+import Nav from './components/layout/nav/Nav.js';
+import NavPart from './components/layout/nav/NavPart.js';
+import Option from "./components/form/Option.js";
+import Quote from "./components/Quote.js";
+import Radio from "./components/form/checkable/Radio.js";
+import Section from "./components/layout/Section.js";
+import Select from "./components/form/Select.js";
+import SPALink from "./components/spa/SPALink.js";
+import SPAPage from "./components/spa/SPAPage.js";
+import TextInput from "./components/form/TextInput.js";
+import TextArea from "./components/form/TextArea.js";
+import TypeWriter from "./components/TypeWriter.js";
+
+
 const defaultWConfig={theme:"light", spa:{basename:""}};
 const wc={
-  init:function(wconfig={}){
+  init: function(wconfig={}){
     window.wconfig=Object.assign(defaultWConfig, wconfig);
     window.wconfig.prefix='w'; // force prefix to 'w'
+    
     this.initTheme(window.wconfig.theme);
-
-    const prefix=window.wconfig.prefix;
-    defineCustomElement(prefix, 'nav', Nav);
-    defineCustomElement(prefix, 'nav-part', NavPart);
-    defineCustomElement(prefix, 'grid', Grid);
-    defineCustomElement(prefix, 'section', Section);
-    defineCustomElement(prefix, 'hero', Hero);
-    defineCustomElement(prefix, 'card', Card);
-    defineCustomElement(prefix, 'sidemenu-layout', SideMenuLayout);
-    defineCustomElement(prefix, 'sidemenu', SideMenu);
-    defineCustomElement(prefix, 'sidemenu-content', SideMenuContent);
-    defineCustomElement(prefix, 'button', Button);
-    defineCustomElement(prefix, 'icon-button', IconButton);
-    defineCustomElement(prefix, 'dialog', Dialog);
-    defineCustomElement(prefix, 'alert', AlertDialog);
-    defineCustomElement(prefix, 'confirm', ConfirmDialog);
-    defineCustomElement(prefix, 'calendar', Calendar);
-    defineCustomElement(prefix, 'camera', Camera);
-    defineCustomElement(prefix, 'heading', Heading);
-    defineCustomElement(prefix, 'display-heading', DisplayHeading);
-    defineCustomElement(prefix, 'quote', Quote);
-    defineCustomElement(prefix, 'list', List);
-    defineCustomElement(prefix, 'li', ListItem);
-    defineCustomElement(prefix, 'typewriter', TypeWriter);
-    defineCustomElement(prefix, 'code', Code);
-    defineCustomElement(prefix, 'textinput', TextInput);
-    defineCustomElement(prefix, 'textarea', TextArea);
-    defineCustomElement(prefix, 'checkbox', CheckBox);
-    defineCustomElement(prefix, 'radio', Radio);
-    defineCustomElement(prefix, 'select', Select);
-    defineCustomElement(prefix, 'option', Option);
-    defineCustomElement(prefix, 'form', Form);
-    defineCustomElement(prefix, 'spa-link', SPALink);
-    defineCustomElement(prefix, 'spa-page', SPAPage);
-    defineCustomElement(prefix, 'icon', Icon);
   },
   initTheme:function(name){
     const head=document.querySelector("head");
@@ -97,13 +61,17 @@ const wc={
   }
 };
 
-function defineCustomElement(prefix, name, element) {
-  const tag = `${prefix}-${name}`;
-  if(customElements.get(tag)) {
-    console.error(`Custom Element ${tag} has been defined.`);
-  } else {
-    customElements.define(tag, element);
-  }
-}
-
 export default wc;
+export {
+  AlertDialog, Button,
+  Calendar, Camera, Card, CheckBox, Code, ConfirmDialog,
+  Dialog, DisplayHeading,
+  Form, Grid,
+  Heading, Hero,
+  Icon, IconButton,
+  List, ListItem,
+  Nav, NavPart,
+  Option, Quote, Radio,
+  Section, Select, SPALink, SPAPage,
+  TextInput, TextArea, TypeWriter
+};
