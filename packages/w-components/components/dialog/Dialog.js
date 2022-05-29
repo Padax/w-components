@@ -59,6 +59,33 @@ const stylesheet=`
 
 class Dialog extends WComponent{
   static tagName = 'dialog';
+  static documents = {
+    title: 'Dialog',
+    description: 'General styled dialog component.',
+    tagName: 'w-dialog',
+    attributes: {
+      title: {
+        name: 'title', defaultValue: '',
+        values: '[Title Text]'
+      },
+      color: {
+        name: 'color', defaultValue: 'primary',
+        values: 'primary|critical|gray'
+      },
+      backdrop: {
+        name: 'backdrop', defaultValue: 'normal', 
+        values: 'normal|none|no-action'
+      }
+    },
+    methods:{
+      open: {
+        name: 'open', args: ''
+      },
+      close: {
+        name: 'close', args: ''
+      }
+    }
+  }
   static attributes = {
     display: {
       name: 'display', defaultValue: false, 
