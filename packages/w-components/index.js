@@ -29,6 +29,9 @@ import Section from "./components/layout/Section.js";
 import Select from "./components/form/Select.js";
 import SPALink from "./components/spa/SPALink.js";
 import SPAPage from "./components/spa/SPAPage.js";
+import SideMenu from "./components/layout/menu/SideMenu.js";
+import SideMenuContent from "./components/layout/menu/SideMenuContent.js";
+import SideMenuLayout from "./components/layout/menu/SideMenuLayout.js";
 import TextInput from "./components/form/TextInput.js";
 import TextArea from "./components/form/TextArea.js";
 import TypeWriter from "./components/TypeWriter.js";
@@ -72,6 +75,6 @@ export {
   List, ListItem,
   Nav, NavPart,
   Option, Quote, Radio,
-  Section, Select, SPALink, SPAPage,
+  Section, Select, SPALink, SPAPage, SideMenu, SideMenuContent, SideMenuLayout,
   TextInput, TextArea, TypeWriter
 };
