@@ -2,7 +2,7 @@ const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = env => ({
-  mode: 'production',
+  mode: 'development',
   entry: {
     index: './index.js'
   },
@@ -32,6 +32,9 @@ module.exports = env => ({
         warnings: false,
       }
     }
+  },
+  optimization: {
+    usedExports: true,
   },
   plugins: [
     new BundleAnalyzerPlugin({ analyzerMode: env.analyze === 'true' ? 'server' : 'disabled' })

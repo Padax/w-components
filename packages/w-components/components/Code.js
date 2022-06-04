@@ -1,5 +1,4 @@
 import WComponent, { DOM, AttributeParser } from "../WComponent.js";
-import hljs from 'highlight.js';
 
 const stylesheet = `
   /*!
@@ -163,10 +162,16 @@ class Code extends WComponent{
 
   init() {
     DOM.create('code', { props: { id: 'code' } }, this.shadowRoot);
-    this.loadHighlightContent();
+    import('highlight.js')
+      .then(module => {
+        hljs = module.default;
+        this.loadHighlightContent();
+      });
   }
 
   loadHighlightContent() {
+    if(!hljs) { return; }
+
     const highlightHTML = this.lang === this.getDefaultAttributeValueByName('lang')
       ? hljs.highlightAuto(this.innerHTML).value  // auto detect
       : hljs.highlight(this.innerHTML, { language: this.lang }).value;  // assign language
@@ -175,12 +180,13 @@ class Code extends WComponent{
   }
   
   update({ name, newValue }) {
-    const value = this.parseAttributeValueByName(name, newValue);
+    this.parseAttributeValueByName(name, newValue);
     this.loadHighlightContent();
   }
 }
 Code.prototype.stylesheet=stylesheet;
 
+let hljs;
 DOM.defineCustomElement(Code);
 
 export default Code;
