@@ -9,9 +9,22 @@ module.exports = env => ({
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
+    assetModuleFilename: 'assets/[name][ext]',
     clean: true,
     module: true,
     libraryTarget: 'module'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.ttf$/i,
+        type: 'asset/resource'
+      }
+    ]
   },
   experiments: {
     outputModule: true

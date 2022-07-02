@@ -36,6 +36,7 @@ import TextInput from "./components/form/TextInput.js";
 import TextArea from "./components/form/TextArea.js";
 import TypeWriter from "./components/TypeWriter.js";
 
+const THEME_STYLESHEET_ID = "wc-theme-stylesheet";
 
 const defaultWConfig={theme:"light", spa:{basename:""}};
 const wc={
@@ -47,8 +48,7 @@ const wc={
   },
   initTheme:function(name){
     const head=document.querySelector("head");
-    const id="wc-theme-stylesheet";
-    const themeElement=head.querySelector(`#${id}`);
+    const themeElement=head.querySelector(`#${THEME_STYLESHEET_ID}`);
     if(themeElement){
       themeElement.remove();
     }
@@ -59,7 +59,7 @@ const wc={
       stylesheet=LightThemeStylesheet;
     }
     DOM.create("style", {props:{
-      id:id, textContent:stylesheet
+      id:THEME_STYLESHEET_ID, textContent:stylesheet
     }}, head);
   }
 };

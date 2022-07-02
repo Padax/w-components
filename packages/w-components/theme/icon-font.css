@@ -1,0 +1,8 @@
+@font-face {
+  font-family:"Icons";
+  src:url("./icon-font.ttf") format("truetype");
+}
+@font-face {
+  font-family:"Icons-Filled";
+  src:url("./icon-font-filled.ttf") format("truetype");
+}
