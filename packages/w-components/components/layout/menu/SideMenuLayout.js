@@ -5,7 +5,7 @@ const stylesheet=`
   }
   :host>::slotted(w-sidemenu){
     flex:none;order:1;
-    width:150px;height:calc(100vh - 100px);position:sticky;top:80px;
+    width:250px;height:calc(100vh - 100px);position:sticky;top:80px;
     left:0px;right:auto;
     padding:10px 15px;border-left:none;border-right:1px solid #cccccc;
   }
@@ -15,8 +15,8 @@ const stylesheet=`
     border-left:1px solid #cccccc;border-right:none;
   }
   :host>::slotted(w-sidemenu-content){
-    order:2;
-    flex:auto;padding:15px 20px;
+    order:2;flex:auto;
+    max-width:940px;padding:15px 40px;
   }
   :host([position='right'])>::slotted(w-sidemenu-content){
     order:1;

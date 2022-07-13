@@ -24,12 +24,14 @@ class IconButton extends Button {
     ...Button.attributes,
     icon: {
       name: 'icon', defaultValue: '', 
+      possibleValues:'[String]',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, getIconPresetRegExp()
       )
     },
     icononly: {
       name: 'icononly', defaultValue: false, 
+      possibleValues:'true|false',
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )

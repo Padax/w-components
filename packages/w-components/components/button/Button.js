@@ -194,83 +194,58 @@ const stylesheet=`
   }
 `;
 class Button extends WComponent{
+  static title = 'Button';
   static tagName = 'button';
-  static documents = {
-    title: 'Button',
-    description: 'General styled button component.',
-    tagName: 'w-button',
-    attributes: {
-      disabled: {
-        name: 'disabled', defaultValue: false,
-        values: 'true|false'
-      },
-      color: {
-        name: 'color', defaultValue: 'primary',
-        values: 'primary|critical|gray'
-      },
-      type: {
-        name: 'type', defaultValue: 'regular',
-        values: 'regular|outline|text|link'
-      },
-      size: {
-        name: 'size', defaultValue: 'md',
-        values: 'sm|md|lg|xl'
-      },
-      display: {
-        name: 'display', defaultValue: 'inline-block',
-        values: 'inline-block|block'
-      },
-      href: {
-        name: 'href', defaultValue: undefined,
-        values: '[Any URL]'
-      },
-      target: {
-        name: 'target', defaultValue: 'current',
-        values: 'current|new'
-      }
-    }
-  }
+  static description = 'General styled button component.';
   static attributes = {
     disabled: {
       name: 'disabled', defaultValue: false,
+      possibleValues: 'true|false',
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
     },
     color: {
       name: 'color', defaultValue: 'primary',
+      possibleValues: 'primary|critical|gray',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^primary$|^critical$|^gray$/
       )
     },
     type: {
       name: 'type', defaultValue: 'regular',
+      possibleValues: 'regular|outline|text|link',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^regular$|^outline$|^text$|^link$/
       )
     },
     size: {
       name: 'size', defaultValue: 'md',
+      possibleValues: 'sm|md|lg|xl',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^sm$|^md$|^lg$|^xl$/
       )
     },
     display: {
       name: 'display', defaultValue: 'inline-block',
+      possibleValues: 'inline-block|block',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^inline-block$|^block$/
       )
     },
     href: {
       name: 'href', defaultValue: undefined,
+      possibleValues: '[Any URL]',
     },
     target: {
       name: 'target', defaultValue: 'current',
+      possibleValues: 'current|new',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^current$|^new$/
       )
     }
   };
+  static methods = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }

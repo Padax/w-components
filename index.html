@@ -118,37 +118,63 @@ w-list>w-li>a.link{
 #components-page{
   padding-top:80px;
 }
+#components-page w-sidemenu-layout>w-sidemenu>w-heading{
+  color:var(--color-gray-60);padding:8px 20px;
+}
 #components-page w-sidemenu-layout>w-sidemenu>.item{
-  cursor:pointer;padding:5px;
+  cursor:pointer;padding:8px 24px;border-radius:8px;
+}
+#components-page w-sidemenu-layout>w-sidemenu>.item:hover,
+#components-page w-sidemenu-layout>w-sidemenu>.item:active{
+  background-color:var(--color-gray-20);
 }
 #components-page w-sidemenu-layout>w-sidemenu>.separator{
   height:1px;background-color:var(--color-gray-20);
-  padding:0px 5px;margin:10px 0px;
+  padding:0px;margin:16px 24px;
 }
-#components-page table{
-	max-width:100%;min-width:500px;border-collapse:collapse;
+#components-page w-sidemenu-content code{
+  color:var(--color-critical-60);background-color:var(--color-gray-10);
+  padding:0px 8px;margin-right:8px;
+}
+#components-page w-sidemenu-content .demo{
+  padding:60px 0px;display:flex;justify-content:center;align-items:center;
+  border-radius:4px 4px 0px 0px;
+  background-color:var(--color-gray-0);
+  border:1px solid var(--color-gray-30);
+  border-bottom-width:0px;
+}
+#components-page w-sidemenu-content .demo-code{
+  border-radius:0px 0px 4px 4px;
+  background-color:var(--color-gray-10);
+  border:1px solid var(--color-gray-30);
+}
+#components-page w-sidemenu-content table{
+	width:100%;border-collapse:collapse;
 	margin:1.2rem 0px;text-align:left;
+  border:1px solid var(--color-gray-30);
 }
-#components-page table tr>th{
-	border-bottom:2px solid #dddddd;padding:8px 10px;
+#components-page w-sidemenu-content table tr>th{
+  background-color:var(--color-gray-90);color:var(--color-gray-0);
+	border-bottom:1px solid var(--color-gray-30);padding:16px;
 }
-#components-page table tr>td{
-	border-bottom:1px solid #dddddd;padding:8px 10px;
+#components-page w-sidemenu-content table tr>td{
+	border-bottom:1px solid #dddddd;padding:16px;
 }
-#components-page table tr>td:nth-child(1){
+#components-page w-sidemenu-content table tr>td:nth-child(1){
   font-weight:bold;
 }
-#components-page table tr:nth-child(odd){
-	background-color:#eeeeee;
+#components-page w-sidemenu-content table tr:nth-child(even){
+	background-color:var(--color-gray-10);
 }
-#components-page table tr>td>div.value{
-  cursor:pointer;
+#components-page w-sidemenu-content table tr>td>label.value{
+  display:flex;align-items:center;
+  cursor:pointer;margin:8px 0px;
 }
-#components-page table tr>td>div.value:hover{
-  color:var(--color-primary-60);
+#components-page w-sidemenu-content table tr>td>label.value>input[type="radio"]{
+  width:20px;min-width:20px;height:20px;margin-right:10px;
 }
-#components-page table tr>td>input{
-  width:50px;padding:5px;border:1px solid #dddddd;
+#components-page w-sidemenu-content table tr>td>w-textarea.argument-input{
+  width:500px;max-width:500px;
 }
 </style>
 <script type="module">
@@ -184,117 +210,188 @@ w-list>w-li>a.link{
 function showComponent(name){
   const componentClass=window.customElements.get(name);
   const container=document.querySelector("#component-definition");
+  const tagName=window.wconfig.prefix+"-"+componentClass.tagName;
   // basic info
   container.innerHTML=`
-    <w-heading level='3'>${componentClass.documents.title} Component</w-heading>
-    <w-heading level='4'>&lt;${componentClass.documents.tagName}&gt;</w-heading>
-    <div>${componentClass.documents.description}</div>
+    <w-heading level='1'>${componentClass.title}</w-heading>
+    <div><code>&lt;${tagName}&gt;</code>${componentClass.description}</div>
+    <w-heading level='2'>Demo</w-heading>
+    <div class='demo'></div>
+    <w-code lang='html' class='demo-code'></w-code>
   `;
-  // update demo
+  // demo
   let component=null;
   const updateDemo=function(){
-    const inputs=Array.from(attributesTable.querySelectorAll("input"));
-    const code=`<${componentClass.documents.tagName}${inputs.map((input)=>{
+    const inputs=Array.from(attributesTable.querySelectorAll("w-textinput.attribute-value"));
+    const code=`<${tagName}${inputs.map((input)=>{
       if(input.value){
         return ` ${input.attribute.name}="${input.value}"`;
       }else{
         return "";
       }
-    }).join("")}>Test</${componentClass.documents.tagName}>`;
-    demoCode.textContent=code;
+    }).join("")}>Test</${tagName}>`;
+    const demoCode=container.querySelector(".demo-code");
+    demoCode.innerHTML=code;
+    const demo=container.querySelector(".demo");
     demo.innerHTML=code;
-    component=demo.querySelector(componentClass.documents.tagName);
-  };
-  const executeMethod=function(name){
-    component[name]();
+    component=demo.querySelector(tagName);
   };
   // attributes
-  container.innerHTML+=`<w-heading level='4'>Attributes</w-heading>`;
+  container.innerHTML+=`<w-heading level='2'>Attributes</w-heading>`;
   const attributesTable=document.createElement("table");
   attributesTable.innerHTML=`
     <tr>
       <th>Name</th>
       <th>Default</th>
       <th>Value</th>
-      <th>Demo</th>
+      <th>Customize</th>
     </tr>
   `;
-  for(let key in componentClass.documents.attributes){
-    const attribute=componentClass.documents.attributes[key];
+  for(let key in componentClass.attributes){
+    const attribute=componentClass.attributes[key];
     const tr=document.createElement("tr");
     tr.innerHTML=`
       <td>${attribute.name}</td>
       <td>${attribute.defaultValue}</td>
     `;
-    // values
+    // possible values
+    let isOpenValue=attribute.possibleValues.startsWith("[") && attribute.possibleValues.endsWith("]");
     let td=document.createElement("td");
-    attribute.values.split("|").forEach((value)=>{
-      const item=document.createElement("div");
+    attribute.possibleValues.split("|").forEach((value)=>{
+      const item=document.createElement("label");
+      const radio=document.createElement("input");
+      radio.type="radio";
+      radio.name=tagName+"-"+attribute.name;
+      item.appendChild(radio);
       item.className="value";
-      item.textContent=value;
-      item.addEventListener("click", ()=>{
-        if(!value.startsWith("[") || !value.endsWith("]")){
-          input.value=value;
-          input.dispatchEvent(new Event("input"));
-        }
-      });
+      item.appendChild(document.createTextNode(value));
+      if(isOpenValue){
+        radio.checked=true;
+      }else{
+        item.addEventListener("click", ()=>{
+            input.value=value;
+            input.dispatchEvent(new Event("input"));
+        });
+      }
       td.appendChild(item);
     });
     tr.appendChild(td);
-    // input
-    const input=document.createElement("input");
-    input.type="text";
-    input.attribute=attribute;
-    input.addEventListener("input", updateDemo);
+    // customize
     td=document.createElement("td");
+    let input=document.createElement("w-textinput");
+    if(!isOpenValue){
+      input.style.display="none";
+      td.textContent="N/A";
+    }
+    input.placeholder=attribute.possibleValues;
+    input.attribute=attribute;
+    input.className="attribute-value";
+    input.addEventListener("input", updateDemo);
     td.appendChild(input);
     tr.appendChild(td);
     attributesTable.appendChild(tr);
   }
   container.appendChild(attributesTable);
   // methods
-  let heading=document.createElement("w-heading");
-  heading.level=4;
-  heading.textContent="Methods";
-  container.appendChild(heading);
-  const methodsTable=document.createElement("table");
-  methodsTable.innerHTML=`
-    <tr>
-      <th>Name</th>
-      <th>Arguments</th>
-      <th>Demo</th>
-    </tr>
-  `;
-  for(let key in componentClass.documents.methods){
-    const method=componentClass.documents.methods[key];
-    const tr=document.createElement("tr");
-    tr.innerHTML=`
-      <td>${method.name}</td>
-      <td>${method.args}</td>
+  if(componentClass.methods){
+    const methodHeading=document.createElement("w-heading");
+    methodHeading.level=2;
+    methodHeading.textContent="Methods";
+    container.appendChild(methodHeading);
+    const methodsTable=document.createElement("table");
+    methodsTable.innerHTML=`
+      <tr>
+        <th>Name</th>
+        <th>Args (type)</th>
+        <th></th>
+        <th>Test</th>
+      </tr>
     `;
-    // execute
-    let td=document.createElement("td");
-    const btn=document.createElement("button");
-    btn.textContent="execute";
-    btn.addEventListener("click", ()=>{
-      executeMethod(method.name);
-    });
-    td.appendChild(btn);
-    tr.appendChild(td);
-    methodsTable.appendChild(tr);
+    for(let key in componentClass.methods){
+      const executeMethod=function(name){
+        let error=null;
+        const data=argumentData.map((data, index)=>{
+          if(data.value===undefined){
+            return undefined;
+          }else{
+            if(data.type==="string"){
+              return data.value;
+            }else{
+              try{
+                return JSON.parse(data.value);
+              }catch(e){
+                error="Format error on argument "+data.name;
+              }
+              return undefined;
+            }
+          }
+        });
+        if(error===null){
+          component[method.name](...data);
+        }else{
+          window.alert(error);
+        }
+      };
+      const method=componentClass.methods[key];
+      const tr=document.createElement("tr");
+      tr.innerHTML=`
+        <td>${method.name}()</td>
+      `;
+      // arguments
+      const argumentData=[];
+      let td=document.createElement("td");
+      if(method.args===null){
+        td.textContent="N/A";
+      }else{
+        for(const [name, desc] of method.args){
+          const item=document.createElement("label");
+          const radio=document.createElement("input");
+          radio.type="radio";
+          radio.name=tagName+"-method-"+name;
+          item.appendChild(radio);
+          item.className="value";
+          item.argIndex=argumentData.length;
+          item.appendChild(document.createTextNode(name+(desc.required?"*":"")+" ("+desc.type+")"));
+          item.addEventListener("click", (e)=>{
+            argumentInput.argIndex=e.currentTarget.argIndex;
+            argumentInput.style.visibility="visible";
+            argumentInput.style.width=argumentInput.style.height="";
+            argumentInput.placeholder=JSON.stringify(desc.format, null, 2);
+          });
+          td.appendChild(item);
+          argumentData.push({name:name, type:desc.type, value:undefined});
+        }
+      }
+      tr.appendChild(td);
+      td=document.createElement("td");
+      const argumentInput=document.createElement("w-textarea");
+      argumentInput.argIndex=-1;
+      argumentInput.className="argument-input";
+      argumentInput.style.visibility="hidden";
+      argumentInput.addEventListener("input", (e)=>{
+        const target=e.currentTarget;
+        if(target.value===""){
+          argumentData[target.argIndex].value=undefined;
+        }else{
+          argumentData[target.argIndex].value=target.value;
+        }
+      });
+      td.appendChild(argumentInput);
+      tr.appendChild(td);
+      // execute
+      td=document.createElement("td");
+      const btn=document.createElement("w-button");
+      btn.textContent=">";
+      btn.addEventListener("click", ()=>{
+        executeMethod(method.name);
+      });
+      td.appendChild(btn);
+      tr.appendChild(td);
+      methodsTable.appendChild(tr);
+    }
+    container.appendChild(methodsTable);
   }
-  container.appendChild(methodsTable);
-  // demo
-  heading=document.createElement("w-heading");
-  heading.level=4;
-  heading.textContent="Demo";
-  container.appendChild(heading);
-  const demoCode=document.createElement("div");
-  demoCode.className="demo-code";
-  container.appendChild(demoCode);
-  const demo=document.createElement("div");
-  demo.className="demo";
-  container.appendChild(demo);
+  // update demo with default settings
   updateDemo();
 }
 </script>
@@ -428,6 +525,7 @@ function showComponent(name){
 		<template>
       <w-sidemenu-layout position="left">
         <w-sidemenu>
+          <w-heading level="5">元件</w-heading>
           <div class="item" onclick="showComponent('w-button');">Button</div>
           <div class="item" onclick="showComponent('w-icon-button');">IconButton</div>
           <div class="item separator"></div>
@@ -828,6 +926,7 @@ function showComponent(name){
         const openConfirmDialogBtn=document.querySelector("#open-confirm-dialog-btn");
         openConfirmDialogBtn.addEventListener("click", ()=>{
           const dialog=document.querySelector("#confirm-dialog");
+          console.log(dialog);
           dialog.open(function(){
             alert("執行");
           });

@@ -58,55 +58,61 @@ const stylesheet=`
 `;
 
 class Dialog extends WComponent{
+  static title = 'Dialog';
   static tagName = 'dialog';
-  static documents = {
-    title: 'Dialog',
-    description: 'General styled dialog component.',
-    tagName: 'w-dialog',
-    attributes: {
-      title: {
-        name: 'title', defaultValue: '',
-        values: '[Title Text]'
-      },
-      color: {
-        name: 'color', defaultValue: 'primary',
-        values: 'primary|critical|gray'
-      },
-      backdrop: {
-        name: 'backdrop', defaultValue: 'normal', 
-        values: 'normal|none|no-action'
-      }
+  static description = 'General styled dialog component.';
+  static methods = {
+    open: {
+      name: 'open', args: new Map([
+        ['options', {
+          required:false,
+          type:"object",
+          format:{
+            title:'[Any String]',
+            backdrop:'normal|none|no-action',
+            actions:{
+              primary:{
+                color:'primary|critical|gray',
+                text:'[Any String]',
+                handler:'[Any Function()]'
+              },
+              secondary:{
+                color:'primary|critical|gray',
+                text:'[Any String]',
+                handler:'[Any Function()]'
+              },
+              tertiary:{
+                color:'primary|critical|gray',
+                text:'[Any String]',
+                handler:'[Any Function()]'
+              }
+            }
+          }
+        }]
+      ])
     },
-    methods:{
-      open: {
-        name: 'open', args: ''
-      },
-      close: {
-        name: 'close', args: ''
-      }
+    close: {
+      name: 'close', args: null
     }
   }
   static attributes = {
-    display: {
-      name: 'display', defaultValue: false, 
-      parser: (value, attr) => AttributeParser.parseBoolAttr(
-        value, attr.defaultValue
-      )
-    },
     title: {
-      name: 'title', defaultValue: '', 
+      name: 'title', defaultValue: '',
+      possibleValues:'[Title Text]',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /.*/
       )
     },
     color: {
-      name: 'color', defaultValue: 'primary', 
+      name: 'color', defaultValue: 'primary',
+      possibleValues: 'primary|critical|gray',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^primary$|^critical$|^gray$/
       )
     },
     backdrop: {
-      name: 'backdrop', defaultValue: 'normal', 
+      name: 'backdrop', defaultValue: 'normal',
+      possibleValues: 'normal|none|no-action',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^normal$|^none$|^no-action$/
       )
@@ -221,15 +227,6 @@ class Dialog extends WComponent{
   update({ name, newValue }){
     newValue=this.parseAttributeValueByName(name, newValue);
     switch(name){
-      case "display":
-        if(newValue){
-          this.shadowRoot.appendChild(this.dialog);
-          this.shadowRoot.appendChild(this.backdropElement);
-        }else{
-          this.dialog.remove();
-          this.backdropElement.remove();
-        }
-        break;
       case "title":
         if(newValue){
           DOM.modify(this.titleElement, {props:{
@@ -247,34 +244,40 @@ class Dialog extends WComponent{
         break;
     }
   }
-  open(args){
-    if(typeof args==="object"){
-      if(args.actions){
-        this.customizeButton(this.btns.primary, args.actions.primary);
-        this.customizeButton(this.btns.secondary, args.actions.secondary);
-        this.customizeButton(this.btns.tertiary, args.actions.tertiary);
-      }
-      if(args.title){
-        this.title=args.title;
-      }
-      let backdrop=this.backdrop;
-      if(args.backdrop){
-        backdrop=args.backdrop;
-        if(backdrop!=="normal" && backdrop!=="no-action" && backdrop!=="none"){
-          backdrop=this.backdrop;
-        }
-      }
-      DOM.modify(this.backdropElement, {
-        props:{
-          backdrop:backdrop,
-          className:"dialog-backdrop"+(backdrop==="none"?" dialog-backdrop-none":"")
-        }
-      });
+  open(options={}){
+    if(options.actions){
+      this.customizeButton(this.btns.primary, options.actions.primary);
+      this.customizeButton(this.btns.secondary, options.actions.secondary);
+      this.customizeButton(this.btns.tertiary, options.actions.tertiary);
+    }else{
+      this.customizeButton(this.btns.primary, {});
+      this.customizeButton(this.btns.secondary, {});
+      this.customizeButton(this.btns.tertiary, {});
     }
-    this.display=true;
+    if(options.title){
+      this.title=options.title;
+    }
+    let backdrop=this.backdrop;
+    if(options.backdrop){
+      backdrop=options.backdrop;
+      if(backdrop!=="normal" && backdrop!=="no-action" && backdrop!=="none"){
+        backdrop=this.backdrop;
+      }
+    }
+    DOM.modify(this.backdropElement, {
+      props:{
+        backdrop:backdrop,
+        className:"dialog-backdrop"+(backdrop==="none"?" dialog-backdrop-none":"")
+      }
+    });
+    // show
+    this.shadowRoot.appendChild(this.dialog);
+    this.shadowRoot.appendChild(this.backdropElement);
   }
   close(){
-    this.display=false;
+    // close
+    this.dialog.remove();
+    this.backdropElement.remove();
   }
   customizeButton(btn, action, defaultText){
     if(action){

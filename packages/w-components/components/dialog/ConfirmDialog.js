@@ -4,7 +4,7 @@ import Dialog from "./Dialog.js";
 const stylesheet=``;
 
 class ConfirmDialog extends Dialog{
-  static tagName = 'cofirm-dialog';
+  static tagName = 'confirm';
   
   constructor(){
     super();
