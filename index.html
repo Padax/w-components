@@ -195,6 +195,18 @@ w-list>w-li>a.link{
 			basename:window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))
 		}
 	});
+  // Add theme switch events
+  document.querySelector('#btnDarkTheme').addEventListener('click', function(e) {
+    this.style.display = 'none';
+    document.querySelector('#btnLightTheme').style.display = 'flex';
+    wc.initTheme('dark');
+  });
+  document.querySelector('#btnLightTheme').addEventListener('click', function(e) {
+    this.style.display = 'none';
+    document.querySelector('#btnDarkTheme').style.display = 'flex';
+    wc.initTheme('light');
+  });
+
 	// manipulate calendar
 	const calendar=document.querySelector("w-calendar");
 	calendar.addEntry({date:"2021-05-27", content:"測試看看"});
@@ -410,9 +422,13 @@ function showComponent(name){
 				<div><w-spa-link href="/documents"><w-button type="link">開發</w-button></w-spa-link></div>
 			</w-nav-part>
 			<w-nav-part width="fit" arrange="right">
-				<w-icon-button display="block" color="gray" style="padding: 0px;">
+				<w-icon-button id="btnDarkTheme" display="block" color="gray" style="padding: 0px;">
           <w-icon type="weather-moon-filled" style="color: var(--color-gray-70)"></w-icon>
           深色模式
+				</w-icon-button>
+				<w-icon-button id="btnLightTheme" display="block" color="gray" style="padding: 0px; display: none;">
+          <w-icon type="weather-sunny-filled" style="color: var(--color-gray-70)"></w-icon>
+          淺色模式
 				</w-icon-button>
 				<w-icon-button display="block" color="gray" style="padding: 0px;">
           <w-icon type="globe-filled" style="color: var(--color-gray-70)"></w-icon>
