@@ -1,4 +1,5 @@
 import WComponent, { DOM, AttributeParser } from "../WComponent.js";
+import ListItem from "./ListItem.js";
 const stylesheet=`
   :host {
     display: block;
@@ -23,12 +24,12 @@ const stylesheet=`
   div.list[appearance$='panel']>::slotted(*:active){
     background-color:var(--color-gray-20);
   }
-  div.list[appearance$='panel']>::slotted(*[disabled]){
+  div.list>::slotted(*[disabled]){
     pointer-events:none;
     color:var(--color-gray-40);
   }
-  div.list[appearance$='panel']>::slotted(*[disabled]:hover),
-  div.list[appearance$='panel']>::slotted(*[disabled]:active){
+  div.list>::slotted(*[disabled]:hover),
+  div.list>::slotted(*[disabled]:active){
     background-color:initial;
   }
   div.list>::slotted(*:last-child){
@@ -36,21 +37,27 @@ const stylesheet=`
   }
 `;
 class List extends WComponent{
+  static title = 'List';
   static tagName = 'list';
+  static description = 'General styled list component.';
   static attributes = {
     mark: { 
       name: 'mark', defaultValue: 'none',
+      possibleValues: 'none|circle|outline-circle|number',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^none$|^circle$|^outline-circle$|^number$/
       )
     },
     appearance: {
       name: 'appearance', defaultValue: 'normal',
+      possibleValues: 'normal|panel|divided-panel',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^normal$|^panel$|^divided-panel$/
       )
     }
   };
+  static methods = null;
+  static childComponents = new Map([['ListItem', ListItem]]);
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }
@@ -59,9 +66,9 @@ class List extends WComponent{
     super();
   }
   init(){
+    window.customElements.upgrade(this);
     for(let i=0;i<this.children.length;i++){
-      this.children[i].setAttribute("mark", this.mark);
-      this.children[i].setAttribute("index", i);
+      this.children[i].updateMark(this.mark, i);
     }
     this.list=DOM.create("div", {props:{className:"list"}, attrs:{appearance: this.appearance}}, this.shadowRoot);
     DOM.create("slot", {}, this.list);
@@ -70,8 +77,7 @@ class List extends WComponent{
     switch(args.name){
       case 'mark':
         for(let i=0;i<this.children.length;i++){
-          this.children[i].setAttribute("mark", args.newValue);
-          this.children[i].setAttribute("index", i);
+          this.children[i].updateMark(this.mark, i);
         }
         break;
       case 'appearance':

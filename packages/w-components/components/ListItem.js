@@ -9,37 +9,36 @@ const stylesheet=`
   :host>.mark{
     display:inline-flex;align-items:center;
   }
-  :host([mark='circle'])>.mark:before{
+  :host>.circle:before{
     content:'\\fd2c';
     font-family:var(--icon-font-filled);
     margin-right:8px;
   }
-  :host([mark='outline-circle'])>.mark:before{
+  :host>.outline-circle:before{
     content:'\\fd23';
     font-family:var(--icon-font-regular);
     margin-right:8px;
   }
-  :host([mark='number'])>.mark{
+  :host>.number{
     margin-left:4px;
     margin-right:8px;
   }
 `;
 class ListItem extends WComponent{
-  static tagName = 'list-item';
+  static title = 'List Item';
+  static tagName = 'li';
+  static description = 'General styled list item component, should be wrapped by list component.';
   static attributes = {
     disabled: {
       name: 'disabled', defaultValue: false,
+      possibleValues: 'true|false',
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
-    },
-    mark: { 
-      name: 'mark', defaultValue: 'none',
-      parser: (value, attr) => AttributeParser.parseStringAttr(
-        value, attr.defaultValue, /^none$|^circle$|^outline-circle$|^number$/
-      )
     }
   };
+  static methods = null;
+  static childComponents = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }
@@ -48,23 +47,11 @@ class ListItem extends WComponent{
     super();
   }
   init(){
-    // render
-    const mark=this.mark;
-    if(mark==="number"){
-      const index=parseInt(this.getAttribute("index"));
-      DOM.create("div", {props:{className:"mark", textContent:(index+1)+"."}}, this.shadowRoot);
-    }else{
-      DOM.create("div", {props:{className:"mark"}}, this.shadowRoot);
-    }
+    DOM.create("div", {props:{className:"mark"}}, this.shadowRoot);
     DOM.create("slot", {}, this.shadowRoot);
   }
+  // update from self-observing attributes
   update(args){
-    /* has implemented in WComponent update method
-    if(args.oldValue===args.newValue){
-      return;
-    }
-    */
-    // handle disabled
     const attrs={removes:[]};
     if(this.disabled){
       attrs["disabled"]=true;
@@ -72,13 +59,13 @@ class ListItem extends WComponent{
       attrs.removes.push("disabled");
     }
     DOM.modify(this, {attrs});
-    // handle mark
-    const mark=this.mark;
+  }
+  // update from parent element
+  updateMark(mark, index){
     if(mark==="number"){
-      const index=parseInt(this.getAttribute("index"));
-      DOM.modify(this.shadowRoot.querySelector(".mark"), {props:{textContent:(index+1)+"."}});
+      DOM.modify(this.shadowRoot.querySelector(".mark"), {props:{textContent:(index+1)+".", className:"mark "+mark}});
     }else{
-      DOM.modify(this.shadowRoot.querySelector(".mark"), {props:{textContent:""}});
+      DOM.modify(this.shadowRoot.querySelector(".mark"), {props:{textContent:"", className:"mark "+mark}});
     }
   }
 }

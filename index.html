@@ -132,6 +132,10 @@ w-list>w-li>a.link{
   height:1px;background-color:var(--color-gray-20);
   padding:0px;margin:16px 24px;
 }
+#components-page w-sidemenu-content .separator{
+  height:1px;background-color:var(--color-gray-20);
+  padding:0px;margin:60px 0px;
+}
 #components-page w-sidemenu-content code{
   color:var(--color-critical-60);background-color:var(--color-gray-10);
   padding:0px 8px;margin-right:8px;
@@ -219,10 +223,13 @@ w-list>w-li>a.link{
 </scr` + `ipt>`;
 </script>
 <script>
+function createFullTagName(componentClass){
+  return window.wconfig.prefix+"-"+componentClass.tagName;
+}
 function showComponent(name){
   const componentClass=window.customElements.get(name);
   const container=document.querySelector("#component-definition");
-  const tagName=window.wconfig.prefix+"-"+componentClass.tagName;
+  const tagName=createFullTagName(componentClass);
   // basic info
   container.innerHTML=`
     <w-heading level='1'>${componentClass.title}</w-heading>
@@ -232,23 +239,77 @@ function showComponent(name){
     <w-code lang='html' class='demo-code'></w-code>
   `;
   // demo
-  let component=null;
   const updateDemo=function(){
     const inputs=Array.from(attributesTable.querySelectorAll("w-textinput.attribute-value"));
+    // child components
+    let childCode="";
+    if(componentClass.childComponents){
+      for(const [childTagName, childComponentClass] of componentClass.childComponents){
+        childCode+="\r\n  "+childComponentClass.createCode()+"\r\n";
+      }
+    }else{
+      childCode="Test Text";
+    }
     const code=`<${tagName}${inputs.map((input)=>{
       if(input.value){
         return ` ${input.attribute.name}="${input.value}"`;
       }else{
         return "";
       }
-    }).join("")}>Test</${tagName}>`;
+    }).join("")}>${childCode}</${tagName}>`;
     const demoCode=container.querySelector(".demo-code");
     demoCode.innerHTML=code;
     const demo=container.querySelector(".demo");
     demo.innerHTML=code;
-    component=demo.querySelector(tagName);
   };
   // attributes
+  const attributesTable=createAttributesTable(container, componentClass, updateDemo);
+  // methods
+  createMethodsTable(container, componentClass);
+  // child components
+  if(componentClass.childComponents){
+    for(const [childTagName, childComponentClass] of componentClass.childComponents){
+      const separator=document.createElement("div");
+      separator.className="separator";
+      container.appendChild(separator);
+      childComponentClass.createCode=createChildComponent(container, childComponentClass, updateDemo);
+    }
+  }
+  // update demo with default settings
+  updateDemo();
+}
+function createChildComponent(parentContainer, componentClass, updateDemo){
+  const container=document.createElement("div");
+  container.className="child-component-definition";
+  const tagName=createFullTagName(componentClass);
+  // basic info
+  container.innerHTML+=`
+    <w-heading level='1'>${componentClass.title}</w-heading>
+    <div><code>&lt;${tagName}&gt;</code>${componentClass.description}</div>
+  `;
+  // code
+  const createCode=function(){
+    const inputs=Array.from(attributesTable.querySelectorAll("w-textinput.attribute-value"));
+    // assume no further child components
+    let childCode="Test Text";
+    const code=`<${tagName}${inputs.map((input)=>{
+      if(input.value){
+        return ` ${input.attribute.name}="${input.value}"`;
+      }else{
+        return "";
+      }
+    }).join("")}>${childCode}</${tagName}>`;
+    return code;
+  };
+  // attributes
+  const attributesTable=createAttributesTable(container, componentClass, updateDemo);
+  // methods
+  createMethodsTable(container, componentClass);
+  parentContainer.appendChild(container);
+  return createCode;
+}
+function createAttributesTable(container, componentClass, updateDemo){
+  const tagName=createFullTagName(componentClass);
   container.innerHTML+=`<w-heading level='2'>Attributes</w-heading>`;
   const attributesTable=document.createElement("table");
   attributesTable.innerHTML=`
@@ -304,7 +365,10 @@ function showComponent(name){
     attributesTable.appendChild(tr);
   }
   container.appendChild(attributesTable);
-  // methods
+  return attributesTable;
+}
+function createMethodsTable(container, componentClass){
+  const tagName=createFullTagName(componentClass);
   if(componentClass.methods){
     const methodHeading=document.createElement("w-heading");
     methodHeading.level=2;
@@ -339,7 +403,8 @@ function showComponent(name){
           }
         });
         if(error===null){
-          component[method.name](...data);
+          let demoComponent=container.querySelector(".demo").querySelector(tagName);
+          demoComponent[method.name](...data);
         }else{
           window.alert(error);
         }
@@ -403,8 +468,6 @@ function showComponent(name){
     }
     container.appendChild(methodsTable);
   }
-  // update demo with default settings
-  updateDemo();
 }
 </script>
 </head>
@@ -544,6 +607,7 @@ function showComponent(name){
           <w-heading level="5">元件</w-heading>
           <div class="item" onclick="showComponent('w-button');">Button</div>
           <div class="item" onclick="showComponent('w-icon-button');">IconButton</div>
+          <div class="item" onclick="showComponent('w-list');">List</div>
           <div class="item separator"></div>
           <div class="item" onclick="showComponent('w-dialog');">Dialog</div>
           <div class="item" onclick="showComponent('w-alert');">AlertDialog</div>
