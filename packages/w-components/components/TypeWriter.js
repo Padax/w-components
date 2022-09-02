@@ -14,21 +14,27 @@ const stylesheet=`
   }
 `;
 class TypeWriter extends WComponent{
+  static title = 'Type Writer';
+  static description = 'Text with typewriter effect.';
   static tagName = 'typewriter';
   static attributes = {
     speed: {
       name: 'speed', defaultValue: 5, min: 1, max: 10,
+      possibleValues: '{1,10,1}',
       parser: (value, attr) => AttributeParser.parseIntAttr(
         value, attr.defaultValue, attr.min, attr.max
       )
     },
     delay: {
       name: 'delay', defaultValue: 0, min: 0, max: 1000000,
+      possibleValues: '{0,100000,1000}',
       parser: (value, attr) => AttributeParser.parseIntAttr(
         value, attr.defaultValue, attr.min, attr.max
       )
     }
   };
+  static methods = null;
+  static childComponents = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }

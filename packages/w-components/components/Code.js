@@ -136,15 +136,20 @@ const stylesheet = `
   }
 `;
 class Code extends WComponent{
+  static title = 'Code';
+  static description = 'Code with rich colors.';
   static tagName = 'code';
   static attributes = {
     lang: {
       name: 'lang', defaultValue: 'auto',
+      possibleValues: '[Language Name]',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^(?!\s*$).+/ // Non-empty string
       )
     }
   };
+  static methods = null;
+  static childComponents = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }

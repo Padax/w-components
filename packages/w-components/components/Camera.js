@@ -1,27 +1,55 @@
 import WComponent, { DOM, AttributeParser } from "../WComponent.js";
 const stylesheet=``;
 class Camera extends WComponent{
+  static title = 'Camera';
+  static description = 'Access device\'s camera video.';
   static tagName = 'camera';
   static attributes = {
     width: {
       name: 'width', defaultValue: 640, min: 480, max: 4096,
+      possibleValues: '{480,720,10}',
       parser: (value, attr) => AttributeParser.parseIntAttr(
         value, attr.defaultValue, attr.min, attr.max
       )
     },
     height: {
       name: 'height', defaultValue: 480, min: 320, max: 2160,
+      possibleValues: '{320,480,10}',
       parser: (value, attr) => AttributeParser.parseIntAttr(
         value, attr.defaultValue, attr.min, attr.max
       )
     },
     autoplay: {
-      name: 'autoplay', defaultValue: true, 
+      name: 'autoplay', defaultValue: true,
+      possibleValues: 'true|false',
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
     }
   };
+  static methods = {
+    start: {
+      name: 'start', args: null
+    },
+    stop: {
+      name: 'stop', args: null
+    },
+    pause: {
+      name: 'pause', args: null
+    },
+    takePicture: {
+      name: 'takePicture', args: new Map([
+        ['options', {
+          required:false,
+          type:"object",
+          format:{
+            download:'true|false'
+          }
+        }]
+      ])
+    }
+  };
+  static childComponents = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }
@@ -83,7 +111,7 @@ class Camera extends WComponent{
     }
     this.video.pause();
   }
-  takePicture(opts={}){
+  takePicture(options={}){
     if(this.video===null){
       return;
     }
@@ -91,7 +119,7 @@ class Camera extends WComponent{
       width:this.video.width, height:this.video.height
     }}).getContext('2d');
     ctx.drawImage(this.video, 0, 0);
-    if(opts.download){
+    if(options.download){
       ctx.canvas.toBlob((blob)=>{
         const url=URL.createObjectURL(blob);
         const link=DOM.create('a', {props:{
