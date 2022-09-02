@@ -182,17 +182,7 @@ w-list>w-li>a.link{
 }
 </style>
 <script type="module">
-	import wc from "./dist/index.bundle.js";
-  // manipulate nav
-  const nav=document.querySelector("w-nav");
-	// manipulate spa-page
-	const page=document.querySelector("#components-page");
-	page.addEventListener("init", ()=>{
-		nav.setAttribute("width", "full");
-	});
-	page.addEventListener("dispose", ()=>{
-		nav.setAttribute("width", "normal");
-	});
+  import wc from "./dist/index.bundle.js";
   // init components
 	wc.init({
 		spa:{
@@ -617,6 +607,16 @@ function createMethodsTable(container, componentClass){
       </w-sidemenu-layout>
     </template>
   </w-spa-page>
+  <script>
+    const nav=document.querySelector("w-nav");
+    const page=document.querySelector("#components-page");
+    page.addEventListener("init", ()=>{
+      nav.setAttribute("width", "full");
+    });
+    page.addEventListener("dispose", ()=>{
+      nav.setAttribute("width", "normal");
+    });
+  </script>
   <w-spa-page path="/documents">
     <templage>
       <w-heading level="1" underlined>Main Content</w-heading>
