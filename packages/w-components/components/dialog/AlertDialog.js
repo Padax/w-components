@@ -4,6 +4,8 @@ import Dialog from "./Dialog.js";
 const stylesheet=``;
 
 class AlertDialog extends Dialog{  
+  static title = 'Alert Dialog';
+  static description = 'Dialog for alert.';
   static tagName = 'alert';
   
   constructor(){

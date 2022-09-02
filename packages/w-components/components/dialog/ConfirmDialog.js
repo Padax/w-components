@@ -4,6 +4,8 @@ import Dialog from "./Dialog.js";
 const stylesheet=``;
 
 class ConfirmDialog extends Dialog{
+  static title = 'Confirm Dialog';
+  static description = 'Dialog for confirmation.';
   static tagName = 'confirm';
   
   constructor(){

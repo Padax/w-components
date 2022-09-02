@@ -45,6 +45,8 @@ const propStylesheet = {
   `
 };
 class DisplayHeading extends Heading{
+  static title = 'Display Heading';
+  static description = 'General display heading component.';
   static tagName = 'display-heading';
 
   constructor(){

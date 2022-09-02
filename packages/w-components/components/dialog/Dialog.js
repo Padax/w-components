@@ -59,8 +59,31 @@ const stylesheet=`
 
 class Dialog extends WComponent{
   static title = 'Dialog';
-  static tagName = 'dialog';
   static description = 'General styled dialog component.';
+  static tagName = 'dialog';
+  static attributes = {
+    title: {
+      name: 'title', defaultValue: '',
+      possibleValues:'[Title Text]',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /.*/
+      )
+    },
+    color: {
+      name: 'color', defaultValue: 'primary',
+      possibleValues: 'primary|critical|gray',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^primary$|^critical$|^gray$/
+      )
+    },
+    backdrop: {
+      name: 'backdrop', defaultValue: 'normal',
+      possibleValues: 'normal|none|no-action',
+      parser: (value, attr) => AttributeParser.parseStringAttr(
+        value, attr.defaultValue, /^normal$|^none$|^no-action$/
+      )
+    }
+  };
   static methods = {
     open: {
       name: 'open', args: new Map([
@@ -94,30 +117,8 @@ class Dialog extends WComponent{
     close: {
       name: 'close', args: null
     }
-  }
-  static attributes = {
-    title: {
-      name: 'title', defaultValue: '',
-      possibleValues:'[Title Text]',
-      parser: (value, attr) => AttributeParser.parseStringAttr(
-        value, attr.defaultValue, /.*/
-      )
-    },
-    color: {
-      name: 'color', defaultValue: 'primary',
-      possibleValues: 'primary|critical|gray',
-      parser: (value, attr) => AttributeParser.parseStringAttr(
-        value, attr.defaultValue, /^primary$|^critical$|^gray$/
-      )
-    },
-    backdrop: {
-      name: 'backdrop', defaultValue: 'normal',
-      possibleValues: 'normal|none|no-action',
-      parser: (value, attr) => AttributeParser.parseStringAttr(
-        value, attr.defaultValue, /^normal$|^none$|^no-action$/
-      )
-    }
   };
+  static childComponents = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }

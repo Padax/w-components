@@ -195,8 +195,8 @@ const stylesheet=`
 `;
 class Button extends WComponent{
   static title = 'Button';
-  static tagName = 'button';
   static description = 'General styled button component.';
+  static tagName = 'button';
   static attributes = {
     disabled: {
       name: 'disabled', defaultValue: false,
@@ -246,6 +246,7 @@ class Button extends WComponent{
     }
   };
   static methods = null;
+  static childComponents = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }

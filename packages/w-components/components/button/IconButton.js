@@ -19,6 +19,8 @@ const stylesheet=`
 `;
 
 class IconButton extends Button {
+  static title = 'Icon Button';
+  static description = 'General icon button component.';
   static tagName = 'icon-button';
   static attributes = {
     ...Button.attributes,
@@ -37,6 +39,8 @@ class IconButton extends Button {
       )
     }
   };
+  static methods = null;
+  static childComponents = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }

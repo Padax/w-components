@@ -47,21 +47,27 @@ const propStylesheet = {
   `
 };
 class Heading extends WComponent{
+  static title = 'Heading';
+  static description = 'General heading component.';
   static tagName = 'heading';
   static attributes = {
     level: {
       name: 'level', defaultValue: 5, min: 1, max: 6,
+      possibleValues: '{1,6,1}', // {min, max, step}
       parser: (value, attr) => AttributeParser.parseIntAttr(
         value, attr.defaultValue, attr.min, attr.max
       )
     },
     underlined: {
       name: 'underlined', defaultValue: false,
+      possibleValues: 'true|false',
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
     }
   };
+  static methods = null;
+  static childComponents = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }

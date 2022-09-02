@@ -318,26 +318,42 @@ function createAttributesTable(container, componentClass, updateDemo){
       <td>${attribute.defaultValue}</td>
     `;
     // possible values
+    let isRangeValue=attribute.possibleValues.startsWith("{") && attribute.possibleValues.endsWith("}");
     let isOpenValue=attribute.possibleValues.startsWith("[") && attribute.possibleValues.endsWith("]");
     let td=document.createElement("td");
-    attribute.possibleValues.split("|").forEach((value)=>{
-      const item=document.createElement("label");
-      const radio=document.createElement("input");
-      radio.type="radio";
-      radio.name=tagName+"-"+attribute.name;
-      item.appendChild(radio);
-      item.className="value";
-      item.appendChild(document.createTextNode(value));
-      if(isOpenValue){
-        radio.checked=true;
-      }else{
-        item.addEventListener("click", ()=>{
-            input.value=value;
-            input.dispatchEvent(new Event("input"));
-        });
-      }
-      td.appendChild(item);
-    });
+    if(isRangeValue){
+      let [min, max, step]=attribute.possibleValues.substring(1, attribute.possibleValues.length-1).split(",");
+      const range=document.createElement("input");
+      range.type="range";
+      range.min=min;
+      range.max=max;
+      range.step=step;
+      range.value=attribute.defaultValue;
+      range.addEventListener("input", (e)=>{
+        input.value=e.target.value;
+        input.dispatchEvent(new Event("input"));
+      });
+      td.appendChild(range);
+    }else{
+      attribute.possibleValues.split("|").forEach((value)=>{
+        const item=document.createElement("label");
+        const radio=document.createElement("input");
+        radio.type="radio";
+        radio.name=tagName+"-"+attribute.name;
+        item.appendChild(radio);
+        item.className="value";
+        item.appendChild(document.createTextNode(value));
+        if(isOpenValue){
+          radio.checked=true;
+        }else{
+          item.addEventListener("click", ()=>{
+              input.value=value;
+              input.dispatchEvent(new Event("input"));
+          });
+        }
+        td.appendChild(item);
+      });
+    }
     tr.appendChild(td);
     // customize
     td=document.createElement("td");
@@ -595,6 +611,9 @@ function createMethodsTable(container, componentClass){
       <w-sidemenu-layout position="left">
         <w-sidemenu>
           <w-heading level="5">元件</w-heading>
+          <div class="item" onclick="showComponent('w-heading');">Heading</div>
+          <div class="item" onclick="showComponent('w-display-heading');">DisplayHeading</div>
+          <div class="item separator"></div>
           <div class="item" onclick="showComponent('w-button');">Button</div>
           <div class="item" onclick="showComponent('w-icon-button');">IconButton</div>
           <div class="item" onclick="showComponent('w-list');">List</div>

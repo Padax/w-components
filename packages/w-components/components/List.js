@@ -38,8 +38,8 @@ const stylesheet=`
 `;
 class List extends WComponent{
   static title = 'List';
-  static tagName = 'list';
   static description = 'General styled list component.';
+  static tagName = 'list';
   static attributes = {
     mark: { 
       name: 'mark', defaultValue: 'none',
