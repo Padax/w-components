@@ -30,6 +30,7 @@ const DOM={
     }
     return element;
   },
+
   setProperties:function(element, properties){
     for(const name in properties){
       element[name]=properties[name];
@@ -54,6 +55,7 @@ const DOM={
     }
     return element;
   },
+
   addListeners:function(element, listeners, useCapture){
     for(const name in listeners){
       if(listeners[name] instanceof Array){

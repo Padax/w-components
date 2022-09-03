@@ -1,4 +1,5 @@
 import DOM from "./util/DOM.js";
+import Theme from './util/Theme.js';
 
 class WComponent extends HTMLElement{
   /**
@@ -30,6 +31,13 @@ class WComponent extends HTMLElement{
     if(oldValue !== newValue && this.key && this.hasDefinedAttribute(name)){
       this.update({name, oldValue, newValue});
     }
+  }
+  /**
+   * Create & bind observer on head style theme changed.
+   * @param {function} callback 
+   */
+  bindThemeChangedObserver(callback) {
+    Theme.bindChangedObserver(callback);
   }
   /**
    * Dynamically create getters & setters for property-attribute sync 

@@ -193,12 +193,12 @@ w-list>w-li>a.link{
   document.querySelector('#btnDarkTheme').addEventListener('click', function(e) {
     this.style.display = 'none';
     document.querySelector('#btnLightTheme').style.display = 'flex';
-    wc.initTheme('dark');
+    wc.setTheme('dark');
   });
   document.querySelector('#btnLightTheme').addEventListener('click', function(e) {
     this.style.display = 'none';
     document.querySelector('#btnDarkTheme').style.display = 'flex';
-    wc.initTheme('light');
+    wc.setTheme('light');
   });
 
 	// manipulate calendar

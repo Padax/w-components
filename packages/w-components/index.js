@@ -1,6 +1,5 @@
 import DOM from "./util/DOM.js";
-import DarkThemeStylesheet from "./theme/dark.css.js";
-import LightThemeStylesheet from "./theme/light.css.js";
+import Theme from "./util/Theme.js";
 
 import AlertDialog from "./components/dialog/AlertDialog.js";
 import Button from "./components/button/Button.js";
@@ -36,31 +35,15 @@ import TextInput from "./components/form/TextInput.js";
 import TextArea from "./components/form/TextArea.js";
 import TypeWriter from "./components/TypeWriter.js";
 
-const THEME_STYLESHEET_ID = "wc-theme-stylesheet";
-
 const defaultWConfig={theme:"light", spa:{basename:""}};
 const wc={
   init: function(wconfig={}){
     window.wconfig=Object.assign(defaultWConfig, wconfig);
     window.wconfig.prefix='w'; // force prefix to 'w'
-    
-    this.initTheme(window.wconfig.theme);
+    this.setTheme(window.wconfig.theme);
   },
-  initTheme:function(name){
-    const head=document.querySelector("head");
-    const themeElement=head.querySelector(`#${THEME_STYLESHEET_ID}`);
-    if(themeElement){
-      themeElement.remove();
-    }
-    let stylesheet;
-    if(name==="dark"){
-      stylesheet=DarkThemeStylesheet;
-    }else{
-      stylesheet=LightThemeStylesheet;
-    }
-    DOM.create("style", {props:{
-      id:THEME_STYLESHEET_ID, textContent:stylesheet
-    }}, head);
+  setTheme: function(name) {
+    Theme.setElement(name);
   }
 };
 
