@@ -5,7 +5,7 @@ const stylesheet=`
     display: inline-flex; align-items: center; justify-content: center;
     font-family:var(--font-family);
     border-width:1px;border-style:solid;border-radius:4px;
-    color:var(--color-gray-0);
+    color:var(--color-gray-0-button);
     cursor:pointer;transition:background-color 0.2s, border-color 0.2s;
     vertical-align: middle;
   }

@@ -17,6 +17,7 @@ const DarkThemeStylesheet=`
   --color-gray-20:#26394D;
   --color-gray-10:#172533;
   --color-gray-0:#0F1B26;
+  --color-gray-0-button:#FFFFFF;
 
   --color-primary-100:#B2D9FF;
   --color-primary-90:#7FBEFE;

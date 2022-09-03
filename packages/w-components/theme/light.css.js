@@ -7,6 +7,7 @@ const LightThemeStylesheet=`
 
   /* Colors */
   --color-gray-0:#FFFFFF;
+  --color-gray-0-button:#FFFFFF;
   --color-gray-10:#F2F5F7;
   --color-gray-20:#E6E8EB;
   --color-gray-30:#D4D7D9;
