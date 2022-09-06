@@ -53,24 +53,30 @@ const stylesheet=`
 `;
 
 class TextInput extends WComponent{
+  static title = 'TextInput';
+  static description = 'Text input with single line.';
   static tagName = 'textinput';
   static attributes = {
     appearance: {
       name: 'appearance', defaultValue: 'outlined',
+      possibleValues: 'outlined|filled',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^outlined$|^filled$/
       )
     },
-    placeholder: { name: 'placeholder', defaultValue: '' },
-    value: { name: 'value', defaultValue: '' },
-    name: { name: 'name' },
+    placeholder: { name: 'placeholder', defaultValue: '', possibleValues: '[Any String]' },
+    value: { name: 'value', defaultValue: '', possibleValues: '[Any String]' },
+    name: { name: 'name', possibleValues: '[Any String]' },
     disabled: {
       name: 'disabled', defaultValue: false, 
+      possibleValues: 'true|false',
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
     }
   };
+  static methods = null;
+  static childComponents = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }

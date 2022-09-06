@@ -12,8 +12,11 @@ const stylesheet=`
 `;
 
 class Checkbox extends Checkable{
+  static title = 'Checkbox';
+  static description = 'General styled checkbox input.';
   static tagName = 'checkbox';
-  
+  static methods = null;
+  static childComponents = null;
   constructor() {
     super();
     this.bindEvents();

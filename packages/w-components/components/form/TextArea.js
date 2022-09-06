@@ -70,36 +70,44 @@ const stylesheet=`
 `;
 
 class TextArea extends WComponent{
+  static title = 'TextArea';
+  static description = 'Text input with mutiple-lines.';
   static tagName = 'textarea';
   static attributes = {
     type: { 
       name: 'type', defaultValue: 'normal',
+      possibleValues: 'normal|growable',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^normal$|^growable$/
       )
     },
     resize:{
       name: 'resize', defaultValue: 'both',
+      possibleValues: 'both|horizontal|vertical|none',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^both$|^horizontal$|^vertical$|^none$/
       )
     },
     appearance: {
       name: 'appearance', defaultValue: 'outlined',
+      possibleValues: 'outlined|filled',
       parser: (value, attr) => AttributeParser.parseStringAttr(
         value, attr.defaultValue, /^outlined$|^filled$/
       )
     },
-    placeholder: { name: 'placeholder', defaultValue: '' },
-    value: { name: 'value', defaultValue: '' },
-    name: { name: 'name' },
+    placeholder: { name: 'placeholder', defaultValue: '', possibleValues: '[Any String]' },
+    value: { name: 'value', defaultValue: '', possibleValues: '[Any String]' },
+    name: { name: 'name', possibleValues: '[Any String]' },
     disabled: {
       name: 'disabled', defaultValue: false, 
+      possibleValues: 'true|false',
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
     }
   };
+  static methods = null;
+  static childComponents = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }

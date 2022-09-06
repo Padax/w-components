@@ -11,8 +11,11 @@ const stylesheet=`
   }
 `;
 class Radio extends Checkable{
+  static title = 'Radio';
+  static description = 'General styled radio input.';
   static tagName = 'radio';
-  
+  static methods = null;
+  static childComponents = null;
   constructor() {
     super();
     this.bindEvents();

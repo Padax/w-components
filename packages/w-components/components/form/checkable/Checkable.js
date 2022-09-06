@@ -56,18 +56,20 @@ class Checkable extends WComponent{
   static attributes = {
     checked: {
       name: 'checked', defaultValue: false, 
+      possibleValues: 'true|false',
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
     },
     disabled: {
       name: 'disabled', defaultValue: false, 
+      possibleValues: 'true|false',
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
     },
-    value: { name: 'value', defaultValue: 'on' },
-    name: { name: 'name' }
+    value: { name: 'value', defaultValue: 'on', possibleValues: 'on' },
+    name: { name: 'name', possibleValues: '[Any String]' }
   };
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);

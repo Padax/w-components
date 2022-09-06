@@ -1,29 +1,34 @@
 import WComponent, { DOM, AttributeParser } from "../../WComponent.js";
-import Select from './Select.js'; // Import for custom element define dependency
 
 const stylesheet=`
 
 `;
 
 class Option extends WComponent{
+  static title = 'Option';
+  static description = 'General option component, should be wrapped in select component.';
   static tagName = 'option';
   static attributes = {
     value: {
-      name: 'value', defaultValue: null
+      name: 'value', defaultValue: null, possibleValues: '[Any String]'
     },
     selected: {
       name: 'selected', defaultValue: false, 
+      possibleValues: 'true|false',
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
     },
     disabled: {
       name: 'disabled', defaultValue: false, 
+      possibleValues: 'true|false',
       parser: (value, attr) => AttributeParser.parseBoolAttr(
         value, attr.defaultValue
       )
     }
   };
+  static methods = null;
+  static childComponents = null;
   static get observedAttributes() {
     return this.getObservedAttributes(this.attributes);
   }
@@ -34,7 +39,7 @@ class Option extends WComponent{
 
   init(){}
   update(){
-    if(this.parentElement instanceof Select) {
+    if(typeof this.parentElement.updateOptions === 'function') {
       this.parentElement.updateOptions();
     }
   }
