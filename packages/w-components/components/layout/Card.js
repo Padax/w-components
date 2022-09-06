@@ -7,6 +7,9 @@ const stylesheet=`
     border-radius:50%;
     margin-bottom:10px;
   }
+  .card>.icon>img{
+    border-radius:50%;
+  }
   .card>.title{
     color:var(--color-gray-90);
     margin-bottom:10px;
@@ -24,6 +27,11 @@ const stylesheet=`
     position:absolute;
     width:60px;height:60px;
     top:-30px;left:calc(50% - 30px);
+    background-color:var(--color-primary-60);
+    display:flex;justify-content:center;align-items:center;
+  }
+  .icon-cross>.icon>img{
+    border-radius:0px;
   }
 `;
 class Card extends WComponent{
@@ -65,7 +73,9 @@ class Card extends WComponent{
       className:"card "+this.layout
     }}, this.shadowRoot);
     if(this.icon){
-      DOM.create("img", {props:{className:"icon", src:this.icon}}, this.card);
+      DOM.create("img", {props:{src:this.icon}},
+        DOM.create("div", {props:{className:"icon"}}, this.card)
+      );
     }
     if(this.title){
       DOM.create(getWTagName('heading'), {attrs:{level:4}, props:{className:"title", textContent:this.title}}, this.card);
